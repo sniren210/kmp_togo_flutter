@@ -151,22 +151,29 @@ class _LoginPagesState extends State<LoginPages> {
     return Consumer<ProviderApiText>(builder: (context, v, child) {
       return SafeArea(
         child: Scaffold(
-          body: SingleChildScrollView(
-            child: Form(
-              key: _formKey,
+          resizeToAvoidBottomInset: false,
+          body: Form(
+            key: _formKey,
+            child: SingleChildScrollView(
               child: Column(
-                mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 4.w, right: 4.w, top: 5.h),
-                    height: 25.h,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            fit: BoxFit.contain,
-                            image: AssetImage('assets/images/logon.jpg'))),
+                  // Image.asset('assets/images/logon.jpg'),
+                  InkWell(
+                    onTap: () {
+                      print(MediaQuery.of(context).viewInsets.bottom);
+                      // print(WidgetsBinding.instance.window.viewInsets.bottom);
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(left: 4.w, right: 4.w, top: 5.h),
+                      height: 25.h,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.contain,
+                              image: AssetImage('assets/images/logon.jpg'))),
+                    ),
                   ),
                   bannedtime == false
                       ? Column(
@@ -493,9 +500,6 @@ class _LoginPagesState extends State<LoginPages> {
                         ),
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: 1.h,
                   ),
                 ],
               ),

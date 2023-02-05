@@ -3,6 +3,5 @@ include: package:flutter_lints/flutter.yaml
 linter:
   rules:
     file_names: false
-    must_be_immutable: false
     library_prefixes: false
     constant_identifier_names: false
