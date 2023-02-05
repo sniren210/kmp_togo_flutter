@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:kmp_togo_mobile/helpers/shared_pref_manager.dart';
 import 'package:kmp_togo_mobile/main.dart';
@@ -139,6 +140,7 @@ class _LoginPagesState extends State<LoginPages> {
       await _getApiTextLogin.getTextHubungiCS(context);
       // await _getkategoriProvider.getMyNFT(context);
     });
+
     super.initState();
   }
 
@@ -151,11 +153,9 @@ class _LoginPagesState extends State<LoginPages> {
     return Consumer<ProviderApiText>(builder: (context, v, child) {
       return SafeArea(
         child: Scaffold(
-          resizeToAvoidBottomInset: false,
           body: Form(
             key: _formKey,
             child: SingleChildScrollView(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -495,6 +495,15 @@ class _LoginPagesState extends State<LoginPages> {
                       ],
                     ),
                   ),
+                  KeyboardVisibilityBuilder(
+                      builder: (context, isKeyboardVisible) {
+                    if (isKeyboardVisible) {
+                      return SizedBox(
+                        height: 38.h,
+                      );
+                    }
+                    return SizedBox.shrink();
+                  }),
                 ],
               ),
             ),
