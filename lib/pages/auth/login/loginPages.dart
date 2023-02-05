@@ -155,25 +155,19 @@ class _LoginPagesState extends State<LoginPages> {
           body: Form(
             key: _formKey,
             child: SingleChildScrollView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Image.asset('assets/images/logon.jpg'),
-                  InkWell(
-                    onTap: () {
-                      print(MediaQuery.of(context).viewInsets.bottom);
-                      // print(WidgetsBinding.instance.window.viewInsets.bottom);
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(left: 4.w, right: 4.w, top: 5.h),
-                      height: 25.h,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              fit: BoxFit.contain,
-                              image: AssetImage('assets/images/logon.jpg'))),
-                    ),
+                  Container(
+                    margin: EdgeInsets.only(left: 4.w, right: 4.w, top: 5.h),
+                    height: 25.h,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.contain,
+                            image: AssetImage('assets/images/logon.jpg'))),
                   ),
                   bannedtime == false
                       ? Column(
@@ -329,7 +323,7 @@ class _LoginPagesState extends State<LoginPages> {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 15, horizontal: 70),
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25),
+                                      borderRadius: BorderRadius.circular(8),
                                       color: const Color(0xFF85014e)),
                                   child: const Text(
                                     'Login',
@@ -351,7 +345,7 @@ class _LoginPagesState extends State<LoginPages> {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 15, horizontal: 70),
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25),
+                                      borderRadius: BorderRadius.circular(8),
                                       color: Colors.grey),
                                   child: Center(
                                     child: SizedBox(

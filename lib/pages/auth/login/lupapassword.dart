@@ -34,215 +34,221 @@ class _LupaPasswordState extends State<LupaPassword> {
         loading = Provider.of<ProviderAuthLogin>(context, listen: false)
             .loadingLupaPassword;
       });
+    } else {
+      setState(() {
+        loading = false;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Lupa Password'),
-        ),
-        body: SingleChildScrollView(
-          child: Column(children: [
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 20.0, left: 20),
-              padding: const EdgeInsets.only(right: 5.0, left: 5),
-              decoration: BoxDecoration(
-                  border: Border.all(), borderRadius: BorderRadius.circular(3)),
-              child: Row(
-                children: [
-                  const Text(
-                    '+62',
-                    style: TextStyle(fontSize: 17),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Expanded(
-                    child: TextFormField(
-                      // obscureText: passhide,
+    return SafeArea(
+      child: Form(
+        key: _formKey,
+        child: Scaffold(
+          // appBar: AppBar(
+          //   title: const Text('Lupa Password'),
+          // ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(left: 4.w, right: 4.w, top: 5.h),
+                  height: 25.h,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.contain,
+                          image: AssetImage('assets/images/logon.jpg'))),
+                ),
+                Container(
+                    margin: EdgeInsets.only(top: 7.h, left: 5.w, right: 5.w),
+                    child: Text(
+                      'Lupa Password',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 19.sp),
+                    )),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  padding: const EdgeInsets.only(top: 20),
+                  margin: const EdgeInsets.only(right: 20.0, left: 20),
+                  child: TextFormField(
+                    // obscureText: passhide,
 
-                      keyboardType: TextInputType.phone,
-                      controller: numbercontroller,
-                      decoration: const InputDecoration(
-                          // contentPadding:
-                          //     const EdgeInsets.symmetric(vertical: 20),
-                          // prefixIcon: Icon(
-                          //   Icons.phone_android,
-                          //   color: _focusNodes[0].hasFocus
-                          //       ? Color(0xFF85014e)
-                          //       : Colors.grey.shade400,
-                          //   size: 7.w,
-                          // ),
-
-                          // labelText: "Masukan Nomor Telphone",
-                          // border: const OutlineInputBorder(),
-                          border: InputBorder.none,
-                          hintText: 'Masukan Nomor Telphone',
-                          hintStyle: TextStyle(fontSize: 17)
-                          // suffixIcon: IconButton(
-                          //     icon: Icon(
-                          //       passhide ? Icons.visibility_off : Icons.visibility,
-                          //       color: _focusNodes[1].hasFocus
-                          //           ? Color(0xFF85014e)
-                          //           : Colors.grey.shade400,
-                          //       size: 7.w,
-                          //     ),
-                          //     onPressed: () {
-                          //       setState(() {
-                          //         passhide = !passhide;
-                          //       });
-                          //     })
+                    keyboardType: TextInputType.phone,
+                    controller: numbercontroller,
+                    decoration: const InputDecoration(
+                        prefixIcon: Padding(
+                          padding: EdgeInsets.all(14.0),
+                          child: Text(
+                            '+62',
+                            style: TextStyle(fontSize: 17),
                           ),
-                      validator: (password) {
-                        if (password!.isEmpty) {
-                          return "Masukan Nomor Telphone";
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // Container(
-            //   padding: const EdgeInsets.only(top: 20),
-            //   margin: const EdgeInsets.only(right: 20.0, left: 20),
-            //   child: TextFormField(
-            //     obscureText: passhide1,
-            //     controller: passnewcontroller,
-            //     decoration: InputDecoration(
-            //         contentPadding: const EdgeInsets.symmetric(vertical: 20),
-            //         prefixIcon: Icon(
-            //           Icons.lock,
-            //           color: _focusNodes[1].hasFocus
-            //               ? Color(0xFF85014e)
-            //               : Colors.grey.shade400,
-            //           size: 7.w,
-            //         ),
-            //         labelText: "Enter New Password",
-            //         border: const OutlineInputBorder(),
-            //         suffixIcon: IconButton(
-            //             icon: Icon(
-            //               passhide ? Icons.visibility_off : Icons.visibility,
-            //               color: _focusNodes[1].hasFocus
-            //                   ? Color(0xFF85014e)
-            //                   : Colors.grey.shade400,
-            //               size: 7.w,
-            //             ),
-            //             onPressed: () {
-            //               setState(() {
-            //                 passhide1 = !passhide1;
-            //               });
-            //             })),
-            //     validator: (password) {
-            //       if (password!.isEmpty) {
-            //         return "You must enter password";
-            //       } else {
-            //         return null;
-            //       }
-            //     },
-            //   ),
-            // ),
-            // Container(
-            //   padding: const EdgeInsets.only(top: 20),
-            //   margin: const EdgeInsets.only(right: 20.0, left: 20),
-            //   child: TextFormField(
-            //     obscureText: passhide2,
-            //     controller: passnew2controller,
-            //     decoration: InputDecoration(
-            //         contentPadding: const EdgeInsets.symmetric(vertical: 20),
-            //         prefixIcon: Icon(
-            //           Icons.lock,
-            //           color: _focusNodes[2].hasFocus
-            //               ? Color(0xFF85014e)
-            //               : Colors.grey.shade400,
-            //           size: 7.w,
-            //         ),
-            //         labelText: "Enter Repeat Password",
-            //         border: const OutlineInputBorder(),
-            //         suffixIcon: IconButton(
-            //             icon: Icon(
-            //               passhide ? Icons.visibility_off : Icons.visibility,
-            //               color: _focusNodes[1].hasFocus
-            //                   ? Color(0xFF85014e)
-            //                   : Colors.grey.shade400,
-            //               size: 7.w,
-            //             ),
-            //             onPressed: () {
-            //               setState(() {
-            //                 passhide2 = !passhide2;
-            //               });
-            //             })),
-            //     validator: (password) {
-            //       if (password!.isEmpty) {
-            //         return "You must enter password";
-            //       } else if (password != passnewcontroller.text) {
-            //         return "You must enter doest match";
-            //       } else {
-            //         return null;
-            //       }
-            //     },
-            //   ),
-            // ),
-            loading == false
-                ? Padding(
-                    padding:
-                        const EdgeInsets.only(right: 20.0, left: 20.0, top: 40),
-                    child: InkWell(
-                      onTap: () {
-                        setState(() {
-                          loading = true;
-                        });
-                        changepasswprd(numbercontroller.text);
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 70),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: const Color(0xFF85014e)),
-                        child: const Text(
-                          'Simpan',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 15),
                         ),
-                      ),
-                    ),
-                  )
-                : InkWell(
-                    onTap: () {},
-                    child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        margin: const EdgeInsets.only(
-                            right: 20.0, left: 20.0, top: 40),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 70),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: Colors.grey),
-                        child: Center(
-                          child: SizedBox(
-                            child: const CircularProgressIndicator(
-                              color: Colors.white,
-                            ),
-                            height: 2.h,
-                            width: 4.w,
-                          ),
-                        )),
+                        // contentPadding:
+                        //     const EdgeInsets.symmetric(vertical: 20),
+                        // prefixIcon: Icon(
+                        //   Icons.phone_android,
+                        //   color: _focusNodes[0].hasFocus
+                        //       ? Color(0xFF85014e)
+                        //       : Colors.grey.shade400,
+                        //   size: 7.w,
+                        // ),
+
+                        // labelText: "Masukan Nomor Telphone",
+                        border: const OutlineInputBorder(),
+                        hintText: 'Masukan Nomor Telphone',
+                        hintStyle: TextStyle(fontSize: 17)
+                        // suffixIcon: IconButton(
+                        //     icon: Icon(
+                        //       passhide ? Icons.visibility_off : Icons.visibility,
+                        //       color: _focusNodes[1].hasFocus
+                        //           ? Color(0xFF85014e)
+                        //           : Colors.grey.shade400,
+                        //       size: 7.w,
+                        //     ),
+                        //     onPressed: () {
+                        //       setState(() {
+                        //         passhide = !passhide;
+                        //       });
+                        //     })
+                        ),
+                    validator: (password) {
+                      if (password!.isEmpty) {
+                        return "Masukan Nomor Telphone";
+                      } else {
+                        return null;
+                      }
+                    },
                   ),
-          ]),
+                ),
+
+                // Container(
+                //   margin: const EdgeInsets.only(right: 20.0, left: 20),
+                //   padding: const EdgeInsets.only(right: 5.0, left: 5),
+                //   decoration: BoxDecoration(
+                //       border: Border.all(),
+                //       borderRadius: BorderRadius.circular(3)),
+                //   child: Row(
+                //     children: [
+                //       const Text(
+                //         '+62',
+                //         style: TextStyle(fontSize: 17),
+                //       ),
+                //       const SizedBox(
+                //         width: 5,
+                //       ),
+                //       Expanded(
+                //         child: TextFormField(
+                //           // obscureText: passhide,
+
+                //           keyboardType: TextInputType.phone,
+                //           controller: numbercontroller,
+                //           decoration: const InputDecoration(
+                //               suffixIcon: const Text(
+                //                 '+62',
+                //                 style: TextStyle(fontSize: 17),
+                //               ),
+                //               // contentPadding:
+                //               //     const EdgeInsets.symmetric(vertical: 20),
+                //               // prefixIcon: Icon(
+                //               //   Icons.phone_android,
+                //               //   color: _focusNodes[0].hasFocus
+                //               //       ? Color(0xFF85014e)
+                //               //       : Colors.grey.shade400,
+                //               //   size: 7.w,
+                //               // ),
+
+                //               // labelText: "Masukan Nomor Telphone",
+                //               // border: const OutlineInputBorder(),
+                //               border: InputBorder.none,
+                //               hintText: 'Masukan Nomor Telphone',
+                //               hintStyle: TextStyle(fontSize: 17)
+                //               // suffixIcon: IconButton(
+                //               //     icon: Icon(
+                //               //       passhide ? Icons.visibility_off : Icons.visibility,
+                //               //       color: _focusNodes[1].hasFocus
+                //               //           ? Color(0xFF85014e)
+                //               //           : Colors.grey.shade400,
+                //               //       size: 7.w,
+                //               //     ),
+                //               //     onPressed: () {
+                //               //       setState(() {
+                //               //         passhide = !passhide;
+                //               //       });
+                //               //     })
+                //               ),
+                //           validator: (password) {
+                //             if (password!.isEmpty) {
+                //               return "Masukan Nomor Telphone";
+                //             } else {
+                //               return null;
+                //             }
+                //           },
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                loading == false
+                    ? Padding(
+                        padding: const EdgeInsets.only(
+                            right: 20.0, left: 20.0, top: 40),
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              loading = true;
+                            });
+                            changepasswprd(numbercontroller.text);
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 70),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: const Color(0xFF85014e)),
+                            child: const Text(
+                              'Simpan',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 15),
+                            ),
+                          ),
+                        ),
+                      )
+                    : InkWell(
+                        onTap: () {},
+                        child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            margin: const EdgeInsets.only(
+                                right: 20.0, left: 20.0, top: 40),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 70),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: Colors.grey),
+                            child: Center(
+                              child: SizedBox(
+                                child: const CircularProgressIndicator(
+                                  color: Colors.white,
+                                ),
+                                height: 2.h,
+                                width: 4.w,
+                              ),
+                            )),
+                      ),
+              ],
+            ),
+          ),
         ),
       ),
     );

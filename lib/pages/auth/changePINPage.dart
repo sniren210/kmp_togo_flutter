@@ -176,7 +176,7 @@ class _ChangePINPageState extends State<ChangePINPage> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 70),
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(8),
                                   color: const Color(0xFF85014e)),
                               child: const Text(
                                 'Ubah',
@@ -196,7 +196,7 @@ class _ChangePINPageState extends State<ChangePINPage> {
                               padding: const EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 70),
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(8),
                                   color: Colors.grey),
                               child: Center(
                                 child: SizedBox(
