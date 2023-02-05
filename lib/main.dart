@@ -11,7 +11,6 @@ import 'package:kmp_togo_mobile/providers/multiprovider.dart';
 import 'package:kmp_togo_mobile/routes/routes.dart';
 import 'package:kmp_togo_mobile/utils/httpOverrideSertifcate.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 final SharedPreferencesManager sharedPreferencesManager =
@@ -54,6 +53,7 @@ class MyApp extends StatelessWidget {
   String? loginRoute;
 
   MyApp({
+    super.key,
     this.loginRoute,
   });
 

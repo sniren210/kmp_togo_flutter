@@ -5,17 +5,17 @@ class ModelNFTId {
   ModelNFTId({this.data, this.meta});
 
   ModelNFTId.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
-    meta = json['meta'] != null ? new Meta.fromJson(json['meta']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
-    if (this.meta != null) {
-      data['meta'] = this.meta!.toJson();
+    if (meta != null) {
+      data['meta'] = meta!.toJson();
     }
     return data;
   }
@@ -60,26 +60,26 @@ class Data {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     deletedAt = json['deletedAt'];
-    nft = json['nft'] != null ? new Nft.fromJson(json['nft']) : null;
+    nft = json['nft'] != null ? Nft.fromJson(json['nft']) : null;
     priceCoin = json['priceCoin'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nftSerialId'] = this.nftSerialId;
-    data['nftId'] = this.nftId;
-    data['ownerId'] = this.ownerId;
-    data['priceToken'] = this.priceToken;
-    data['sharePercentage'] = this.sharePercentage;
-    data['monthlyPercentage'] = this.monthlyPercentage;
-    data['holdLimitTill'] = this.holdLimitTill;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
-    if (this.nft != null) {
-      data['nft'] = this.nft!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['nftSerialId'] = nftSerialId;
+    data['nftId'] = nftId;
+    data['ownerId'] = ownerId;
+    data['priceToken'] = priceToken;
+    data['sharePercentage'] = sharePercentage;
+    data['monthlyPercentage'] = monthlyPercentage;
+    data['holdLimitTill'] = holdLimitTill;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
+    if (nft != null) {
+      data['nft'] = nft!.toJson();
     }
-    data['priceCoin'] = this.priceCoin;
+    data['priceCoin'] = priceCoin;
     return data;
   }
 }
@@ -140,23 +140,23 @@ class Nft {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['imagePath'] = this.imagePath;
-    data['nftId'] = this.nftId;
-    data['name'] = this.name;
-    data['image'] = this.image;
-    data['storeId'] = this.storeId;
-    data['priceToken'] = this.priceToken;
-    data['sharePercentage'] = this.sharePercentage;
-    data['monthlyPercentage'] = this.monthlyPercentage;
-    data['physicAvl'] = this.physicAvl;
-    data['holdLimitinDay'] = this.holdLimitinDay;
-    data['expirationDate'] = this.expirationDate;
-    data['qtyUnit'] = this.qtyUnit;
-    data['avlUnit'] = this.avlUnit;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['imagePath'] = imagePath;
+    data['nftId'] = nftId;
+    data['name'] = name;
+    data['image'] = image;
+    data['storeId'] = storeId;
+    data['priceToken'] = priceToken;
+    data['sharePercentage'] = sharePercentage;
+    data['monthlyPercentage'] = monthlyPercentage;
+    data['physicAvl'] = physicAvl;
+    data['holdLimitinDay'] = holdLimitinDay;
+    data['expirationDate'] = expirationDate;
+    data['qtyUnit'] = qtyUnit;
+    data['avlUnit'] = avlUnit;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
     return data;
   }
 }
@@ -166,10 +166,10 @@ class Meta {
 
   Meta({this.a});
 
-  Meta.fromJson(Map<String, dynamic> json) {}
+  Meta.fromJson(Map<String, dynamic> json);
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     return data;
   }
 }

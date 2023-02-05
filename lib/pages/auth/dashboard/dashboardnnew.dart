@@ -21,7 +21,6 @@ import 'package:kmp_togo_mobile/pages/common/cardpromo.dart';
 import 'package:kmp_togo_mobile/pages/nft/dashboard_nft.dart';
 import 'package:kmp_togo_mobile/pages/ppob/inputpobwithnumber.dart';
 import 'package:kmp_togo_mobile/pages/wallet/buy/buytogoPage.dart';
-import 'package:kmp_togo_mobile/pages/wallet/topup/topupPayment.dart';
 import 'package:kmp_togo_mobile/pages/wallet/topup/topuppages.dart';
 import 'package:kmp_togo_mobile/pages/wallet/withdraw/withdrawpages.dart';
 import 'package:kmp_togo_mobile/providers/apitext/providerapitext.dart';
@@ -293,7 +292,8 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                           style: const TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
-                        position: const Badge.BadgePosition(start: 30, bottom: 30),
+                        position:
+                            const Badge.BadgePosition(start: 30, bottom: 30),
                         child: IconButton(
                           onPressed: () {
                             Navigator.push(

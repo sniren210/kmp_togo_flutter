@@ -4,14 +4,14 @@ import 'package:intl/intl.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/textStyling.dart';
 
 class FormInput extends StatefulWidget {
-  TextEditingController controller;
+  final TextEditingController controller;
   final String hintText;
   final TextInputType inputType;
   final IconData icon;
   final bool? isReadOnly, isObscure, enable;
   final int? maxInputLength;
 
-  FormInput(
+  const FormInput(
       {Key? key,
       required this.controller,
       required this.hintText,
@@ -106,7 +106,7 @@ class FormInputDate extends StatefulWidget {
 }
 
 class _FormInputDateState extends State<FormInputDate> {
-  Future<Null> _selectDate(BuildContext context) async {
+  Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: widget.selectedDate ?? DateTime.now(),

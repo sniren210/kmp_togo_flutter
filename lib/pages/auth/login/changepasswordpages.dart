@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:kmp_togo_mobile/providers/auth/provider_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class ChangePasswordPages extends StatefulWidget {
   String? number;
-  ChangePasswordPages({this.number});
+  ChangePasswordPages({super.key, this.number});
 
   @override
   State<ChangePasswordPages> createState() => _ChangePasswordPagesState();
@@ -21,7 +19,7 @@ class _ChangePasswordPagesState extends State<ChangePasswordPages> {
   TextEditingController recoverytokencontroller = TextEditingController();
   TextEditingController passnewcontroller = TextEditingController();
   TextEditingController passnew2controller = TextEditingController();
-  List<FocusNode> _focusNodes = [
+  final List<FocusNode> _focusNodes = [
     FocusNode(),
     FocusNode(),
     FocusNode(),
@@ -45,7 +43,7 @@ class _ChangePasswordPagesState extends State<ChangePasswordPages> {
       key: _formKey,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Lupa Password'),
+          title: const Text('Lupa Password'),
         ),
         body: SingleChildScrollView(
           child: Column(children: [
@@ -60,7 +58,7 @@ class _ChangePasswordPagesState extends State<ChangePasswordPages> {
                     prefixIcon: Icon(
                       Icons.lock,
                       color: _focusNodes[1].hasFocus
-                          ? Color(0xFF85014e)
+                          ? const Color(0xFF85014e)
                           : Colors.grey.shade400,
                       size: 7.w,
                     ),
@@ -70,7 +68,7 @@ class _ChangePasswordPagesState extends State<ChangePasswordPages> {
                         icon: Icon(
                           passhide ? Icons.visibility_off : Icons.visibility,
                           color: _focusNodes[1].hasFocus
-                              ? Color(0xFF85014e)
+                              ? const Color(0xFF85014e)
                               : Colors.grey.shade400,
                           size: 7.w,
                         ),
@@ -99,7 +97,7 @@ class _ChangePasswordPagesState extends State<ChangePasswordPages> {
                     prefixIcon: Icon(
                       Icons.lock,
                       color: _focusNodes[2].hasFocus
-                          ? Color(0xFF85014e)
+                          ? const Color(0xFF85014e)
                           : Colors.grey.shade400,
                       size: 7.w,
                     ),
@@ -109,7 +107,7 @@ class _ChangePasswordPagesState extends State<ChangePasswordPages> {
                         icon: Icon(
                           passhide ? Icons.visibility_off : Icons.visibility,
                           color: _focusNodes[1].hasFocus
-                              ? Color(0xFF85014e)
+                              ? const Color(0xFF85014e)
                               : Colors.grey.shade400,
                           size: 7.w,
                         ),
@@ -129,7 +127,7 @@ class _ChangePasswordPagesState extends State<ChangePasswordPages> {
                 },
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
@@ -139,7 +137,7 @@ class _ChangePasswordPagesState extends State<ChangePasswordPages> {
 
                 // keyboardType: TextInputType.phone,
                 controller: recoverytokencontroller,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     // contentPadding:
                     //     const EdgeInsets.symmetric(vertical: 20),
                     // prefixIcon: Icon(
@@ -151,7 +149,7 @@ class _ChangePasswordPagesState extends State<ChangePasswordPages> {
                     // ),
 
                     labelText: "Masukan Token Recovery",
-                    border: const OutlineInputBorder(),
+                    border: OutlineInputBorder(),
                     // border: InputBorder.none,
                     // hintText: 'Masukan Nomor Telphone',
                     hintStyle: TextStyle(fontSize: 17)
@@ -221,11 +219,11 @@ class _ChangePasswordPagesState extends State<ChangePasswordPages> {
                             color: Colors.grey),
                         child: Center(
                           child: SizedBox(
-                            child: CircularProgressIndicator(
-                              color: Colors.white,
-                            ),
                             height: 2.h,
                             width: 4.w,
+                            child: const CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
                           ),
                         )),
                   ),

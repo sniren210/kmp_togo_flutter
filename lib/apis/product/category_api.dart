@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:kmp_togo_mobile/helpers/api_helper.dart';
 import 'package:kmp_togo_mobile/helpers/machines.dart';
 import 'package:kmp_togo_mobile/models/product/category.dart';

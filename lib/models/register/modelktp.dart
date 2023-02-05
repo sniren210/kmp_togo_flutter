@@ -4,11 +4,11 @@ class ModelKtpData {
   ModelKtpData({this.data});
 
   ModelKtpData.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -25,14 +25,14 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message =
-        json['message'] != null ? new Message.fromJson(json['message']) : null;
+        json['message'] != null ? Message.fromJson(json['message']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    if (this.message != null) {
-      data['message'] = this.message!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    if (message != null) {
+      data['message'] = message!.toJson();
     }
     return data;
   }
@@ -94,23 +94,23 @@ class Message {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['id'] = this.id;
-    data['pob'] = this.pob;
-    data['dob'] = this.dob;
-    data['gender'] = this.gender;
-    data['address'] = this.address;
-    data['rt'] = this.rt;
-    data['rw'] = this.rw;
-    data['village'] = this.village;
-    data['district'] = this.district;
-    data['religion'] = this.religion;
-    data['marital_status'] = this.maritalStatus;
-    data['work'] = this.work;
-    data['nationnality'] = this.nationnality;
-    data['city'] = this.city;
-    data['province'] = this.province;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['id'] = id;
+    data['pob'] = pob;
+    data['dob'] = dob;
+    data['gender'] = gender;
+    data['address'] = address;
+    data['rt'] = rt;
+    data['rw'] = rw;
+    data['village'] = village;
+    data['district'] = district;
+    data['religion'] = religion;
+    data['marital_status'] = maritalStatus;
+    data['work'] = work;
+    data['nationnality'] = nationnality;
+    data['city'] = city;
+    data['province'] = province;
     return data;
   }
 }

@@ -2,7 +2,6 @@
 //
 //     final itemModelAccountInfo = itemModelAccountInfoFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 ItemModelAccountInfo itemModelAccountInfoFromJson(String str) =>

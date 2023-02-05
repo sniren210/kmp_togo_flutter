@@ -2,7 +2,6 @@
 //
 //     final itemModelPrepaidGameH = itemModelPrepaidGameHFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 ItemModelPrepaidGameH itemModelPrepaidGameHFromJson(String str) => ItemModelPrepaidGameH.fromJson(json.decode(str));

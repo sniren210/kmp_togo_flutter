@@ -7,13 +7,13 @@ class ModelKota {
     if (json['data'] != null) {
       data = <DataKota>[];
       json['data'].forEach((v) {
-        data!.add(new DataKota.fromJson(v));
+        data!.add(DataKota.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -47,13 +47,13 @@ class DataKota {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['city_id'] = this.cityId;
-    data['province_id'] = this.provinceId;
-    data['province'] = this.province;
-    data['type'] = this.type;
-    data['city_name'] = this.cityName;
-    data['postal_code'] = this.postalCode;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['city_id'] = cityId;
+    data['province_id'] = provinceId;
+    data['province'] = province;
+    data['type'] = type;
+    data['city_name'] = cityName;
+    data['postal_code'] = postalCode;
     return data;
   }
 }

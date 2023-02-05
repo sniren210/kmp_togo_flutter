@@ -2,7 +2,6 @@
 //
 //     final itemModelUserAddressBook = itemModelUserAddressBookFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 ItemModelUserAddressBook itemModelUserAddressBookFromJson(String str) =>
@@ -285,13 +284,14 @@ class ItemModelAddressSuccess {
 
   final String data;
 
-  factory ItemModelAddressSuccess.fromJson(Map<String, dynamic> json) => ItemModelAddressSuccess(
-    data: json["data"],
-  );
+  factory ItemModelAddressSuccess.fromJson(Map<String, dynamic> json) =>
+      ItemModelAddressSuccess(
+        data: json["data"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "data": data,
-  };
+        "data": data,
+      };
 }
 
 class Province {

@@ -4,11 +4,11 @@ class ModelMyInfo {
   ModelMyInfo({this.data});
 
   ModelMyInfo.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -25,16 +25,16 @@ class Data {
   String? email;
   String? phoneNumber;
   String? birthdate;
-  Null? cityId;
-  Null? provinceId;
-  Null? subdistrictId;
+  Null cityId;
+  Null provinceId;
+  Null subdistrictId;
   String? address;
   String? membertype;
-  Null? role;
+  Null role;
   String? status;
   String? createdAt;
   String? updatedAt;
-  Null? deletedAt;
+  Null deletedAt;
   TokenWallet? tokenWallet;
   CoinWallet? coinWallet;
 
@@ -80,38 +80,38 @@ class Data {
     updatedAt = json['updatedAt'];
     deletedAt = json['deletedAt'];
     tokenWallet = json['tokenWallet'] != null
-        ? new TokenWallet.fromJson(json['tokenWallet'])
+        ? TokenWallet.fromJson(json['tokenWallet'])
         : null;
     coinWallet = json['coinWallet'] != null
-        ? new CoinWallet.fromJson(json['coinWallet'])
+        ? CoinWallet.fromJson(json['coinWallet'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['imagePath'] = this.imagePath;
-    data['id'] = this.id;
-    data['nik'] = this.nik;
-    data['name'] = this.name;
-    data['image'] = this.image;
-    data['email'] = this.email;
-    data['phoneNumber'] = this.phoneNumber;
-    data['birthdate'] = this.birthdate;
-    data['cityId'] = this.cityId;
-    data['provinceId'] = this.provinceId;
-    data['subdistrictId'] = this.subdistrictId;
-    data['address'] = this.address;
-    data['membertype'] = this.membertype;
-    data['role'] = this.role;
-    data['status'] = this.status;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
-    if (this.tokenWallet != null) {
-      data['tokenWallet'] = this.tokenWallet!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['imagePath'] = imagePath;
+    data['id'] = id;
+    data['nik'] = nik;
+    data['name'] = name;
+    data['image'] = image;
+    data['email'] = email;
+    data['phoneNumber'] = phoneNumber;
+    data['birthdate'] = birthdate;
+    data['cityId'] = cityId;
+    data['provinceId'] = provinceId;
+    data['subdistrictId'] = subdistrictId;
+    data['address'] = address;
+    data['membertype'] = membertype;
+    data['role'] = role;
+    data['status'] = status;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
+    if (tokenWallet != null) {
+      data['tokenWallet'] = tokenWallet!.toJson();
     }
-    if (this.coinWallet != null) {
-      data['coinWallet'] = this.coinWallet!.toJson();
+    if (coinWallet != null) {
+      data['coinWallet'] = coinWallet!.toJson();
     }
     return data;
   }
@@ -123,7 +123,7 @@ class TokenWallet {
   double? token;
   String? createdAt;
   String? updatedAt;
-  Null? deletedAt;
+  Null deletedAt;
 
   TokenWallet(
       {this.id,
@@ -143,13 +143,13 @@ class TokenWallet {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['userId'] = this.userId;
-    data['token'] = this.token;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['userId'] = userId;
+    data['token'] = token;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
     return data;
   }
 }
@@ -160,7 +160,7 @@ class CoinWallet {
   double? coin;
   String? createdAt;
   String? updatedAt;
-  Null? deletedAt;
+  Null deletedAt;
 
   CoinWallet(
       {this.id,
@@ -180,13 +180,13 @@ class CoinWallet {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['userId'] = this.userId;
-    data['coin'] = this.coin;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['userId'] = userId;
+    data['coin'] = coin;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
     return data;
   }
 }

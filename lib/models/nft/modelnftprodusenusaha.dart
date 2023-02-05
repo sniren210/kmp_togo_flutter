@@ -8,19 +8,19 @@ class ModelNFTKonsumenUsaha {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
-    meta = json['meta'] != null ? new Meta.fromJson(json['meta']) : null;
+    meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    if (this.meta != null) {
-      data['meta'] = this.meta!.toJson();
+    if (meta != null) {
+      data['meta'] = meta!.toJson();
     }
     return data;
   }
@@ -102,37 +102,37 @@ class Data {
     if (json['nftUnit'] != null) {
       nftUnit = <NftUnit>[];
       json['nftUnit'].forEach((v) {
-        nftUnit!.add(new NftUnit.fromJson(v));
+        nftUnit!.add(NftUnit.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['imagePath'] = this.imagePath;
-    data['status'] = this.status;
-    data['nftId'] = this.nftId;
-    data['categoryId'] = this.categoryId;
-    data['name'] = this.name;
-    data['image'] = this.image;
-    data['storeId'] = this.storeId;
-    data['priceToken'] = this.priceToken;
-    data['sharePercentage'] = this.sharePercentage;
-    data['monthlyPercentage'] = this.monthlyPercentage;
-    data['physicAvl'] = this.physicAvl;
-    data['holdLimitinDay'] = this.holdLimitinDay;
-    data['expirationDate'] = this.expirationDate;
-    data['qtyUnit'] = this.qtyUnit;
-    data['avlUnit'] = this.avlUnit;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
-    data['category'] = this.category;
-    data['gasfee'] = this.gasfee;
-    data['admfee'] = this.admfee;
-    data['priceCoin'] = this.priceCoin;
-    if (this.nftUnit != null) {
-      data['nftUnit'] = this.nftUnit!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['imagePath'] = imagePath;
+    data['status'] = status;
+    data['nftId'] = nftId;
+    data['categoryId'] = categoryId;
+    data['name'] = name;
+    data['image'] = image;
+    data['storeId'] = storeId;
+    data['priceToken'] = priceToken;
+    data['sharePercentage'] = sharePercentage;
+    data['monthlyPercentage'] = monthlyPercentage;
+    data['physicAvl'] = physicAvl;
+    data['holdLimitinDay'] = holdLimitinDay;
+    data['expirationDate'] = expirationDate;
+    data['qtyUnit'] = qtyUnit;
+    data['avlUnit'] = avlUnit;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
+    data['category'] = category;
+    data['gasfee'] = gasfee;
+    data['admfee'] = admfee;
+    data['priceCoin'] = priceCoin;
+    if (nftUnit != null) {
+      data['nftUnit'] = nftUnit!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -181,30 +181,30 @@ class NftUnit {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     deletedAt = json['deletedAt'];
-    owner = json['owner'] != null ? new Owner.fromJson(json['owner']) : null;
+    owner = json['owner'] != null ? Owner.fromJson(json['owner']) : null;
     gasfee = json['gasfee'];
     admfee = json['admfee'];
     priceCoin = json['priceCoin'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nftSerialId'] = this.nftSerialId;
-    data['nftId'] = this.nftId;
-    data['ownerId'] = this.ownerId;
-    data['priceToken'] = this.priceToken;
-    data['sharePercentage'] = this.sharePercentage;
-    data['monthlyPercentage'] = this.monthlyPercentage;
-    data['holdLimitTill'] = this.holdLimitTill;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
-    if (this.owner != null) {
-      data['owner'] = this.owner!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['nftSerialId'] = nftSerialId;
+    data['nftId'] = nftId;
+    data['ownerId'] = ownerId;
+    data['priceToken'] = priceToken;
+    data['sharePercentage'] = sharePercentage;
+    data['monthlyPercentage'] = monthlyPercentage;
+    data['holdLimitTill'] = holdLimitTill;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
+    if (owner != null) {
+      data['owner'] = owner!.toJson();
     }
-    data['gasfee'] = this.gasfee;
-    data['admfee'] = this.admfee;
-    data['priceCoin'] = this.priceCoin;
+    data['gasfee'] = gasfee;
+    data['admfee'] = admfee;
+    data['priceCoin'] = priceCoin;
     return data;
   }
 }
@@ -219,8 +219,8 @@ class Owner {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
     return data;
   }
 }
@@ -235,8 +235,8 @@ class Meta {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
     return data;
   }
 }

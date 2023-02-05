@@ -6,14 +6,14 @@ class ErrorModel {
 
   ErrorModel.fromJson(Map<String, dynamic> json) {
     error = json['error'];
-    meta = json['meta'] != null ? new Meta.fromJson(json['meta']) : null;
+    meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['error'] = this.error;
-    if (this.meta != null) {
-      data['meta'] = this.meta!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['error'] = error;
+    if (meta != null) {
+      data['meta'] = meta!.toJson();
     }
     return data;
   }
@@ -31,9 +31,9 @@ class Meta {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nexttry'] = this.nexttry;
-    data['suspend'] = this.suspend;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['nexttry'] = nexttry;
+    data['suspend'] = suspend;
     return data;
   }
 }

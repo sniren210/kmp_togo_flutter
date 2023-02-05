@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:kmp_togo_mobile/apis/settings/aboutUs_api.dart';
+import 'package:kmp_togo_mobile/apis/settings/about_us_api.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/custom_snackbar.dart';
 import 'package:kmp_togo_mobile/models/settings/aboutUs_model.dart';
 

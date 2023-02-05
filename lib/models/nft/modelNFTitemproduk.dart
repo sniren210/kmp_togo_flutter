@@ -8,19 +8,19 @@ class ModelNFTItemProdusen {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
-    meta = json['meta'] != null ? new Meta.fromJson(json['meta']) : null;
+    meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    if (this.meta != null) {
-      data['meta'] = this.meta!.toJson();
+    if (meta != null) {
+      data['meta'] = meta!.toJson();
     }
     return data;
   }
@@ -90,44 +90,43 @@ class Data {
     if (json['sku'] != null) {
       sku = <Sku>[];
       json['sku'].forEach((v) {
-        sku!.add(new Sku.fromJson(v));
+        sku!.add(Sku.fromJson(v));
       });
     }
-    store = json['store'] != null ? new Store.fromJson(json['store']) : null;
-    category = json['category'] != null
-        ? new Category.fromJson(json['category'])
-        : null;
+    store = json['store'] != null ? Store.fromJson(json['store']) : null;
+    category =
+        json['category'] != null ? Category.fromJson(json['category']) : null;
     subCategory = json['subCategory'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['imagePath'] = this.imagePath;
-    data['id'] = this.id;
-    data['storeId'] = this.storeId;
-    data['categoryId'] = this.categoryId;
-    data['subCategoryId'] = this.subCategoryId;
-    data['name'] = this.name;
-    data['image'] = this.image;
-    data['description'] = this.description;
-    data['productSelling'] = this.productSelling;
-    data['rating'] = this.rating;
-    data['ratingCount'] = this.ratingCount;
-    data['ratingTotal'] = this.ratingTotal;
-    data['soldCount'] = this.soldCount;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
-    if (this.sku != null) {
-      data['sku'] = this.sku!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['imagePath'] = imagePath;
+    data['id'] = id;
+    data['storeId'] = storeId;
+    data['categoryId'] = categoryId;
+    data['subCategoryId'] = subCategoryId;
+    data['name'] = name;
+    data['image'] = image;
+    data['description'] = description;
+    data['productSelling'] = productSelling;
+    data['rating'] = rating;
+    data['ratingCount'] = ratingCount;
+    data['ratingTotal'] = ratingTotal;
+    data['soldCount'] = soldCount;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
+    if (sku != null) {
+      data['sku'] = sku!.map((v) => v.toJson()).toList();
     }
-    if (this.store != null) {
-      data['store'] = this.store!.toJson();
+    if (store != null) {
+      data['store'] = store!.toJson();
     }
-    if (this.category != null) {
-      data['category'] = this.category!.toJson();
+    if (category != null) {
+      data['category'] = category!.toJson();
     }
-    data['subCategory'] = this.subCategory;
+    data['subCategory'] = subCategory;
     return data;
   }
 }
@@ -164,15 +163,15 @@ class Sku {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['productId'] = this.productId;
-    data['price'] = this.price;
-    data['stock'] = this.stock;
-    data['weight'] = this.weight;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['productId'] = productId;
+    data['price'] = price;
+    data['stock'] = stock;
+    data['weight'] = weight;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
     return data;
   }
 }
@@ -226,7 +225,7 @@ class Store {
   Store.fromJson(Map<String, dynamic> json) {
     imagePath = json['imagePath'];
     coordinates = json['coordinates'] != null
-        ? new Coordinates.fromJson(json['coordinates'])
+        ? Coordinates.fromJson(json['coordinates'])
         : null;
     id = json['id'];
     name = json['name'];
@@ -238,9 +237,8 @@ class Store {
     postalCode = json['postalCode'];
     latitude = json['latitude'];
     longitude = json['longitude'];
-    geometry = json['geometry'] != null
-        ? new Geometry.fromJson(json['geometry'])
-        : null;
+    geometry =
+        json['geometry'] != null ? Geometry.fromJson(json['geometry']) : null;
     ownerId = json['ownerId'];
     rating = json['rating'];
     ratingCount = json['ratingCount'];
@@ -252,32 +250,32 @@ class Store {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['imagePath'] = this.imagePath;
-    if (this.coordinates != null) {
-      data['coordinates'] = this.coordinates!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['imagePath'] = imagePath;
+    if (coordinates != null) {
+      data['coordinates'] = coordinates!.toJson();
     }
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['image'] = this.image;
-    data['address'] = this.address;
-    data['provinceId'] = this.provinceId;
-    data['cityId'] = this.cityId;
-    data['subdistrictId'] = this.subdistrictId;
-    data['postalCode'] = this.postalCode;
-    data['latitude'] = this.latitude;
-    data['longitude'] = this.longitude;
-    if (this.geometry != null) {
-      data['geometry'] = this.geometry!.toJson();
+    data['id'] = id;
+    data['name'] = name;
+    data['image'] = image;
+    data['address'] = address;
+    data['provinceId'] = provinceId;
+    data['cityId'] = cityId;
+    data['subdistrictId'] = subdistrictId;
+    data['postalCode'] = postalCode;
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
+    if (geometry != null) {
+      data['geometry'] = geometry!.toJson();
     }
-    data['ownerId'] = this.ownerId;
-    data['rating'] = this.rating;
-    data['ratingCount'] = this.ratingCount;
-    data['ratingTotal'] = this.ratingTotal;
-    data['status'] = this.status;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
+    data['ownerId'] = ownerId;
+    data['rating'] = rating;
+    data['ratingCount'] = ratingCount;
+    data['ratingTotal'] = ratingTotal;
+    data['status'] = status;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
     return data;
   }
 }
@@ -294,9 +292,9 @@ class Coordinates {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['latitude'] = this.latitude;
-    data['longitude'] = this.longitude;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['latitude'] = latitude;
+    data['longitude'] = longitude;
     return data;
   }
 }
@@ -313,9 +311,9 @@ class Geometry {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['type'] = this.type;
-    data['coordinates'] = this.coordinates;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['type'] = type;
+    data['coordinates'] = coordinates;
     return data;
   }
 }
@@ -339,12 +337,12 @@ class Category {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
     return data;
   }
 }
@@ -359,8 +357,8 @@ class Meta {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['storeId'] = this.storeId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['storeId'] = storeId;
     return data;
   }
 }

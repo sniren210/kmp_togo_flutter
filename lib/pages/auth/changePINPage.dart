@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
-import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
-import 'package:kmp_togo_mobile/pages/auth/register/registerPage.dart';
 import 'package:kmp_togo_mobile/providers/auth/provider_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -25,7 +23,7 @@ class _ChangePINPageState extends State<ChangePINPage> {
   int wrongLogin = 0;
   bool? loading = false;
 
-  List<FocusNode> _focusNodes = [
+  final List<FocusNode> _focusNodes = [
     FocusNode(),
     FocusNode(),
   ];
@@ -58,11 +56,11 @@ class _ChangePINPageState extends State<ChangePINPage> {
 
   @override
   void initState() {
-    _focusNodes.forEach((node) {
+    for (var node in _focusNodes) {
       node.addListener(() {
         setState(() {});
       });
-    });
+    }
     super.initState();
   }
 
@@ -72,7 +70,7 @@ class _ChangePINPageState extends State<ChangePINPage> {
       appBar: AppBar(
         backgroundColor: const Color(0xFF85014e),
         elevation: 0,
-        title: Text('Ubah PIN'),
+        title: const Text('Ubah PIN'),
       ),
       body: Form(
         key: _formKey,
@@ -93,11 +91,12 @@ class _ChangePINPageState extends State<ChangePINPage> {
                         focusNode: _focusNodes[0],
                         controller: nameController,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 20),
+                          contentPadding:
+                              const EdgeInsets.symmetric(vertical: 20),
                           prefixIcon: Icon(
                             Icons.person,
                             color: _focusNodes[0].hasFocus
-                                ? Color(0xFF85014e)
+                                ? const Color(0xFF85014e)
                                 : Colors.grey.shade400,
                             size: 7.w,
                           ),
@@ -133,7 +132,7 @@ class _ChangePINPageState extends State<ChangePINPage> {
                             prefixIcon: Icon(
                               Icons.lock,
                               color: _focusNodes[1].hasFocus
-                                  ? Color(0xFF85014e)
+                                  ? const Color(0xFF85014e)
                                   : Colors.grey.shade400,
                               size: 7.w,
                             ),
@@ -145,7 +144,7 @@ class _ChangePINPageState extends State<ChangePINPage> {
                                       ? Icons.visibility_off
                                       : Icons.visibility,
                                   color: _focusNodes[1].hasFocus
-                                      ? Color(0xFF85014e)
+                                      ? const Color(0xFF85014e)
                                       : Colors.grey.shade400,
                                   size: 7.w,
                                 ),
@@ -166,49 +165,49 @@ class _ChangePINPageState extends State<ChangePINPage> {
               bannedtime == true
                   ? Container()
                   : loading == false
-                  ? InkWell(
-                onTap: () {
-                  _submit();
-                },
-                child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.only(
-                        right: 20.0, left: 20.0, top: 40),
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 70),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: const Color(0xFF85014e)),
-                    child: const Text(
-                      'Ubah',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.normal,
-                          fontSize: 15),
-                    )),
-              )
-                  : InkWell(
-                onTap: () {},
-                child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.only(
-                        right: 20.0, left: 20.0, top: 40),
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 70),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: Colors.grey),
-                    child: Center(
-                      child: SizedBox(
-                        child: CircularProgressIndicator(
-                          color: Colors.white,
+                      ? InkWell(
+                          onTap: () {
+                            _submit();
+                          },
+                          child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              margin: const EdgeInsets.only(
+                                  right: 20.0, left: 20.0, top: 40),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 70),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: const Color(0xFF85014e)),
+                              child: const Text(
+                                'Ubah',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 15),
+                              )),
+                        )
+                      : InkWell(
+                          onTap: () {},
+                          child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              margin: const EdgeInsets.only(
+                                  right: 20.0, left: 20.0, top: 40),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 70),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: Colors.grey),
+                              child: Center(
+                                child: SizedBox(
+                                  height: 2.h,
+                                  width: 4.w,
+                                  child: const CircularProgressIndicator(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              )),
                         ),
-                        height: 2.h,
-                        width: 4.w,
-                      ),
-                    )),
-              ),
               SizedBox(
                 height: 4.h,
               ),

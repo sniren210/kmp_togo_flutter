@@ -1,7 +1,5 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:sizer/sizer.dart';
 
 class PenyertaanModal extends StatefulWidget {
@@ -19,10 +17,10 @@ class _PenyertaanModalState extends State<PenyertaanModal> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Penyertaan Modal'),
+        title: const Text('Penyertaan Modal'),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
             Container(
@@ -115,7 +113,7 @@ class _PenyertaanModalState extends State<PenyertaanModal> {
                     showSelectedItems: true,
                     disabledItemFn: (String s) => s.startsWith('I'),
                   ),
-                  items: ["3 Bulan", "6 Bulan", "12 Bulan"],
+                  items: const ["3 Bulan", "6 Bulan", "12 Bulan"],
                   dropdownDecoratorProps: const DropDownDecoratorProps(
                     dropdownSearchDecoration: InputDecoration(
                       hintText: "Select Status",
@@ -125,7 +123,6 @@ class _PenyertaanModalState extends State<PenyertaanModal> {
                     setState(() {
                       status = value;
                     });
-                    print('haloo  ${status}');
                     // getSelectDropdown(status, tanggal);
                   },
                   // selectedItem: "done",

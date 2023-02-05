@@ -4,11 +4,11 @@ class ModelApiText {
   ModelApiText({this.data});
 
   ModelApiText.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -32,11 +32,11 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['imagePath'] = this.imagePath;
-    data['key'] = this.key;
-    data['value'] = this.value;
-    data['image'] = this.image;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['imagePath'] = imagePath;
+    data['key'] = key;
+    data['value'] = value;
+    data['image'] = image;
     return data;
   }
 }

@@ -7,13 +7,13 @@ class ModelKecamatan {
     if (json['data'] != null) {
       data = <DataKecamatan>[];
       json['data'].forEach((v) {
-        data!.add(new DataKecamatan.fromJson(v));
+        data!.add(DataKecamatan.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -50,14 +50,14 @@ class DataKecamatan {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['subdistrict_id'] = this.subdistrictId;
-    data['province_id'] = this.provinceId;
-    data['province'] = this.province;
-    data['city_id'] = this.cityId;
-    data['city'] = this.city;
-    data['type'] = this.type;
-    data['subdistrict_name'] = this.subdistrictName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['subdistrict_id'] = subdistrictId;
+    data['province_id'] = provinceId;
+    data['province'] = province;
+    data['city_id'] = cityId;
+    data['city'] = city;
+    data['type'] = type;
+    data['subdistrict_name'] = subdistrictName;
     return data;
   }
 }

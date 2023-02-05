@@ -2,12 +2,13 @@
 //
 //     final itemModelCreateProduct = itemModelCreateProductFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
-ItemModelCreateProduct itemModelCreateProductFromJson(String str) => ItemModelCreateProduct.fromJson(json.decode(str));
+ItemModelCreateProduct itemModelCreateProductFromJson(String str) =>
+    ItemModelCreateProduct.fromJson(json.decode(str));
 
-String itemModelCreateProductToJson(ItemModelCreateProduct data) => json.encode(data.toJson());
+String itemModelCreateProductToJson(ItemModelCreateProduct data) =>
+    json.encode(data.toJson());
 
 class ItemModelCreateProduct {
   ItemModelCreateProduct({
@@ -16,13 +17,14 @@ class ItemModelCreateProduct {
 
   Data data;
 
-  factory ItemModelCreateProduct.fromJson(Map<String, dynamic> json) => ItemModelCreateProduct(
-    data: Data.fromJson(json["data"]),
-  );
+  factory ItemModelCreateProduct.fromJson(Map<String, dynamic> json) =>
+      ItemModelCreateProduct(
+        data: Data.fromJson(json["data"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "data": data.toJson(),
-  };
+        "data": data.toJson(),
+      };
 }
 
 class Data {
@@ -59,36 +61,36 @@ class Data {
   DateTime createdAt;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    imagePath: json["imagePath"],
-    isAvailable: json["isAvailable"],
-    rating: json["rating"],
-    ratingCount: json["ratingCount"],
-    ratingTotal: json["ratingTotal"],
-    soldCount: json["soldCount"],
-    id: json["id"],
-    storeId: json["storeId"],
-    name: json["name"],
-    image: json["image"],
-    description: json["description"],
-    productSelling: json["productSelling"],
-    updatedAt: DateTime.parse(json["updatedAt"]),
-    createdAt: DateTime.parse(json["createdAt"]),
-  );
+        imagePath: json["imagePath"],
+        isAvailable: json["isAvailable"],
+        rating: json["rating"],
+        ratingCount: json["ratingCount"],
+        ratingTotal: json["ratingTotal"],
+        soldCount: json["soldCount"],
+        id: json["id"],
+        storeId: json["storeId"],
+        name: json["name"],
+        image: json["image"],
+        description: json["description"],
+        productSelling: json["productSelling"],
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        createdAt: DateTime.parse(json["createdAt"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "imagePath": imagePath,
-    "isAvailable": isAvailable,
-    "rating": rating,
-    "ratingCount": ratingCount,
-    "ratingTotal": ratingTotal,
-    "soldCount": soldCount,
-    "id": id,
-    "storeId": storeId,
-    "name": name,
-    "image": image,
-    "description": description,
-    "productSelling": productSelling,
-    "updatedAt": updatedAt.toIso8601String(),
-    "createdAt": createdAt.toIso8601String(),
-  };
+        "imagePath": imagePath,
+        "isAvailable": isAvailable,
+        "rating": rating,
+        "ratingCount": ratingCount,
+        "ratingTotal": ratingTotal,
+        "soldCount": soldCount,
+        "id": id,
+        "storeId": storeId,
+        "name": name,
+        "image": image,
+        "description": description,
+        "productSelling": productSelling,
+        "updatedAt": updatedAt.toIso8601String(),
+        "createdAt": createdAt.toIso8601String(),
+      };
 }

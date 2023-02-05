@@ -8,19 +8,19 @@ class ModelNFTStatusMyUsaha {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
-    meta = json['meta'] != null ? new Meta.fromJson(json['meta']) : null;
+    meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    if (this.meta != null) {
-      data['meta'] = this.meta!.toJson();
+    if (meta != null) {
+      data['meta'] = meta!.toJson();
     }
     return data;
   }
@@ -35,11 +35,11 @@ class Data {
   int? ownerId;
   int? priceToken;
   int? sharePercentage;
-  Null? monthlyPercentage;
-  Null? holdLimitTill;
+  Null monthlyPercentage;
+  Null holdLimitTill;
   String? createdAt;
   String? updatedAt;
-  Null? deletedAt;
+  Null deletedAt;
   Nft? nft;
 
   Data(
@@ -72,26 +72,26 @@ class Data {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     deletedAt = json['deletedAt'];
-    nft = json['nft'] != null ? new Nft.fromJson(json['nft']) : null;
+    nft = json['nft'] != null ? Nft.fromJson(json['nft']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['gasfee'] = this.gasfee;
-    data['admfee'] = this.admfee;
-    data['priceCoin'] = this.priceCoin;
-    data['nftSerialId'] = this.nftSerialId;
-    data['nftId'] = this.nftId;
-    data['ownerId'] = this.ownerId;
-    data['priceToken'] = this.priceToken;
-    data['sharePercentage'] = this.sharePercentage;
-    data['monthlyPercentage'] = this.monthlyPercentage;
-    data['holdLimitTill'] = this.holdLimitTill;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
-    if (this.nft != null) {
-      data['nft'] = this.nft!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['gasfee'] = gasfee;
+    data['admfee'] = admfee;
+    data['priceCoin'] = priceCoin;
+    data['nftSerialId'] = nftSerialId;
+    data['nftId'] = nftId;
+    data['ownerId'] = ownerId;
+    data['priceToken'] = priceToken;
+    data['sharePercentage'] = sharePercentage;
+    data['monthlyPercentage'] = monthlyPercentage;
+    data['holdLimitTill'] = holdLimitTill;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
+    if (nft != null) {
+      data['nft'] = nft!.toJson();
     }
     return data;
   }
@@ -104,23 +104,23 @@ class Nft {
   String? imagePath;
   String? status;
   String? nftId;
-  Null? categoryId;
+  Null categoryId;
   String? name;
   String? image;
-  Null? description;
+  Null description;
   int? storeId;
   int? priceToken;
   int? sharePercentage;
-  Null? monthlyPercentage;
+  Null monthlyPercentage;
   bool? physicAvl;
   int? holdLimitinDay;
-  Null? expirationDate;
+  Null expirationDate;
   int? qtyUnit;
   int? avlUnit;
   String? createdAt;
   String? updatedAt;
-  Null? deletedAt;
-  Null? category;
+  Null deletedAt;
+  Null category;
 
   Nft(
       {this.gasfee,
@@ -174,30 +174,30 @@ class Nft {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['gasfee'] = this.gasfee;
-    data['admfee'] = this.admfee;
-    data['priceCoin'] = this.priceCoin;
-    data['imagePath'] = this.imagePath;
-    data['status'] = this.status;
-    data['nftId'] = this.nftId;
-    data['categoryId'] = this.categoryId;
-    data['name'] = this.name;
-    data['image'] = this.image;
-    data['description'] = this.description;
-    data['storeId'] = this.storeId;
-    data['priceToken'] = this.priceToken;
-    data['sharePercentage'] = this.sharePercentage;
-    data['monthlyPercentage'] = this.monthlyPercentage;
-    data['physicAvl'] = this.physicAvl;
-    data['holdLimitinDay'] = this.holdLimitinDay;
-    data['expirationDate'] = this.expirationDate;
-    data['qtyUnit'] = this.qtyUnit;
-    data['avlUnit'] = this.avlUnit;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
-    data['category'] = this.category;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['gasfee'] = gasfee;
+    data['admfee'] = admfee;
+    data['priceCoin'] = priceCoin;
+    data['imagePath'] = imagePath;
+    data['status'] = status;
+    data['nftId'] = nftId;
+    data['categoryId'] = categoryId;
+    data['name'] = name;
+    data['image'] = image;
+    data['description'] = description;
+    data['storeId'] = storeId;
+    data['priceToken'] = priceToken;
+    data['sharePercentage'] = sharePercentage;
+    data['monthlyPercentage'] = monthlyPercentage;
+    data['physicAvl'] = physicAvl;
+    data['holdLimitinDay'] = holdLimitinDay;
+    data['expirationDate'] = expirationDate;
+    data['qtyUnit'] = qtyUnit;
+    data['avlUnit'] = avlUnit;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
+    data['category'] = category;
     return data;
   }
 }
@@ -212,8 +212,8 @@ class Meta {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
     return data;
   }
 }

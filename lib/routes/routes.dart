@@ -5,8 +5,8 @@ import 'package:kmp_togo_mobile/pages/auth/register/registerloadingpage.dart';
 import 'package:kmp_togo_mobile/pages/home.dart';
 import 'package:kmp_togo_mobile/pages/nft/dashboard_nft.dart';
 import 'package:kmp_togo_mobile/pages/onboardPage.dart';
-import 'package:kmp_togo_mobile/pages/settings/aboutUsPage.dart';
-import 'package:kmp_togo_mobile/pages/settings/privacyPolicyPage.dart';
+import 'package:kmp_togo_mobile/pages/settings/about_us_page.dart';
+import 'package:kmp_togo_mobile/pages/settings/privacy_policy_page.dart';
 import 'package:kmp_togo_mobile/pages/umkm/umkmMyProduk.dart';
 import 'package:kmp_togo_mobile/pages/wallet/dashboardwallet.dart';
 

@@ -2,7 +2,6 @@
 //
 //     final itemModelPrepaidPLN = itemModelPrepaidPLNFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 ItemModelPrepaidPLN itemModelPrepaidPLNFromJson(String str) => ItemModelPrepaidPLN.fromJson(json.decode(str));

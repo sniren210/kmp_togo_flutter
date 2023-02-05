@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
-import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:get/get.dart';
 import 'package:kmp_togo_mobile/helpers/shared_pref_manager.dart';
 import 'package:kmp_togo_mobile/main.dart';
@@ -106,7 +105,7 @@ class _LoginPagesState extends State<LoginPages> {
     }
   }
 
-  List<FocusNode> _focusNodes = [
+  final List<FocusNode> _focusNodes = [
     FocusNode(),
     FocusNode(),
   ];
@@ -128,11 +127,11 @@ class _LoginPagesState extends State<LoginPages> {
 
       AppDb().emptyCart();
 
-      _focusNodes.forEach((node) {
+      for (var node in _focusNodes) {
         node.addListener(() {
           setState(() {});
         });
-      });
+      }
 
       final _getApiTextLogin =
           Provider.of<ProviderApiText>(context, listen: false);
@@ -219,11 +218,11 @@ class _LoginPagesState extends State<LoginPages> {
                             controller: nameController,
                             decoration: InputDecoration(
                               contentPadding:
-                                  EdgeInsets.symmetric(vertical: 20),
+                                  const EdgeInsets.symmetric(vertical: 20),
                               prefixIcon: Icon(
                                 Icons.person,
                                 color: _focusNodes[0].hasFocus
-                                    ? Color(0xFF85014e)
+                                    ? const Color(0xFF85014e)
                                     : Colors.grey.shade400,
                                 size: 7.w,
                               ),
@@ -259,7 +258,7 @@ class _LoginPagesState extends State<LoginPages> {
                                 prefixIcon: Icon(
                                   Icons.lock,
                                   color: _focusNodes[1].hasFocus
-                                      ? Color(0xFF85014e)
+                                      ? const Color(0xFF85014e)
                                       : Colors.grey.shade400,
                                   size: 7.w,
                                 ),
@@ -271,7 +270,7 @@ class _LoginPagesState extends State<LoginPages> {
                                           ? Icons.visibility_off
                                           : Icons.visibility,
                                       color: _focusNodes[1].hasFocus
-                                          ? Color(0xFF85014e)
+                                          ? const Color(0xFF85014e)
                                           : Colors.grey.shade400,
                                       size: 7.w,
                                     ),
@@ -296,7 +295,7 @@ class _LoginPagesState extends State<LoginPages> {
                         ? Container()
                         : InkWell(
                             onTap: () {
-                              Get.to(LupaPassword());
+                              Get.to(const LupaPassword());
                             },
                             child: const Text(
                               'Lupa Password?',
@@ -349,11 +348,11 @@ class _LoginPagesState extends State<LoginPages> {
                                       color: Colors.grey),
                                   child: Center(
                                     child: SizedBox(
-                                      child: CircularProgressIndicator(
-                                        color: Colors.white,
-                                      ),
                                       height: 2.h,
                                       width: 4.w,
+                                      child: const CircularProgressIndicator(
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   )),
                             ),
@@ -364,15 +363,13 @@ class _LoginPagesState extends State<LoginPages> {
                               height: 4.h,
                             ),
                             Center(
-                              child: Container(
-                                child: Text(
-                                  'Login terkunci coba lagi dalam 1 jam',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 11.sp),
-                                ),
+                              child: Text(
+                                'Login terkunci coba lagi dalam 1 jam',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 11.sp),
                               ),
                             ),
                             SizedBox(
@@ -396,31 +393,27 @@ class _LoginPagesState extends State<LoginPages> {
                   bannedtime == true
                       ? Column(
                           children: [
-                            Center(
-                              child: Container(
-                                child: const Text(
-                                  'Akun Anda Terblokir',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                ),
+                            const Center(
+                              child: Text(
+                                'Akun Anda Terblokir',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
                               ),
                             ),
                             const SizedBox(
                               height: 10,
                             ),
-                            Center(
-                              child: Container(
-                                child: const Text(
-                                  'Silahkan menghubungi CS untuk mengkonfirmasi pengembalian akun anda.',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 15),
-                                ),
+                            const Center(
+                              child: Text(
+                                'Silahkan menghubungi CS untuk mengkonfirmasi pengembalian akun anda.',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 15),
                               ),
                             ),
                           ],
@@ -490,7 +483,7 @@ class _LoginPagesState extends State<LoginPages> {
                             ' Daftar disini',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: Color(0xFF85014e),
+                                color: const Color(0xFF85014e),
                                 fontWeight: FontWeight.bold,
                                 fontSize: 11.5.sp),
                           ),

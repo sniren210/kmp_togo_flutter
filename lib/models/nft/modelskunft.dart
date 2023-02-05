@@ -10,9 +10,9 @@ class ModelSku {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['price'] = this.price;
-    data['weight'] = this.weight;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['price'] = price;
+    data['weight'] = weight;
     return data;
   }
 }

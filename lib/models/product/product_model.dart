@@ -189,14 +189,15 @@ class Sku {
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         deletedAt: json["deletedAt"],
-    skuvariants: List<Skuvariant>.from(json["skuvariants"].map((x) => Skuvariant.fromJson(x))),
+        skuvariants: List<Skuvariant>.from(
+            json["skuvariants"].map((x) => Skuvariant.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "productId": productId,
         "price": price,
-        "stock": stock ?? null,
+        "stock": stock,
         "weight": weight,
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
@@ -215,14 +216,14 @@ class Skuvariant {
   final VariantOption variantOption;
 
   factory Skuvariant.fromJson(Map<String, dynamic> json) => Skuvariant(
-    variantOptionId: json["variantOptionId"],
-    variantOption: VariantOption.fromJson(json["variantOption"]),
-  );
+        variantOptionId: json["variantOptionId"],
+        variantOption: VariantOption.fromJson(json["variantOption"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "variantOptionId": variantOptionId,
-    "variantOption": variantOption.toJson(),
-  };
+        "variantOptionId": variantOptionId,
+        "variantOption": variantOption.toJson(),
+      };
 }
 
 class VariantOption {
@@ -235,14 +236,14 @@ class VariantOption {
   final VariantProductModel variant;
 
   factory VariantOption.fromJson(Map<String, dynamic> json) => VariantOption(
-    name: json["name"],
-    variant: VariantProductModel.fromJson(json["variant"]),
-  );
+        name: json["name"],
+        variant: VariantProductModel.fromJson(json["variant"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "name": name,
-    "variant": variant.toJson(),
-  };
+        "name": name,
+        "variant": variant.toJson(),
+      };
 }
 
 class VariantProductModel {
@@ -252,13 +253,14 @@ class VariantProductModel {
 
   final String name;
 
-  factory VariantProductModel.fromJson(Map<String, dynamic> json) => VariantProductModel(
-    name: json["name"],
-  );
+  factory VariantProductModel.fromJson(Map<String, dynamic> json) =>
+      VariantProductModel(
+        name: json["name"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "name": name,
-  };
+        "name": name,
+      };
 }
 
 class Store {
@@ -412,4 +414,3 @@ class Meta {
         "storeId": storeId ?? '',
       };
 }
-

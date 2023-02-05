@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:kmp_togo_mobile/providers/auth/provider_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -20,7 +18,7 @@ class _LupaPasswordState extends State<LupaPassword> {
   TextEditingController numbercontroller = TextEditingController();
   TextEditingController passnewcontroller = TextEditingController();
   TextEditingController passnew2controller = TextEditingController();
-  List<FocusNode> _focusNodes = [
+  final List<FocusNode> _focusNodes = [
     FocusNode(),
     FocusNode(),
     FocusNode(),
@@ -45,25 +43,25 @@ class _LupaPasswordState extends State<LupaPassword> {
       key: _formKey,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Lupa Password'),
+          title: const Text('Lupa Password'),
         ),
         body: SingleChildScrollView(
           child: Column(children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
               margin: const EdgeInsets.only(right: 20.0, left: 20),
-              padding: EdgeInsets.only(right: 5.0, left: 5),
+              padding: const EdgeInsets.only(right: 5.0, left: 5),
               decoration: BoxDecoration(
                   border: Border.all(), borderRadius: BorderRadius.circular(3)),
               child: Row(
                 children: [
-                  Text(
+                  const Text(
                     '+62',
                     style: TextStyle(fontSize: 17),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Expanded(
@@ -72,7 +70,7 @@ class _LupaPasswordState extends State<LupaPassword> {
 
                       keyboardType: TextInputType.phone,
                       controller: numbercontroller,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           // contentPadding:
                           //     const EdgeInsets.symmetric(vertical: 20),
                           // prefixIcon: Icon(
@@ -236,7 +234,7 @@ class _LupaPasswordState extends State<LupaPassword> {
                             color: Colors.grey),
                         child: Center(
                           child: SizedBox(
-                            child: CircularProgressIndicator(
+                            child: const CircularProgressIndicator(
                               color: Colors.white,
                             ),
                             height: 2.h,

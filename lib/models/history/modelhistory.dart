@@ -8,19 +8,19 @@ class ModelHistory {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
-    meta = json['meta'] != null ? new Meta.fromJson(json['meta']) : null;
+    meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    if (this.meta != null) {
-      data['meta'] = this.meta!.toJson();
+    if (meta != null) {
+      data['meta'] = meta!.toJson();
     }
     return data;
   }
@@ -36,7 +36,7 @@ class Data {
   int? nftTransactionId;
   String? createdAt;
   String? updatedAt;
-  dynamic? deletedAt;
+  dynamic deletedAt;
   ProductOrder? productOrder;
   PpobTransaction? ppobTransaction;
   NftTransaction? nftTransaction;
@@ -68,36 +68,36 @@ class Data {
     updatedAt = json['updatedAt'];
     deletedAt = json['deletedAt'];
     productOrder = json['productOrder'] != null
-        ? new ProductOrder.fromJson(json['productOrder'])
+        ? ProductOrder.fromJson(json['productOrder'])
         : null;
     ppobTransaction = json['ppobTransaction'] != null
-        ? new PpobTransaction.fromJson(json['ppobTransaction'])
+        ? PpobTransaction.fromJson(json['ppobTransaction'])
         : null;
     nftTransaction = json['nftTransaction'] != null
-        ? new NftTransaction.fromJson(json['nftTransaction'])
+        ? NftTransaction.fromJson(json['nftTransaction'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['userId'] = this.userId;
-    data['total'] = this.total;
-    data['status'] = this.status;
-    data['ppobTransactionId'] = this.ppobTransactionId;
-    data['productOrderId'] = this.productOrderId;
-    data['nftTransactionId'] = this.nftTransactionId;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
-    if (this.productOrder != null) {
-      data['productOrder'] = this.productOrder!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['userId'] = userId;
+    data['total'] = total;
+    data['status'] = status;
+    data['ppobTransactionId'] = ppobTransactionId;
+    data['productOrderId'] = productOrderId;
+    data['nftTransactionId'] = nftTransactionId;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
+    if (productOrder != null) {
+      data['productOrder'] = productOrder!.toJson();
     }
-    if (this.ppobTransaction != null) {
-      data['ppobTransaction'] = this.ppobTransaction!.toJson();
+    if (ppobTransaction != null) {
+      data['ppobTransaction'] = ppobTransaction!.toJson();
     }
-    if (this.nftTransaction != null) {
-      data['nftTransaction'] = this.nftTransaction!.toJson();
+    if (nftTransaction != null) {
+      data['nftTransaction'] = nftTransaction!.toJson();
     }
     return data;
   }
@@ -152,28 +152,28 @@ class ProductOrder {
     if (json['orders'] != null) {
       orders = <Orders>[];
       json['orders'].forEach((v) {
-        orders!.add(new Orders.fromJson(v));
+        orders!.add(Orders.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['userId'] = this.userId;
-    data['subTotal'] = this.subTotal;
-    data['gasFee'] = this.gasFee;
-    data['admFee'] = this.admFee;
-    data['miscellaneous'] = this.miscellaneous;
-    data['discount'] = this.discount;
-    data['total'] = this.total;
-    data['status'] = this.status;
-    data['tokenTransactionId'] = this.tokenTransactionId;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
-    if (this.orders != null) {
-      data['orders'] = this.orders!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['userId'] = userId;
+    data['subTotal'] = subTotal;
+    data['gasFee'] = gasFee;
+    data['admFee'] = admFee;
+    data['miscellaneous'] = miscellaneous;
+    data['discount'] = discount;
+    data['total'] = total;
+    data['status'] = status;
+    data['tokenTransactionId'] = tokenTransactionId;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
+    if (orders != null) {
+      data['orders'] = orders!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -240,32 +240,32 @@ class Orders {
     if (json['orderItems'] != null) {
       orderItems = <OrderItems>[];
       json['orderItems'].forEach((v) {
-        orderItems!.add(new OrderItems.fromJson(v));
+        orderItems!.add(OrderItems.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['userId'] = this.userId;
-    data['productOrderId'] = this.productOrderId;
-    data['storeId'] = this.storeId;
-    data['shippingId'] = this.shippingId;
-    data['subTotal'] = this.subTotal;
-    data['shippingTotal'] = this.shippingTotal;
-    data['miscellaneous'] = this.miscellaneous;
-    data['discount'] = this.discount;
-    data['total'] = this.total;
-    data['notes'] = this.notes;
-    data['storeNotes'] = this.storeNotes;
-    data['status'] = this.status;
-    data['expireIn'] = this.expireIn;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
-    if (this.orderItems != null) {
-      data['orderItems'] = this.orderItems!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['userId'] = userId;
+    data['productOrderId'] = productOrderId;
+    data['storeId'] = storeId;
+    data['shippingId'] = shippingId;
+    data['subTotal'] = subTotal;
+    data['shippingTotal'] = shippingTotal;
+    data['miscellaneous'] = miscellaneous;
+    data['discount'] = discount;
+    data['total'] = total;
+    data['notes'] = notes;
+    data['storeNotes'] = storeNotes;
+    data['status'] = status;
+    data['expireIn'] = expireIn;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
+    if (orderItems != null) {
+      data['orderItems'] = orderItems!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -319,31 +319,31 @@ class OrderItems {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     deletedAt = json['deletedAt'];
-    sku = json['sku'] != null ? new Sku.fromJson(json['sku']) : null;
+    sku = json['sku'] != null ? Sku.fromJson(json['sku']) : null;
     product =
-        json['product'] != null ? new Product.fromJson(json['product']) : null;
+        json['product'] != null ? Product.fromJson(json['product']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['productOrderId'] = this.productOrderId;
-    data['productOrderDetailId'] = this.productOrderDetailId;
-    data['productId'] = this.productId;
-    data['skuId'] = this.skuId;
-    data['qty'] = this.qty;
-    data['price'] = this.price;
-    data['total'] = this.total;
-    data['isCanceled'] = this.isCanceled;
-    data['ratingId'] = this.ratingId;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
-    if (this.sku != null) {
-      data['sku'] = this.sku!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['productOrderId'] = productOrderId;
+    data['productOrderDetailId'] = productOrderDetailId;
+    data['productId'] = productId;
+    data['skuId'] = skuId;
+    data['qty'] = qty;
+    data['price'] = price;
+    data['total'] = total;
+    data['isCanceled'] = isCanceled;
+    data['ratingId'] = ratingId;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
+    if (sku != null) {
+      data['sku'] = sku!.toJson();
     }
-    if (this.product != null) {
-      data['product'] = this.product!.toJson();
+    if (product != null) {
+      data['product'] = product!.toJson();
     }
     return data;
   }
@@ -381,15 +381,15 @@ class Sku {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['productId'] = this.productId;
-    data['price'] = this.price;
-    data['stock'] = this.stock;
-    data['weight'] = this.weight;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['productId'] = productId;
+    data['price'] = price;
+    data['stock'] = stock;
+    data['weight'] = weight;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
     return data;
   }
 }
@@ -450,23 +450,23 @@ class Product {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['imagePath'] = this.imagePath;
-    data['id'] = this.id;
-    data['storeId'] = this.storeId;
-    data['categoryId'] = this.categoryId;
-    data['subCategoryId'] = this.subCategoryId;
-    data['name'] = this.name;
-    data['image'] = this.image;
-    data['description'] = this.description;
-    data['productSelling'] = this.productSelling;
-    data['rating'] = this.rating;
-    data['ratingCount'] = this.ratingCount;
-    data['ratingTotal'] = this.ratingTotal;
-    data['soldCount'] = this.soldCount;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['imagePath'] = imagePath;
+    data['id'] = id;
+    data['storeId'] = storeId;
+    data['categoryId'] = categoryId;
+    data['subCategoryId'] = subCategoryId;
+    data['name'] = name;
+    data['image'] = image;
+    data['description'] = description;
+    data['productSelling'] = productSelling;
+    data['rating'] = rating;
+    data['ratingCount'] = ratingCount;
+    data['ratingTotal'] = ratingTotal;
+    data['soldCount'] = soldCount;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
     return data;
   }
 }
@@ -535,34 +535,33 @@ class PpobTransaction {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     deletedAt = json['deletedAt'];
-    ppobType = json['ppobType'] != null
-        ? new PpobType.fromJson(json['ppobType'])
-        : null;
+    ppobType =
+        json['ppobType'] != null ? PpobType.fromJson(json['ppobType']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['userId'] = this.userId;
-    data['productCode'] = this.productCode;
-    data['ppobTypeId'] = this.ppobTypeId;
-    data['ppobMobileOperatorId'] = this.ppobMobileOperatorId;
-    data['refId'] = this.refId;
-    data['customerId'] = this.customerId;
-    data['message'] = this.message;
-    data['sn'] = this.sn;
-    data['pin'] = this.pin;
-    data['subTotal'] = this.subTotal;
-    data['gasFee'] = this.gasFee;
-    data['admFee'] = this.admFee;
-    data['total'] = this.total;
-    data['tokenTransactionId'] = this.tokenTransactionId;
-    data['status'] = this.status;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
-    if (this.ppobType != null) {
-      data['ppobType'] = this.ppobType!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['userId'] = userId;
+    data['productCode'] = productCode;
+    data['ppobTypeId'] = ppobTypeId;
+    data['ppobMobileOperatorId'] = ppobMobileOperatorId;
+    data['refId'] = refId;
+    data['customerId'] = customerId;
+    data['message'] = message;
+    data['sn'] = sn;
+    data['pin'] = pin;
+    data['subTotal'] = subTotal;
+    data['gasFee'] = gasFee;
+    data['admFee'] = admFee;
+    data['total'] = total;
+    data['tokenTransactionId'] = tokenTransactionId;
+    data['status'] = status;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
+    if (ppobType != null) {
+      data['ppobType'] = ppobType!.toJson();
     }
     return data;
   }
@@ -586,12 +585,12 @@ class PpobType {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['key'] = this.key;
-    data['name'] = this.name;
-    data['postpaid'] = this.postpaid;
-    data['margin'] = this.margin;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['key'] = key;
+    data['name'] = name;
+    data['postpaid'] = postpaid;
+    data['margin'] = margin;
     return data;
   }
 }
@@ -648,31 +647,31 @@ class NftTransaction {
     updatedAt = json['updatedAt'];
     deletedAt = json['deletedAt'];
     nftunit =
-        json['nftunit'] != null ? new Nftunit.fromJson(json['nftunit']) : null;
-    nft = json['nft'] != null ? new Nft.fromJson(json['nft']) : null;
+        json['nftunit'] != null ? Nftunit.fromJson(json['nftunit']) : null;
+    nft = json['nft'] != null ? Nft.fromJson(json['nft']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['nftSerialId'] = this.nftSerialId;
-    data['nftId'] = this.nftId;
-    data['priceCoin'] = this.priceCoin;
-    data['priceToken'] = this.priceToken;
-    data['gasFee'] = this.gasFee;
-    data['admFee'] = this.admFee;
-    data['priceCoinTotal'] = this.priceCoinTotal;
-    data['userId'] = this.userId;
-    data['transaction'] = this.transaction;
-    data['coinTransactionId'] = this.coinTransactionId;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
-    if (this.nftunit != null) {
-      data['nftunit'] = this.nftunit!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['nftSerialId'] = nftSerialId;
+    data['nftId'] = nftId;
+    data['priceCoin'] = priceCoin;
+    data['priceToken'] = priceToken;
+    data['gasFee'] = gasFee;
+    data['admFee'] = admFee;
+    data['priceCoinTotal'] = priceCoinTotal;
+    data['userId'] = userId;
+    data['transaction'] = transaction;
+    data['coinTransactionId'] = coinTransactionId;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
+    if (nftunit != null) {
+      data['nftunit'] = nftunit!.toJson();
     }
-    if (this.nft != null) {
-      data['nft'] = this.nft!.toJson();
+    if (nft != null) {
+      data['nft'] = nft!.toJson();
     }
     return data;
   }
@@ -716,17 +715,17 @@ class Nftunit {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nftSerialId'] = this.nftSerialId;
-    data['nftId'] = this.nftId;
-    data['ownerId'] = this.ownerId;
-    data['priceToken'] = this.priceToken;
-    data['sharePercentage'] = this.sharePercentage;
-    data['monthlyPercentage'] = this.monthlyPercentage;
-    data['holdLimitTill'] = this.holdLimitTill;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['nftSerialId'] = nftSerialId;
+    data['nftId'] = nftId;
+    data['ownerId'] = ownerId;
+    data['priceToken'] = priceToken;
+    data['sharePercentage'] = sharePercentage;
+    data['monthlyPercentage'] = monthlyPercentage;
+    data['holdLimitTill'] = holdLimitTill;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
     return data;
   }
 }
@@ -796,26 +795,26 @@ class Nft {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['imagePath'] = this.imagePath;
-    data['status'] = this.status;
-    data['nftId'] = this.nftId;
-    data['categoryId'] = this.categoryId;
-    data['name'] = this.name;
-    data['image'] = this.image;
-    data['description'] = this.description;
-    data['storeId'] = this.storeId;
-    data['priceToken'] = this.priceToken;
-    data['sharePercentage'] = this.sharePercentage;
-    data['monthlyPercentage'] = this.monthlyPercentage;
-    data['physicAvl'] = this.physicAvl;
-    data['holdLimitinDay'] = this.holdLimitinDay;
-    data['expirationDate'] = this.expirationDate;
-    data['qtyUnit'] = this.qtyUnit;
-    data['avlUnit'] = this.avlUnit;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['imagePath'] = imagePath;
+    data['status'] = status;
+    data['nftId'] = nftId;
+    data['categoryId'] = categoryId;
+    data['name'] = name;
+    data['image'] = image;
+    data['description'] = description;
+    data['storeId'] = storeId;
+    data['priceToken'] = priceToken;
+    data['sharePercentage'] = sharePercentage;
+    data['monthlyPercentage'] = monthlyPercentage;
+    data['physicAvl'] = physicAvl;
+    data['holdLimitinDay'] = holdLimitinDay;
+    data['expirationDate'] = expirationDate;
+    data['qtyUnit'] = qtyUnit;
+    data['avlUnit'] = avlUnit;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
     return data;
   }
 }
@@ -825,10 +824,10 @@ class Meta {
 
   Meta({this.a});
 
-  Meta.fromJson(Map<String, dynamic> json) {}
+  Meta.fromJson(Map<String, dynamic> json);
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     return data;
   }
 }

@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:kmp_togo_mobile/helpers/api_helper.dart';
 import 'package:kmp_togo_mobile/helpers/machines.dart';
-import 'package:kmp_togo_mobile/helpers/shared_pref_manager.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/custom_snackbar.dart';
-import 'package:kmp_togo_mobile/main.dart';
 import 'package:kmp_togo_mobile/models/address/addressBook.dart';
 
 class AddressBookApi with ApiMachine {

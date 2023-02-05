@@ -7,13 +7,13 @@ class ModelTipeAnggota {
     if (json['data'] != null) {
       data = <DataTipeAnggota>[];
       json['data'].forEach((v) {
-        data!.add(new DataTipeAnggota.fromJson(v));
+        data!.add(DataTipeAnggota.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -28,7 +28,7 @@ class DataTipeAnggota {
   String? description;
   String? createdAt;
   String? updatedAt;
-  Null? deletedAt;
+  String? deletedAt;
 
   DataTipeAnggota(
       {this.id,
@@ -50,14 +50,14 @@ class DataTipeAnggota {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['price'] = this.price;
-    data['description'] = this.description;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
-    data['deletedAt'] = this.deletedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['price'] = price;
+    data['description'] = description;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['deletedAt'] = deletedAt;
     return data;
   }
 }

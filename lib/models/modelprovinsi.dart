@@ -7,13 +7,13 @@ class ModelProvinsi {
     if (json['data'] != null) {
       data = <DataProvinsi>[];
       json['data'].forEach((v) {
-        data!.add(new DataProvinsi.fromJson(v));
+        data!.add(DataProvinsi.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -33,9 +33,9 @@ class DataProvinsi {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['province_id'] = this.provinceId;
-    data['province'] = this.province;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['province_id'] = provinceId;
+    data['province'] = province;
     return data;
   }
 }
