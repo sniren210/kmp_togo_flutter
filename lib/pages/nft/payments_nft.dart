@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:kmp_togo_mobile/helpers/image_generator.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/spacer.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/textStyling.dart';
 import 'package:kmp_togo_mobile/pages/common/buySuccessPage.dart';
@@ -102,7 +103,8 @@ class _NFTPaymentState extends State<NFTPayment> {
                             height: 80,
                             decoration: BoxDecoration(
                                 image: DecorationImage(
-                              image: NetworkImage(widget.images ?? ""),
+                              image: NetworkImage(
+                                  widget.images ?? kEmptyImageLink),
                               fit: BoxFit.fitHeight,
                             )),
                             alignment: Alignment.center,
@@ -122,8 +124,8 @@ class _NFTPaymentState extends State<NFTPayment> {
                                       radius: 15,
                                       child: CircleAvatar(
                                           radius: 15,
-                                          backgroundImage:
-                                          AssetImage('assets/images/bg1024.png')),
+                                          backgroundImage: AssetImage(
+                                              'assets/images/bg1024.png')),
                                       // 'assets/images/White-1024.png')),
                                     ),
                                   ),

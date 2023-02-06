@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kmp_togo_mobile/helpers/image_generator.dart';
 import 'package:kmp_togo_mobile/pages/nft/detail_nft.dart';
 import 'package:sizer/sizer.dart';
 
@@ -95,7 +96,7 @@ class cardnftmitra extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5),
                           image: DecorationImage(
                               fit: BoxFit.contain,
-                              image: NetworkImage(images ?? "")))),
+                              image: NetworkImage(images ?? kEmptyImageLink)))),
                   buyer_est == pembeli.toString()
                       ? Container(
                           margin: const EdgeInsets.only(top: 5, left: 5),

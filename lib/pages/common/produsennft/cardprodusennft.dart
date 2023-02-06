@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:kmp_togo_mobile/helpers/image_generator.dart';
 import 'package:kmp_togo_mobile/helpers/machines.dart';
 import 'package:kmp_togo_mobile/pages/nft/detailNftPenjualan.dart';
 import 'package:sizer/sizer.dart';
@@ -94,7 +95,8 @@ class _CardProdusenNFTState extends State<CardProdusenNFT>
                           borderRadius: BorderRadius.circular(4),
                           image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: NetworkImage(widget.images ?? ""))),
+                              image: NetworkImage(
+                                  widget.images ?? kEmptyImageLink))),
                     ),
                     Expanded(
                       child: Column(

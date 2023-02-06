@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kmp_togo_mobile/helpers/image_generator.dart';
 import 'package:kmp_togo_mobile/pages/nft/detailNftPenjualan.dart';
 import 'package:kmp_togo_mobile/pages/nft/detail_nft.dart';
 import 'package:kmp_togo_mobile/pages/produsennft/addUpdateProdukPage.dart';
@@ -97,7 +98,8 @@ class _CardNFTItemProdusenState extends State<CardNFTItemProdusen> {
                           borderRadius: BorderRadius.circular(4),
                           image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: NetworkImage(widget.images ?? ""))),
+                              image: NetworkImage(
+                                  widget.images ?? kEmptyImageLink))),
                     ),
                     Expanded(
                       child: Column(

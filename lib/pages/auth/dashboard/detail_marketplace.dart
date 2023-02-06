@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:kmp_togo_mobile/helpers/image_generator.dart';
 import 'package:kmp_togo_mobile/helpers/injector.dart';
 import 'package:kmp_togo_mobile/helpers/machines.dart';
 import 'package:kmp_togo_mobile/helpers/shared_pref_manager.dart';
@@ -159,7 +160,8 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
                         alignment: Alignment.bottomCenter,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: NetworkImage(widget.images!),
+                            image:
+                                NetworkImage(widget.images ?? kEmptyImageLink),
                             fit: BoxFit.cover,
                           ),
                         ),

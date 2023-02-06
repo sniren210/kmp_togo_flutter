@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:badges/badges.dart' as Badge;
 import 'package:drift_db_viewer/drift_db_viewer.dart';
 import 'package:flutter/material.dart';
+import 'package:kmp_togo_mobile/helpers/image_generator.dart';
 import 'package:kmp_togo_mobile/helpers/injector.dart';
 import 'package:kmp_togo_mobile/helpers/machines.dart';
 import 'package:kmp_togo_mobile/helpers/shared_pref_manager.dart';
@@ -135,7 +136,8 @@ class _CartScreenState extends State<CartScreen> with NumberFormatMachine {
                                       height: 80,
                                       width: 80,
                                       image: NetworkImage(
-                                          provider.cart[index].image!),
+                                          provider.cart[index].image ??
+                                              kEmptyImageLink),
                                     ),
                                     const HorizontalSpacer(width: 10),
                                     SizedBox(
