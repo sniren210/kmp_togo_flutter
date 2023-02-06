@@ -46,7 +46,8 @@ class CardTopup extends StatelessWidget with NumberFormatMachine {
 
   @override
   Widget build(BuildContext context) {
-    String? tanggalconvert = dateConvert(tanggal);
+    String? tanggalconvert = DateTime.now().toIso8601String();
+    // String? tanggalconvert = dateConvert(tanggal);
     return InkWell(
       onTap: () {
         showModalBottomSheet(
@@ -127,7 +128,8 @@ class CardTopup extends StatelessWidget with NumberFormatMachine {
                   width: 2.w,
                 ),
                 Text(
-                  'Rp. ${getNumberFormatSeparator(double.parse(harga!))}',
+                  // 'Rp. ${getNumberFormatSeparator(double.parse(harga!))}',
+                  'Rp. 100',
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
                       color: const Color.fromARGB(255, 138, 111, 111),
