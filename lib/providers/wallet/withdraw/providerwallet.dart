@@ -24,8 +24,8 @@ class ProviderWithDraw with ChangeNotifier, ApiMachine {
     try {
       final res = await _dio.get('/v1/bankaccount');
 
-      await saveResponseGet(res.requestOptions.path, res.statusMessage,
-          res.data.toString());
+      await saveResponseGet(
+          res.requestOptions.path, res.statusMessage, res.data.toString());
       // if (res.data != null) {
       dataMybank = ModelBankWithdraw.fromJson(res.data);
       // print('${dataMybank.data?.first.id}');
@@ -190,10 +190,11 @@ class ProviderWithDraw with ChangeNotifier, ApiMachine {
     try {
       final res = await _dio.get('/v1/wallet/transaction/token');
 
-      await saveResponseGet(res.requestOptions.path, res.statusMessage,
-          res.data.toString());
+      await saveResponseGet(
+          res.requestOptions.path, res.statusMessage, res.data.toString());
 
-      dataHistorySaldo = ModelHistorySaldoWallet.fromJson(res.data);
+      // dataHistorySaldo = ModelHistorySaldoWallet.fromJson(res.data);
+      dataHistorySaldo = ModelHistorySaldoWallet().dummy();
 
       loadinggetBank = false;
       notifyListeners();

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:kmp_togo_mobile/components/addspace.dart';
+import 'package:kmp_togo_mobile/helpers/image_generator.dart';
 import 'package:kmp_togo_mobile/helpers/machines.dart';
 import 'package:kmp_togo_mobile/helpers/shared_pref_manager.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/custom_snackbar.dart';
@@ -166,7 +167,8 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                         borderRadius: BorderRadius.circular(10),
                                         image: DecorationImage(
                                           image: NetworkImage(
-                                              v.listImageA?.first ?? ""),
+                                              v.listImageA?.first ??
+                                                  kEmptyImageLink),
                                           fit: BoxFit.fill,
                                         )),
                                     height: MediaQuery.of(context).size.height /
@@ -343,7 +345,9 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                       // color: const Color(0xFF85014e),
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
-                                        image: NetworkImage(item),
+                                        image: NetworkImage(item
+                                            // kEmptyImageLink,
+                                            ),
                                         fit: BoxFit.cover,
                                       )));
                                 }).toList(),
