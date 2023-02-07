@@ -14,6 +14,43 @@ class ModelHistory {
     meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
   }
 
+  ModelHistory dummy() {
+    return ModelHistory(
+      data: [
+        Data(
+          id: '',
+          userId: 0,
+          total: 0,
+          status: '',
+          ppobTransactionId: '',
+          productOrderId: 0,
+          nftTransactionId: 0,
+          createdAt: '',
+          updatedAt: '',
+          deletedAt: '2011-11-02T02:50:12.208Z',
+          productOrder: ProductOrder(
+              // int? id,
+              // int? userId,
+              // int? subTotal,
+              // dynamic gasFee,
+              // dynamic admFee,
+              // int? miscellaneous,
+              // int? discount,
+              // dynamic total,
+              // String? status,
+              // int? tokenTransactionId,
+              // String? createdAt,
+              // String? updatedAt,
+              // dynamic deletedAt,
+              // List<Orders>? orders,
+              ),
+          // PpobTransaction? ppobTransaction,
+          // NftTransaction? nftTransaction,
+        )
+      ],
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {

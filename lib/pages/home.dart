@@ -42,7 +42,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     //list of icons that required by animated navigation bar.
     'Beranda',
     'Saldo',
-    'History',
+    'Transaksi',
     'Profile'
   ];
 
