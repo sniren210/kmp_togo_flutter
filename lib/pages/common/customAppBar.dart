@@ -54,7 +54,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
               width: 24.w,
               height: 24.h,
               child: FittedBox(
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
                 child: SvgPicture.asset(
                   'assets/images/back_icon.svg',
                 ),

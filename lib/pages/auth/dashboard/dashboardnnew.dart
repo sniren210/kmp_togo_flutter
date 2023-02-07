@@ -169,7 +169,7 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                           image: NetworkImage(
                                               v.listImageA?.first ??
                                                   kEmptyImageLink),
-                                          fit: BoxFit.fill,
+                                          fit: BoxFit.cover,
                                         )),
                                     height: MediaQuery.of(context).size.height /
                                         3.2,
