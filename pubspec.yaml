@@ -101,5 +101,6 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/onboard/
     - assets/images/provider_pulsa/
       #   - images/a_dot_ham.jpeg
