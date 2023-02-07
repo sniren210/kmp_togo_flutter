@@ -106,7 +106,7 @@ class CardSearching extends StatelessWidget {
                         Card(
                           color: Colors.grey,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(24),
                           ),
                           child: Padding(
                             padding: EdgeInsets.symmetric(
@@ -141,8 +141,8 @@ class CardSearching extends StatelessWidget {
                               radius: 15,
                               child: CircleAvatar(
                                   radius: 15,
-                                  backgroundImage: AssetImage(
-                                      'assets/images/bg1024.png')),
+                                  backgroundImage:
+                                      AssetImage('assets/images/bg1024.png')),
                               // 'assets/images/White-1024.png')),
                             ),
                           ),

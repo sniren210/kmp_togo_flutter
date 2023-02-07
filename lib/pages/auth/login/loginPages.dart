@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 import 'package:kmp_togo_mobile/helpers/shared_pref_manager.dart';
 import 'package:kmp_togo_mobile/main.dart';
 import 'package:kmp_togo_mobile/pages/auth/login/lupapassword.dart';
+import 'package:kmp_togo_mobile/pages/auth/register/registerOtpPage.dart';
 import 'package:kmp_togo_mobile/pages/auth/register/registerPage.dart';
+import 'package:kmp_togo_mobile/pages/common/takePictures.dart';
 import 'package:kmp_togo_mobile/providers/apitext/providerapitext.dart';
 import 'package:kmp_togo_mobile/providers/auth/provider_auth.dart';
 import 'package:kmp_togo_mobile/providers/database/database.dart';
@@ -229,7 +231,9 @@ class _LoginPagesState extends State<LoginPages> {
                                 size: 7.w,
                               ),
                               hintText: "Please Enter Username",
-                              border: const OutlineInputBorder(),
+                              filled: true,
+                              fillColor: Colors.grey.shade200,
+                              border: InputBorder.none,
                               focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0xFF85014e),
@@ -256,7 +260,7 @@ class _LoginPagesState extends State<LoginPages> {
                             controller: passcontroller,
                             decoration: InputDecoration(
                                 contentPadding:
-                                    const EdgeInsets.symmetric(vertical: 20),
+                                    const EdgeInsets.symmetric(vertical: 18),
                                 prefixIcon: Icon(
                                   Icons.lock,
                                   color: _focusNodes[1].hasFocus
@@ -265,7 +269,9 @@ class _LoginPagesState extends State<LoginPages> {
                                   size: 7.w,
                                 ),
                                 labelText: "Please Enter Password",
-                                border: const OutlineInputBorder(),
+                                filled: true,
+                                fillColor: Colors.grey.shade200,
+                                border: InputBorder.none,
                                 suffixIcon: IconButton(
                                     icon: Icon(
                                       passhide
@@ -317,7 +323,19 @@ class _LoginPagesState extends State<LoginPages> {
                                   right: 20.0, left: 20.0, top: 40),
                               child: InkWell(
                                 onTap: () {
-                                  Get.offAllNamed('/home');
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => TakePicturePage(
+                                            title: 'Unggah Foto KTP')),
+                                  );
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //       builder: (context) =>
+                                  //           const RegisterOtpPage()),
+                                  // );
+                                  // Get.offAllNamed('/home');
                                   // _submit();
                                 },
                                 child: Container(
@@ -325,7 +343,7 @@ class _LoginPagesState extends State<LoginPages> {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 15, horizontal: 70),
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(24),
                                       color: const Color(0xFF85014e)),
                                   child: const Text(
                                     'Login',
@@ -347,7 +365,7 @@ class _LoginPagesState extends State<LoginPages> {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 15, horizontal: 70),
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(24),
                                       color: Colors.grey),
                                   child: Center(
                                     child: SizedBox(

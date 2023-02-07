@@ -83,7 +83,7 @@ class _LupaPasswordState extends State<LupaPassword> {
 
                     keyboardType: TextInputType.phone,
                     controller: numbercontroller,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                         prefixIcon: Padding(
                           padding: EdgeInsets.all(14.0),
                           child: Text(
@@ -91,6 +91,9 @@ class _LupaPasswordState extends State<LupaPassword> {
                             style: TextStyle(fontSize: 17),
                           ),
                         ),
+                        filled: true,
+                        fillColor: Colors.grey.shade200,
+                        border: InputBorder.none,
                         // contentPadding:
                         //     const EdgeInsets.symmetric(vertical: 20),
                         // prefixIcon: Icon(
@@ -102,8 +105,7 @@ class _LupaPasswordState extends State<LupaPassword> {
                         // ),
 
                         // labelText: "Masukan Nomor Telphone",
-                        border: const OutlineInputBorder(),
-                        hintText: 'Masukan Nomor Telphone',
+                        hintText: 'Masukan Nomor Telephone',
                         hintStyle: TextStyle(fontSize: 17)
                         // suffixIcon: IconButton(
                         //     icon: Icon(
@@ -212,7 +214,7 @@ class _LupaPasswordState extends State<LupaPassword> {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 70),
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(24),
                                 color: const Color(0xFF85014e)),
                             child: const Text(
                               'Simpan',
@@ -234,7 +236,7 @@ class _LupaPasswordState extends State<LupaPassword> {
                             padding: const EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 70),
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(24),
                                 color: Colors.grey),
                             child: Center(
                               child: SizedBox(

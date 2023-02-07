@@ -127,7 +127,7 @@ class _DetailNFTProdusenState extends State<DetailNFTProdusen>
                               Card(
                                 color: Colors.grey,
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(24),
                                 ),
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
