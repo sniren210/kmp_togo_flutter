@@ -42,18 +42,39 @@ class _ProfileState extends State<Profile> {
               child: SizedBox(height: 60),
             ),
             model.busy
+                // ? CustomSettingsSection(
+                //     child: Center(child: CircularProgressIndicator()))
                 ? CustomSettingsSection(
-                    child: Center(child: CircularProgressIndicator()))
-                // ? const CustomSettingsSection(
-                //     child: SizedBox(
-                //         child: MainProfile(
-                //       name: "Inky pramudia ramdhani",
-                //       email: "inkypramudia27@gmail.com  ",
-                //       token: 3454948.332,
-                //       memberType: "admin",
-                //       status: "pacaran",
-                //     )),
-                //   ) inky
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset:
+                                  Offset(0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: MainProfile(
+                          name: "Inky pramudia ramdhani",
+                          email: "inkypramudia27@gmail.com  ",
+                          token: 3454948.332,
+                          memberType: "admin",
+                          status: "pacaran",
+                        ),
+                      ),
+                    ),
+                  )
                 : CustomSettingsSection(
                     child: SizedBox(
                         height: MediaQuery.of(context).size.height / 6,
@@ -66,175 +87,224 @@ class _ProfileState extends State<Profile> {
                           status: model.items!.data.status,
                         )),
                   ),
-            SettingsSection(
-              title: const titleSection(
-                title: "Pengaturan Umun",
+            CustomSettingsSection(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child:  Column(
+                      children: const [
+                        titleSection(title: "Pengaturan Umun"),
+                        listSetting(
+                          title: "history",
+                          icon: Icons.history,
+                        ),
+                        listSetting(
+                          title: "alamat saya",
+                          icon: Icons.location_city,
+                        ),
+                        titleSection(title: "Kebijakan dan tentang"),
+                        listSetting(
+                          title: "Kebijakan dan privasi",
+                          icon: Icons.branding_watermark_rounded,
+                        ),
+                        listSetting(
+                          title: "About us",
+                          icon: Icons.people,
+                        ),
+                        titleSection(title: "Aplikasi"),
+                        listSetting(
+                          title: "Keluar",
+                          icon: Icons.logout,
+                        ),
+                      ],
+                    )),
               ),
-              tiles: <SettingsTile>[
-                SettingsTile.navigation(
-                  leading: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.black.withOpacity(0.1),
-                      ),
-                      child: const Icon(Icons.history)),
-                  title: const Text('History'),
-                  trailing: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: Colors.grey.withOpacity(0.1),
-                    ),
-                    child: const Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.grey,
-                      size: 15,
-                    ),
-                  ),
-                  onPressed: (value) {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Home(selectedIndex: 2)));
-                  },
-                ),
-                SettingsTile.navigation(
-                  leading: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: Colors.black.withOpacity(0.1),
-                    ),
-                    child: Icon(Icons.location_city),
-                  ),
-                  title: const Text('Alamat Saya'),
-                  trailing: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.grey.withOpacity(0.1),
-                      ),
-                      child: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.grey,
-                        size: 15,
-                      )),
-                  onPressed: (value) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const AlamatPage()));
-                  },
-                ),
-                model.busy
-                    ? SettingsTile(
-                        title: Container(),
-                      )
-                    : buildNavigationByMember(model),
-              ],
             ),
-            SettingsSection(
-              title: const titleSection(
-                title: "Kebijakan dan Tentang",
-              ),
-              tiles: <SettingsTile>[
-                SettingsTile.navigation(
-                  onPressed: (value) {
-                    Get.toNamed('/privacyPolicy');
-                  },
-                  leading: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.black.withOpacity(0.1),
-                      ),
-                      child: const Icon(Icons.branding_watermark_rounded)),
-                  title: const Text('Kebijakan dan privasi'),
-                  trailing: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: Colors.grey.withOpacity(0.1),
-                    ),
-                    child: const Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.grey,
-                      size: 15,
-                    ),
-                  ),
-                ),
-                SettingsTile.navigation(
-                  leading: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.black.withOpacity(0.1),
-                      ),
-                      child: const Icon(Icons.people)),
-                  title: const Text('About us'),
-                  trailing: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: Colors.grey.withOpacity(0.1),
-                    ),
-                    child: const Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.grey,
-                      size: 15,
-                    ),
-                  ),
-                  onPressed: (value) {
-                    Get.toNamed('/aboutUs');
-                  },
-                ),
-                // SettingsTile.navigation(
-                //   leading: const Icon(Icons.download),
-                //   title: const Text('Download Excel (API List)'),
-                //   onPressed: (value) {
-                //     createExcel(AppDb().getResponse().then((value) => value));
-                //   },
-                // ),
-              ],
-            ),
-            SettingsSection(
-              title: const titleSection(
-                title: "Aplikasi",
-              ),
-              tiles: <SettingsTile>[
-                SettingsTile.navigation(
-                  onPressed: (val) {
-                    final SharedPreferencesManager sharedPreferencesManager =
-                        locator<SharedPreferencesManager>();
+            // SettingsSection(
+            //   title: const titleSection(
+            //     title: "Pengaturan Umun",
+            //   ),
+            //   tiles: <SettingsTile>[
+            //     SettingsTile.navigation(
+            //       leading: Container(
+            //           height: 40,
+            //           width: 40,
+            //           decoration: BoxDecoration(
+            //             borderRadius: BorderRadius.circular(100),
+            //             color: Colors.black.withOpacity(0.1),
+            //           ),
+            //           child: const Icon(Icons.history)),
+            //       title: const Text('History'),
+            //       trailing: Container(
+            //         height: 40,
+            //         width: 40,
+            //         decoration: BoxDecoration(
+            //           borderRadius: BorderRadius.circular(100),
+            //           color: Colors.grey.withOpacity(0.1),
+            //         ),
+            //         child: const Icon(
+            //           Icons.arrow_forward_ios,
+            //           color: Colors.grey,
+            //           size: 15,
+            //         ),
+            //       ),
+            //       onPressed: (value) {
+            //         Navigator.pushReplacement(
+            //             context,
+            //             MaterialPageRoute(
+            //                 builder: (context) => Home(selectedIndex: 2)));
+            //       },
+            //     ),
+            //     SettingsTile.navigation(
+            //       leading: Container(
+            //         height: 40,
+            //         width: 40,
+            //         decoration: BoxDecoration(
+            //           borderRadius: BorderRadius.circular(100),
+            //           color: Colors.black.withOpacity(0.1),
+            //         ),
+            //         child: Icon(Icons.location_city),
+            //       ),
+            //       title: const Text('Alamat Saya'),
+            //       trailing: Container(
+            //           height: 40,
+            //           width: 40,
+            //           decoration: BoxDecoration(
+            //             borderRadius: BorderRadius.circular(100),
+            //             color: Colors.grey.withOpacity(0.1),
+            //           ),
+            //           child: Icon(
+            //             Icons.arrow_forward_ios,
+            //             color: Colors.grey,
+            //             size: 15,
+            //           )),
+            //       onPressed: (value) {
+            //         Navigator.push(
+            //             context,
+            //             MaterialPageRoute(
+            //                 builder: (context) => const AlamatPage()));
+            //       },
+            //     ),
+            //     model.busy
+            //         ? SettingsTile(
+            //             title: Container(),
+            //           )
+            //         : buildNavigationByMember(model),
+            //   ],
+            // ),
+            // SettingsSection(
+            //   title: const titleSection(
+            //     title: "Kebijakan dan Tentang",
+            //   ),
+            //   tiles: <SettingsTile>[
+            //     SettingsTile.navigation(
+            //       onPressed: (value) {
+            //         Get.toNamed('/privacyPolicy');
+            //       },
+            //       leading: Container(
+            //           height: 40,
+            //           width: 40,
+            //           decoration: BoxDecoration(
+            //             borderRadius: BorderRadius.circular(100),
+            //             color: Colors.black.withOpacity(0.1),
+            //           ),
+            //           child: const Icon(Icons.branding_watermark_rounded)),
+            //       title: const Text('Kebijakan dan privasi'),
+            //       trailing: Container(
+            //         height: 40,
+            //         width: 40,
+            //         decoration: BoxDecoration(
+            //           borderRadius: BorderRadius.circular(100),
+            //           color: Colors.grey.withOpacity(0.1),
+            //         ),
+            //         child: const Icon(
+            //           Icons.arrow_forward_ios,
+            //           color: Colors.grey,
+            //           size: 15,
+            //         ),
+            //       ),
+            //     ),
+            //     SettingsTile.navigation(
+            //       leading: Container(
+            //           height: 40,
+            //           width: 40,
+            //           decoration: BoxDecoration(
+            //             borderRadius: BorderRadius.circular(100),
+            //             color: Colors.black.withOpacity(0.1),
+            //           ),
+            //           child: const Icon(Icons.people)),
+            //       title: const Text('About us'),
+            //       trailing: Container(
+            //         height: 40,
+            //         width: 40,
+            //         decoration: BoxDecoration(
+            //           borderRadius: BorderRadius.circular(100),
+            //           color: Colors.grey.withOpacity(0.1),
+            //         ),
+            //         child: const Icon(
+            //           Icons.arrow_forward_ios,
+            //           color: Colors.grey,
+            //           size: 15,
+            //         ),
+            //       ),
+            //       onPressed: (value) {
+            //         Get.toNamed('/aboutUs');
+            //       },
+            //     ),
+            //     // SettingsTile.navigation(
+            //     //   leading: const Icon(Icons.download),
+            //     //   title: const Text('Download Excel (API List)'),
+            //     //   onPressed: (value) {
+            //     //     createExcel(AppDb().getResponse().then((value) => value));
+            //     //   },
+            //     // ),
+            //   ],
+            // ),
+            // SettingsSection(
+            //   title: const titleSection(
+            //     title: "Aplikasi",
+            //   ),
+            //   tiles: <SettingsTile>[
+            //     SettingsTile.navigation(
+            //       onPressed: (val) {
+            //         final SharedPreferencesManager sharedPreferencesManager =
+            //             locator<SharedPreferencesManager>();
 
-                    // cart.resetCounter();
-                    //
-                    sharedPreferencesManager.clearAll();
+            //         // cart.resetCounter();
+            //         //
+            //         sharedPreferencesManager.clearAll();
 
-                    Get.offAllNamed('/login');
-                  },
-                  leading: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.black.withOpacity(0.1),
-                      ),
-                      child: const Icon(Icons.logout)),
-                  title:
-                      const Text('Keluar', style: TextStyle(color: Colors.red)),
-                ),
-              ],
-            ),
+            //         Get.offAllNamed('/login');
+            //       },
+            //       leading: Container(
+            //           height: 40,
+            //           width: 40,
+            //           decoration: BoxDecoration(
+            //             borderRadius: BorderRadius.circular(100),
+            //             color: Colors.black.withOpacity(0.1),
+            //           ),
+            //           child: const Icon(Icons.logout)),
+            //       title:
+            //           const Text('Keluar', style: TextStyle(color: Colors.red)),
+            //     ),
+            //   ],
+            // ),
             const CustomSettingsSection(
               child: SizedBox(height: 30),
             ),
@@ -282,6 +352,32 @@ class _ProfileState extends State<Profile> {
         return const Text('Produk Saya');
     }
     return Container();
+  }
+}
+
+class listSetting extends StatelessWidget {
+  const listSetting({
+    super.key,
+    required this.title,
+    required this.icon,
+  });
+
+  final String title;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return SettingsTile(
+      leading: Icon(icon),
+      title: Text(
+        title,
+        style: const TextStyle(fontSize: 15),
+      ),
+      onPressed: (value) {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => Home(selectedIndex: 2)));
+      },
+    );
   }
 }
 
