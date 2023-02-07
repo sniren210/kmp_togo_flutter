@@ -323,19 +323,19 @@ class _LoginPagesState extends State<LoginPages> {
                                   right: 20.0, left: 20.0, top: 40),
                               child: InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => TakePicturePage(
-                                            title: 'Unggah Foto KTP')),
-                                  );
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //       builder: (context) => TakePicturePage(
+                                  //           title: 'Unggah Foto KTP')),
+                                  // );
                                   // Navigator.push(
                                   //   context,
                                   //   MaterialPageRoute(
                                   //       builder: (context) =>
                                   //           const RegisterOtpPage()),
                                   // );
-                                  // Get.offAllNamed('/home');
+                                  Get.offAllNamed('/home');
                                   // _submit();
                                 },
                                 child: Container(
