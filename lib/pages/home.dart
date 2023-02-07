@@ -42,7 +42,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     //list of icons that required by animated navigation bar.
     'Beranda',
     'Saldo',
-    'History',
+    'Transaksi',
     'Profile'
   ];
 
@@ -186,7 +186,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   ),
                   const SizedBox(height: 4),
                   Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      padding: const EdgeInsets.symmetric(horizontal: 4),
                       child: Text(
                         nameLabel[index],
                         maxLines: 1,

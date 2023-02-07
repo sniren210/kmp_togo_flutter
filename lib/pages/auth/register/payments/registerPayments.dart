@@ -93,7 +93,7 @@ class _BeforePaymentsState extends State<BeforePayments> {
                           width: 24.w,
                           height: 24.h,
                           child: FittedBox(
-                            fit: BoxFit.fill,
+                            fit: BoxFit.cover,
                             child: SvgPicture.asset(
                               'assets/images/back_icon.svg',
                             ),
@@ -182,7 +182,7 @@ class _BeforePaymentsState extends State<BeforePayments> {
                                                     width: 24.w,
                                                     height: 24.h,
                                                     child: FittedBox(
-                                                      fit: BoxFit.fill,
+                                                      fit: BoxFit.cover,
                                                       child: Image.asset(
                                                         e.imageAsset!,
                                                       ),
@@ -253,7 +253,7 @@ class _BeforePaymentsState extends State<BeforePayments> {
                                                     width: 24.w,
                                                     height: 24.h,
                                                     child: FittedBox(
-                                                      fit: BoxFit.fill,
+                                                      fit: BoxFit.cover,
                                                       child: Image.asset(
                                                         e.imageAsset!,
                                                       ),
@@ -324,7 +324,7 @@ class _BeforePaymentsState extends State<BeforePayments> {
                                                     width: 24.w,
                                                     height: 24.h,
                                                     child: FittedBox(
-                                                      fit: BoxFit.fill,
+                                                      fit: BoxFit.cover,
                                                       child: Image.asset(
                                                         e.imageAsset!,
                                                       ),

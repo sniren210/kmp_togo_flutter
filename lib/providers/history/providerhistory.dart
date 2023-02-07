@@ -21,7 +21,8 @@ class ProviderHistory extends ChangeNotifier with ApiMachine {
           res.requestOptions.path, res.statusMessage, res.data.toString());
 
       print('${res.data['data'].length}');
-      dataAllHistory = ModelHistory.fromJson(res.data);
+      // dataAllHistory = ModelHistory.fromJson(res.data);
+      dataAllHistory = ModelHistory().dummy();
       loadingHistory = false;
       notifyListeners();
     } on DioError catch (e) {

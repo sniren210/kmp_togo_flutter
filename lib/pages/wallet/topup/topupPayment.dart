@@ -272,7 +272,7 @@ class _PaymentProcessState extends State<ProsesPembayaranTopUp>
                                                           width: 24.w,
                                                           height: 24.h,
                                                           child: FittedBox(
-                                                            fit: BoxFit.fill,
+                                                            fit: BoxFit.cover,
                                                             child: Image.asset(
                                                               'assets/images/logo-bagi-resize.png',
                                                             ),

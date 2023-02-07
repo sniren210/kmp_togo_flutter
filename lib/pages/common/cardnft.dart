@@ -35,7 +35,7 @@ class Cardnft extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       image: DecorationImage(
-                          fit: BoxFit.fill, image: AssetImage(images ?? "")))),
+                          fit: BoxFit.cover, image: AssetImage(images ?? "")))),
             ),
             Container(
               padding:

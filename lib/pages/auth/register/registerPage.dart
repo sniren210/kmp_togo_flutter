@@ -19,6 +19,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController phoneNumberC = TextEditingController();
+  bool isClear = false;
 
   @override
   void initState() {
@@ -81,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       height: 50,
                       margin: const EdgeInsets.only(right: 20.0, left: 20),
                       padding: const EdgeInsets.only(left: 10),
-                      decoration: BoxDecoration(border: Border.all()),
+                      color: Colors.grey.shade200,
                       child: Row(
                         children: [
                           Row(
@@ -97,13 +98,38 @@ class _RegisterPageState extends State<RegisterPage> {
                             child: TextFormField(
                               controller: phoneNumberC,
                               keyboardType: TextInputType.number,
-                              decoration: const InputDecoration(
-                                  fillColor: Colors.grey,
-                                  suffixStyle: TextStyling.normal15grey,
-                                  border: InputBorder.none,
-                                  hintText: 'Masukkan Nomor WhatsApp'
-                                  // labelText: 'User Name',
-                                  ),
+                              onChanged: (value) {
+                                if (value.isNotEmpty) {
+                                  setState(() {
+                                    isClear = true;
+                                  });
+                                } else {
+                                  setState(() {
+                                    isClear = false;
+                                  });
+                                }
+                              },
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: 'Masukkan Nomor WhatsApp',
+                                filled: true,
+                                fillColor: Colors.grey.shade200,
+                                suffixIcon: isClear
+                                    ? IconButton(
+                                        icon: Icon(
+                                          Icons.clear,
+                                          color: Colors.grey,
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            isClear = false;
+                                          });
+                                          phoneNumberC.clear();
+                                        },
+                                      )
+                                    : null,
+                                // labelText: 'User Name',
+                              ),
                               inputFormatters: [
                                 LengthLimitingTextInputFormatter(13),
                                 FilteringTextInputFormatter.allow(
@@ -144,7 +170,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 15, horizontal: 70),
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
+                                    borderRadius: BorderRadius.circular(24),
                                     color: const Color(0xFF85014e)),
                                 child: const Text(
                                   'Lanjutkan',
@@ -166,7 +192,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 15, horizontal: 70),
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(24),
                                     color: Colors.grey),
                                 child: Center(
                                   child: SizedBox(

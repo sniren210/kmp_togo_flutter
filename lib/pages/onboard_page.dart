@@ -17,7 +17,7 @@ class OnBoardingPage extends StatefulWidget {
 class _OnBoardingPageState extends State<OnBoardingPage> {
   late Material materialButton;
   late int index;
-  Color warna = const Color(0xFF85014e);
+  Color warna = const Color(0xFF353E75);
   bool? lastpage = false;
   String? routeLogin;
 
@@ -27,24 +27,38 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         widget: Container(
           constraints: BoxConstraints(
             minHeight: MediaQuery.of(context).size.height,
+            minWidth: MediaQuery.of(context).size.width,
           ),
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  height: 30.h,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.contain,
-                          image: NetworkImage(
-                              v.dataApiTextObaroding1?.data?.imagePath ??
-                                  kEmptyImageLink))),
-                ),
-                buildContent('', v.dataApiTextObaroding1?.data?.value ?? ""),
-              ],
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.8,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Image.asset(
+                      'assets/onboard/onboard1.jpg',
+                      fit: BoxFit.cover,
+                      height: 100,
+                    ),
+                  ),
+                  // Container(
+                  //   margin: const EdgeInsets.symmetric(horizontal: 20),
+                  //   height: 30.h,
+                  //   width: MediaQuery.of(context).size.width,
+                  //   decoration: BoxDecoration(
+                  //       image: DecorationImage(
+                  //           fit: BoxFit.contain,
+                  //           image: NetworkImage(
+                  //               v.dataApiTextObaroding1?.data?.imagePath ??
+                  //                   kEmptyImageLink))),
+                  // ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  buildContent('', v.dataApiTextObaroding1?.data?.value ?? ""),
+                ],
+              ),
             ),
           ),
         ),
@@ -53,24 +67,28 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         widget: Container(
           constraints: BoxConstraints(
             minHeight: MediaQuery.of(context).size.height,
+            minWidth: MediaQuery.of(context).size.width,
           ),
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  height: 30.h,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.contain,
-                          image: NetworkImage(
-                              v.dataApiTextObaroding2?.data?.imagePath ??
-                                  kEmptyImageLink))),
-                ),
-                buildContent(
-                    'COIN To-Go', v.dataApiTextObaroding2?.data?.value ?? ""),
-              ],
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.8,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/onboard/onboard2.jpg',
+                    fit: BoxFit.cover,
+                    height: 100,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  buildContent(
+                      'COIN To-Go',
+                      v.dataApiTextObaroding2?.data?.value ??
+                          "Koperasi pertama di INdonesia yang berbasis coin crypto"),
+                ],
+              ),
             ),
           ),
         ),
@@ -79,24 +97,28 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         widget: Container(
           constraints: BoxConstraints(
             minHeight: MediaQuery.of(context).size.height,
+            minWidth: MediaQuery.of(context).size.width,
           ),
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  height: 30.h,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.contain,
-                          image: NetworkImage(
-                              v.dataApiTextObaroding3?.data?.imagePath ??
-                                  kEmptyImageLink))),
-                ),
-                buildContent('NFT MARKETPLACE',
-                    v.dataApiTextObaroding3?.data?.value ?? ""),
-              ],
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.8,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/onboard/onboard3.jpg',
+                    fit: BoxFit.cover,
+                    height: 100,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  buildContent(
+                      'NFT MARKETPLACE',
+                      v.dataApiTextObaroding3?.data?.value ??
+                          "NFT Marketplace koperasi pertama di Indonesia yang memadukan anara investasi dalam produk nyata"),
+                ],
+              ),
             ),
           ),
         ),
@@ -105,24 +127,28 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         widget: Container(
           constraints: BoxConstraints(
             minHeight: MediaQuery.of(context).size.height,
+            minWidth: MediaQuery.of(context).size.width,
           ),
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  height: 30.h,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.contain,
-                          image: NetworkImage(
-                              v.dataApiTextObaroding3?.data?.imagePath ??
-                                  kEmptyImageLink))),
-                ),
-                buildContent('UMKM MARKETPLACE',
-                    v.dataApiTextObaroding3?.data?.value ?? ""),
-              ],
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.8,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/onboard/onboard4.jpg',
+                    fit: BoxFit.cover,
+                    height: 100,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  buildContent(
+                      'UMKM MARKETPLACE',
+                      v.dataApiTextObaroding3?.data?.value ??
+                          "Mitra terbaik umkm dalam memasarkan produk mereka"),
+                ],
+              ),
             ),
           ),
         ),
@@ -191,7 +217,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             setIndex(3);
             setState(() {
               // _visible = true;
-              warna = Colors.blueAccent;
+              warna = const Color(0xFFA1E2C2);
             });
           }
         },
@@ -200,7 +226,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           child: Text(
             'Skip',
             style: defaultSkipButtonTextStyle.copyWith(
-              fontSize: 11.5.sp,
+              fontSize: 14.sp,
             ),
           ),
         ),
@@ -232,7 +258,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           child: Text(
             login ? 'Home' : 'Sign up',
             style: defaultProceedButtonTextStyle.copyWith(
-              fontSize: 11.5.sp,
+              fontSize: 16.sp,
             ),
           ),
         ),
@@ -258,12 +284,12 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   if (index == 0) {
                     setState(() {
                       // _visible = true;
-                      warna = const Color(0xFF85014e);
+                      warna = const Color(0xFF353E75);
                     });
                   } else if (index == 1) {
                     setState(() {
                       // _visible = true;
-                      warna = Colors.amberAccent;
+                      warna = const Color(0xFFE8BD0C);
                     });
                   } else if (index == 2) {
                     setState(() {
@@ -273,7 +299,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   } else if (index == 3) {
                     setState(() {
                       // _visible = true;
-                      warna = Colors.blueAccent;
+                      warna = const Color(0xFFA1E2C2);
                     });
                   }
                 });

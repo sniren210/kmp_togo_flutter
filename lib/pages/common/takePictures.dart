@@ -17,17 +17,13 @@ import '../../providers/auth/provider_register.dart';
 class TakePicturePage extends StatefulWidget {
   String title;
 
-  TakePicturePage(
-      {Key? key,
-      required this.title})
-      : super(key: key);
+  TakePicturePage({Key? key, required this.title}) : super(key: key);
 
   @override
   State<TakePicturePage> createState() => _TakePicturePageState();
 }
 
 class _TakePicturePageState extends State<TakePicturePage> {
-
   @override
   void initState() {
     super.initState();
@@ -89,7 +85,7 @@ class _TakePicturePageState extends State<TakePicturePage> {
                     padding: const EdgeInsets.symmetric(
                         vertical: 15, horizontal: 70),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(24),
                       color: const Color(0xFF85014e),
                     ),
                     child: const Text(

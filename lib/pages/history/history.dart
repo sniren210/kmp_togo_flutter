@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:kmp_togo_mobile/helpers/machines.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/spacer.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/textStyling.dart';
+import 'package:kmp_togo_mobile/models/history/modelhistory.dart';
 import 'package:kmp_togo_mobile/pages/auth/dashboard/marketplacePage.dart';
 import 'package:kmp_togo_mobile/pages/history/detail_history_ppob_new.dart';
 import 'package:kmp_togo_mobile/pages/history/detailhistorynft.dart';
@@ -231,14 +232,17 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                             shrinkWrap: true,
                             itemCount: v.dataAllHistory?.data?.length,
                             itemBuilder: (BuildContext context, int index) {
-                              final nftTransaction =
-                                  v.dataAllHistory!.data![index].nftTransaction;
+                              final nftTransaction = v.dataAllHistory
+                                      ?.data?[index].nftTransaction ??
+                                  NftTransaction();
 
-                              final ppobTransaction = v
-                                  .dataAllHistory!.data![index].ppobTransaction;
+                              final ppobTransaction = v.dataAllHistory
+                                      ?.data?[index].ppobTransaction ??
+                                  PpobTransaction();
 
                               final productOrder =
-                                  v.dataAllHistory!.data![index].productOrder;
+                                  v.dataAllHistory?.data?[index].productOrder ??
+                                      ProductOrder();
 
                               return
                                   // if (_cariC.text.isNotEmpty) {
@@ -423,43 +427,45 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                                       ppobTransaction != null
                                                           ? Text(
                                                               ppobTransaction
-                                                                  .ppobType!
-                                                                  .name
-                                                                  .toString(),
+                                                                      .ppobType
+                                                                      ?.name ??
+                                                                  '',
                                                               style: TextStyling
                                                                   .w600bold16black)
                                                           : const Text(''),
                                                       productOrder != null
                                                           ? Text(
                                                               productOrder
-                                                                      .orders!
-                                                                      .first
-                                                                      .orderItems!
-                                                                      .first
-                                                                      .product!
-                                                                      .name ??
+                                                                      .orders
+                                                                      ?.first
+                                                                      .orderItems
+                                                                      ?.first
+                                                                      .product
+                                                                      ?.name ??
                                                                   "",
                                                               style: TextStyling
                                                                   .w600bold16black)
                                                           : const Text(''),
                                                       nftTransaction != null
                                                           ? Text(
-                                                              nftTransaction
-                                                                  .nft!.name
-                                                                  .toString(),
+                                                              nftTransaction.nft
+                                                                      ?.name ??
+                                                                  '',
                                                               style: TextStyling
                                                                   .w600bold16black)
                                                           : const Text(''),
                                                       const VerticalSpacer(
                                                           height: 7),
                                                       Text(
-                                                          dateConvert(
-                                                            v
-                                                                .dataAllHistory!
-                                                                .data![index]
-                                                                .createdAt
-                                                                .toString(),
-                                                          ),
+                                                          // dateConvert(
+                                                          //   v
+                                                          //           .dataAllHistory
+                                                          //           ?.data?[
+                                                          //               index]
+                                                          //           .createdAt ??
+                                                          //       '',
+                                                          // ),
+                                                          '2011-11-02T02:50:12.208Z',
                                                           style: TextStyling
                                                               .w40012black),
                                                     ],
@@ -468,14 +474,14 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                               ),
                                               Card(
                                                 color: v
-                                                            .dataAllHistory!
-                                                            .data![index]
+                                                            .dataAllHistory
+                                                            ?.data?[index]
                                                             .status ==
                                                         'paid'
                                                     ? Colors.greenAccent
                                                     : v
-                                                                .dataAllHistory!
-                                                                .data![index]
+                                                                .dataAllHistory
+                                                                ?.data?[index]
                                                                 .status ==
                                                             'done'
                                                         ? Colors.greenAccent
@@ -490,9 +496,11 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                                       horizontal: 8,
                                                       vertical: 8),
                                                   child: Text(
-                                                      v.dataAllHistory!
-                                                          .data![index].status
-                                                          .toString(),
+                                                      v
+                                                              .dataAllHistory
+                                                              ?.data?[index]
+                                                              .status ??
+                                                          '',
                                                       style: TextStyling
                                                           .w40012black),
                                                 ),
@@ -533,12 +541,12 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                                 productOrder != null
                                                     ? Text(
                                                         productOrder
-                                                                .orders!
-                                                                .first
-                                                                .orderItems!
-                                                                .first
-                                                                .product!
-                                                                .name ??
+                                                                .orders
+                                                                ?.first
+                                                                .orderItems
+                                                                ?.first
+                                                                .product
+                                                                ?.name ??
                                                             "",
                                                         style: TextStyling
                                                             .w600bold16black)
@@ -546,8 +554,8 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                                 nftTransaction != null
                                                     ? Text(
                                                         nftTransaction
-                                                            .nft!.status
-                                                            .toString(),
+                                                                .nft?.status ??
+                                                            '',
                                                         style: TextStyling
                                                             .w600bold16black)
                                                     : const Text(''),
@@ -589,12 +597,12 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                                         height: 10),
                                                     Text(
                                                       v
-                                                                  .dataAllHistory!
-                                                                  .data![index]
+                                                                  .dataAllHistory
+                                                                  ?.data![index]
                                                                   .nftTransactionId !=
                                                               null
                                                           ? "${v.dataAllHistory!.data![index].total} Coin"
-                                                          : "${getNumberFormatSeparator(v.dataAllHistory!.data![index].total)} Poin",
+                                                          : "${getNumberFormatSeparator(v.dataAllHistory?.data?[index].total ?? 0.0)} Poin",
                                                       style: TextStyling
                                                           .w600bold16black,
                                                     ),
