@@ -61,9 +61,30 @@ class _MainProfileState extends State<MainProfile> with NumberFormatMachine {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const CircleAvatar(
-                radius: 37,
-                backgroundImage: AssetImage('assets/images/logon.jpg'),
+              Stack(
+                children: [
+                  const CircleAvatar(
+                    radius: 37,
+                    backgroundImage: AssetImage('assets/images/logon.jpg'),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Container(
+                      width: 23,
+                      height: 23,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.orange,
+                      ),
+                      child: Icon(
+                        Icons.email,
+                        size: 15,
+                        color: Colors.white,
+                      ),
+                    ),
+                  )
+                ],
               ),
               const SizedBox(height: 15),
               Text(
