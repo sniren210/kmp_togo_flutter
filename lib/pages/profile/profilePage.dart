@@ -53,7 +53,7 @@ class _ProfileState extends State<Profile> {
                 //       memberType: "admin",
                 //       status: "pacaran",
                 //     )),
-                //   )
+                //   ) inky
                 : CustomSettingsSection(
                     child: SizedBox(
                         height: MediaQuery.of(context).size.height / 6,
