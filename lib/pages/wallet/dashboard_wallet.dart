@@ -362,7 +362,7 @@ class _DashboardWalletState extends State<DashboardWallet>
                             child: Text(
                               'Riwayat',
                               style: TextStyle(
-                                  fontSize: 12.sp,
+                                  fontSize: 8.sp,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black),
                             ),
@@ -949,11 +949,11 @@ class _DashboardWalletState extends State<DashboardWallet>
         },
         child: Container(
           padding:
-              EdgeInsets.only(right: 1.w, left: 1.w, top: 1.h, bottom: 1.h),
+              EdgeInsets.only(right: 1.2.w, left: 1.2.w, top: 1.h, bottom: 1.h),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(8),
               color: selectedIndex == _selectedIndex
-                  ? Colors.grey
+                  ? const Color(0xFF85014e)
                   : Colors.grey.shade300),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -962,7 +962,11 @@ class _DashboardWalletState extends State<DashboardWallet>
             children: [
               Text(
                 judul,
-                style: TextStyle(color: Colors.black, fontSize: 8.sp),
+                style: TextStyle(
+                    color: selectedIndex == _selectedIndex
+                        ? Colors.white
+                        : Colors.black,
+                    fontSize: 7.sp),
               ),
             ],
           ),
