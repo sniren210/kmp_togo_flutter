@@ -39,12 +39,21 @@ class _ProfileState extends State<Profile> {
           shrinkWrap: true,
           sections: [
             const CustomSettingsSection(
-              child: SizedBox(height: 50),
+              child: SizedBox(height: 60),
             ),
             model.busy
-                ? const CustomSettingsSection(
-                    child: Center(child: CircularProgressIndicator()),
-                  )
+                ? CustomSettingsSection(
+                    child: Center(child: CircularProgressIndicator()))
+                // ? const CustomSettingsSection(
+                //     child: SizedBox(
+                //         child: MainProfile(
+                //       name: "Inky pramudia ramdhani",
+                //       email: "inkypramudia27@gmail.com  ",
+                //       token: 3454948.332,
+                //       memberType: "admin",
+                //       status: "pacaran",
+                //     )),
+                //   )
                 : CustomSettingsSection(
                     child: SizedBox(
                         height: MediaQuery.of(context).size.height / 6,
@@ -58,11 +67,33 @@ class _ProfileState extends State<Profile> {
                         )),
                   ),
             SettingsSection(
-              title: const Text('Pengaturan Umum'),
+              title: const titleSection(
+                title: "Pengaturan Umun",
+              ),
               tiles: <SettingsTile>[
                 SettingsTile.navigation(
-                  leading: const Icon(Icons.history),
+                  leading: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.black.withOpacity(0.1),
+                      ),
+                      child: const Icon(Icons.history)),
                   title: const Text('History'),
+                  trailing: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.grey.withOpacity(0.1),
+                    ),
+                    child: const Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.grey,
+                      size: 15,
+                    ),
+                  ),
                   onPressed: (value) {
                     Navigator.pushReplacement(
                         context,
@@ -71,8 +102,28 @@ class _ProfileState extends State<Profile> {
                   },
                 ),
                 SettingsTile.navigation(
-                  leading: const Icon(Icons.location_city),
+                  leading: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.black.withOpacity(0.1),
+                    ),
+                    child: Icon(Icons.location_city),
+                  ),
                   title: const Text('Alamat Saya'),
+                  trailing: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.grey.withOpacity(0.1),
+                      ),
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.grey,
+                        size: 15,
+                      )),
                   onPressed: (value) {
                     Navigator.push(
                         context,
@@ -88,18 +139,60 @@ class _ProfileState extends State<Profile> {
               ],
             ),
             SettingsSection(
-              title: const Text('Kebijakan & Tentang'),
+              title: const titleSection(
+                title: "Kebijakan dan Tentang",
+              ),
               tiles: <SettingsTile>[
                 SettingsTile.navigation(
                   onPressed: (value) {
                     Get.toNamed('/privacyPolicy');
                   },
-                  leading: const Icon(Icons.branding_watermark_rounded),
-                  title: const Text('Kebijakan Privasi'),
+                  leading: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.black.withOpacity(0.1),
+                      ),
+                      child: const Icon(Icons.branding_watermark_rounded)),
+                  title: const Text('Kebijakan dan privasi'),
+                  trailing: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.grey.withOpacity(0.1),
+                    ),
+                    child: const Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.grey,
+                      size: 15,
+                    ),
+                  ),
                 ),
                 SettingsTile.navigation(
-                  leading: const Icon(Icons.people),
-                  title: const Text('About Us'),
+                  leading: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.black.withOpacity(0.1),
+                      ),
+                      child: const Icon(Icons.people)),
+                  title: const Text('About us'),
+                  trailing: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.grey.withOpacity(0.1),
+                    ),
+                    child: const Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.grey,
+                      size: 15,
+                    ),
+                  ),
                   onPressed: (value) {
                     Get.toNamed('/aboutUs');
                   },
@@ -114,7 +207,9 @@ class _ProfileState extends State<Profile> {
               ],
             ),
             SettingsSection(
-              title: const Text('Aplikasi'),
+              title: const titleSection(
+                title: "Aplikasi",
+              ),
               tiles: <SettingsTile>[
                 SettingsTile.navigation(
                   onPressed: (val) {
@@ -127,8 +222,16 @@ class _ProfileState extends State<Profile> {
 
                     Get.offAllNamed('/login');
                   },
-                  leading: const Icon(Icons.branding_watermark_rounded),
-                  title: const Text('Keluar'),
+                  leading: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.black.withOpacity(0.1),
+                      ),
+                      child: const Icon(Icons.logout)),
+                  title:
+                      const Text('Keluar', style: TextStyle(color: Colors.red)),
                 ),
               ],
             ),
@@ -179,5 +282,35 @@ class _ProfileState extends State<Profile> {
         return const Text('Produk Saya');
     }
     return Container();
+  }
+}
+
+class titleSection extends StatelessWidget {
+  const titleSection({
+    super.key,
+    required this.title,
+  });
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    // return Container(
+    //   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+    //   decoration: BoxDecoration(
+    //     color: Theme.of(context).primaryColor,
+    //     borderRadius: BorderRadius.circular(10),
+    //   ),
+    //   ch122ild: Text(
+    //     title,
+    //     style: const TextStyle(color: Colors.white, fontSize: 14),
+    //   ),
+    // );
+    return ListTile(
+      title: Text(
+        title,
+        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+      ),
+    );
   }
 }
