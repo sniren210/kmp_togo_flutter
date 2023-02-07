@@ -12,7 +12,8 @@ import 'package:kmp_togo_mobile/pages/history/history.dart';
 import 'package:kmp_togo_mobile/pages/profile/profilePage.dart';
 import 'package:kmp_togo_mobile/pages/scan/scanPembayaran.dart';
 import 'package:provider/provider.dart';
-import 'package:kmp_togo_mobile/pages/wallet/dashboardwallet.dart';
+import 'package:kmp_togo_mobile/pages/wallet/dashboard_wallet.dart';
+// import 'package:kmp_togo_mobile/pages/wallet/dashboardwallet.dart' as old;
 import 'package:kmp_togo_mobile/providers/cart/cart_provider.dart';
 
 class Home extends StatefulWidget {
@@ -108,8 +109,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   }
 
   final SharedPreferencesManager sharedPreferencesManager =
-  locator<SharedPreferencesManager>();
-
+      locator<SharedPreferencesManager>();
 
   bool isHomeLoading = true;
 

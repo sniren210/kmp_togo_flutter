@@ -14,6 +14,26 @@ class ModelHistorySaldoWallet {
     meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
   }
 
+  ModelHistorySaldoWallet dummy() {
+    return ModelHistorySaldoWallet(
+      data: [
+        Data(
+          id: 0,
+          userId: 0,
+          trxIn: 0.0,
+          trxOut: 0.0,
+          description: '',
+          gasFeeIncluded: 0.0,
+          gasFeeExcluded: 0.0,
+          cryptoResponse: '',
+          createdAt: '2011-11-02T02:50:12.208Z',
+          updatedAt: '2011-11-02T02:50:12.208Z',
+          deletedAt: '2011-11-02T02:50:12.208Z',
+        ),
+      ],
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {

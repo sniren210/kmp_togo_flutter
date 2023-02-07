@@ -9,6 +9,7 @@ import 'package:kmp_togo_mobile/pages/auth/register/registerPage.dart';
 import 'package:kmp_togo_mobile/providers/apitext/providerapitext.dart';
 import 'package:kmp_togo_mobile/providers/auth/provider_auth.dart';
 import 'package:kmp_togo_mobile/providers/database/database.dart';
+import 'package:kmp_togo_mobile/utils/createExcel.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
@@ -316,7 +317,8 @@ class _LoginPagesState extends State<LoginPages> {
                                   right: 20.0, left: 20.0, top: 40),
                               child: InkWell(
                                 onTap: () {
-                                  _submit();
+                                  Get.offAllNamed('/home');
+                                  // _submit();
                                 },
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,

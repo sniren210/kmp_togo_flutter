@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:kmp_togo_mobile/helpers/image_generator.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/custom_snackbar.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/spacer.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/textStyling.dart';
@@ -102,7 +103,7 @@ class _DetailNFTProdusenState extends State<DetailNFTProdusen>
                   alignment: Alignment.bottomCenter,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(widget.images!),
+                      image: NetworkImage(widget.images ?? kEmptyImageLink),
                       fit: BoxFit.cover,
                     ),
                   ),

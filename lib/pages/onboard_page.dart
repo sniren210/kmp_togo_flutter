@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kmp_togo_mobile/helpers/image_generator.dart';
 import 'package:kmp_togo_mobile/main.dart';
 import 'package:kmp_togo_mobile/providers/apitext/providerapitext.dart';
 import 'package:onboarding/onboarding.dart';
@@ -39,7 +40,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                       image: DecorationImage(
                           fit: BoxFit.contain,
                           image: NetworkImage(
-                              v.dataApiTextObaroding1?.data?.imagePath ?? ""))),
+                              v.dataApiTextObaroding1?.data?.imagePath ??
+                                  kEmptyImageLink))),
                 ),
                 buildContent('', v.dataApiTextObaroding1?.data?.value ?? ""),
               ],
@@ -63,7 +65,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                       image: DecorationImage(
                           fit: BoxFit.contain,
                           image: NetworkImage(
-                              v.dataApiTextObaroding2?.data?.imagePath ?? ""))),
+                              v.dataApiTextObaroding2?.data?.imagePath ??
+                                  kEmptyImageLink))),
                 ),
                 buildContent(
                     'COIN To-Go', v.dataApiTextObaroding2?.data?.value ?? ""),
@@ -88,7 +91,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                       image: DecorationImage(
                           fit: BoxFit.contain,
                           image: NetworkImage(
-                              v.dataApiTextObaroding3?.data?.imagePath ?? ""))),
+                              v.dataApiTextObaroding3?.data?.imagePath ??
+                                  kEmptyImageLink))),
                 ),
                 buildContent('NFT MARKETPLACE',
                     v.dataApiTextObaroding3?.data?.value ?? ""),
@@ -113,7 +117,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                       image: DecorationImage(
                           fit: BoxFit.contain,
                           image: NetworkImage(
-                              v.dataApiTextObaroding3?.data?.imagePath ?? ""))),
+                              v.dataApiTextObaroding3?.data?.imagePath ??
+                                  kEmptyImageLink))),
                 ),
                 buildContent('UMKM MARKETPLACE',
                     v.dataApiTextObaroding3?.data?.value ?? ""),
@@ -186,7 +191,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             setIndex(3);
             setState(() {
               // _visible = true;
-              warna = const Color(0xFFA0E2C1);
+              warna = Colors.blueAccent;
             });
           }
         },
@@ -258,7 +263,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   } else if (index == 1) {
                     setState(() {
                       // _visible = true;
-                      warna = const Color(0xFFE8BD0C);
+                      warna = Colors.amberAccent;
                     });
                   } else if (index == 2) {
                     setState(() {
@@ -268,7 +273,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   } else if (index == 3) {
                     setState(() {
                       // _visible = true;
-                      warna = const Color(0xFFA0E2C1);
+                      warna = Colors.blueAccent;
                     });
                   }
                 });
@@ -286,7 +291,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                           indicator: Indicator(
                             indicatorDesign: IndicatorDesign.polygon(
                               polygonDesign: PolygonDesign(
-                                polygon: DesignType.polygon_circle,
+                                polygon: DesignType.polygon_square,
                               ),
                             ),
                           )),
