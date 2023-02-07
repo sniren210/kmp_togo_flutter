@@ -57,85 +57,63 @@ class _MainProfileState extends State<MainProfile> with NumberFormatMachine {
       builder: (context, model, child) => SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const CircleAvatar(
                 radius: 37,
                 backgroundImage: AssetImage('assets/images/logon.jpg'),
               ),
-              const SizedBox(width: 24),
-              model.busy
-                  ? const Center(child: CircularProgressIndicator())
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width / 2.w,
-                              child: Text(widget.name,
-                                  softWrap: true,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                            const SizedBox(height: 6),
-                            Text(widget.email,
-                                style: const TextStyle(fontSize: 14)),
-                            const SizedBox(height: 6),
-                            Row(
-                              children: [
-                                Text(
-                                    '${getNumberFormatSeparator(widget.token)} Poin',
-                                    style: const TextStyle(fontSize: 14)),
-                                const HorizontalSpacer(width: 10),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 6.0),
-                              child: Container(
-                                padding: const EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).primaryColor,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Text(
-                                  widget.memberType,
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 14.sp),
-                                ),
-                              ),
-                            ),
-                            const HorizontalSpacer(width: 7),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 6.0),
-                              child: Container(
-                                padding: const EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                  color: getColorByStatus(widget.status),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Text(
-                                  widget.status,
-                                  style: TextStyle(
-                                      color: Colors.black87, fontSize: 14.sp),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+              const SizedBox(height: 15),
+              Text(
+                widget.name,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style:
+                    const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                '${getNumberFormatSeparator(widget.token)} Poin',
+                style: const TextStyle(fontSize: 14),
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 6.0),
+                    child: Container(
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        widget.memberType,
+                        style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                      ),
                     ),
+                  ),
+                  const HorizontalSpacer(width: 15),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 6.0),
+                    child: Container(
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: getColorByStatus(widget.status),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        widget.status,
+                        style:
+                            TextStyle(color: Colors.black87, fontSize: 14.sp),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
