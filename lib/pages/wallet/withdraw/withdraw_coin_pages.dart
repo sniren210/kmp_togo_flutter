@@ -7,14 +7,14 @@ import 'package:kmp_togo_mobile/pages/wallet/withdraw/pilihpembayaran.dart';
 import 'package:kmp_togo_mobile/utils/layarmax.dart';
 import 'package:sizer/sizer.dart';
 
-class WithDraw extends StatefulWidget {
-  WithDraw({Key? key}) : super(key: key);
+class WithDrawCoin extends StatefulWidget {
+  WithDrawCoin({Key? key}) : super(key: key);
 
   @override
-  State<WithDraw> createState() => _WithDrawState();
+  State<WithDrawCoin> createState() => _WithDrawCoinState();
 }
 
-class _WithDrawState extends State<WithDraw> {
+class _WithDrawCoinState extends State<WithDrawCoin> {
   TextEditingController nominal = TextEditingController();
   bool saldokosong = false;
 
@@ -49,7 +49,7 @@ class _WithDrawState extends State<WithDraw> {
               Container(
                 margin: EdgeInsets.only(left: 2.w),
                 child: Text(
-                  'Withdraw',
+                  'Withdraw Coin',
                   style:
                       TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
                 ),
