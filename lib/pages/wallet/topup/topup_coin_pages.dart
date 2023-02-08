@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:kmp_togo_mobile/pages/auth/register/payments/registerPayments.dart';
-import 'package:kmp_togo_mobile/pages/auth/register/payments/registerPaymentsProcess.dart';
-import 'package:kmp_togo_mobile/pages/common/splashPage.dart';
 import 'package:kmp_togo_mobile/pages/wallet/topup/topupPayment.dart';
-import 'package:kmp_togo_mobile/pages/wallet/withdraw/pilihpembayaran.dart';
 import 'package:kmp_togo_mobile/utils/layarmax.dart';
 import 'package:sizer/sizer.dart';
 
-class WithDraw extends StatefulWidget {
-  WithDraw({Key? key}) : super(key: key);
+class TopUpCoinPage extends StatefulWidget {
+  TopUpCoinPage({Key? key}) : super(key: key);
 
   @override
-  State<WithDraw> createState() => _WithDrawState();
+  State<TopUpCoinPage> createState() => _TopUpCoinPageState();
 }
 
-class _WithDrawState extends State<WithDraw> {
+class _TopUpCoinPageState extends State<TopUpCoinPage> {
   TextEditingController nominal = TextEditingController();
   bool saldokosong = false;
 
@@ -27,9 +23,10 @@ class _WithDrawState extends State<WithDraw> {
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => PilihPembayaran(
-                  amount: int.parse(nominalA),
-                )),
+            builder: (context) => ProsesPembayaranTopUp(
+                isTopup: true,
+                popContext: 1,
+                nominal: int.parse(nominal.text))),
       );
     }
   }
@@ -49,7 +46,7 @@ class _WithDrawState extends State<WithDraw> {
               Container(
                 margin: EdgeInsets.only(left: 2.w),
                 child: Text(
-                  'Withdraw',
+                  'Top Up Saldo Coin',
                   style:
                       TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
                 ),
@@ -106,7 +103,7 @@ class _WithDrawState extends State<WithDraw> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'Rp.',
+                                      'Rp. ',
                                       style: TextStyle(fontSize: 13.sp),
                                     )
                                   ],
@@ -128,7 +125,7 @@ class _WithDrawState extends State<WithDraw> {
                                 ),
                                 child: Row(
                                   children: [
-                                    const Icon(
+                                    Icon(
                                       Icons.close,
                                       color: Colors.red,
                                     ),

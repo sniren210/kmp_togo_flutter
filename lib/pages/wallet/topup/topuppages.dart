@@ -34,6 +34,27 @@ class _TopUpPageState extends State<TopUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Padding(
+          padding: EdgeInsets.only(top: 1.5.h, bottom: 1.5.h),
+          child: Row(
+            children: [
+              Icon(
+                Icons.monetization_on,
+                size: 7.w,
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 2.w),
+                child: Text(
+                  'Top Up Saldo',
+                  style:
+                      TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.only(left: 4.w, right: 4.w),
@@ -41,30 +62,11 @@ class _TopUpPageState extends State<TopUpPage> {
           width: context.width,
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.only(top: 1.5.h, bottom: 1.5.h),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.monetization_on,
-                      color: Colors.black,
-                      size: 7.w,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 2.w),
-                      child: Text(
-                        'Top Up Saldo',
-                        style: TextStyle(
-                            fontSize: 13.sp,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
+              SizedBox(
+                height: 12,
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 2.w),
+                padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(color: const Color(0xFF85014e))),
@@ -107,8 +109,8 @@ class _TopUpPageState extends State<TopUpPage> {
                                   ],
                                 ),
                                 border: InputBorder.none,
-                                contentPadding:
-                                    const EdgeInsets.symmetric(vertical: 20),
+                                // contentPadding:
+                                //     const EdgeInsets.symmetric(vertical: 20),
                                 suffixIcon: Icon(
                                   Icons.monetization_on,
                                   size: 7.w,

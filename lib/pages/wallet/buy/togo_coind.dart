@@ -4,7 +4,9 @@ import 'package:kmp_togo_mobile/helpers/machines.dart';
 import 'package:kmp_togo_mobile/pages/base.dart';
 import 'package:kmp_togo_mobile/pages/common/cardtopup.dart';
 import 'package:kmp_togo_mobile/pages/wallet/buy/buytogoPage.dart';
+import 'package:kmp_togo_mobile/pages/wallet/topup/topup_coin_pages.dart';
 import 'package:kmp_togo_mobile/pages/wallet/topup/topuppages.dart';
+import 'package:kmp_togo_mobile/pages/wallet/withdraw/withdraw_coin_pages.dart';
 import 'package:kmp_togo_mobile/pages/wallet/withdraw/withdrawpages.dart';
 import 'package:kmp_togo_mobile/providers/account/provider_account.dart';
 import 'package:kmp_togo_mobile/providers/wallet/withdraw/providerwallet.dart';
@@ -21,8 +23,6 @@ class ToGoCoin extends StatefulWidget {
 class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
   int selectedIndex = 0;
   late ScrollController _scrollController;
-
-  double expandHeight = 340;
 
   @override
   void initState() {
@@ -60,144 +60,108 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
               ),
               slivers: [
                 SliverAppBar(
-                  backgroundColor: Theme.of(context).canvasColor,
-                  expandedHeight: 360,
-                  collapsedHeight: 60,
-                  flexibleSpace: FlexibleSpaceBar(
-                    stretchModes: const [
-                      StretchMode.zoomBackground,
-                      StretchMode.blurBackground,
-                    ],
-                    centerTitle: true,
-                    titlePadding: const EdgeInsets.symmetric(
-                      horizontal: 4,
-                      vertical: 8,
-                    ),
-                    title: Container(
-                      color: const Color(0xFF85014e),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 2.w, vertical: 1.h),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                  // toolbarHeight: 100,
+                  title: Text(
+                    'Coin',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Container(
+                    color: const Color(0xFF85014e),
+                    child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 2.w, vertical: 1.h),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => TopUpCoinPage()),
+                                );
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Expanded(
-                                      flex: 3,
-                                      child: InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    TopUpPage()),
-                                          );
-                                        },
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Card(
-                                              color: Colors.orangeAccent,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 8.0,
-                                                        horizontal: 12.0),
-                                                child: Text(
-                                                  'Top Up Coin',
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 9.sp),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      )),
-                                  Expanded(
-                                      flex: 3,
-                                      child: InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    WithDraw()),
-                                          );
-                                        },
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Card(
-                                              color: Colors.orangeAccent,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 8.0,
-                                                        horizontal: 12.0),
-                                                child: Text(
-                                                  'Withdraw Coin',
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 9.sp),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      )),
-                                  Expanded(
-                                      flex: 3,
-                                      child: InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    BeliToGo()),
-                                          );
-                                        },
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Card(
-                                              color: Colors.orangeAccent,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 8.0,
-                                                        horizontal: 12.0),
-                                                child: Text(
-                                                  'PPM',
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 9.sp),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      )),
+                                  Card(
+                                    color: Colors.orangeAccent,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0, horizontal: 12.0),
+                                      child: Text(
+                                        'Top Up',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 9.sp),
+                                      ),
+                                    ),
+                                  )
                                 ],
-                              )),
-                        ],
-                      ),
-                    ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => WithDrawCoin()),
+                                );
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Card(
+                                    color: Colors.orangeAccent,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0, horizontal: 12.0),
+                                      child: Text(
+                                        'Withdraw',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 9.sp),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => BeliToGo()),
+                                );
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Card(
+                                    color: Colors.orangeAccent,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0, horizontal: 12.0),
+                                      child: Text(
+                                        'PPM',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 9.sp),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        )),
                   ),
                 ),
                 SliverToBoxAdapter(
@@ -234,6 +198,104 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
                               ? '${v.dataHistorySaldo?.data?[0].trxOut}'
                               : '-',
                         ),
+                        CardTopup(
+                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
+                              ? 'Top Up'
+                              : 'Withdraw',
+                          icon: Icons.monetization_on,
+                          ref: v.dataHistorySaldo?.data?[0].description,
+                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
+                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
+                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
+                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
+                          waktu: '',
+                          metode: 'Artha Graha Internasional',
+                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
+                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
+                              : '-',
+                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
+                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
+                              : '-',
+                        ),
+                        CardTopup(
+                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
+                              ? 'Top Up'
+                              : 'Withdraw',
+                          icon: Icons.monetization_on,
+                          ref: v.dataHistorySaldo?.data?[0].description,
+                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
+                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
+                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
+                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
+                          waktu: '',
+                          metode: 'Artha Graha Internasional',
+                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
+                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
+                              : '-',
+                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
+                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
+                              : '-',
+                        ),
+                        CardTopup(
+                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
+                              ? 'Top Up'
+                              : 'Withdraw',
+                          icon: Icons.monetization_on,
+                          ref: v.dataHistorySaldo?.data?[0].description,
+                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
+                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
+                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
+                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
+                          waktu: '',
+                          metode: 'Artha Graha Internasional',
+                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
+                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
+                              : '-',
+                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
+                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
+                              : '-',
+                        ),
+
+                        CardTopup(
+                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
+                              ? 'Top Up'
+                              : 'Withdraw',
+                          icon: Icons.monetization_on,
+                          ref: v.dataHistorySaldo?.data?[0].description,
+                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
+                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
+                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
+                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
+                          waktu: '',
+                          metode: 'Artha Graha Internasional',
+                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
+                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
+                              : '-',
+                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
+                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
+                              : '-',
+                        ),
+
+                        CardTopup(
+                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
+                              ? 'Top Up'
+                              : 'Withdraw',
+                          icon: Icons.monetization_on,
+                          ref: v.dataHistorySaldo?.data?[0].description,
+                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
+                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
+                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
+                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
+                          waktu: '',
+                          metode: 'Artha Graha Internasional',
+                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
+                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
+                              : '-',
+                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
+                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
+                              : '-',
+                        ),
+
                         CardTopup(
                           kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
                               ? 'Top Up'
