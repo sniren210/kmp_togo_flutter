@@ -7,6 +7,7 @@ import 'package:kmp_togo_mobile/pages/base.dart';
 import 'package:kmp_togo_mobile/pages/common/cardtopup.dart';
 import 'package:kmp_togo_mobile/pages/common/customAppBar.dart';
 import 'package:kmp_togo_mobile/pages/wallet/buy/buytogoPage.dart';
+import 'package:kmp_togo_mobile/pages/wallet/buy/togo_coind.dart';
 import 'package:kmp_togo_mobile/pages/wallet/topup/topupPayment.dart';
 import 'package:kmp_togo_mobile/pages/wallet/topup/topuppages.dart';
 import 'package:kmp_togo_mobile/pages/wallet/withdraw/withdrawpages.dart';
@@ -199,7 +200,7 @@ class _DashboardWalletState extends State<DashboardWallet>
                                                                   horizontal:
                                                                       12.0),
                                                           child: Text(
-                                                            'Top Up',
+                                                            'Top Up Poin',
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .white,
@@ -240,7 +241,7 @@ class _DashboardWalletState extends State<DashboardWallet>
                                                                   horizontal:
                                                                       12.0),
                                                           child: Text(
-                                                            'Withdraw',
+                                                            'Withdraw Poin',
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .white,
@@ -259,7 +260,7 @@ class _DashboardWalletState extends State<DashboardWallet>
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              BeliToGo()),
+                                                              ToGoCoin()),
                                                     );
                                                   },
                                                   child: Column(
@@ -281,7 +282,7 @@ class _DashboardWalletState extends State<DashboardWallet>
                                                                   horizontal:
                                                                       12.0),
                                                           child: Text(
-                                                            'Coin',
+                                                            'Togo Coin',
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .white,
