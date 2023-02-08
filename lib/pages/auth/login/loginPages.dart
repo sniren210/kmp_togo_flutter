@@ -322,7 +322,7 @@ class _LoginPagesState extends State<LoginPages> {
                               padding: const EdgeInsets.only(
                                   right: 20.0, left: 20.0, top: 40),
                               child: InkWell(
-                                onTap: () {
+                                onTap: () async {
                                   // Navigator.push(
                                   //   context,
                                   //   MaterialPageRoute(
@@ -335,6 +335,7 @@ class _LoginPagesState extends State<LoginPages> {
                                   //       builder: (context) =>
                                   //           const RegisterOtpPage()),
                                   // );
+
                                   Get.offAllNamed('/home');
                                   // _submit();
                                 },

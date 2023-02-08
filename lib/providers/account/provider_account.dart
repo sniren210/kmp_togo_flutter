@@ -21,9 +21,46 @@ class ProviderAccountInfo with ChangeNotifier implements BaseModel {
 
   Future<ItemModelAccountInfo> fetchAccountInfo() async {
     setBusy(true);
-    var success = await _authenticationService.fetchAccountInfo();
+    var success = ItemModelAccountInfo(
+        data: Data(
+      imagePath: 'https://i.imgur.com/NO25iZV.png',
+      id: 0,
+      nik: '',
+      name: 'exampple',
+      image: '',
+      email: '',
+      phoneNumber: '',
+      birthdate: '',
+      cityId: '',
+      provinceId: '',
+      subdistrictId: '',
+      address: '',
+      membertype: '',
+      role: '',
+      status: '',
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+      deletedAt: '2011-11-02T02:50:12.208Z',
+      tokenWallet: NWallet(
+        id: 0,
+        userId: 0,
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+        deletedAt: '2011-11-02T02:50:12.208Z',
+        token: 0.0,
+      ),
+      coinWallet: NWallet2(
+        id: 0,
+        userId: 0,
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+        deletedAt: '2011-11-02T02:50:12.208Z',
+        coin: 0.0,
+      ),
+    ));
+    // var success = await _authenticationService.fetchAccountInfo();
     _items = success;
-    
+
     sharedPreferencesManager.setInt('ownerId', success.data.id);
 
     setBusy(false);
