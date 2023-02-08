@@ -122,9 +122,9 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                               Padding(
                                 padding: const EdgeInsets.only(right: 15),
                                 child: SizedBox(
-                                  width: 160.0,
+                                  width: 150.0,
                                   child: DropdownSearch<String>(
-                                    popupProps: PopupProps.dialog(
+                                    popupProps: PopupProps.bottomSheet(
                                       showSelectedItems: true,
                                       disabledItemFn: (String s) =>
                                           s.startsWith('I'),
@@ -187,7 +187,7 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                               Padding(
                                 padding: const EdgeInsets.only(right: 15),
                                 child: SizedBox(
-                                  width: 190.0,
+                                  width: 150.0,
                                   child: DropdownSearch<String>(
                                     popupProps: PopupProps.dialog(
                                       showSelectedItems: true,
@@ -227,7 +227,7 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 150.0),
+                        padding: const EdgeInsets.only(top: 170.0),
                         child: ListView.builder(
                             shrinkWrap: true,
                             itemCount: v.dataAllHistory?.data?.length,
@@ -255,7 +255,24 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                   //     return
                                   Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Card(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10),
+                                        bottomRight: Radius.circular(10)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: 5,
+                                        blurRadius: 7,
+                                        offset: Offset(
+                                            0, 3), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
                                   child: InkWell(
                                     onTap: () {
                                       if (nftTransaction != null) {
