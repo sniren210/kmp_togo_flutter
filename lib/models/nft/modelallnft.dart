@@ -14,6 +14,40 @@ class ModelAllNFT {
     meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
   }
 
+  ModelAllNFT dummy() {
+    return ModelAllNFT(
+      data: [
+        Data(
+          imagePath: 'https://i.imgur.com/NO25iZV.png',
+          status: '',
+          nftId: '',
+          categoryId: '',
+          name: '',
+          image: '',
+          description: '',
+          storeId: 0,
+          priceToken: 0,
+          sharePercentage: 0,
+          monthlyPercentage: 0,
+          physicAvl: true,
+          holdLimitinDay: 0,
+          expirationDate: '2011-11-02T02:50:12.208Z',
+          qtyUnit: 0,
+          avlUnit: 0,
+          createdAt: '2011-11-02T02:50:12.208Z',
+          updatedAt: '2011-11-02T02:50:12.208Z',
+          deletedAt: '2011-11-02T02:50:12.208Z',
+          store: Store(),
+          category: '',
+          gasfee: '',
+          admfee: '',
+          priceCoin: '',
+          nftUnit: [NftUnit()],
+        ),
+      ],
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {

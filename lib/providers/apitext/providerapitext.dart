@@ -192,14 +192,18 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
     context,
   ) async {
     try {
-      final res1 = await _dio.get('/v1/app/banner1');
-      final res2 = await _dio.get('/v1/app/banner2');
-      final res3 = await _dio.get('/v1/app/banner3');
-      final res4 = await _dio.get('/v1/app/banner4');
-      dataApiBanner1 = ModelApiText.fromJson(res1.data);
-      dataApiBanner2 = ModelApiText.fromJson(res2.data);
-      dataApiBanner3 = ModelApiText.fromJson(res3.data);
-      dataApiBanner4 = ModelApiText.fromJson(res4.data);
+      // final res1 = await _dio.get('/v1/app/banner1');
+      // final res2 = await _dio.get('/v1/app/banner2');
+      // final res3 = await _dio.get('/v1/app/banner3');
+      // final res4 = await _dio.get('/v1/app/banner4');
+      // dataApiBanner1 = ModelApiText.fromJson(res1.data);
+      // dataApiBanner2 = ModelApiText.fromJson(res2.data);
+      // dataApiBanner3 = ModelApiText.fromJson(res3.data);
+      // dataApiBanner4 = ModelApiText.fromJson(res4.data);
+      dataApiBanner1 = ModelApiText().dummy();
+      dataApiBanner2 = ModelApiText().dummy();
+      dataApiBanner3 = ModelApiText().dummy();
+      dataApiBanner4 = ModelApiText().dummy();
 
       String gambar1 = dataApiBanner1?.data?.imagePath ?? "";
       String gambar2 = dataApiBanner2?.data?.imagePath ?? "";
@@ -211,13 +215,9 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
       listImage.add(gambar2);
       listImage.add(gambar3);
       listImage.add(gambar4);
-      print('haloo $gambar1');
-      print('listnya $listImage');
-      print(gambar2);
-      print(gambar3);
-      print(gambar4);
+
       listImageA = listImage;
-      print('listnyaaaa $listImage');
+
       if (listImageA!.isNotEmpty) {
         loadinbanner = false;
         notifyListeners();

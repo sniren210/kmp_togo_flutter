@@ -56,12 +56,13 @@ class ProviderNft with ChangeNotifier, ApiMachine {
     context,
   ) async {
     try {
-      final res = await _dio.get('/v1/nft');
+      // final res = await _dio.get('/v1/nft');
 
-      await saveResponseGet(
-          res.requestOptions.path, res.statusMessage, res.data.toString());
+      // await saveResponseGet(
+      //     res.requestOptions.path, res.statusMessage, res.data.toString());
 
-      dataAllNFT = ModelAllNFT.fromJson(res.data);
+      dataAllNFT = ModelAllNFT().dummy();
+      // dataAllNFT = ModelAllNFT.fromJson(res.data);
       loadinggetNFTALL = false;
       notifyListeners();
     } on DioError catch (e) {

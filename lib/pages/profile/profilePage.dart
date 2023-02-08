@@ -76,16 +76,35 @@ class _ProfileState extends State<Profile> {
                     ),
                   )
                 : CustomSettingsSection(
-                    child: SizedBox(
-                        height: MediaQuery.of(context).size.height / 6,
-                        width: MediaQuery.of(context).size.height / 0.5,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset:
+                                  Offset(0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
                         child: MainProfile(
                           name: model.items!.data.name,
                           email: model.items!.data.email,
                           token: model.items!.data.tokenWallet.token,
                           memberType: model.items!.data.membertype,
                           status: model.items!.data.status,
-                        )),
+                        ),
+                      ),
+                    ),
                   ),
             CustomSettingsSection(
               child: Padding(
@@ -107,7 +126,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ],
                     ),
-                    child:  Column(
+                    child: Column(
                       children: const [
                         titleSection(title: "Pengaturan Umun"),
                         listSetting(

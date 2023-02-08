@@ -7,6 +7,17 @@ class ModelApiText {
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
+  ModelApiText dummy() {
+    return ModelApiText(
+      data: Data(
+        imagePath: 'https://i.imgur.com/NO25iZV.png',
+        key: '0',
+        value: 'example',
+        image: 'https://i.imgur.com/NO25iZV.png',
+      ),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
