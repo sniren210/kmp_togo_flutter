@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kmp_togo_mobile/helpers/image_generator.dart';
 import 'package:kmp_togo_mobile/helpers/machines.dart';
 import 'package:kmp_togo_mobile/providers/product/provider_product.dart';
 import 'package:sizer/sizer.dart';
@@ -56,12 +57,12 @@ class CardUMKMDashBoard extends StatelessWidget with NumberFormatMachine {
           Expanded(
             child: Container(
                 width: MediaQuery.of(context).size.width,
+                height: 200,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     image: DecorationImage(
-                        fit: BoxFit.contain,
-                        image: NetworkImage(gambar ??
-                            'https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png')))),
+                        fit: BoxFit.cover,
+                        image: NetworkImage(gambar ?? kEmptyImageLink)))),
           ),
           Container(
             padding:

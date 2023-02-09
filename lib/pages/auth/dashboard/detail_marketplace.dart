@@ -103,12 +103,14 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
           skuvariants: element.skuvariants));
     }
 
-    selectedSkuId = widget.skus!.first.id;
-    stockBarang = _dataListSku
-            .where((element) => element.id == selectedSkuId)
-            .first
-            .stock ??
-        0;
+    selectedSkuId = widget.skus?.isEmpty ?? true ? 0 : widget.skus!.first.id;
+    stockBarang = _dataListSku.isEmpty
+        ? 0
+        : _dataListSku
+                .where((element) => element.id == selectedSkuId)
+                .first
+                .stock ??
+            0;
     isMoreSKU = _dataListSku.any((element) => element.skuvariants.isNotEmpty);
 
     super.initState();
@@ -213,7 +215,7 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
                                         ),
                                       ),
                                       Text(
-                                          '${getNumberFormatSeparator(_dataListSku.where((element) => element.id == selectedSkuId).first.price.toDouble())} Poin',
+                                          '${getNumberFormatSeparator(_dataListSku.where((element) => element.id == selectedSkuId).isEmpty ? 0 : _dataListSku.where((element) => element.id == selectedSkuId).first.price.toDouble())} Poin',
                                           style: TextStyling.w60020black),
                                     ],
                                   ),

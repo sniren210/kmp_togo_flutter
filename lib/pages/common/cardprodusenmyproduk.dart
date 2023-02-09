@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kmp_togo_mobile/helpers/image_generator.dart';
 import 'package:kmp_togo_mobile/helpers/machines.dart';
 import 'package:kmp_togo_mobile/pages/produsennft/updateprodukitem.dart';
 import 'package:kmp_togo_mobile/pages/umkm/hapusproduk.dart';
@@ -43,13 +44,6 @@ class _CardProdusenMyProdukState extends State<CardProdusenMyProduk>
     with NumberFormatMachine {
   @override
   Widget build(BuildContext context) {
-    print(widget.id);
-    print(widget.gambar);
-
-    print(widget.productSelling);
-    print(widget.namaProduct);
-
-    print(widget.price);
     return Container(
         decoration: BoxDecoration(
           border: Border(
@@ -71,8 +65,8 @@ class _CardProdusenMyProdukState extends State<CardProdusenMyProduk>
                         EdgeInsets.symmetric(horizontal: 12.w, vertical: 3.6.h),
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(widget.gambar ??
-                              'https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png')),
+                          image:
+                              NetworkImage(widget.gambar ?? kEmptyImageLink)),
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),

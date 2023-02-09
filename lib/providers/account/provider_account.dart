@@ -35,7 +35,7 @@ class ProviderAccountInfo with ChangeNotifier implements BaseModel {
       provinceId: '',
       subdistrictId: '',
       address: '',
-      membertype: '',
+      membertype: 'konsumen1',
       role: '',
       status: '',
       createdAt: DateTime.now(),

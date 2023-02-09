@@ -71,7 +71,7 @@ class Datum {
   DateTime createdAt;
   DateTime updatedAt;
   dynamic deletedAt;
-  Store store;
+  Store? store;
   Category? category;
   dynamic subCategory;
   List<Sku> sku;
@@ -93,7 +93,7 @@ class Datum {
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         deletedAt: json["deletedAt"],
-        store: Store.fromJson(json["store"]),
+        store: json["store"] == null ? null : Store.fromJson(json["store"]),
         category: json["category"] == null
             ? null
             : Category.fromJson(json["category"]),
@@ -118,7 +118,7 @@ class Datum {
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
         "deletedAt": deletedAt,
-        "store": store.toJson(),
+        "store": store == null ? null : store!.toJson(),
         "category": category == null ? null : category!.toJson(),
         "subCategory": subCategory,
         "sku": List<dynamic>.from(sku.map((x) => x.toJson())),
