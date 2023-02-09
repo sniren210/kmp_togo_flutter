@@ -62,8 +62,8 @@ class cardnftmitra extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) {
-            return DetailNFT(
+          MaterialPageRoute(
+            builder: (context) => DetailNFT(
               title: title,
               images: images,
               buyer_est: buyer_est,
@@ -77,8 +77,8 @@ class cardnftmitra extends StatelessWidget {
               admfee: admfee,
               deskripsi: deskripsi,
               owner: owner,
-            );
-          }),
+            ),
+          ),
         );
       },
       child: Card(

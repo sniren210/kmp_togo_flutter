@@ -1006,12 +1006,18 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                                               index]
                                                                           .soldCount,
                                                                       priceCoins: model
-                                                                          .items!
-                                                                          .data[
-                                                                              index]
-                                                                          .sku
-                                                                          .first
-                                                                          .price,
+                                                                              .items!
+                                                                              .data[
+                                                                                  index]
+                                                                              .sku
+                                                                              .isEmpty
+                                                                          ? 0
+                                                                          : model
+                                                                              .items!
+                                                                              .data[index]
+                                                                              .sku
+                                                                              .first
+                                                                              .price,
                                                                       deskripsi: model
                                                                           .items!
                                                                           .data[
