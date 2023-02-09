@@ -22,7 +22,6 @@ class History extends StatefulWidget {
 
   final String jenisTransaksi;
 
-
   @override
   State<History> createState() => _HistoryState();
 }
@@ -173,37 +172,35 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(right: 15),
-                                child: SizedBox(
-                                  width: 150.0,
-                                  child: DropdownSearch<String>(
-                                    popupProps: PopupProps.dialog(
-                                      showSelectedItems: true,
-                                      disabledItemFn: (String s) =>
-                                          s.startsWith('I'),
-                                    ),
-                                    items: const [
-                                      "done",
-                                      "processing",
-                                      "cancel",
-                                      "paid",
-                                      "all"
-                                    ],
-                                    dropdownDecoratorProps:
-                                        const DropDownDecoratorProps(
-                                      dropdownSearchDecoration: InputDecoration(
-                                        hintText: "Select Status",
-                                      ),
-                                    ),
-                                    onChanged: (value) {
-                                      setState(() {
-                                        status = value;
-                                      });
-                                      print('haloo  $status');
-                                      getSelectDropdown(status, tanggal);
-                                    },
-                                    // selectedItem: "done",
+                                padding: const EdgeInsets.symmetric(horizontal: 12),
+                                child: DropdownSearch<String>(
+                                  popupProps: PopupProps.menu(
+                                    showSelectedItems: true,
+                                    disabledItemFn: (String s) =>
+                                        s.startsWith('I'),
                                   ),
+                                  items: const [
+                                    "done",
+                                    "processing",
+                                    "cancel",
+                                    "paid",
+                                    "all"
+                                  ],
+                                  dropdownDecoratorProps:
+                                      const DropDownDecoratorProps(
+                                    dropdownSearchDecoration: InputDecoration(
+                                      hintText: "-----",
+                                      labelText: "Select Status",
+                                    ),
+                                  ),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      status = value;
+                                    });
+                                    print('haloo  $status');
+                                    getSelectDropdown(status, tanggal);
+                                  },
+                                  // selectedItem: "done",
                                 ),
                               ),
                               // Padding(
@@ -238,41 +235,39 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                               //   ),
                               // ),
                               Padding(
-                                padding: const EdgeInsets.only(right: 15),
-                                child: SizedBox(
-                                  width: 150.0,
-                                  child: DropdownSearch<String>(
-                                    popupProps: PopupProps.dialog(
-                                      showSelectedItems: true,
-                                      disabledItemFn: (String s) =>
-                                          s.startsWith('I'),
-                                    ),
-                                    items: const [
-                                      "Semua Tanggal Transaksi",
-                                      "30 Hari Terakhir",
-                                      "90 Hari Terakhir",
-                                      "Atur Tanggal Sendiri",
-                                    ],
-                                    dropdownDecoratorProps:
-                                        const DropDownDecoratorProps(
-                                      dropdownSearchDecoration: InputDecoration(
-                                        hintText: "Select Tanggal",
-                                      ),
-                                    ),
-                                    onChanged: (value) {
-                                      setState(() {
-                                        tanggal = value;
-                                      });
-                                      if (tanggal == 'Atur Tanggal Sendiri') {
-                                        print('atur sendiri');
-                                        klikBottom();
-                                      } else {
-                                        print('haloo  $status');
-                                        getSelectDropdown(status, tanggal);
-                                      }
-                                    },
-                                    // selectedItem: "createdAt:desc",
+                                padding: const EdgeInsets.symmetric(horizontal: 12),
+                                child: DropdownSearch<String>(
+                                  popupProps: PopupProps.menu(
+                                    showSelectedItems: true,
+                                    disabledItemFn: (String s) =>
+                                        s.startsWith('I'),
                                   ),
+                                  items: const [
+                                    "Semua Tanggal Transaksi",
+                                    "30 Hari Terakhir",
+                                    "90 Hari Terakhir",
+                                    "Atur Tanggal Sendiri",
+                                  ],
+                                  dropdownDecoratorProps:
+                                      const DropDownDecoratorProps(
+                                    dropdownSearchDecoration: InputDecoration(
+                                      hintText: "----",
+                                      labelText: "Select Tanggal"
+                                    ),
+                                  ),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      tanggal = value;
+                                    });
+                                    if (tanggal == 'Atur Tanggal Sendiri') {
+                                      print('atur sendiri');
+                                      klikBottom();
+                                    } else {
+                                      print('haloo  $status');
+                                      getSelectDropdown(status, tanggal);
+                                    }
+                                  },
+                                  // selectedItem: "createdAt:desc",
                                 ),
                               ),
                             ],
