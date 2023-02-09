@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:fluttercontactpicker/fluttercontactpicker.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:kmp_togo_mobile/apis/repository.dart';
 import 'package:kmp_togo_mobile/helpers/api_helper.dart';
 import 'package:kmp_togo_mobile/helpers/injector.dart';
@@ -286,72 +287,79 @@ class _InputPPOBWithNumberState extends State<InputPPOBWithNumber>
                                     border: const OutlineInputBorder(),
                                   ),
                                   onChanged: (value) async {
-                                    if (value.length == 4) {
+                                    // print(value
+                                    //     .contains(RegExp(r'^(\+62|62|0)')));
+                                    if (value.isNotEmpty) {
                                       if (widget.product_type == 'pulsa' ||
                                           widget.product_type == 'data') {
-                                        prefixData =
-                                            await _checkNumberPrefix(value);
+                                        if (value.contains(
+                                            RegExp(r'^(\+62|62|0)'))) {
+                                          prefixData =
+                                              await _checkNumberPrefix(value);
 
-                                        phoneOperator =
-                                            prefixData.data.dataOperator;
+                                          phoneOperator =
+                                              prefixData.data.dataOperator;
 
-                                        switch (phoneOperator) {
-                                          case 'indosat':
-                                            setState(() {
-                                              provider_pulsa_img =
-                                                  'assets/images/provider_pulsa/Indosat.png';
-                                            });
-                                            break;
-                                          case 'XL':
-                                            setState(() {
-                                              provider_pulsa_img =
-                                                  'assets/images/provider_pulsa/XL.png';
-                                            });
-                                            break;
-                                          case 'AXIS':
-                                            setState(() {
-                                              provider_pulsa_img =
-                                                  'assets/images/provider_pulsa/AXis.png';
-                                            });
-                                            break;
-                                          case 'telkomsel':
-                                            setState(() {
-                                              provider_pulsa_img =
-                                                  'assets/images/provider_pulsa/Telkomsel.png';
-                                            });
-                                            break;
-                                          case 'SMART':
-                                            setState(() {
-                                              provider_pulsa_img =
-                                                  'assets/images/provider_pulsa/Smartfreen.png';
-                                            });
-                                            break;
-                                          case 'THREE':
-                                            setState(() {
-                                              provider_pulsa_img =
-                                                  'assets/images/provider_pulsa/Three.png';
-                                            });
-                                            break;
-                                          case 'by.u':
-                                            setState(() {
-                                              provider_pulsa_img =
-                                                  'assets/images/logo.png';
-                                            });
-                                            break;
+                                          switch (phoneOperator) {
+                                            case 'indosat':
+                                              setState(() {
+                                                provider_pulsa_img =
+                                                    'assets/images/provider_pulsa/Indosat.png';
+                                              });
+                                              break;
+                                            case 'XL':
+                                              setState(() {
+                                                provider_pulsa_img =
+                                                    'assets/images/provider_pulsa/XL.png';
+                                              });
+                                              break;
+                                            case 'AXIS':
+                                              setState(() {
+                                                provider_pulsa_img =
+                                                    'assets/images/provider_pulsa/AXis.png';
+                                              });
+                                              break;
+                                            case 'telkomsel':
+                                              setState(() {
+                                                provider_pulsa_img =
+                                                    'assets/images/provider_pulsa/Telkomsel.png';
+                                              });
+                                              break;
+                                            case 'SMART':
+                                              setState(() {
+                                                provider_pulsa_img =
+                                                    'assets/images/provider_pulsa/Smartfreen.png';
+                                              });
+                                              break;
+                                            case 'THREE':
+                                              setState(() {
+                                                provider_pulsa_img =
+                                                    'assets/images/provider_pulsa/Three.png';
+                                              });
+                                              break;
+                                            case 'by.u':
+                                              setState(() {
+                                                provider_pulsa_img =
+                                                    'assets/images/logo.png';
+                                              });
+                                              break;
+                                          }
+
+                                          setState(() {
+                                            print(
+                                                'ok1 ${model.items!.data.length}');
+                                            visibleWidgets = model.items!.data
+                                                .where((element) =>
+                                                    element.productType ==
+                                                        widget.product_type &&
+                                                    element.productCode
+                                                        .toLowerCase()
+                                                        .contains(prefixData
+                                                            .data.dataOperator
+                                                            .toLowerCase()))
+                                                .toList();
+                                          });
                                         }
-
-                                        setState(() {
-                                          visibleWidgets = model.items!.data
-                                              .where((element) =>
-                                                  element.productType ==
-                                                      widget.product_type &&
-                                                  element.productCode
-                                                      .toLowerCase()
-                                                      .contains(prefixData
-                                                          .data.dataOperator
-                                                          .toLowerCase()))
-                                              .toList();
-                                        });
                                       } else {
                                         setState(() {
                                           visibleWidgets = model.items!.data
@@ -367,6 +375,10 @@ class _InputPPOBWithNumberState extends State<InputPPOBWithNumber>
                                         var toString2 = status2.productPrice;
 
                                         return toString1.compareTo(toString2);
+                                      });
+                                    } else {
+                                      setState(() {
+                                        visibleWidgets.clear();
                                       });
                                     }
                                   },
@@ -681,14 +693,15 @@ class _InputPPOBWithNumberState extends State<InputPPOBWithNumber>
 
       debugPrint('RES: $data');
 
-      final res = await _dio.post('/v1/ppob/prepaid/phoneprefix', data: data);
+      // final res = await _dio.post('/v1/ppob/prepaid/phoneprefix', data: data);
 
-      await saveResponsePost(res.requestOptions.path, res.statusMessage,
-          res.data.toString(), data.toString());
+      // await saveResponsePost(res.requestOptions.path, res.statusMessage,
+      //     res.data.toString(), data.toString());
 
-      debugPrint('RES: ${res.data}');
+      // debugPrint('RES: ${res.data}');
 
-      return ItemModelPhonePrefix.fromJson(res.data);
+      // return ItemModelPhonePrefix.fromJson(res.data);
+      return ItemModelPhonePrefix.dummy();
     } on DioError catch (e) {
       throw Exception(e.toString());
     }

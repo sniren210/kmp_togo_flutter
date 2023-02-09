@@ -7,7 +7,8 @@ import 'dart:convert';
 ItemModelPhonePrefix phonePrefixFromJson(String str) =>
     ItemModelPhonePrefix.fromJson(json.decode(str));
 
-String phonePrefixToJson(ItemModelPhonePrefix data) => json.encode(data.toJson());
+String phonePrefixToJson(ItemModelPhonePrefix data) =>
+    json.encode(data.toJson());
 
 class ItemModelPhonePrefix {
   ItemModelPhonePrefix({
@@ -16,9 +17,19 @@ class ItemModelPhonePrefix {
 
   final Data data;
 
-  factory ItemModelPhonePrefix.fromJson(Map<String, dynamic> json) => ItemModelPhonePrefix(
+  factory ItemModelPhonePrefix.fromJson(Map<String, dynamic> json) =>
+      ItemModelPhonePrefix(
         data: Data.fromJson(json["data"]),
       );
+
+  factory ItemModelPhonePrefix.dummy() {
+    return ItemModelPhonePrefix(
+        data: Data(
+      dataOperator: 'telkomsel',
+      message: 'exampele msg',
+      rc: '',
+    ));
+  }
 
   Map<String, dynamic> toJson() => {
         "data": data.toJson(),
