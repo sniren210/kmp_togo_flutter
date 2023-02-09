@@ -89,7 +89,11 @@ class listJenisProduct extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => History()),
+              MaterialPageRoute(
+                builder: (context) => History(
+                  jenisTransaksi: title,
+                ),
+              ),
             );
           },
         ),

@@ -14,6 +14,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../main.dart';
 import '../../../providers/nft/provider_nft.dart';
+import '../../history/jenis_transaksi.dart';
 
 class SplashNftPenjualan extends StatefulWidget {
   Widget nextPage;
@@ -230,7 +231,7 @@ class _SplashNftPenjualanState extends State<SplashNftPenjualan> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) {
-                            return History();
+                            return jenisTransaksi();
                           }),
                         );
                       },

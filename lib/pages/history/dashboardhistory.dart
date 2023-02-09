@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kmp_togo_mobile/pages/history/history.dart';
 import 'package:sizer/sizer.dart';
 
+import 'jenis_transaksi.dart';
+
 class HistoryDashboard extends StatefulWidget {
   HistoryDashboard({Key? key}) : super(key: key);
 
@@ -35,10 +37,7 @@ class _HistoryDashboardState extends State<HistoryDashboard> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => History(
-                            search: 'b',
-                          )),
+                  MaterialPageRoute(builder: (context) => jenisTransaksi()),
                 );
               },
               child: CardHistory(

@@ -17,6 +17,7 @@ import 'package:kmp_togo_mobile/providers/product/provider_product.dart';
 import 'package:kmp_togo_mobile/providers/wallet/topup/provider_topup.dart';
 import 'package:sizer/sizer.dart';
 import '../../models/product/product_model.dart';
+import '../history/jenis_transaksi.dart';
 
 class SplashPage extends StatefulWidget {
   String title, subtitle;
@@ -537,7 +538,7 @@ class _SplashPageState extends State<SplashPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) {
-                                  return History();
+                                  return jenisTransaksi();
                                 }),
                               );
                             },

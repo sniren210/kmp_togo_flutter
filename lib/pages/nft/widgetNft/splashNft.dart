@@ -8,6 +8,7 @@ import 'package:kmp_togo_mobile/pages/home.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../providers/nft/provider_nft.dart';
+import '../../history/jenis_transaksi.dart';
 
 class SplashNft extends StatefulWidget {
   Widget nextPage;
@@ -224,7 +225,7 @@ class _SplashNftState extends State<SplashNft> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) {
-                            return History();
+                            return jenisTransaksi();
                           }),
                         );
                       },

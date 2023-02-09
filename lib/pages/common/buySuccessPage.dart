@@ -4,6 +4,8 @@ import 'package:kmp_togo_mobile/helpers/ui_helper/textStyling.dart';
 import 'package:kmp_togo_mobile/pages/history/history.dart';
 import 'package:kmp_togo_mobile/pages/home.dart';
 
+import '../history/jenis_transaksi.dart';
+
 class BuySuccessPage extends StatefulWidget {
   Widget nextPage;
   String title, subtitle;
@@ -98,7 +100,7 @@ class _BuySuccessPageState extends State<BuySuccessPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) {
-                                return History();
+                                return jenisTransaksi();
                               }),
                             );
                           },

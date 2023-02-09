@@ -18,9 +18,10 @@ import 'package:provider/provider.dart';
 class History extends StatefulWidget {
   String? search;
 
-  History({Key? key, this.search});
+  History({Key? key, this.search, required this.jenisTransaksi});
 
-  String jenisTransaksi = ' ';
+  final String jenisTransaksi;
+
 
   @override
   State<History> createState() => _HistoryState();
@@ -105,7 +106,7 @@ class _HistoryState extends State<History> with NumberFormatMachine {
       child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
-            title: Text('Transaksi'),
+            title: Text("Transaksi ${widget.jenisTransaksi}"),
           ),
           body: loading == true
               ? const Center(
