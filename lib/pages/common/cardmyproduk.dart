@@ -65,7 +65,7 @@ class _CardMyProdukState extends State<CardMyProduk> with NumberFormatMachine {
             child: Stack(
               children: [
                 Container(
-                    height: 100,
+                    height: 200,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
