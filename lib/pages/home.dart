@@ -16,6 +16,8 @@ import 'package:kmp_togo_mobile/pages/wallet/dashboard_wallet.dart';
 // import 'package:kmp_togo_mobile/pages/wallet/dashboardwallet.dart' as old;
 import 'package:kmp_togo_mobile/providers/cart/cart_provider.dart';
 
+import 'history/jenis_transaksi.dart';
+
 class Home extends StatefulWidget {
   int? selectedIndex;
 
@@ -49,7 +51,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   final listMenu = [
     DashboardNew(isHomeLoading: true),
     DashboardWallet(isHome: true),
-    History(),
+    jenisTransaksi(),
     const Profile()
   ];
 
