@@ -90,12 +90,12 @@ class cardnftmitra extends StatelessWidget {
               child: Stack(
                 children: [
                   Container(
-                      height: 100,
+                      height: 200,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           image: DecorationImage(
-                              fit: BoxFit.contain,
+                              fit: BoxFit.cover,
                               image: NetworkImage(images ?? kEmptyImageLink)))),
                   buyer_est == pembeli.toString()
                       ? Container(
@@ -132,7 +132,10 @@ class cardnftmitra extends StatelessWidget {
                     padding: EdgeInsets.only(top: 1.5.h),
                     child: Text(
                       title ?? "",
-                      style: TextStyle(color: Colors.black87, fontSize: 9.sp),
+                      style: TextStyle(
+                          color: Colors.black87,
+                          fontSize: 9.sp,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                   Padding(

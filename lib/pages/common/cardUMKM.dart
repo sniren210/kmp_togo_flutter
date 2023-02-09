@@ -57,10 +57,11 @@ class CardUMKMDashBoard extends StatelessWidget with NumberFormatMachine {
           Expanded(
             child: Container(
                 width: MediaQuery.of(context).size.width,
+                height: 200,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     image: DecorationImage(
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                         image: NetworkImage(gambar ?? kEmptyImageLink)))),
           ),
           Container(

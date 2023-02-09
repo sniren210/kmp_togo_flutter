@@ -3,7 +3,7 @@ import 'package:sizer/sizer.dart';
 
 cardmitraketegori(String? judul, Color? color) {
   return Container(
-    width: 48.w,
+    width: 28.w,
     margin: EdgeInsets.only(
       right: 3.w,
     ),

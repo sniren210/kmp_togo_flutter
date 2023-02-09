@@ -393,7 +393,7 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                         model.busy
                             ? Container()
                             : Container(
-                                margin: EdgeInsets.only(top: 27.h),
+                                margin: EdgeInsets.only(top: 26.h),
                                 child: Container(
                                   // color: Colors.white,
                                   color: const Color(0xFF85014e),
@@ -697,7 +697,9 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                         gridDelegate:
                                                             const SliverGridDelegateWithFixedCrossAxisCount(
                                                                 crossAxisCount:
-                                                                    2),
+                                                                    2,
+                                                                childAspectRatio:
+                                                                    3 / 4),
                                                         shrinkWrap: true,
                                                         itemBuilder:
                                                             (_, index) {
@@ -793,7 +795,7 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                               Container(
                                                 padding: EdgeInsets.only(
                                                     left: 4.w, right: 4.w),
-                                                height: 9.h,
+                                                height: 14.h,
                                                 child: ListView(
                                                     shrinkWrap: true,
                                                     scrollDirection:
@@ -804,7 +806,7 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                       cardpromo(
                                                           'assets/images/promo2.jpg'),
                                                       cardpromo(
-                                                          'assets/images/promo.jpg'),
+                                                          'assets/images/kotak.jpg'),
                                                     ]),
                                               ),
                                             ],
@@ -842,26 +844,26 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                               FontWeight.bold,
                                                           fontSize: 10.sp),
                                                     ),
-                                                    // InkWell(
-                                                    //   onTap: () {
-                                                    //     // Navigator.push(
-                                                    //     //   context,
-                                                    //     //   MaterialPageRoute(
-                                                    //     //       builder:
-                                                    //     //           (context) =>
-                                                    //     //           MyProduk()),
-                                                    //     // );
-                                                    //   },
-                                                    //   child: Text(
-                                                    //     'Lihat Semua',
-                                                    //     style: TextStyle(
-                                                    //         decoration:
-                                                    //             TextDecoration
-                                                    //                 .underline,
-                                                    //         color: Colors.black,
-                                                    //         fontSize: 9.sp),
-                                                    //   ),
-                                                    // ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        // Navigator.push(
+                                                        //   context,
+                                                        //   MaterialPageRoute(
+                                                        //       builder:
+                                                        //           (context) =>
+                                                        //           MyProduk()),
+                                                        // );
+                                                      },
+                                                      child: Text(
+                                                        'Lihat Semua',
+                                                        style: TextStyle(
+                                                            decoration:
+                                                                TextDecoration
+                                                                    .underline,
+                                                            color: Colors.black,
+                                                            fontSize: 9.sp),
+                                                      ),
+                                                    ),
                                                   ],
                                                 ),
                                               ),
@@ -956,8 +958,10 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                               const NeverScrollableScrollPhysics(),
                                                           gridDelegate:
                                                               const SliverGridDelegateWithFixedCrossAxisCount(
-                                                                  crossAxisCount:
-                                                                      2),
+                                                            crossAxisCount: 2,
+                                                            childAspectRatio:
+                                                                3 / 4,
+                                                          ),
                                                           shrinkWrap: true,
                                                           itemBuilder:
                                                               (BuildContext
@@ -1147,7 +1151,9 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                               ),
                         Container(
                           padding: EdgeInsets.only(
-                              left: 4.w, right: 4.w, top: 1.h, bottom: 1.h),
+                            left: 2.w,
+                            right: 2.w,
+                          ),
                           margin:
                               EdgeInsets.only(left: 4.w, right: 4.w, top: 22.h),
                           decoration: BoxDecoration(
