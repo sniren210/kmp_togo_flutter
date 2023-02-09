@@ -20,6 +20,8 @@ class History extends StatefulWidget {
 
   History({Key? key, this.search});
 
+  String jenisTransaksi = ' ';
+
   @override
   State<History> createState() => _HistoryState();
 }
@@ -120,7 +122,6 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                             bottomLeft: Radius.circular(15),
                             bottomRight: Radius.circular(15),
                           ),
-                          
                         ),
                         height: 200.0,
                         child: Padding(
@@ -138,8 +139,8 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                       child: TextField(
                                         controller: _cariC,
                                         decoration: const InputDecoration(
-                                          contentPadding:
-                                              EdgeInsets.symmetric(vertical: 10),
+                                          contentPadding: EdgeInsets.symmetric(
+                                              vertical: 10),
                                           prefixIcon: Icon(
                                             Icons.search,
                                             size: 20,
@@ -159,7 +160,8 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                       searchFitur();
                                     },
                                     child: CircleAvatar(
-                                        backgroundColor: const Color(0xFF85014e),
+                                        backgroundColor:
+                                            const Color(0xFF85014e),
                                         child: Container(
                                             padding: const EdgeInsets.all(5),
                                             child: const Icon(

@@ -50,7 +50,7 @@ class _ProfileState extends State<Profile> {
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(10),
                               bottomLeft: Radius.circular(10),
@@ -65,7 +65,7 @@ class _ProfileState extends State<Profile> {
                             ),
                           ],
                         ),
-                        child: MainProfile(
+                        child: const MainProfile(
                           name: "Inky pramudia ramdhani",
                           email: "inkypramudia27@gmail.com  ",
                           token: 3454948.332,
@@ -112,7 +112,7 @@ class _ProfileState extends State<Profile> {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                         bottomLeft: Radius.circular(10),

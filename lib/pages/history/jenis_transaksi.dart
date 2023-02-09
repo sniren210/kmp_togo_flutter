@@ -75,7 +75,7 @@ class listJenisProduct extends StatelessWidget {
           leading: CircleAvatar(
             backgroundColor: Colors.white,
             child: Text(
-              'P',
+              title[0].toUpperCase(),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).primaryColor,
@@ -83,7 +83,7 @@ class listJenisProduct extends StatelessWidget {
             ),
           ),
           title: Text(
-            title,
+            title.toUpperCase(),
             style: TextStyle(color: Colors.white),
           ),
           onTap: () {
