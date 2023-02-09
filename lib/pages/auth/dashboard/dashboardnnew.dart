@@ -60,6 +60,7 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
           Provider.of<ProviderNft>(context, listen: false);
       await getkategoriProvider.getAllNFT(context);
       cektanggal();
+      print(getkategoriProvider.loadinggetNFTALL);
       setState(() {
         loading = getkategoriProvider.loadinggetNFTALL;
         loadingbanner = getApiTextLogin.loadinbanner;
@@ -389,81 +390,6 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                 ),
                               )
                             : Container(),
-                        // Container(
-                        //   color: Colors.transparent,
-                        //   // padding: EdgeInsets.only(
-                        //   //     left: 4.w, right: 4.w, top: 10.h, bottom: 10.h),
-                        //   // color: const Color(0xFF85014e),
-                        //   // decoration: const BoxDecoration(
-                        //   //     image: DecorationImage(
-                        //   //   image: AssetImage('assets/images/promo.jpg'),
-                        //   //   fit: BoxFit.cover,
-                        //   // )),
-                        //   child: Column(
-                        //     children: [
-                        //       Container(
-                        //         margin: EdgeInsets.only(
-                        //             left: 4.w, right: 4.w, top: 7.h, bottom: 15.h),
-                        //         child: Row(
-                        //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //           children: [
-                        //             Row(
-                        //               children: [
-                        //                 const CircleAvatar(
-                        //                   radius: 20,
-                        //                   child: CircleAvatar(
-                        //                       radius: 20,
-                        //                       backgroundImage: AssetImage(
-                        //                           'assets/images/bg1024.png')),
-                        //                   // 'assets/images/White-1024.png')),
-                        //                 ),
-                        //                 SizedBox(width: 3.w),
-                        //                 Container(
-                        //                   child: Text(
-                        //                     'KMP-ToGo',
-                        //                     style: TextStyle(
-                        //                         color: Colors.white,
-
-                        //                         // color: Color(0xFF85014e),
-                        //                         fontSize: 20.sp,
-                        //                         fontWeight: FontWeight.bold),
-                        //                   ),
-                        //                 ),
-                        //               ],
-                        //             ),
-
-                        //             // ClipRRect(
-                        //             //   child: CircleAvatar(
-                        //             //     child: Container(
-                        //             //       width: 40.w,
-                        //             //       height: 5.h,
-                        //             //       decoration: const BoxDecoration(
-                        //             //           image: DecorationImage(
-                        //             //               fit: BoxFit.contain,
-                        //             //               image: AssetImage(
-                        //             //                   'assets/images/White-1024.png'))),
-                        //             //     ),
-                        //             //   ),
-                        //             // ),
-                        //             Row(
-                        //               children: [
-                        //                 const Icon(
-                        //                   Icons.shopping_cart,
-                        //                   color: Colors.white,
-                        //                 ),
-                        //                 SizedBox(width: 4.w),
-                        //                 const Icon(
-                        //                   Icons.notifications,
-                        //                   color: Colors.white,
-                        //                 )
-                        //               ],
-                        //             )
-                        //           ],
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
                         model.busy
                             ? Container()
                             : Container(
@@ -773,116 +699,11 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                                 crossAxisCount:
                                                                     2),
                                                         shrinkWrap: true,
-                                                        // children: [
-                                                        //     // if (v.dataAllNFT!.data!
-                                                        //     //     .isNotEmpty)
-                                                        //     //   ...v.dataAllNFT!.data!
-                                                        //     //       .where((e) =>
-                                                        //     //           e.nftId !=
-                                                        //     //           null)
-                                                        //     //       .map(
-                                                        //     //         (e) =>
-                                                        //     //             cardnftmitra(
-                                                        //     //           title: e.name,
-                                                        //     //           images: e
-                                                        //     //               .imagePath,
-                                                        //     //           buyer_est: e
-                                                        //     //               .qtyUnit
-                                                        //     //               .toString(),
-                                                        //     //           buyer: e
-                                                        //     //               .avlUnit
-                                                        //     //               .toString(),
-                                                        //     //           expired: e
-                                                        //     //               .expirationDate,
-                                                        //     //           lockNft: e
-                                                        //     //                   .nftUnit!
-                                                        //     //                   .where((element) =>
-                                                        //     //                       element.ownerId ==
-                                                        //     //                       null)
-                                                        //     //                   .isNotEmpty
-                                                        //     //               ? e.nftUnit
-                                                        //     //                   ?.where((element) =>
-                                                        //     //                       element.ownerId ==
-                                                        //     //                       null)
-                                                        //     //                   .first
-                                                        //     //                   .holdLimitTill
-                                                        //     //                   .toString()
-                                                        //     //               : '',
-                                                        //     //           monthlyPercentage: e
-                                                        //     //                   .nftUnit!
-                                                        //     //                   .where((element) =>
-                                                        //     //                       element.ownerId ==
-                                                        //     //                       null)
-                                                        //     //                   .isNotEmpty
-                                                        //     //               ? e.nftUnit
-                                                        //     //                   ?.where((element) =>
-                                                        //     //                       element.ownerId ==
-                                                        //     //                       null)
-                                                        //     //                   .first
-                                                        //     //                   .monthlyPercentage
-                                                        //     //                   .toString()
-                                                        //     //               : '',
-                                                        //     //           nftSerialId: e
-                                                        //     //                   .nftUnit!
-                                                        //     //                   .where((element) =>
-                                                        //     //                       element.ownerId ==
-                                                        //     //                       null)
-                                                        //     //                   .isNotEmpty
-                                                        //     //               ? e.nftUnit
-                                                        //     //                   ?.where((element) =>
-                                                        //     //                       element.ownerId ==
-                                                        //     //                       null)
-                                                        //     //                   .first
-                                                        //     //                   .nftSerialId
-                                                        //     //                   .toString()
-                                                        //     //               : '',
-                                                        //     //           priceCoins: e
-                                                        //     //                   .nftUnit!
-                                                        //     //                   .where((element) =>
-                                                        //     //                       element.ownerId ==
-                                                        //     //                       null)
-                                                        //     //                   .isNotEmpty
-                                                        //     //               ? e.nftUnit
-                                                        //     //                   ?.where((element) =>
-                                                        //     //                       element.ownerId ==
-                                                        //     //                       null)
-                                                        //     //                   .first
-                                                        //     //                   .priceCoin
-                                                        //     //                   .toString()
-                                                        //     //               : '',
-                                                        //     //           gasfee: e
-                                                        //     //               .gasfee
-                                                        //     //               .toString(),
-                                                        //     //           admfee: e
-                                                        //     //               .admfee
-                                                        //     //               .toString(),
-                                                        //     //           deskripsi: e
-                                                        //     //               .description,
-                                                        //
-                                                        //     //           // ketegori: 'Ketegori',
-                                                        //     //           // nama: e.name,
-                                                        //     //           // coin: e.priceCoin,
-                                                        //     //           // images: e.imagePath,
-                                                        //     //         ),
-                                                        //     //       )
-                                                        //   ],
                                                         itemBuilder:
                                                             (_, index) {
                                                           final e = v
                                                               .dataAllNFT!
                                                               .data!;
-
-                                                          // if (v.dataAllNFT!.data!
-                                                          //     .isNotEmpty)
-                                                          // ...v.dataAllNFT!.data!
-                                                          //     .where((e) =>
-                                                          // e.nftId !=
-                                                          // null)
-                                                          //     .map(
-                                                          // (e) =>
-                                                          // ,
-                                                          // )
-
                                                           if (e[index]
                                                               .nftId!
                                                               .isNotEmpty) {
@@ -1142,10 +963,12 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                               (BuildContext
                                                                       context,
                                                                   int index) {
-                                                            model.items!.data
-                                                                .removeWhere(
-                                                                    (element) =>
-                                                                        element
+                                                            model.items!.data.removeWhere(
+                                                                (element) => element
+                                                                        .sku
+                                                                        .isEmpty
+                                                                    ? false
+                                                                    : element
                                                                             .sku
                                                                             .first
                                                                             .stock! <
@@ -1210,17 +1033,33 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                                     .data[index]
                                                                     .imagePath,
                                                                 stock: model
-                                                                    .items!
-                                                                    .data[index]
-                                                                    .sku
-                                                                    .first
-                                                                    .stock,
+                                                                        .items!
+                                                                        .data[
+                                                                            index]
+                                                                        .sku
+                                                                        .isEmpty
+                                                                    ? 0
+                                                                    : model
+                                                                        .items!
+                                                                        .data[
+                                                                            index]
+                                                                        .sku
+                                                                        .first
+                                                                        .stock,
                                                                 kodebarang: model
-                                                                    .items!
-                                                                    .data[index]
-                                                                    .sku
-                                                                    .first
-                                                                    .productId,
+                                                                        .items!
+                                                                        .data[
+                                                                            index]
+                                                                        .sku
+                                                                        .isEmpty
+                                                                    ? null
+                                                                    : model
+                                                                        .items!
+                                                                        .data[
+                                                                            index]
+                                                                        .sku
+                                                                        .first
+                                                                        .productId,
                                                                 productSelling: model
                                                                     .items!
                                                                     .data[index]
@@ -1251,27 +1090,39 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                                         .length >
                                                                     1,
                                                                 priceMinimal: model
-                                                                    .items!
-                                                                    .data[index]
-                                                                    .sku
-                                                                    .reduce((curr,
-                                                                            next) =>
-                                                                        curr.price <
+                                                                        .items!
+                                                                        .data[
+                                                                            index]
+                                                                        .sku
+                                                                        .isEmpty
+                                                                    ? 0
+                                                                    : model
+                                                                        .items!
+                                                                        .data[
+                                                                            index]
+                                                                        .sku
+                                                                        .reduce((curr, next) => curr.price <
                                                                                 next.price
                                                                             ? curr
                                                                             : next)
-                                                                    .price,
+                                                                        .price,
                                                                 priceMaximal: model
-                                                                    .items!
-                                                                    .data[index]
-                                                                    .sku
-                                                                    .reduce((curr,
-                                                                            next) =>
-                                                                        curr.price >
+                                                                        .items!
+                                                                        .data[
+                                                                            index]
+                                                                        .sku
+                                                                        .isEmpty
+                                                                    ? 0
+                                                                    : model
+                                                                        .items!
+                                                                        .data[
+                                                                            index]
+                                                                        .sku
+                                                                        .reduce((curr, next) => curr.price >
                                                                                 next.price
                                                                             ? curr
                                                                             : next)
-                                                                    .price,
+                                                                        .price,
                                                                 isContainsVariants: model
                                                                         .items!
                                                                         .data[

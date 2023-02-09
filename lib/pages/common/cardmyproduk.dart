@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kmp_togo_mobile/helpers/image_generator.dart';
 import 'package:kmp_togo_mobile/helpers/machines.dart';
 import 'package:kmp_togo_mobile/pages/umkm/hapusproduk.dart';
 import 'package:kmp_togo_mobile/providers/product/provider_product.dart';
@@ -69,29 +70,29 @@ class _CardMyProdukState extends State<CardMyProduk> with NumberFormatMachine {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         image: DecorationImage(
-                          fit: BoxFit.cover,
-                            image: NetworkImage(widget.gambar ??
-                                'https://upload.wikimedia.org/wikipedia/commons/0/0a/No-image-available.png')))),
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                                widget.gambar ?? kEmptyImageLink)))),
                 widget.stock! < 1
                     ? Container(
-                  margin: EdgeInsets.only(top: 5, left: 5),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 4, vertical: 2),
-                  decoration: BoxDecoration(
-                      color: Colors.red.shade900,
-                      borderRadius: BorderRadius.circular(2)),
-                  child: Text(
-                    'Stock habis',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                )
+                        margin: EdgeInsets.only(top: 5, left: 5),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                        decoration: BoxDecoration(
+                            color: Colors.red.shade900,
+                            borderRadius: BorderRadius.circular(2)),
+                        child: Text(
+                          'Stock habis',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      )
                     : Container()
               ],
             ),
           ),
           Container(
-            padding: EdgeInsets.only(
-                top: 1.h, bottom: 1.h, left: 2.w, right: 2.w),
+            padding:
+                EdgeInsets.only(top: 1.h, bottom: 1.h, left: 2.w, right: 2.w),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,9 +104,13 @@ class _CardMyProdukState extends State<CardMyProduk> with NumberFormatMachine {
                           vertical: 0.5.h, horizontal: 2.w),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
-                          color: widget.category!.isNotEmpty ? Theme.of(context).primaryColor : Colors.grey),
+                          color: widget.category!.isNotEmpty
+                              ? Theme.of(context).primaryColor
+                              : Colors.grey),
                       child: Text(
-                        widget.category!.isNotEmpty ? widget.category! : 'Uncategorized',
+                        widget.category!.isNotEmpty
+                            ? widget.category!
+                            : 'Uncategorized',
                         style: TextStyle(fontSize: 9.sp, color: Colors.white),
                       )),
                 ),
@@ -126,27 +131,28 @@ class _CardMyProdukState extends State<CardMyProduk> with NumberFormatMachine {
                         decoration: const BoxDecoration(
                             image: DecorationImage(
                                 fit: BoxFit.contain,
-                                image:
-                                AssetImage('assets/images/logon.jpg'))),
+                                image: AssetImage('assets/images/logon.jpg'))),
                       ),
                       SizedBox(
                         width: 1.w,
                       ),
-                      widget.moreSKU! ? Expanded(
-                        child: Text(
-                          '${getNumberFormatSeparator(widget.priceMinimal!.toDouble())} - ${getNumberFormatSeparator(widget.priceMaximal!.toDouble())} Poin',
-                          maxLines: 2,
-                          style: TextStyle(
-                              color: Colors.black87, fontSize: 9.sp),
-                        ),
-                      ) : Expanded(
-                        child: Text(
-                          '${getNumberFormatSeparator(widget.priceMinimal!.toDouble())} Poin',
-                          maxLines: 2,
-                          style: TextStyle(
-                              color: Colors.black87, fontSize: 9.sp),
-                        ),
-                      ),
+                      widget.moreSKU!
+                          ? Expanded(
+                              child: Text(
+                                '${getNumberFormatSeparator(widget.priceMinimal!.toDouble())} - ${getNumberFormatSeparator(widget.priceMaximal!.toDouble())} Poin',
+                                maxLines: 2,
+                                style: TextStyle(
+                                    color: Colors.black87, fontSize: 9.sp),
+                              ),
+                            )
+                          : Expanded(
+                              child: Text(
+                                '${getNumberFormatSeparator(widget.priceMinimal!.toDouble())} Poin',
+                                maxLines: 2,
+                                style: TextStyle(
+                                    color: Colors.black87, fontSize: 9.sp),
+                              ),
+                            ),
                     ],
                   ),
                 ),

@@ -20,7 +20,7 @@ class ModelAllNFT {
         Data(
           imagePath: 'https://i.imgur.com/NO25iZV.png',
           status: '',
-          nftId: '',
+          nftId: 'example id',
           categoryId: '',
           name: '',
           image: '',
@@ -42,7 +42,30 @@ class ModelAllNFT {
           gasfee: '',
           admfee: '',
           priceCoin: '',
-          nftUnit: [NftUnit()],
+          nftUnit: [
+            NftUnit(
+              nftSerialId: '',
+              nftId: 'example id',
+              ownerId: 0,
+              priceToken: 0,
+              sharePercentage: 0,
+              monthlyPercentage: 0,
+              holdLimitTill: '',
+              createdAt: '',
+              updatedAt: '',
+              deletedAt: '2011-11-02T02:50:12.208Z',
+              owner: Owner(
+                imagePath: 'https://i.imgur.com/NO25iZV.png',
+                name: '',
+                image: '',
+                email: '',
+                phoneNumber: '',
+              ),
+              gasfee: 0.0,
+              admfee: 0.0,
+              priceCoin: 0.0,
+            )
+          ],
         ),
       ],
     );
