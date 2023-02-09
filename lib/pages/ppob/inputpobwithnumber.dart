@@ -79,38 +79,44 @@ class _InputPPOBWithNumberState extends State<InputPPOBWithNumber>
 
     if (validate == true) {
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        if (widget.product_type == 'pulsa' || widget.product_type == 'data') {
-          return EnterPinPage(
-              isAllowBack: true,
-              nextPage: SplashPage(
-                  pinValue: sharedPreferencesManager
-                          .getString(SharedPreferencesManager.pin) ??
-                      '',
-                  ppob_code: code,
-                  ppob_tipe: widget.product_type,
-                  ppob_customer_id: customer_id,
-                  ppob_operator: operator,
-                  nextPage: BuySuccessPage(
-                    nextPage: Home(),
-                    title: 'Berhasil Membayar',
-                    subtitle: '',
-                  ),
-                  title: 'Berhasil Membayar',
-                  subtitle: '',
-                  provRepo: 'prepaid_checkout',
-                  product: product,
-                  model: null,
-                  isReplace: false),
-              isContainFunctionBack: true,
-              title: 'Konfirmasi Pembelian');
-        } else {
-          return PPOBPaymentPrePaid(
-            code: code,
-            product_type: widget.product_type,
-            customer_id: customer_id,
-            product: product,
-          );
-        }
+        return PPOBPaymentPrePaid(
+          code: code,
+          product_type: widget.product_type,
+          customer_id: customer_id,
+          product: product,
+        );
+        // if (widget.product_type == 'pulsa' || widget.product_type == 'data') {
+        //   return EnterPinPage(
+        //       isAllowBack: true,
+        //       nextPage: SplashPage(
+        //           pinValue: sharedPreferencesManager
+        //                   .getString(SharedPreferencesManager.pin) ??
+        //               '',
+        //           ppob_code: code,
+        //           ppob_tipe: widget.product_type,
+        //           ppob_customer_id: customer_id,
+        //           ppob_operator: operator,
+        //           nextPage: BuySuccessPage(
+        //             nextPage: Home(),
+        //             title: 'Berhasil Membayar',
+        //             subtitle: '',
+        //           ),
+        //           title: 'Berhasil Membayar',
+        //           subtitle: '',
+        //           provRepo: 'prepaid_checkout',
+        //           product: product,
+        //           model: null,
+        //           isReplace: false),
+        //       isContainFunctionBack: true,
+        //       title: 'Konfirmasi Pembelian');
+        // } else {
+        //   return PPOBPaymentPrePaid(
+        //     code: code,
+        //     product_type: widget.product_type,
+        //     customer_id: customer_id,
+        //     product: product,
+        //   );
+        // }
       }));
     }
   }
