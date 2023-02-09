@@ -102,6 +102,9 @@ class _HistoryState extends State<History> with NumberFormatMachine {
     return SafeArea(
       child: Scaffold(
           resizeToAvoidBottomInset: false,
+          appBar: AppBar(
+            title: Text('Transaksi'),
+          ),
           body: loading == true
               ? const Center(
                   child: CircularProgressIndicator(),
@@ -110,21 +113,68 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                   builder: (BuildContext context, v, Widget? child) {
                   return Stack(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 80),
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 20.0, horizontal: 12),
-                          height: 200.0,
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(15),
+                            bottomRight: Radius.circular(15),
+                          ),
+                          
+                        ),
+                        height: 200.0,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
                           child: ListView(
-                            scrollDirection: Axis.horizontal,
+                            scrollDirection: Axis.vertical,
                             children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    flex: 7,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 20, horizontal: 12),
+                                      child: TextField(
+                                        controller: _cariC,
+                                        decoration: const InputDecoration(
+                                          contentPadding:
+                                              EdgeInsets.symmetric(vertical: 10),
+                                          prefixIcon: Icon(
+                                            Icons.search,
+                                            size: 20,
+                                          ),
+                                          hintText: 'Cari Pembelian...',
+                                          border: OutlineInputBorder(),
+                                        ),
+                                        onChanged: (value) {
+                                          setState(() {});
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                      child: InkWell(
+                                    onTap: () {
+                                      searchFitur();
+                                    },
+                                    child: CircleAvatar(
+                                        backgroundColor: const Color(0xFF85014e),
+                                        child: Container(
+                                            padding: const EdgeInsets.all(5),
+                                            child: const Icon(
+                                              Icons.search,
+                                              color: Colors.white,
+                                            ))),
+                                  ))
+                                ],
+                              ),
                               Padding(
                                 padding: const EdgeInsets.only(right: 15),
                                 child: SizedBox(
                                   width: 150.0,
                                   child: DropdownSearch<String>(
-                                    popupProps: PopupProps.bottomSheet(
+                                    popupProps: PopupProps.dialog(
                                       showSelectedItems: true,
                                       disabledItemFn: (String s) =>
                                           s.startsWith('I'),
@@ -227,7 +277,7 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 170.0),
+                        padding: const EdgeInsets.only(top: 210.0),
                         child: ListView.builder(
                             shrinkWrap: true,
                             itemCount: v.dataAllHistory?.data?.length,
@@ -1015,47 +1065,6 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                       //     ? Container()
 
                       //     :
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 7,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 20, horizontal: 12),
-                              child: TextField(
-                                controller: _cariC,
-                                decoration: const InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.symmetric(vertical: 10),
-                                  prefixIcon: Icon(
-                                    Icons.search,
-                                    size: 20,
-                                  ),
-                                  hintText: 'Cari Pembelian...',
-                                  border: OutlineInputBorder(),
-                                ),
-                                onChanged: (value) {
-                                  setState(() {});
-                                },
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                              child: InkWell(
-                            onTap: () {
-                              searchFitur();
-                            },
-                            child: CircleAvatar(
-                                backgroundColor: const Color(0xFF85014e),
-                                child: Container(
-                                    padding: const EdgeInsets.all(5),
-                                    child: const Icon(
-                                      Icons.search,
-                                      color: Colors.white,
-                                    ))),
-                          ))
-                        ],
-                      )
                       // ),
                       // buildFloatingSearchBar(),
                     ],
