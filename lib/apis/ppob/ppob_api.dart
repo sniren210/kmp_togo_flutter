@@ -36,12 +36,13 @@ class PPOBPrePaidApi with ApiMachine {
         "customer_id": customerId,
       };
 
-      final res = await _dio.post('/v1/ppob/prepaid/inq-pln', data: data);
+      // final res = await _dio.post('/v1/ppob/prepaid/inq-pln', data: data);
 
-      await saveResponsePost(res.requestOptions.path, res.statusMessage,
-          res.data.toString(), data.toString());
+      // await saveResponsePost(res.requestOptions.path, res.statusMessage,
+      //     res.data.toString(), data.toString());
 
-      return ItemModelPrepaidPLN.fromJson(res.data);
+      // return ItemModelPrepaidPLN.fromJson(res.data);
+      return ItemModelPrepaidPLN.dummy();
     } on DioError catch (e) {
       await customSnackbar(
           type: 'error', title: 'error', text: 'Terjadi kesalahan');

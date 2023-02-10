@@ -88,7 +88,7 @@ class _DashboardWalletState extends State<DashboardWallet>
               slivers: [
                 SliverAppBar(
                   backgroundColor: Theme.of(context).canvasColor,
-                  expandedHeight: 360,
+                  expandedHeight: 340,
                   collapsedHeight: 60,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Container(
@@ -100,25 +100,25 @@ class _DashboardWalletState extends State<DashboardWallet>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (!_isSliverAppBarExpanded) ...[
-                            widget.isHome
-                                ? Container()
-                                : Expanded(
-                                    flex: 3,
-                                    child: CustomAppBar(
-                                      iconDataApp: Icon(
-                                        Icons.monetization_on,
-                                        color: Colors.black,
-                                        size: 8.w,
-                                      ),
-                                      title: 'IDR WALLET',
-                                      popContext: 1,
-                                      height: 200,
-                                      padding: 15,
-                                    ),
-                                  ),
-                            SizedBox(
-                              height: 2.h,
-                            ),
+                            // widget.isHome
+                            //     ? Container()
+                            //     : Expanded(
+                            //         flex: 3,
+                            //         child: CustomAppBar(
+                            //           iconDataApp: Icon(
+                            //             Icons.monetization_on,
+                            //             color: Colors.black,
+                            //             size: 8.w,
+                            //           ),
+                            //           title: 'IDR WALLET',
+                            //           popContext: 1,
+                            //           height: 200,
+                            //           padding: 15,
+                            //         ),
+                            //       ),
+                            // SizedBox(
+                            //   height: 2.h,
+                            // ),
                             SizedBox(
                               height: 230,
                               child: Stack(
@@ -155,7 +155,7 @@ class _DashboardWalletState extends State<DashboardWallet>
                                                     fontSize: 9.sp),
                                               )
                                             : Text(
-                                                'Rp. ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
+                                                'Poin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w700,
                                                     color: Colors.white,
@@ -200,7 +200,7 @@ class _DashboardWalletState extends State<DashboardWallet>
                                                                   horizontal:
                                                                       12.0),
                                                           child: Text(
-                                                            'Top Up Poin',
+                                                            'Beli Poin',
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .white,
@@ -241,7 +241,7 @@ class _DashboardWalletState extends State<DashboardWallet>
                                                                   horizontal:
                                                                       12.0),
                                                           child: Text(
-                                                            'Withdraw Poin',
+                                                            'Jual Poin',
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .white,
@@ -347,7 +347,7 @@ class _DashboardWalletState extends State<DashboardWallet>
                                               fontSize: 17.sp),
                                         )
                                       : Text(
-                                          'Rp. ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
+                                          'Poin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               color: Colors.black,
@@ -372,11 +372,11 @@ class _DashboardWalletState extends State<DashboardWallet>
                             // color: Theme.of(context).canvasColor,
                             padding: EdgeInsets.only(left: 2.w, right: 2.w),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 card1('Semua', 0),
-                                card1('Deposit', 1),
-                                card1('Withdraw', 2),
-                                card1('Jual', 3),
+                                card1('Beli', 1),
+                                card1('Jual', 2),
                               ],
                             ),
                           ),
@@ -566,7 +566,7 @@ class _DashboardWalletState extends State<DashboardWallet>
 
   card1(String judul, int _selectedIndex) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0.h, 1.h, 1.h, 1.h),
+      padding: EdgeInsets.fromLTRB(0.h, 1.h, 0.h, 1.h),
       child: InkWell(
         onTap: () {
           setState(() {
@@ -576,6 +576,7 @@ class _DashboardWalletState extends State<DashboardWallet>
         child: Container(
           padding:
               EdgeInsets.only(right: 1.2.w, left: 1.2.w, top: 1.h, bottom: 1.h),
+          width: 60,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               color: selectedIndex == _selectedIndex

@@ -80,9 +80,6 @@ class _DetailNFTState extends State<DetailNFT> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.priceCoins);
-    print(widget.monthlyPercentage);
-    print(widget.pembeli);
     return Scaffold(
       body: loading == true
           ? Center(
@@ -268,7 +265,9 @@ class _DetailNFTState extends State<DetailNFT> with TickerProviderStateMixin {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
-                                  height: 300,
+                                  constraints: BoxConstraints(
+                                    minHeight: 300,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: const BorderRadius.only(

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:kmp_togo_mobile/apis/repository.dart';
 import 'package:kmp_togo_mobile/helpers/machines.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/spacer.dart';
@@ -67,23 +68,23 @@ class _MainProfileState extends State<MainProfile> with NumberFormatMachine {
                     radius: 37,
                     backgroundImage: AssetImage('assets/images/logon.jpg'),
                   ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 23,
-                      height: 23,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.orange,
-                      ),
-                      child: Icon(
-                        Icons.email,
-                        size: 15,
-                        color: Colors.white,
-                      ),
-                    ),
-                  )
+                  // Positioned(
+                  //   bottom: 0,
+                  //   right: 0,
+                  //   child: Container(
+                  //     width: 23,
+                  //     height: 23,
+                  //     decoration: BoxDecoration(
+                  //       borderRadius: BorderRadius.circular(100),
+                  //       color: Colors.orange,
+                  //     ),
+                  //     child: Icon(
+                  //       Icons.email,
+                  //       size: 15,
+                  //       color: Colors.white,
+                  //     ),
+                  //   ),
+                  // )
                 ],
               ),
               const SizedBox(height: 15),
@@ -96,9 +97,16 @@ class _MainProfileState extends State<MainProfile> with NumberFormatMachine {
               ),
               const SizedBox(height: 6),
               Text(
-                '${getNumberFormatSeparator(widget.token)} Poin',
-                style: const TextStyle(fontSize: 14),
+                '${DateFormat('yyyy-MM-dd').format(DateTime.now())} Masa berlaku',
+                style: const TextStyle(
+                  fontSize: 10,
+                  color: Colors.grey,
+                ),
               ),
+              // Text(
+              //   '${getNumberFormatSeparator(widget.token)} Poin',
+              //   style: const TextStyle(fontSize: 14),
+              // ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-ItemModelPrepaidPLN itemModelPrepaidPLNFromJson(String str) => ItemModelPrepaidPLN.fromJson(json.decode(str));
+ItemModelPrepaidPLN itemModelPrepaidPLNFromJson(String str) =>
+    ItemModelPrepaidPLN.fromJson(json.decode(str));
 
-String itemModelPrepaidPLNToJson(ItemModelPrepaidPLN data) => json.encode(data.toJson());
+String itemModelPrepaidPLNToJson(ItemModelPrepaidPLN data) =>
+    json.encode(data.toJson());
 
 class ItemModelPrepaidPLN {
   ItemModelPrepaidPLN({
@@ -15,13 +17,27 @@ class ItemModelPrepaidPLN {
 
   Data data;
 
-  factory ItemModelPrepaidPLN.fromJson(Map<String, dynamic> json) => ItemModelPrepaidPLN(
-    data: Data.fromJson(json["data"]),
-  );
+  factory ItemModelPrepaidPLN.fromJson(Map<String, dynamic> json) =>
+      ItemModelPrepaidPLN(
+        data: Data.fromJson(json["data"]),
+      );
+
+  factory ItemModelPrepaidPLN.dummy() => ItemModelPrepaidPLN(
+        data: Data(
+          status: 'status',
+          customerId: 'customerId',
+          meterNo: 'meterNo',
+          subscriberId: 'subscriberId',
+          name: 'name',
+          segmentPower: 'segmentPower',
+          message: 'message',
+          rc: '1',
+        ),
+      );
 
   Map<String, dynamic> toJson() => {
-    "data": data.toJson(),
-  };
+        "data": data.toJson(),
+      };
 }
 
 class Data {
@@ -46,24 +62,24 @@ class Data {
   String rc;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    status: json["status"].toString(),
-    customerId: json["customer_id"] ?? '',
-    meterNo: json["meter_no"] ?? '',
-    subscriberId: json["subscriber_id"] ?? '',
-    name: json["name"] ?? '',
-    segmentPower: json["segment_power"] ?? '',
-    message: json["message"] ?? '',
-    rc: json["rc"] ?? '',
-  );
+        status: json["status"].toString(),
+        customerId: json["customer_id"] ?? '',
+        meterNo: json["meter_no"] ?? '',
+        subscriberId: json["subscriber_id"] ?? '',
+        name: json["name"] ?? '',
+        segmentPower: json["segment_power"] ?? '',
+        message: json["message"] ?? '',
+        rc: json["rc"] ?? '',
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "customer_id": customerId,
-    "meter_no": meterNo,
-    "subscriber_id": subscriberId,
-    "name": name,
-    "segment_power": segmentPower,
-    "message": message,
-    "rc": rc,
-  };
+        "status": status,
+        "customer_id": customerId,
+        "meter_no": meterNo,
+        "subscriber_id": subscriberId,
+        "name": name,
+        "segment_power": segmentPower,
+        "message": message,
+        "rc": rc,
+      };
 }
