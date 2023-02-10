@@ -63,43 +63,47 @@ class _MarketplaceShippingPageState extends State<MarketplaceShippingPage>
   }
 
   Future<ItemModelShipping?> getShipping() async {
-    final res = await _dio.get(
-      '/v1/shipping/courier',
-    );
+    shippingData = ItemModelShipping.dummy();
+    return ItemModelShipping.dummy();
+    // final res = await _dio.get(
+    //   '/v1/shipping/courier',
+    // );
 
-    await saveResponseGet(res.requestOptions.path, res.statusMessage,
-        res.data.toString());
+    // await saveResponseGet(
+    //     res.requestOptions.path, res.statusMessage, res.data.toString());
 
-    if (res.statusCode == 200) {
-      setState(() {
-        shippingData = ItemModelShipping.fromJson(res.data);
-      });
-      return ItemModelShipping.fromJson(res.data);
-    } else if (res.statusCode == 401) {
-      throw Exception('Unauthorized: Failed to load Shipping');
-    } else {
-      throw Exception('Failed to load Shipping');
-    }
+    // if (res.statusCode == 200) {
+    //   setState(() {
+    //     shippingData = ItemModelShipping.fromJson(res.data);
+    //   });
+    //   return ItemModelShipping.fromJson(res.data);
+    // } else if (res.statusCode == 401) {
+    //   throw Exception('Unauthorized: Failed to load Shipping');
+    // } else {
+    //   throw Exception('Failed to load Shipping');
+    // }
   }
 
   Future<ItemModelUserAddressBook?> getAddressBook() async {
-    final res = await _dio.get(
-      '/v1/user/address',
-    );
+    addressData = ItemModelUserAddressBook.dummy();
+    return ItemModelUserAddressBook.dummy();
+    // final res = await _dio.get(
+    //   '/v1/user/address',
+    // );
 
-    await saveResponseGet(res.requestOptions.path, res.statusMessage,
-        res.data.toString());
+    // await saveResponseGet(
+    //     res.requestOptions.path, res.statusMessage, res.data.toString());
 
-    if (res.statusCode == 200) {
-      setState(() {
-        addressData = ItemModelUserAddressBook.fromJson(res.data);
-      });
-      return ItemModelUserAddressBook.fromJson(res.data);
-    } else if (res.statusCode == 401) {
-      throw Exception('Unauthorized: Failed to load Address');
-    } else {
-      throw Exception('Failed to load Address');
-    }
+    // if (res.statusCode == 200) {
+    //   setState(() {
+    //     addressData = ItemModelUserAddressBook.fromJson(res.data);
+    //   });
+    //   return ItemModelUserAddressBook.fromJson(res.data);
+    // } else if (res.statusCode == 401) {
+    //   throw Exception('Unauthorized: Failed to load Address');
+    // } else {
+    //   throw Exception('Failed to load Address');
+    // }
   }
 
   @override

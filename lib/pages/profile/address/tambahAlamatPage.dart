@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/formInputField.dart';
 import 'package:kmp_togo_mobile/models/modelkecamatan.dart';
 import 'package:kmp_togo_mobile/models/modelkota.dart';
@@ -24,6 +25,17 @@ class _TambahAlamatPageState extends State<TambahAlamatPage> {
   var currentSelectedValueProvinsi;
   var currentSelectedValueKota;
   var currentSelectedValueKecamatan;
+
+  MapController controller = MapController(
+    initMapWithUserPosition: false,
+    initPosition: GeoPoint(latitude: 47.4358055, longitude: 8.4737324),
+    areaLimit: BoundingBox(
+      east: 10.4922941,
+      north: 47.8084648,
+      south: 45.817995,
+      west: 5.9559113,
+    ),
+  );
 
   TextEditingController? placeNameC,
       contactNameC,
@@ -89,6 +101,25 @@ class _TambahAlamatPageState extends State<TambahAlamatPage> {
                 children: [
                   const SizedBox(
                     height: 20,
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      // print(geoPoint);
+
+                      GeoPoint? p = await showSimplePickerLocation(
+                        context: context,
+                        isDismissible: true,
+                        title: "Title dialog",
+                        textConfirmPicker: "pick",
+                        initCurrentUserPosition: true,
+                        initZoom: 15,
+                      );
+                      print(p);
+                    },
+                    child: Text('Pilih lokasi'),
+                  ),
+                  const SizedBox(
+                    height: 8,
                   ),
                   FormInput(
                       controller: placeNameC!,
