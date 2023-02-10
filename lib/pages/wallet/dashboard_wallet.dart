@@ -88,7 +88,7 @@ class _DashboardWalletState extends State<DashboardWallet>
               slivers: [
                 SliverAppBar(
                   backgroundColor: Theme.of(context).canvasColor,
-                  expandedHeight: 360,
+                  expandedHeight: 340,
                   collapsedHeight: 60,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Container(
@@ -100,25 +100,25 @@ class _DashboardWalletState extends State<DashboardWallet>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (!_isSliverAppBarExpanded) ...[
-                            widget.isHome
-                                ? Container()
-                                : Expanded(
-                                    flex: 3,
-                                    child: CustomAppBar(
-                                      iconDataApp: Icon(
-                                        Icons.monetization_on,
-                                        color: Colors.black,
-                                        size: 8.w,
-                                      ),
-                                      title: 'IDR WALLET',
-                                      popContext: 1,
-                                      height: 200,
-                                      padding: 15,
-                                    ),
-                                  ),
-                            SizedBox(
-                              height: 2.h,
-                            ),
+                            // widget.isHome
+                            //     ? Container()
+                            //     : Expanded(
+                            //         flex: 3,
+                            //         child: CustomAppBar(
+                            //           iconDataApp: Icon(
+                            //             Icons.monetization_on,
+                            //             color: Colors.black,
+                            //             size: 8.w,
+                            //           ),
+                            //           title: 'IDR WALLET',
+                            //           popContext: 1,
+                            //           height: 200,
+                            //           padding: 15,
+                            //         ),
+                            //       ),
+                            // SizedBox(
+                            //   height: 2.h,
+                            // ),
                             SizedBox(
                               height: 230,
                               child: Stack(
@@ -155,7 +155,7 @@ class _DashboardWalletState extends State<DashboardWallet>
                                                     fontSize: 9.sp),
                                               )
                                             : Text(
-                                                'Poin ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
+                                                'Poin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w700,
                                                     color: Colors.white,
@@ -347,7 +347,7 @@ class _DashboardWalletState extends State<DashboardWallet>
                                               fontSize: 17.sp),
                                         )
                                       : Text(
-                                          'Poin ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
+                                          'Poin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               color: Colors.black,
