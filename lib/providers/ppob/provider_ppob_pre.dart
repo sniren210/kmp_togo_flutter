@@ -23,7 +23,33 @@ class ProviderPrepaidProduct with ChangeNotifier implements BaseModel {
 
   Future<ItemModelPrePaidProduct> fetchPrePaidProduct() async {
     setBusy(true);
-    var success = await _repository.fetchPrePaidProduct();
+    var success = ItemModelPrePaidProduct(data: [
+      PrepaidProduct(
+        productCode: 'telkomsel',
+        productDescription: 'desc',
+        productNominal: 'nominal',
+        productDetails: 'example',
+        productPrice: 1000,
+        productType: 'pulsa',
+        activePeriod: '',
+        status: '',
+        iconUrl: 'assets/images/provider_pulsa/Telkomsel.png',
+        maxprice: 1000,
+      ),
+      PrepaidProduct(
+        productCode: 'XL',
+        productDescription: 'desc',
+        productNominal: 'nominal',
+        productDetails: 'example',
+        productPrice: 1000,
+        productType: 'pulsa',
+        activePeriod: '',
+        status: '',
+        iconUrl: 'assets/images/provider_pulsa/AXis.png',
+        maxprice: 1000,
+      ),
+    ]);
+    // var success = await _repository.fetchPrePaidProduct();
     _items = success;
 
     setBusy(false);
@@ -159,11 +185,11 @@ class ProviderPrepaidCheckout with ChangeNotifier implements BaseModel {
     return _streamController.stream;
   }
 
-  Future<ItemModelPPOBCheckOut> prePaidCheckout(
-      String tipe, String customer_id, String operator, PrepaidProduct product, String pinValue) async {
+  Future<ItemModelPPOBCheckOut> prePaidCheckout(String tipe, String customer_id,
+      String operator, PrepaidProduct product, String pinValue) async {
     setBusy(true);
-    var success =
-        await _repository.prePaidCheckout(tipe, customer_id, operator, product, pinValue);
+    var success = await _repository.prePaidCheckout(
+        tipe, customer_id, operator, product, pinValue);
     _items = success;
 
     setBusy(false);

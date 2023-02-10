@@ -155,7 +155,7 @@ class _InputPPOBWithoutNumberState extends State<InputPPOBWithoutNumber> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 160)
+                      const SizedBox(height: 100)
                     ],
                   ),
                 ),
