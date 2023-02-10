@@ -37,7 +37,7 @@ class ProviderAccountInfo with ChangeNotifier implements BaseModel {
       address: '',
       membertype: 'konsumen1',
       role: '',
-      status: '',
+      status: 'admin',
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
       deletedAt: '2011-11-02T02:50:12.208Z',

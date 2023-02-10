@@ -128,30 +128,64 @@ class _ProfileState extends State<Profile> {
                   ),
                   child: Column(
                     children: [
-                      // titleSection(title: "Pengaturan Umun"),
-                      // listSetting(
-                      //   title: "history",
-                      //   icon: Icons.history,
-                      // ),
-                      // listSetting(
-                      //   title: "alamat saya",
-                      //   icon: Icons.location_city,
-                      // ),
-                      // titleSection(title: "Kebijakan dan tentang"),
-                      // listSetting(
-                      //   title: "Kebijakan dan privasi",
-                      //   icon: Icons.branding_watermark_rounded,
-                      // ),
-                      // listSetting(
-                      //   title: "About us",
-                      //   icon: Icons.people,
-                      // ),
-                      // titleSection(title: "Aplikasi"),
-                      // listSetting(
-                      //   title: "Keluar",
-                      //   icon: Icons.logout,
-                      // ),
+                      titleSection(title: "Pengaturan Member"),
+                      SettingsTile(
+                        leading: Icon(Icons.money),
+                        title: Text(
+                          "Iuran pokok dan wajib",
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                        onPressed: (value) {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      Home(selectedIndex: 2)));
+                        },
+                      ),
+                      SettingsTile(
+                        leading: Icon(Icons.store_mall_directory),
+                        title: Text(
+                          "Alamat marketplace",
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                        onPressed: (value) {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      Home(selectedIndex: 2)));
+                        },
+                      ),
+                      SettingsTile(
+                        leading: Icon(Icons.credit_card),
+                        title: Text(
+                          "Bank",
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                        onPressed: (value) {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      Home(selectedIndex: 2)));
+                        },
+                      ),
                       titleSection(title: "Pengaturan Umun"),
+                      SettingsTile(
+                        leading: Icon(Icons.history),
+                        title: Text(
+                          "Profile detail",
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                        onPressed: (value) {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      Home(selectedIndex: 2)));
+                        },
+                      ),
                       SettingsTile(
                         leading: Icon(Icons.history),
                         title: Text(
