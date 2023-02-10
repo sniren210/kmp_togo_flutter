@@ -12,6 +12,22 @@ class ModelBankWithdraw {
     }
   }
 
+  ModelBankWithdraw.dummy() {
+    ModelBankWithdraw(
+      data: [
+        Data(
+          id: 0,
+          userId: 0,
+          name: 'name',
+          number: 'number',
+          createdAt: '2011-11-02T02:50:12.208Z',
+          updatedAt: '2011-11-02T02:50:12.208Z',
+          deletedAt: null,
+        )
+      ],
+    );
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {

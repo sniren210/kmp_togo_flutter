@@ -22,12 +22,14 @@ class ProviderWithDraw with ChangeNotifier, ApiMachine {
   int? id;
   getNomorbank() async {
     try {
-      final res = await _dio.get('/v1/bankaccount');
+      // final res = await _dio.get('/v1/bankaccount');
 
-      await saveResponseGet(
-          res.requestOptions.path, res.statusMessage, res.data.toString());
+      // await saveResponseGet(
+      //     res.requestOptions.path, res.statusMessage, res.data.toString());
       // if (res.data != null) {
-      dataMybank = ModelBankWithdraw.fromJson(res.data);
+      // dataMybank = ModelBankWithdraw.fromJson(res.data);
+      dataMybank = ModelBankWithdraw.dummy();
+      print(dataMybank);
       // print('${dataMybank.data?.first.id}');
       // id = dataMybank.data?.first.id;
       loadinggetBank = false;
