@@ -51,7 +51,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   final listMenu = [
     DashboardNew(isHomeLoading: true),
     DashboardWallet(isHome: true),
-    jenisTransaksi(),
+    const jenisTransaksi(),
     const Profile()
   ];
 
