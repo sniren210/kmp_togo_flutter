@@ -8,6 +8,7 @@ import 'package:kmp_togo_mobile/utils/layarmax.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../helpers/ui_helper/textStyling.dart';
+import '../history/jenis_transaksi.dart';
 
 class PpobSuccess extends StatefulWidget {
   bool isScan;
@@ -142,7 +143,7 @@ class _PpobSuccessState extends State<PpobSuccess> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) {
-                      return History();
+                      return jenisTransaksi();
                     }),
                   );
                 },

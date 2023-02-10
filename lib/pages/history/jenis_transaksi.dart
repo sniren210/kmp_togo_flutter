@@ -16,20 +16,28 @@ class _jenisTransaksiState extends State<jenisTransaksi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Pilih Jenis Transaksi"),
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
-              children: [
-                listJenisProduct(title: 'ppob',),
-                listJenisProduct(title: 'marketplace',),
-                listJenisProduct(title: 'poin',),
-                listJenisProduct(title: 'nft',),
-                listJenisProduct(title: 'ppm',),
+              children: const [
+                SizedBox(height: 20),
+                listJenisProduct(
+                  title: 'ppob',
+                ),
+                listJenisProduct(
+                  title: 'marketplace',
+                ),
+                listJenisProduct(
+                  title: 'poin',
+                ),
+                listJenisProduct(
+                  title: 'nft',
+                ),
+                listJenisProduct(
+                  title: 'ppm',
+                ),
               ],
             ),
           ),
@@ -53,7 +61,8 @@ class listJenisProduct extends StatelessWidget {
       padding: const EdgeInsets.all(2.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).primaryColor,
+          borderRadius: BorderRadius.circular(5),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
@@ -63,11 +72,28 @@ class listJenisProduct extends StatelessWidget {
           ],
         ),
         child: ListTile(
-          title: Text(title),
+          leading: CircleAvatar(
+            backgroundColor: Colors.white,
+            child: Text(
+              title[0].toUpperCase(),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+          ),
+          title: Text(
+            title.toUpperCase(),
+            style: TextStyle(color: Colors.white),
+          ),
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => History()),
+              MaterialPageRoute(
+                builder: (context) => History(
+                  jenisTransaksi: title,
+                ),
+              ),
             );
           },
         ),

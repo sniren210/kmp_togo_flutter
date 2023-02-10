@@ -18,7 +18,9 @@ import 'package:provider/provider.dart';
 class History extends StatefulWidget {
   String? search;
 
-  History({Key? key, this.search});
+  History({Key? key, this.search, required this.jenisTransaksi});
+
+  final String jenisTransaksi;
 
   @override
   State<History> createState() => _HistoryState();
@@ -102,6 +104,35 @@ class _HistoryState extends State<History> with NumberFormatMachine {
     return SafeArea(
       child: Scaffold(
           resizeToAvoidBottomInset: false,
+          // floatingActionButton: FloatingActionButton(
+          //   onPressed: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(builder: (context) {
+          //         return DetailHistoryNFT(
+          //           title: "title",
+          //           images: "image",
+          //           buyer_est: "0987678909",
+          //           buyer: "0978678900",
+          //           expired: "expired",
+          //           lockNft: "lockNFT",
+          //           monthlyPercentage:
+          //               "monthlypercen",
+          //           nftSerialId: "NFT serial Id",
+          //           priceCoins: "Price coin",
+          //           gasfee: "gassfee",
+          //           admfee: "adm fee",
+          //           deskripsi: "deskripsi",
+          //           // owner: owner,
+          //         );
+          //       }),
+          //     );
+          //   },
+          //   child: Text('++'),
+          // ),
+          appBar: AppBar(
+            title: Text("Transaksi ${widget.jenisTransaksi}"),
+          ),
           body: loading == true
               ? const Center(
                   child: CircularProgressIndicator(),
@@ -110,47 +141,93 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                   builder: (BuildContext context, v, Widget? child) {
                   return Stack(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 80),
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 20.0, horizontal: 12),
-                          height: 200.0,
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(15),
+                            bottomRight: Radius.circular(15),
+                          ),
+                        ),
+                        height: 200.0,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
                           child: ListView(
-                            scrollDirection: Axis.horizontal,
+                            scrollDirection: Axis.vertical,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 15),
-                                child: SizedBox(
-                                  width: 150.0,
-                                  child: DropdownSearch<String>(
-                                    popupProps: PopupProps.bottomSheet(
-                                      showSelectedItems: true,
-                                      disabledItemFn: (String s) =>
-                                          s.startsWith('I'),
-                                    ),
-                                    items: const [
-                                      "done",
-                                      "processing",
-                                      "cancel",
-                                      "paid",
-                                      "all"
-                                    ],
-                                    dropdownDecoratorProps:
-                                        const DropDownDecoratorProps(
-                                      dropdownSearchDecoration: InputDecoration(
-                                        hintText: "Select Status",
+                              Row(
+                                children: [
+                                  Expanded(
+                                    flex: 7,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 20, horizontal: 12),
+                                      child: TextField(
+                                        controller: _cariC,
+                                        decoration: const InputDecoration(
+                                          contentPadding: EdgeInsets.symmetric(
+                                              vertical: 10),
+                                          prefixIcon: Icon(
+                                            Icons.search,
+                                            size: 20,
+                                          ),
+                                          hintText: 'Cari Pembelian...',
+                                          border: OutlineInputBorder(),
+                                        ),
+                                        onChanged: (value) {
+                                          setState(() {});
+                                        },
                                       ),
                                     ),
-                                    onChanged: (value) {
-                                      setState(() {
-                                        status = value;
-                                      });
-                                      print('haloo  $status');
-                                      getSelectDropdown(status, tanggal);
-                                    },
-                                    // selectedItem: "done",
                                   ),
+                                  Expanded(
+                                      child: InkWell(
+                                    onTap: () {
+                                      searchFitur();
+                                    },
+                                    child: CircleAvatar(
+                                        backgroundColor:
+                                            const Color(0xFF85014e),
+                                        child: Container(
+                                            padding: const EdgeInsets.all(5),
+                                            child: const Icon(
+                                              Icons.search,
+                                              color: Colors.white,
+                                            ))),
+                                  ))
+                                ],
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 12),
+                                child: DropdownSearch<String>(
+                                  popupProps: PopupProps.menu(
+                                    showSelectedItems: true,
+                                    disabledItemFn: (String s) =>
+                                        s.startsWith('I'),
+                                  ),
+                                  items: const [
+                                    "done",
+                                    "processing",
+                                    "cancel",
+                                    "paid",
+                                    "all"
+                                  ],
+                                  dropdownDecoratorProps:
+                                      const DropDownDecoratorProps(
+                                    dropdownSearchDecoration: InputDecoration(
+                                      hintText: "-----",
+                                      labelText: "Select Status",
+                                    ),
+                                  ),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      status = value;
+                                    });
+                                    print('haloo  $status');
+                                    getSelectDropdown(status, tanggal);
+                                  },
+                                  // selectedItem: "done",
                                 ),
                               ),
                               // Padding(
@@ -185,41 +262,39 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                               //   ),
                               // ),
                               Padding(
-                                padding: const EdgeInsets.only(right: 15),
-                                child: SizedBox(
-                                  width: 150.0,
-                                  child: DropdownSearch<String>(
-                                    popupProps: PopupProps.dialog(
-                                      showSelectedItems: true,
-                                      disabledItemFn: (String s) =>
-                                          s.startsWith('I'),
-                                    ),
-                                    items: const [
-                                      "Semua Tanggal Transaksi",
-                                      "30 Hari Terakhir",
-                                      "90 Hari Terakhir",
-                                      "Atur Tanggal Sendiri",
-                                    ],
-                                    dropdownDecoratorProps:
-                                        const DropDownDecoratorProps(
-                                      dropdownSearchDecoration: InputDecoration(
-                                        hintText: "Select Tanggal",
-                                      ),
-                                    ),
-                                    onChanged: (value) {
-                                      setState(() {
-                                        tanggal = value;
-                                      });
-                                      if (tanggal == 'Atur Tanggal Sendiri') {
-                                        print('atur sendiri');
-                                        klikBottom();
-                                      } else {
-                                        print('haloo  $status');
-                                        getSelectDropdown(status, tanggal);
-                                      }
-                                    },
-                                    // selectedItem: "createdAt:desc",
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 12),
+                                child: DropdownSearch<String>(
+                                  popupProps: PopupProps.menu(
+                                    showSelectedItems: true,
+                                    disabledItemFn: (String s) =>
+                                        s.startsWith('I'),
                                   ),
+                                  items: const [
+                                    "Semua Tanggal Transaksi",
+                                    "30 Hari Terakhir",
+                                    "90 Hari Terakhir",
+                                    "Atur Tanggal Sendiri",
+                                  ],
+                                  dropdownDecoratorProps:
+                                      const DropDownDecoratorProps(
+                                    dropdownSearchDecoration: InputDecoration(
+                                        hintText: "----",
+                                        labelText: "Select Tanggal"),
+                                  ),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      tanggal = value;
+                                    });
+                                    if (tanggal == 'Atur Tanggal Sendiri') {
+                                      print('atur sendiri');
+                                      klikBottom();
+                                    } else {
+                                      print('haloo  $status');
+                                      getSelectDropdown(status, tanggal);
+                                    }
+                                  },
+                                  // selectedItem: "createdAt:desc",
                                 ),
                               ),
                             ],
@@ -227,7 +302,7 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 170.0),
+                        padding: const EdgeInsets.only(top: 210.0),
                         child: ListView.builder(
                             shrinkWrap: true,
                             itemCount: v.dataAllHistory?.data?.length,
@@ -1015,47 +1090,6 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                       //     ? Container()
 
                       //     :
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 7,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 20, horizontal: 12),
-                              child: TextField(
-                                controller: _cariC,
-                                decoration: const InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.symmetric(vertical: 10),
-                                  prefixIcon: Icon(
-                                    Icons.search,
-                                    size: 20,
-                                  ),
-                                  hintText: 'Cari Pembelian...',
-                                  border: OutlineInputBorder(),
-                                ),
-                                onChanged: (value) {
-                                  setState(() {});
-                                },
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                              child: InkWell(
-                            onTap: () {
-                              searchFitur();
-                            },
-                            child: CircleAvatar(
-                                backgroundColor: const Color(0xFF85014e),
-                                child: Container(
-                                    padding: const EdgeInsets.all(5),
-                                    child: const Icon(
-                                      Icons.search,
-                                      color: Colors.white,
-                                    ))),
-                          ))
-                        ],
-                      )
                       // ),
                       // buildFloatingSearchBar(),
                     ],
