@@ -550,6 +550,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0+1"
+  flutter_osm_interface:
+    dependency: transitive
+    description:
+      name: flutter_osm_interface
+      sha256: "9248c2e45f22155c22d19ee8f7bb7018e61fe252cc9ea4c0e773240cd8f7dd4d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.31"
+  flutter_osm_plugin:
+    dependency: "direct main"
+    description:
+      name: flutter_osm_plugin
+      sha256: a5c9c72e83143134c6411ca75fbc49d1ba1082b92f03a707be06e23753829f61
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.42.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -648,6 +664,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  google_polyline_algorithm:
+    dependency: transitive
+    description:
+      name: google_polyline_algorithm
+      sha256: "357874f00d3f93c3ba1bf4b4d9a154aa9ee87147c068238c1e8392012b686a03"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   graphs:
     dependency: transitive
     description:
@@ -1437,6 +1461,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      sha256: "648e103079f7c64a36dc7d39369cabb358d377078a051d6ae2ad3aa539519313"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.7"
   vector_math:
     dependency: transitive
     description:

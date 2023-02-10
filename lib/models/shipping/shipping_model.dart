@@ -23,6 +23,12 @@ class ItemModelShipping {
             List<Shipping>.from(json["data"].map((x) => Shipping.fromJson(x))),
       );
 
+  factory ItemModelShipping.dummy() => ItemModelShipping(
+        data: [
+          Shipping(code: 'code', name: 'name'),
+        ],
+      );
+
   Map<String, dynamic> toJson() => {
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
       };
