@@ -104,6 +104,32 @@ class _HistoryState extends State<History> with NumberFormatMachine {
     return SafeArea(
       child: Scaffold(
           resizeToAvoidBottomInset: false,
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return DetailHistoryNFT(
+                    title: "title",
+                    images: "image",
+                    buyer_est: "0987678909",
+                    buyer: "0978678900",
+                    expired: "expired",
+                    lockNft: "lockNFT",
+                    monthlyPercentage:
+                        "monthlypercen",
+                    nftSerialId: "NFT serial Id",
+                    priceCoins: "Price coin",
+                    gasfee: "gassfee",
+                    admfee: "adm fee",
+                    deskripsi: "deskripsi",
+                    // owner: owner,
+                  );
+                }),
+              );
+            },
+            child: Text('++'),
+          ),
           appBar: AppBar(
             title: Text("Transaksi ${widget.jenisTransaksi}"),
           ),
@@ -172,7 +198,8 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 12),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 12),
                                 child: DropdownSearch<String>(
                                   popupProps: PopupProps.menu(
                                     showSelectedItems: true,
@@ -235,7 +262,8 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                               //   ),
                               // ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 12),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 12),
                                 child: DropdownSearch<String>(
                                   popupProps: PopupProps.menu(
                                     showSelectedItems: true,
@@ -251,9 +279,8 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                   dropdownDecoratorProps:
                                       const DropDownDecoratorProps(
                                     dropdownSearchDecoration: InputDecoration(
-                                      hintText: "----",
-                                      labelText: "Select Tanggal"
-                                    ),
+                                        hintText: "----",
+                                        labelText: "Select Tanggal"),
                                   ),
                                   onChanged: (value) {
                                     setState(() {
