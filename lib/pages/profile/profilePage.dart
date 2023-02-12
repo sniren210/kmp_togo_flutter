@@ -6,11 +6,13 @@ import 'package:kmp_togo_mobile/apis/repository.dart';
 import 'package:kmp_togo_mobile/helpers/injector.dart';
 import 'package:kmp_togo_mobile/helpers/shared_pref_manager.dart';
 import 'package:kmp_togo_mobile/pages/base.dart';
+import 'package:kmp_togo_mobile/pages/history/jenis_transaksi.dart';
 import 'package:kmp_togo_mobile/pages/home.dart';
 import 'package:kmp_togo_mobile/pages/nft/mynftProdusen.dart';
 import 'package:kmp_togo_mobile/pages/produsennft/dashboardmynftproduk.dart';
 import 'package:kmp_togo_mobile/pages/profile/address/alamatPage.dart';
 import 'package:kmp_togo_mobile/pages/profile/profile_widget.dart';
+import 'package:kmp_togo_mobile/pages/profile/transaksi/transaksi_page.dart';
 import 'package:kmp_togo_mobile/providers/account/provider_account.dart';
 import 'package:kmp_togo_mobile/providers/cart/cart_provider.dart';
 import 'package:provider/provider.dart';
@@ -136,7 +138,7 @@ class _ProfileState extends State<Profile> {
                           style: const TextStyle(fontSize: 15),
                         ),
                         onPressed: (value) {
-                          Navigator.pushReplacement(
+                          Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
@@ -150,11 +152,10 @@ class _ProfileState extends State<Profile> {
                           style: const TextStyle(fontSize: 15),
                         ),
                         onPressed: (value) {
-                          Navigator.pushReplacement(
+                          Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      Home(selectedIndex: 2)));
+                                  builder: (context) => AlamatPage()));
                         },
                       ),
                       titleSection(title: "Pengaturan Umun"),
@@ -179,24 +180,10 @@ class _ProfileState extends State<Profile> {
                           style: const TextStyle(fontSize: 15),
                         ),
                         onPressed: (value) {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      Home(selectedIndex: 2)));
-                        },
-                      ),
-                      SettingsTile(
-                        leading: Icon(Icons.location_city),
-                        title: Text(
-                          "Alamat saya",
-                          style: const TextStyle(fontSize: 15),
-                        ),
-                        onPressed: (value) {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const AlamatPage()));
+                                  builder: (context) => const TransaksiPage()));
                         },
                       ),
                       titleSection(title: "Kebijakan dan tentang"),
@@ -314,7 +301,7 @@ class listSetting extends StatelessWidget {
         style: const TextStyle(fontSize: 15),
       ),
       onPressed: (value) {
-        Navigator.pushReplacement(context,
+        Navigator.push(context,
             MaterialPageRoute(builder: (context) => Home(selectedIndex: 2)));
       },
     );
