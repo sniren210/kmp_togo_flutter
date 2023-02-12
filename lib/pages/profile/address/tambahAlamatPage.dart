@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/formInputField.dart';
 import 'package:kmp_togo_mobile/models/modelkecamatan.dart';
 import 'package:kmp_togo_mobile/models/modelkota.dart';
@@ -114,7 +115,20 @@ class _TambahAlamatPageState extends State<TambahAlamatPage> {
                         initCurrentUserPosition: true,
                         initZoom: 15,
                       );
-                      print(p);
+
+                      if (p != null) {
+                        List<Placemark> placemarks =
+                            await placemarkFromCoordinates(
+                                p.latitude, p.longitude);
+
+                        placeNameC!.text = placemarks.first.locality ?? '';
+                        postalCodeNumberC!.text =
+                            placemarks.first.postalCode ?? '';
+                        cityC!.text = placemarks.first.country ?? '';
+                        subdisticC!.text =
+                            placemarks.first.subAdministrativeArea ?? '';
+                        addressC!.text = placemarks.first.street ?? '';
+                      }
                     },
                     child: Text('Pilih lokasi'),
                   ),
