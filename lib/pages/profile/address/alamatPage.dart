@@ -29,51 +29,21 @@ class _AlamatPageState extends State<AlamatPage> {
           return Scaffold(
             appBar: AppBar(
               title: const Text(
-                'Alamat Saya',
+                'Alamat Marketplace',
               ),
             ),
             body: model.busy
                 ? Container()
-                : ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: model.items!.data.length,
-                    itemBuilder: (_, int index) {
-                      final itemAddress = model.items!.data[index];
+                : Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 12),
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: model.items!.data.length,
+                        itemBuilder: (_, int index) {
+                          final itemAddress = model.items!.data[index];
 
-                      return Slidable(
-                        key: const ValueKey(0),
-                        enabled: false,
-                        startActionPane: ActionPane(
-                          // A motion is a widget used to control how the pane animates.
-                          motion: const ScrollMotion(),
-
-                          // A pane can dismiss the Slidable.
-                          dismissible: DismissiblePane(onDismissed: () {
-                            print('LEO::');
-                          }),
-
-                          // All actions are defined in the children parameter.
-                          children: [
-                            // A SlidableAction can have an icon and/or a label.
-                            // SlidableAction(
-                            //   onPressed: (_) {},
-                            //   backgroundColor: Color(0xFFFE4A49),
-                            //   foregroundColor: Colors.white,
-                            //   icon: Icons.delete,
-                            //   label: 'Delete',
-                            // ),
-                            // SlidableAction(
-                            //   onPressed: (_) {},
-                            //   backgroundColor: Color(0xFF21B7CA),
-                            //   foregroundColor: Colors.white,
-                            //   icon: Icons.share,
-                            //   label: 'Share',
-                            // ),
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 8.0),
-                          child: InkWell(
+                          return InkWell(
                             onTap: () {
                               showDialog(
                                   useSafeArea: true,
@@ -96,10 +66,22 @@ class _AlamatPageState extends State<AlamatPage> {
                                   });
                             },
                             child: Container(
-                              height: 90,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12)),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 5,
+                                    blurRadius: 7,
+                                    offset: Offset(
+                                        0, 3), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                              height: 100,
                               width: MediaQuery.of(context).size.width,
-                              decoration:
-                                  const BoxDecoration(color: Colors.white),
                               child: Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: Row(
@@ -107,35 +89,70 @@ class _AlamatPageState extends State<AlamatPage> {
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: <Widget>[
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text(itemAddress.name,
-                                            style: const TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w500)),
-                                        const SizedBox(
-                                          height: 8,
-                                        ),
-                                        Flexible(
-                                          child: Container(
-                                            width: 300,
-                                            alignment: Alignment.topLeft,
-                                            child: Text(itemAddress.name),
+                                    Expanded(
+                                      flex: 3,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                flex: 2,
+                                                child: Text(
+                                                    'Rendi Dwi kurniasandi',
+                                                    style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        overflow: TextOverflow
+                                                            .ellipsis)),
+                                              ),
+                                              Text(' | '),
+                                              Expanded(
+                                                child: Text(
+                                                  '0823237881628',
+                                                  style: TextStyle(
+                                                      overflow: TextOverflow
+                                                          .ellipsis),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        )
-                                      ],
+                                          const SizedBox(
+                                            height: 8,
+                                          ),
+                                          Container(
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                              'Consequat ex ut officia et ullamco.Voluptate ea eu officia non labore incididunt labore id ullamco officia sit aute. Pariatur labore laboris veniam irure culpa nisi veniam sint ullamco reprehenderit eu dolor reprehenderit et.',
+                                              maxLines: 3,
+                                              textAlign: TextAlign.justify,
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                    const Icon(Icons.location_on_outlined)
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Icon(Icons.edit),
+                                          const SizedBox(
+                                            height: 8,
+                                          ),
+                                          Text('Ubah'),
+                                        ],
+                                      ),
+                                    )
                                   ],
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                      );
-                    }),
+                          );
+                        }),
+                  ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
                 Navigator.push(
@@ -257,7 +274,7 @@ class _AlamatPageState extends State<AlamatPage> {
                           subtitle: '',
                           provRepo: 'addressNew',
                           nextPage: Home(selectedIndex: 3),
-                      id: id,
+                          id: id,
                           isReplace: false,
                           isUpdate: true,
                           name: name,
