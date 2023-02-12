@@ -50,14 +50,13 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
 
   request_otp(context, noHp, firstRequest) async {
     try {
-      final body = {"phoneNumber": '+62$noHp'};
 
-      final res = await _dio.post('/v1/auth/waotp', data: body);
+      final res = await _dio.get('/api/v1/otp/0${noHp}');
 
       await saveResponsePost(res.requestOptions.path, res.statusMessage,
-          res.data.toString(), body.toString());
+          res.data.toString(), '');
 
-      if (res.data['data'] == 'success') {
+      if (res.data['success'] == true) {
         await sharedPreferencesManager.setString(
             SharedPreferencesManager.nomerHP, '+62$noHp');
         loadingOtp = false;
