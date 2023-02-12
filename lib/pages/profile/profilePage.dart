@@ -157,20 +157,6 @@ class _ProfileState extends State<Profile> {
                                       Home(selectedIndex: 2)));
                         },
                       ),
-                      SettingsTile(
-                        leading: Icon(Icons.credit_card),
-                        title: Text(
-                          "Bank",
-                          style: const TextStyle(fontSize: 15),
-                        ),
-                        onPressed: (value) {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      Home(selectedIndex: 2)));
-                        },
-                      ),
                       titleSection(title: "Pengaturan Umun"),
                       SettingsTile(
                         leading: Icon(Icons.history),
