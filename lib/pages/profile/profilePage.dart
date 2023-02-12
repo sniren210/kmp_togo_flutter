@@ -10,6 +10,7 @@ import 'package:kmp_togo_mobile/pages/home.dart';
 import 'package:kmp_togo_mobile/pages/nft/mynftProdusen.dart';
 import 'package:kmp_togo_mobile/pages/produsennft/dashboardmynftproduk.dart';
 import 'package:kmp_togo_mobile/pages/profile/address/alamatPage.dart';
+import 'package:kmp_togo_mobile/pages/profile/profile_detail.dart';
 import 'package:kmp_togo_mobile/pages/profile/profile_widget.dart';
 import 'package:kmp_togo_mobile/providers/account/provider_account.dart';
 import 'package:kmp_togo_mobile/providers/cart/cart_provider.dart';
@@ -157,11 +158,10 @@ class _ProfileState extends State<Profile> {
                                       Home(selectedIndex: 2)));
                         },
                       ),
-                      titleSection(title: "Pengaturan Umun"),
                       SettingsTile(
-                        leading: Icon(Icons.history),
+                        leading: Icon(Icons.store_mall_directory),
                         title: Text(
-                          "Profile detail",
+                          "UMKM",
                           style: const TextStyle(fontSize: 15),
                         ),
                         onPressed: (value) {
@@ -170,6 +170,21 @@ class _ProfileState extends State<Profile> {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       Home(selectedIndex: 2)));
+                        },
+                      ),
+                      titleSection(title: "Pengaturan Umun"),
+                      SettingsTile(
+                        leading: Icon(Icons.account_circle),
+                        title: Text(
+                          "Profile detail",
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                        onPressed: (value) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      profileDetail()));
                         },
                       ),
                       SettingsTile(
