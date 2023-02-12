@@ -875,16 +875,20 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                     shrinkWrap: true,
                                                     scrollDirection:
                                                         Axis.horizontal,
-                                                    children: [
-                                                      cardmitraketegori(
-                                                          'Alat Pertanian',
-                                                          Colors.indigo),
-                                                      cardmitraketegori(
-                                                          'Hasil Bumi',
-                                                          Colors.pink),
-                                                      cardmitraketegori(
-                                                          'Kopi', Colors.teal),
-                                                    ]),
+                                                    children: const [
+                                                      cardMitraKategori(
+                                                        title: 'hasil pertanian',
+                                                        color: Colors.indigo,
+                                                      ),
+                                                      cardMitraKategori(
+                                                        title: 'hasil bumi',
+                                                        color: Colors.pink,
+                                                      ),
+                                                      cardMitraKategori(
+                                                        title: 'kopi',
+                                                        color: Colors.teal,
+                                                      ),
+                                                    ],),
                                               ),
                                               Container(
                                                 padding: EdgeInsets.only(
@@ -1424,3 +1428,4 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
     Get.offAllNamed('/home');
   }
 }
+
