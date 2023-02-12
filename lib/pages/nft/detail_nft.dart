@@ -87,452 +87,469 @@ class _DetailNFTState extends State<DetailNFT> with TickerProviderStateMixin {
             )
           : Consumer<ProviderNft>(
               builder: (BuildContext context, v, Widget? Child) {
-              return SafeArea(
-                child: CustomScrollView(
-                  controller: _scrollController,
-                  slivers: [
-                    // SliverAppBar(
-                    //   pinned: true,
-                    //   snap: false,
-                    //   floating: false,
-                    //   leading: Padding(
-                    //     padding: const EdgeInsets.all(8.0),
-                    //     child: CircleAvatar(
-                    //       backgroundColor: Theme.of(context).primaryColor,
-                    //       child: IconButton(
-                    //         color: Colors.white,
-                    //         icon: const Icon(Icons.close),
-                    //         onPressed: () => Navigator.pop(context),
-                    //       ),
-                    //     ),
-                    //   ),
-                    //   title:
-                    //       Text(v.dataAllNFTid?.data?.nft?.name ?? widget.title!),
-                    //   expandedHeight: 200.0,
-                    //   flexibleSpace: FlexibleSpaceBar(
-                    //     background: Container(
-                    //       height: 200,
-                    //       width: double.maxFinite,
-                    //       alignment: Alignment.bottomCenter,
-                    //       decoration: BoxDecoration(
-                    //         image: DecorationImage(
-                    //           image:
-                    //               NetworkImage(widget.images ?? kEmptyImageLink),
-                    //           fit: BoxFit.cover,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-                    SliverLayoutBuilder(builder: (_, _sliver) {
-                      return SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                        (_, int index) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        topRight: Radius.circular(10),
-                                        bottomLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10)),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 5,
-                                        blurRadius: 7,
-                                        offset: Offset(
-                                            0, 3), // changes position of shadow
-                                      ),
-                                    ],
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          height: 150,
-                                          width: double.maxFinite,
-                                          alignment: Alignment.bottomCenter,
-                                          decoration: BoxDecoration(
-                                            borderRadius: const BorderRadius
-                                                    .only(
-                                                topLeft: Radius.circular(10),
-                                                topRight: Radius.circular(10),
-                                                bottomLeft: Radius.circular(10),
-                                                bottomRight:
-                                                    Radius.circular(10)),
-                                            image: DecorationImage(
-                                              image: NetworkImage(
-                                                  widget.images ??
-                                                      kEmptyImageLink),
-                                              fit: BoxFit.cover,
+                return SafeArea(
+                  child: CustomScrollView(
+                    controller: _scrollController,
+                    slivers: [
+                      // SliverAppBar(
+                      //   pinned: true,
+                      //   snap: false,
+                      //   floating: false,
+                      //   leading: Padding(
+                      //     padding: const EdgeInsets.all(8.0),
+                      //     child: CircleAvatar(
+                      //       backgroundColor: Theme.of(context).primaryColor,
+                      //       child: IconButton(
+                      //         color: Colors.white,
+                      //         icon: const Icon(Icons.close),
+                      //         onPressed: () => Navigator.pop(context),
+                      //       ),
+                      //     ),
+                      //   ),
+                      //   title:
+                      //       Text(v.dataAllNFTid?.data?.nft?.name ?? widget.title!),
+                      //   expandedHeight: 200.0,
+                      //   flexibleSpace: FlexibleSpaceBar(
+                      //     background: Container(
+                      //       height: 200,
+                      //       width: double.maxFinite,
+                      //       alignment: Alignment.bottomCenter,
+                      //       decoration: BoxDecoration(
+                      //         image: DecorationImage(
+                      //           image:
+                      //               NetworkImage(widget.images ?? kEmptyImageLink),
+                      //           fit: BoxFit.cover,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                      SliverLayoutBuilder(builder: (_, _sliver) {
+                        return SliverList(
+                            delegate: SliverChildBuilderDelegate(
+                          (_, int index) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          topRight: Radius.circular(10),
+                                          bottomLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(10)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 5,
+                                          blurRadius: 7,
+                                          offset: Offset(0,
+                                              3), // changes position of shadow
+                                        ),
+                                      ],
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            height: 150,
+                                            width: double.maxFinite,
+                                            alignment: Alignment.bottomCenter,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(10),
+                                                      topRight:
+                                                          Radius.circular(10),
+                                                      bottomLeft:
+                                                          Radius.circular(10),
+                                                      bottomRight:
+                                                          Radius.circular(10)),
+                                              image: DecorationImage(
+                                                image: NetworkImage(
+                                                    widget.images ??
+                                                        kEmptyImageLink),
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            children: [
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    v.dataAllNFTid?.data?.nft
-                                                            ?.name ??
-                                                        widget.title!,
-                                                    style: TextStyle(
-                                                      fontSize: 25,
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              children: [
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      v.dataAllNFTid?.data?.nft
+                                                              ?.name ??
+                                                          widget.title!,
+                                                      style: TextStyle(
+                                                        fontSize: 25,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
                                                     ),
+                                                    Text('0.0 coin'),
+                                                  ],
+                                                ),
+                                                Spacer(),
+                                                Card(
+                                                  color:
+                                                      const Color(0xFF85014e),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
                                                   ),
-                                                  Text('0.0 coin'),
+                                                  child: Padding(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 8,
+                                                        vertical: 8),
+                                                    child: Text(
+                                                        "${widget.buyer_est} / ${widget.pembeli}  Pembeli",
+                                                        style: TextStyling
+                                                            .w40014white),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                const Text(
+                                                    'Perkiraan keuntungan',
+                                                    style: TextStyling
+                                                        .w40014black),
+                                                const HorizontalSpacer(
+                                                    width: 10),
+                                                const Padding(
+                                                  padding: EdgeInsets.only(
+                                                      right: 8.0),
+                                                  child: CircleAvatar(
+                                                    radius: 15,
+                                                    child: CircleAvatar(
+                                                        radius: 15,
+                                                        backgroundImage: AssetImage(
+                                                            'assets/images/bg1024.png')),
+                                                    // 'assets/images/White-1024.png')),
+                                                  ),
+                                                ),
+                                                v.dataAllNFTid?.data
+                                                            ?.monthlyPercentage ==
+                                                        'null'
+                                                    ? Text(
+                                                        ' ${v.dataAllNFTid?.data?.monthlyPercentage}% / bulan',
+                                                        style: TextStyling
+                                                            .w40014black)
+                                                    : Text(
+                                                        ' ${widget.monthlyPercentage}% / bulan',
+                                                        style: TextStyling
+                                                            .w40014black)
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    constraints: BoxConstraints(
+                                      minHeight: 300,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          topRight: Radius.circular(10),
+                                          bottomLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(10)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 5,
+                                          blurRadius: 7,
+                                          offset: Offset(0,
+                                              3), // changes position of shadow
+                                        ),
+                                      ],
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const VerticalSpacer(height: 8),
+                                          const Text('Informasi Utama',
+                                              style:
+                                                  TextStyling.w600bold16black),
+                                          const Divider(),
+                                          const VerticalSpacer(height: 18),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  const Text('Lock NFT',
+                                                      style: TextStyling
+                                                          .w40014black),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 8.0),
+                                                    child: Container(
+                                                        width: 22,
+                                                        height: 22,
+                                                        decoration: const BoxDecoration(
+                                                            image: DecorationImage(
+                                                                fit: BoxFit
+                                                                    .contain,
+                                                                image: AssetImage(
+                                                                    'assets/images/logon.jpg')))),
+                                                  )
                                                 ],
                                               ),
-                                              Spacer(),
-                                              Card(
-                                                color: const Color(0xFF85014e),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                ),
-                                                child: Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 8,
-                                                      vertical: 8),
-                                                  child: Text(
-                                                      "${widget.buyer_est} / ${widget.pembeli}  Pembeli",
-                                                      style: TextStyling
-                                                          .w40014white),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              const Text('Perkiraan keuntungan',
-                                                  style:
-                                                      TextStyling.w40014black),
-                                              const HorizontalSpacer(width: 10),
-                                              const Padding(
-                                                padding:
-                                                    EdgeInsets.only(right: 8.0),
-                                                child: CircleAvatar(
-                                                  radius: 15,
-                                                  child: CircleAvatar(
-                                                      radius: 15,
-                                                      backgroundImage: AssetImage(
-                                                          'assets/images/bg1024.png')),
-                                                  // 'assets/images/White-1024.png')),
-                                                ),
-                                              ),
                                               v.dataAllNFTid?.data
-                                                          ?.monthlyPercentage ==
-                                                      'null'
-                                                  ? Text(
-                                                      ' ${v.dataAllNFTid?.data?.monthlyPercentage}% / bulan',
-                                                      style: TextStyling
-                                                          .w40014black)
+                                                          ?.holdLimitTill ==
+                                                      null
+                                                  ? Text('Tidak Ada')
+                                                  // ignore: dead_code
                                                   : Text(
-                                                      ' ${widget.monthlyPercentage}% / bulan',
+                                                      '${v.dataAllNFTid?.data?.holdLimitTill}',
                                                       style: TextStyling
-                                                          .w40014black)
+                                                          .w40014grey),
                                             ],
                                           ),
-                                        ),
-                                      ],
+                                          const VerticalSpacer(height: 18),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Text('Expired',
+                                                      style: TextStyling
+                                                          .w40014black),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 8.0),
+                                                    child: Container(
+                                                        width: 22,
+                                                        height: 22,
+                                                        decoration: const BoxDecoration(
+                                                            image: DecorationImage(
+                                                                fit: BoxFit
+                                                                    .contain,
+                                                                image: AssetImage(
+                                                                    'assets/images/logon.jpg')))),
+                                                  )
+                                                ],
+                                              ),
+                                              v.dataAllNFTid?.data?.nft
+                                                          ?.expirationDate ==
+                                                      null
+                                                  ? Text('Tidak Ada')
+                                                  : Text(
+                                                      dateConvert(v
+                                                          .dataAllNFTid
+                                                          ?.data
+                                                          ?.nft
+                                                          ?.expirationDate),
+                                                      style: TextStyling
+                                                          .w40014grey),
+                                            ],
+                                          ),
+                                          const VerticalSpacer(height: 36),
+                                          const Text('Deskripsi',
+                                              style:
+                                                  TextStyling.w600bold16black),
+                                          const Divider(),
+                                          const VerticalSpacer(height: 18),
+                                          widget.deskripsi == 'null'
+                                              ? Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  child: Text(
+                                                      widget.deskripsi ?? ""))
+                                              : Container(
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  child: Text(
+                                                      'Deskripsi tidak ada')),
+                                          const VerticalSpacer(height: 8),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  constraints: BoxConstraints(
-                                    minHeight: 300,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        topRight: Radius.circular(10),
-                                        bottomLeft: Radius.circular(10),
-                                        bottomRight: Radius.circular(10)),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 5,
-                                        blurRadius: 7,
-                                        offset: Offset(
-                                            0, 3), // changes position of shadow
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 14.0, vertical: 50),
+                                  child: Row(
+                                    children: [
+                                      widget.buyer_est ==
+                                              widget.pembeli.toString()
+                                          ? Expanded(
+                                              flex: 8,
+                                              child: SizedBox(
+                                                height: 50,
+                                                child: ElevatedButton(
+                                                  style: ButtonStyle(
+                                                    backgroundColor:
+                                                        MaterialStateProperty
+                                                            .all(Colors
+                                                                .grey.shade500),
+                                                    padding:
+                                                        MaterialStateProperty
+                                                            .all(const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 15,
+                                                                horizontal:
+                                                                    70)),
+                                                  ),
+                                                  child: const Text(
+                                                      "Beli Sekarang",
+                                                      style: TextStyle(
+                                                          fontSize: 13,
+                                                          color: Colors.white)),
+                                                  onPressed: () {},
+                                                ),
+                                              ),
+                                            )
+                                          : Expanded(
+                                              flex: 8,
+                                              child: SizedBox(
+                                                height: 50,
+                                                child: ElevatedButton(
+                                                  style: ButtonStyle(
+                                                    backgroundColor:
+                                                        MaterialStateProperty
+                                                            .all(const Color(
+                                                                0xFF85014e)),
+                                                    padding:
+                                                        MaterialStateProperty
+                                                            .all(const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 15,
+                                                                horizontal:
+                                                                    70)),
+                                                  ),
+                                                  child: const Text(
+                                                      "Beli Sekarang",
+                                                      style: TextStyle(
+                                                          fontSize: 13,
+                                                          color: Colors.white)),
+                                                  onPressed: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) {
+                                                        return NFTPayment(
+                                                          title: v.dataAllNFTid
+                                                              ?.data?.nft?.name,
+                                                          images: v
+                                                              .dataAllNFTid
+                                                              ?.data
+                                                              ?.nft
+                                                              ?.imagePath,
+                                                          buyer_est: v
+                                                              .dataAllNFTid
+                                                              ?.data
+                                                              ?.nft
+                                                              ?.qtyUnit
+                                                              .toString(),
+                                                          buyer: v
+                                                              .dataAllNFTid
+                                                              ?.data
+                                                              ?.nft
+                                                              ?.avlUnit
+                                                              .toString(),
+                                                          expired: v
+                                                              .dataAllNFTid
+                                                              ?.data
+                                                              ?.nft
+                                                              ?.expirationDate,
+                                                          lockNft:
+                                                              widget.lockNft,
+                                                          monthlyPercentage: v
+                                                              .dataAllNFTid
+                                                              ?.data
+                                                              ?.nft
+                                                              ?.monthlyPercentage
+                                                              .toString(),
+                                                          nftSerialId: widget
+                                                              .nftSerialId,
+                                                          priceCoins:
+                                                              widget.priceCoins,
+                                                          gasfee: widget.gasfee,
+                                                          admfee: widget.admfee,
+                                                        );
+                                                      }),
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                      const SizedBox(width: 10),
+                                      Expanded(
+                                        flex: 2,
+                                        child: SizedBox(
+                                          height: 50,
+                                          child: ElevatedButton(
+                                            style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStateProperty.all(
+                                                      Colors.red),
+                                            ),
+                                            child: const Text(
+                                              "X",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const VerticalSpacer(height: 8),
-                                        const Text('Informasi Utama',
-                                            style: TextStyling.w600bold16black),
-                                        const Divider(),
-                                        const VerticalSpacer(height: 18),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                const Text('Lock NFT',
-                                                    style: TextStyling
-                                                        .w40014black),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 8.0),
-                                                  child: Container(
-                                                      width: 22,
-                                                      height: 22,
-                                                      decoration: const BoxDecoration(
-                                                          image: DecorationImage(
-                                                              fit: BoxFit
-                                                                  .contain,
-                                                              image: AssetImage(
-                                                                  'assets/images/logon.jpg')))),
-                                                )
-                                              ],
-                                            ),
-                                            v.dataAllNFTid?.data
-                                                        ?.holdLimitTill ==
-                                                    null
-                                                ? Text('Tidak Ada')
-                                                // ignore: dead_code
-                                                : Text(
-                                                    '${v.dataAllNFTid?.data?.holdLimitTill}',
-                                                    style:
-                                                        TextStyling.w40014grey),
-                                          ],
-                                        ),
-                                        const VerticalSpacer(height: 18),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Text('Expired',
-                                                    style: TextStyling
-                                                        .w40014black),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 8.0),
-                                                  child: Container(
-                                                      width: 22,
-                                                      height: 22,
-                                                      decoration: const BoxDecoration(
-                                                          image: DecorationImage(
-                                                              fit: BoxFit
-                                                                  .contain,
-                                                              image: AssetImage(
-                                                                  'assets/images/logon.jpg')))),
-                                                )
-                                              ],
-                                            ),
-                                            v.dataAllNFTid?.data?.nft
-                                                        ?.expirationDate ==
-                                                    null
-                                                ? Text('Tidak Ada')
-                                                : Text(
-                                                    dateConvert(v
-                                                        .dataAllNFTid
-                                                        ?.data
-                                                        ?.nft
-                                                        ?.expirationDate),
-                                                    style:
-                                                        TextStyling.w40014grey),
-                                          ],
-                                        ),
-                                        const VerticalSpacer(height: 36),
-                                        const Text('Deskripsi',
-                                            style: TextStyling.w600bold16black),
-                                        const Divider(),
-                                        const VerticalSpacer(height: 18),
-                                        widget.deskripsi == 'null'
-                                            ? Container(
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                child: Text(
-                                                    widget.deskripsi ?? ""))
-                                            : Container(
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                child: Text(
-                                                    'Deskripsi tidak ada')),
-                                        const VerticalSpacer(height: 8),
-                                      ],
-                                    ),
-                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 14.0, vertical: 50),
-                                child: Row(
-                                  children: [
-                                    widget.buyer_est ==
-                                            widget.pembeli.toString()
-                                        ? Expanded(
-                                            flex: 8,
-                                            child: SizedBox(
-                                              height: 50,
-                                              child: ElevatedButton(
-                                                style: ButtonStyle(
-                                                  backgroundColor:
-                                                      MaterialStateProperty.all(
-                                                          Colors.grey.shade500),
-                                                  padding:
-                                                      MaterialStateProperty.all(
-                                                          const EdgeInsets
-                                                                  .symmetric(
-                                                              vertical: 15,
-                                                              horizontal: 70)),
-                                                ),
-                                                child: const Text(
-                                                    "Beli Sekarang",
-                                                    style: TextStyle(
-                                                        fontSize: 13,
-                                                        color: Colors.white)),
-                                                onPressed: () {},
-                                              ),
-                                            ),
-                                          )
-                                        : Expanded(
-                                            flex: 8,
-                                            child: SizedBox(
-                                              height: 50,
-                                              child: ElevatedButton(
-                                                style: ButtonStyle(
-                                                  backgroundColor:
-                                                      MaterialStateProperty.all(
-                                                          const Color(
-                                                              0xFF85014e)),
-                                                  padding:
-                                                      MaterialStateProperty.all(
-                                                          const EdgeInsets
-                                                                  .symmetric(
-                                                              vertical: 15,
-                                                              horizontal: 70)),
-                                                ),
-                                                child: const Text(
-                                                    "Beli Sekarang",
-                                                    style: TextStyle(
-                                                        fontSize: 13,
-                                                        color: Colors.white)),
-                                                onPressed: () {
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) {
-                                                      return NFTPayment(
-                                                        title: v.dataAllNFTid
-                                                            ?.data?.nft?.name,
-                                                        images: v
-                                                            .dataAllNFTid
-                                                            ?.data
-                                                            ?.nft
-                                                            ?.imagePath,
-                                                        buyer_est: v
-                                                            .dataAllNFTid
-                                                            ?.data
-                                                            ?.nft
-                                                            ?.qtyUnit
-                                                            .toString(),
-                                                        buyer: v.dataAllNFTid
-                                                            ?.data?.nft?.avlUnit
-                                                            .toString(),
-                                                        expired: v
-                                                            .dataAllNFTid
-                                                            ?.data
-                                                            ?.nft
-                                                            ?.expirationDate,
-                                                        lockNft: widget.lockNft,
-                                                        monthlyPercentage: v
-                                                            .dataAllNFTid
-                                                            ?.data
-                                                            ?.nft
-                                                            ?.monthlyPercentage
-                                                            .toString(),
-                                                        nftSerialId:
-                                                            widget.nftSerialId,
-                                                        priceCoins:
-                                                            widget.priceCoins,
-                                                        gasfee: widget.gasfee,
-                                                        admfee: widget.admfee,
-                                                      );
-                                                    }),
-                                                  );
-                                                },
-                                              ),
-                                            ),
-                                          ),
-                                    const SizedBox(width: 10),
-                                    Expanded(
-                                      flex: 2,
-                                      child: SizedBox(
-                                        height: 50,
-                                        child: ElevatedButton(
-                                          style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty.all(
-                                                    Colors.red),
-                                          ),
-                                          child: const Text(
-                                            "X",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                        childCount: 1,
-                      ));
-                    })
-                  ],
-                ),
-              );
-            }),
+                              ],
+                            );
+                          },
+                          childCount: 1,
+                        ));
+                      })
+                    ],
+                  ),
+                );
+              },
+            ),
     );
   }
 }
