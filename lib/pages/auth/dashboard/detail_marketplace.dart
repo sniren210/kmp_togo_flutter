@@ -131,6 +131,9 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: const Text('Detail Produk UMKM'),
+        ),
         body: loading == true
             ? const Center(
                 child: CircularProgressIndicator(),
