@@ -65,9 +65,8 @@ class _DashboardWalletState extends State<DashboardWallet>
     final _getkategoriProvider =
         Provider.of<ProviderWithDraw>(context, listen: false);
     await _getkategoriProvider.getHistorySaldoWallet(context);
-    setState(() {
-      loading = _getkategoriProvider.loadinghistory;
-    });
+
+    loading = _getkategoriProvider.loadinghistory;
   }
 
   @override

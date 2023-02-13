@@ -11,14 +11,14 @@ import 'package:sizer/sizer.dart';
 
 import '../../models/product/product_model.dart';
 
-class MyProduk extends StatefulWidget {
-  MyProduk({Key? key}) : super(key: key);
+class UmkmMyProduk extends StatefulWidget {
+  UmkmMyProduk({Key? key}) : super(key: key);
 
   @override
-  State<MyProduk> createState() => _MyProdukState();
+  State<UmkmMyProduk> createState() => _UmkmMyProdukState();
 }
 
-class _MyProdukState extends State<MyProduk> {
+class _UmkmMyProdukState extends State<UmkmMyProduk> {
   String productSelling = 'online';
 
   _navigateAndRefreshAddUpdate(BuildContext context, ProviderProduct model,

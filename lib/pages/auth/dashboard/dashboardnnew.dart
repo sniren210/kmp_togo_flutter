@@ -21,6 +21,8 @@ import 'package:kmp_togo_mobile/pages/common/cardnftmitra.dart';
 import 'package:kmp_togo_mobile/pages/common/cardpromo.dart';
 import 'package:kmp_togo_mobile/pages/nft/dashboard_nft.dart';
 import 'package:kmp_togo_mobile/pages/ppob/inputpobwithnumber.dart';
+import 'package:kmp_togo_mobile/pages/umkm/umkmMyProduk.dart';
+import 'package:kmp_togo_mobile/pages/umkm/umkm_category.dart';
 import 'package:kmp_togo_mobile/pages/wallet/buy/buytogoPage.dart';
 import 'package:kmp_togo_mobile/pages/wallet/topup/topuppages.dart';
 import 'package:kmp_togo_mobile/pages/wallet/withdraw/withdrawpages.dart';
@@ -846,13 +848,12 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                     ),
                                                     InkWell(
                                                       onTap: () {
-                                                        // Navigator.push(
-                                                        //   context,
-                                                        //   MaterialPageRoute(
-                                                        //       builder:
-                                                        //           (context) =>
-                                                        //           MyProduk()),
-                                                        // );
+                                                        Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  UmkmCategory()),
+                                                        );
                                                       },
                                                       child: Text(
                                                         'Lihat Semua',
@@ -872,23 +873,24 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                     left: 4.w, right: 4.w),
                                                 height: 6.h,
                                                 child: ListView(
-                                                    shrinkWrap: true,
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    children: const [
-                                                      cardMitraKategori(
-                                                        title: 'hasil pertanian',
-                                                        color: Colors.indigo,
-                                                      ),
-                                                      cardMitraKategori(
-                                                        title: 'hasil bumi',
-                                                        color: Colors.pink,
-                                                      ),
-                                                      cardMitraKategori(
-                                                        title: 'kopi',
-                                                        color: Colors.teal,
-                                                      ),
-                                                    ],),
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  children: const [
+                                                    cardMitraKategori(
+                                                      title: 'hasil pertanian',
+                                                      color: Colors.indigo,
+                                                    ),
+                                                    cardMitraKategori(
+                                                      title: 'hasil bumi',
+                                                      color: Colors.pink,
+                                                    ),
+                                                    cardMitraKategori(
+                                                      title: 'kopi',
+                                                      color: Colors.teal,
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                               Container(
                                                 padding: EdgeInsets.only(
@@ -1428,4 +1430,3 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
     Get.offAllNamed('/home');
   }
 }
-
