@@ -73,214 +73,293 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
               ),
               slivers: [
                 SliverAppBar(
-                  backgroundColor: Theme.of(context).primaryColor,
-                  actions: [
-                    if (_isSliverAppBarExpanded)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: model.busy
-                            ? Text(
-                                '....',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 9.sp),
-                              )
-                            : Center(
-                                child: Text(
-                                  'Coin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white,
-                                      fontSize: 17.sp),
-                                ),
-                              ),
-                      ),
-                  ],
-                  expandedHeight: 200,
-                  collapsedHeight: 60,
+                  backgroundColor: Theme.of(context).canvasColor,
+                  expandedHeight: 340,
+                  collapsedHeight: 140,
                   pinned: true,
+                  automaticallyImplyLeading: !_isSliverAppBarExpanded,
                   flexibleSpace: FlexibleSpaceBar(
-                    background: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (!_isSliverAppBarExpanded) ...[
-                          SizedBox(
-                            height: 200,
-                            child: Stack(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: Theme.of(context).primaryColor,
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                          width: 50,
-                                          height: 50,
-                                          decoration: const BoxDecoration(
-                                              border: Border.fromBorderSide(
-                                                  BorderSide(
-                                                      color: Colors.white)),
-                                              image: DecorationImage(
-                                                  fit: BoxFit.contain,
-                                                  image: AssetImage(
-                                                      'assets/images/bg1024.png')))),
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      model.busy
-                                          ? Text(
-                                              '....',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 9.sp),
-                                            )
-                                          : Text(
-                                              'Coin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                  color: Colors.white,
-                                                  fontSize: 17.sp),
-                                            ),
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Expanded(
-                                              flex: 3,
-                                              child: InkWell(
-                                                onTap: () {
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            TopUpCoinPage()),
-                                                  );
-                                                },
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Card(
-                                                      color:
-                                                          Colors.orangeAccent,
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 8.0,
-                                                                horizontal:
-                                                                    12.0),
-                                                        child: Text(
-                                                          'Beli Coin',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 9.sp),
+                    background: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: _isSliverAppBarExpanded ? 14 : 4.w,
+                        vertical: 2.h,
+                      ),
+                      // child: SizedBox.shrink(),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (!_isSliverAppBarExpanded) ...[
+                            SizedBox(
+                              height: 230,
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: Theme.of(context).primaryColor,
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                            width: 50,
+                                            height: 50,
+                                            decoration: const BoxDecoration(
+                                                border: Border.fromBorderSide(
+                                                    BorderSide(
+                                                        color: Colors.white)),
+                                                image: DecorationImage(
+                                                    fit: BoxFit.contain,
+                                                    image: AssetImage(
+                                                        'assets/images/bg1024.png')))),
+                                        SizedBox(
+                                          height: 2.h,
+                                        ),
+                                        model.busy
+                                            ? Text(
+                                                '....',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 9.sp),
+                                              )
+                                            : Text(
+                                                'coin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    color: Colors.white,
+                                                    fontSize: 17.sp),
+                                              ),
+                                        SizedBox(
+                                          height: 2.h,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                                flex: 3,
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              TopUpCoinPage()),
+                                                    );
+                                                  },
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Card(
+                                                        color:
+                                                            Colors.orangeAccent,
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical: 8.0,
+                                                                  horizontal:
+                                                                      12.0),
+                                                          child: Text(
+                                                            'Beli coin',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 9.sp),
+                                                          ),
                                                         ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              )),
-                                          Expanded(
-                                              flex: 3,
-                                              child: InkWell(
-                                                onTap: () {
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            WithDrawCoin()),
-                                                  );
-                                                },
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Card(
-                                                      color:
-                                                          Colors.orangeAccent,
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 8.0,
-                                                                horizontal:
-                                                                    12.0),
-                                                        child: Text(
-                                                          'Jual Coin',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 9.sp),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )),
+                                            Expanded(
+                                                flex: 3,
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              WithDrawCoin()),
+                                                    );
+                                                  },
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Card(
+                                                        color:
+                                                            Colors.orangeAccent,
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical: 8.0,
+                                                                  horizontal:
+                                                                      12.0),
+                                                          child: Text(
+                                                            'Jual coin',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 9.sp),
+                                                          ),
                                                         ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              )),
-                                          Expanded(
-                                              flex: 3,
-                                              child: InkWell(
-                                                onTap: () {
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            BeliToGo()),
-                                                  );
-                                                },
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Card(
-                                                      color:
-                                                          Colors.orangeAccent,
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 8.0,
-                                                                horizontal:
-                                                                    12.0),
-                                                        child: Text(
-                                                          'PPM',
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 9.sp),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )),
+                                            Expanded(
+                                                flex: 3,
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              ToGoCoin()),
+                                                    );
+                                                  },
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Card(
+                                                        color:
+                                                            Colors.orangeAccent,
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical: 8.0,
+                                                                  horizontal:
+                                                                      12.0),
+                                                          child: Text(
+                                                            'Togo Coin',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 9.sp),
+                                                          ),
                                                         ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              )),
-                                        ],
-                                      )
-                                    ],
+                                                      )
+                                                    ],
+                                                  ),
+                                                )),
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
+                                ],
+                              ),
+                            )
+                          ]
+                        ],
+                      ),
+                    ),
+                    stretchModes: const [
+                      StretchMode.zoomBackground,
+                      StretchMode.blurBackground,
+                    ],
+                    centerTitle: true,
+                    titlePadding: EdgeInsets.symmetric(
+                      horizontal: _isSliverAppBarExpanded ? 14 : 4,
+                      vertical: 8,
+                    ),
+                    title: Container(
+                      color: colorAppBar,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (_isSliverAppBarExpanded) ...[
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 2.w, vertical: 1.h),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: const BoxDecoration(
+                                          border: Border.fromBorderSide(
+                                              BorderSide(color: Colors.black)),
+                                          image: DecorationImage(
+                                              fit: BoxFit.contain,
+                                              image: AssetImage(
+                                                  'assets/images/bg1024.png')))),
+                                  model.busy
+                                      ? Text(
+                                          '....',
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 17.sp),
+                                        )
+                                      : Text(
+                                          'coin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.black,
+                                              fontSize: 17.sp),
+                                        ),
+                                ],
+                              ),
+                            ),
+                          ],
+                          Container(
+                            // color: Theme.of(context).canvasColor,
+                            margin: EdgeInsets.only(left: 2.w, top: 0.h),
+                            child: Text(
+                              'Riwayat',
+                              style: TextStyle(
+                                  fontSize:
+                                      _isSliverAppBarExpanded ? 10.sp : 7.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                          ),
+                          Container(
+                            // color: Theme.of(context).canvasColor,
+                            padding: EdgeInsets.only(left: 2.w, right: 2.w),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: card1('Semua', 0),
+                                ),
+                                Expanded(
+                                  child: card1('Beli', 1),
+                                ),
+                                Expanded(
+                                  child: card1('Jual', 2),
                                 ),
                               ],
                             ),
-                          )
-                        ]
-                      ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -589,7 +668,7 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
                     color: selectedIndex == _selectedIndex
                         ? Colors.white
                         : Colors.black,
-                    fontSize: 6.sp),
+                    fontSize: _isSliverAppBarExpanded ? 8.sp : 6.sp),
               ),
             ],
           ),

@@ -21,6 +21,8 @@ import 'package:kmp_togo_mobile/pages/common/cardnftmitra.dart';
 import 'package:kmp_togo_mobile/pages/common/cardpromo.dart';
 import 'package:kmp_togo_mobile/pages/nft/dashboard_nft.dart';
 import 'package:kmp_togo_mobile/pages/ppob/inputpobwithnumber.dart';
+import 'package:kmp_togo_mobile/pages/umkm/umkmMyProduk.dart';
+import 'package:kmp_togo_mobile/pages/umkm/umkm_category.dart';
 import 'package:kmp_togo_mobile/pages/wallet/buy/buytogoPage.dart';
 import 'package:kmp_togo_mobile/pages/wallet/topup/topuppages.dart';
 import 'package:kmp_togo_mobile/pages/wallet/withdraw/withdrawpages.dart';
@@ -857,13 +859,12 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                     ),
                                                     InkWell(
                                                       onTap: () {
-                                                        // Navigator.push(
-                                                        //   context,
-                                                        //   MaterialPageRoute(
-                                                        //       builder:
-                                                        //           (context) =>
-                                                        //           MyProduk()),
-                                                        // );
+                                                        Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  UmkmCategory()),
+                                                        );
                                                       },
                                                       child: Text(
                                                         'Lihat Semua',

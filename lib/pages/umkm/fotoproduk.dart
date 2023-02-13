@@ -132,8 +132,9 @@ class _FotoProdukState extends State<FotoProduk> {
                             onTap: image == null
                                 ? null
                                 : () async {
-                              final SharedPreferencesManager sharedPreferencesManager =
-                              locator<SharedPreferencesManager>();
+                                    final SharedPreferencesManager
+                                        sharedPreferencesManager =
+                                        locator<SharedPreferencesManager>();
 
                                     // if (widget.isWithVariant) {
                                     //   await Provider.of<
@@ -179,17 +180,17 @@ class _FotoProdukState extends State<FotoProduk> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => SplashPage(
-                                            pinValue: sharedPreferencesManager
-                                                .getString(
-                                                SharedPreferencesManager
-                                                    .pin) ??
-                                                '',
+                                                pinValue: sharedPreferencesManager
+                                                        .getString(
+                                                            SharedPreferencesManager
+                                                                .pin) ??
+                                                    '',
                                                 title: 'Berhasil Menambahkan',
                                                 subtitle: '',
                                                 provRepo: widget.isWithVariant
                                                     ? 'product_w_variant'
                                                     : 'product_wt_variant',
-                                                nextPage: MyProduk(),
+                                                nextPage: UmkmMyProduk(),
                                                 isReplace: true,
                                                 isUpdate: widget.isUpdate,
                                                 data: null,

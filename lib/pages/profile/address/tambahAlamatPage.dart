@@ -115,14 +115,14 @@ class _TambahAlamatPageState extends State<TambahAlamatPage> {
                         List<Placemark> placemarks =
                             await placemarkFromCoordinates(
                                 p.latitude, p.longitude);
-
-                        placeNameC!.text = placemarks.first.locality ?? '';
+                        placeNameC!.text = placemarks.first.street ?? '';
                         postalCodeNumberC!.text =
                             placemarks.first.postalCode ?? '';
-                        cityC!.text = placemarks.first.country ?? '';
+                        cityC!.text = placemarks.first.administrativeArea ?? '';
+                        provinceC!.text = placemarks.first.subLocality ?? '';
                         subdisticC!.text =
-                            placemarks.first.subAdministrativeArea ?? '';
-                        addressC!.text = placemarks.first.street ?? '';
+                            placemarks.first.administrativeArea ?? '';
+                        addressC!.text = placemarks.first.locality ?? '';
                       }
                     },
                     child: Text('Pilih lokasi'),

@@ -65,9 +65,8 @@ class _DashboardWalletState extends State<DashboardWallet>
     final _getkategoriProvider =
         Provider.of<ProviderWithDraw>(context, listen: false);
     await _getkategoriProvider.getHistorySaldoWallet(context);
-    setState(() {
-      loading = _getkategoriProvider.loadinghistory;
-    });
+
+    loading = _getkategoriProvider.loadinghistory;
   }
 
   @override
@@ -375,9 +374,15 @@ class _DashboardWalletState extends State<DashboardWallet>
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                card1('Semua', 0),
-                                card1('Beli', 1),
-                                card1('Jual', 2),
+                                Expanded(
+                                  child: card1('Semua', 0),
+                                ),
+                                Expanded(
+                                  child: card1('Beli', 1),
+                                ),
+                                Expanded(
+                                  child: card1('Jual', 2),
+                                ),
                               ],
                             ),
                           ),
@@ -567,7 +572,7 @@ class _DashboardWalletState extends State<DashboardWallet>
 
   card1(String judul, int _selectedIndex) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(0.h, 1.h, 0.h, 1.h),
+      padding: EdgeInsets.fromLTRB(0.h, 1.h, 1.h, 1.h),
       child: InkWell(
         onTap: () {
           setState(() {

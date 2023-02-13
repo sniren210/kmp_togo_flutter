@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:kmp_togo_mobile/helpers/api_helper.dart';
 import 'package:kmp_togo_mobile/helpers/injector.dart';
@@ -50,15 +52,17 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
 
   request_otp(context, noHp, firstRequest) async {
     try {
+      final res = await _dio.post(
+        '/api/v1/get-otp',
+        data: {'phone_number': '0${noHp}'},
+      );
 
-      final res = await _dio.get('/api/v1/otp/0${noHp}');
-
-      await saveResponsePost(res.requestOptions.path, res.statusMessage,
-          res.data.toString(), '');
+      await saveResponsePost(
+          res.requestOptions.path, res.statusMessage, res.data.toString(), '');
 
       if (res.data['success'] == true) {
         await sharedPreferencesManager.setString(
-            SharedPreferencesManager.nomerHP, '+62$noHp');
+            SharedPreferencesManager.nomerHP, '0$noHp');
         loadingOtp = false;
 
         if (firstRequest) {
@@ -96,11 +100,11 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
 
   validate_otp(context, noHp, String otpCode) async {
     try {
-      final body = {"phoneNumber": noHp, "otp": otpCode};
+      final body = {"phone_number": noHp, "otp": otpCode};
 
-      print('body: $body');
-      final res = await _dio.put('/v1/auth/waotp', data: body);
-      if (res.data['data'] == 'success') {
+      final res = await _dio.post('/api/v1/check-otp', data: body);
+      print(res.data);
+      if (res.data['success'] == true) {
         await sharedPreferencesManager.setString(
             SharedPreferencesManager.otp, otpCode);
         loadingKodeOtp = false;
@@ -141,58 +145,48 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
     }
   }
 
-  validate_ocrktp(context, File? images) async {
+  validate_ocrktp(context, File image) async {
     try {
-      String fileName = images!.path.split('/').last;
-      FormData formData = FormData.fromMap({
-        "image": await MultipartFile.fromFile(images.path, filename: fileName),
-      });
-      print('body: $formData');
-      final res = await _dio.post('/v1/auth/ktpocr', data: formData);
+      // String fileName = images!.path.split('/').last;
+      // FormData formData = FormData.fromMap({
+      //   "img": await MultipartFile.fromFile(images.path, filename: fileName),
+      // });
+      // print('body: $formData');
+      final res = await _dio.post('/api/v1/ktp-ocr',
+          data: {'image': base64Encode(await image.readAsBytes())});
 
-      await saveResponsePost(res.requestOptions.path, res.statusMessage,
-          res.data.toString(), formData.toString());
+      await saveResponsePost(
+          res.requestOptions.path, res.statusMessage, res.data.toString(), '');
+
+      print(res.statusCode);
 
       print('res: ${res.data['data']}');
-      if (res.data['data']['status'] == 'OK') {
+      if (res.data['success'] == true) {
         dataktp = ModelKtpData.fromJson(res.data);
-        print(dataktp!.data!.message!.id!.isNotEmpty);
-        print(dataktp!.data!.message!.name!.isNotEmpty);
-        print(dataktp!.data!.message!.dob!.isNotEmpty);
-        print(dataktp!.data!.message!.province!.isNotEmpty);
-        print(dataktp!.data!.message!.city!.isNotEmpty);
-        print(dataktp!.data!.message!.village!.isNotEmpty);
-        print(dataktp!.data!.message!.address!.isNotEmpty);
 
-        if (dataktp!.data!.message!.id! != '' &&
-            dataktp!.data!.message!.name! != '' &&
-            dataktp!.data!.message!.dob! != '' &&
-            dataktp!.data!.message!.province! != '' &&
-            dataktp!.data!.message!.city! != '' &&
-            dataktp!.data!.message!.village! != '' &&
-            dataktp!.data!.message!.address! != '') {
+        if (dataktp!.data!.id! != '' &&
+            dataktp!.data!.name! != '' &&
+            dataktp!.data!.dob! != '' &&
+            dataktp!.data!.province! != '' &&
+            dataktp!.data!.city! != '' &&
+            dataktp!.data!.village! != '' &&
+            dataktp!.data!.address! != '') {
           loadingKodeOtp = false;
           await sharedPreferencesManager.setString(
-              SharedPreferencesManager.nomorKTP,
-              dataktp?.data?.message?.id ?? "");
+              SharedPreferencesManager.nomorKTP, dataktp?.data?.id ?? "");
           await sharedPreferencesManager.setString(
-              SharedPreferencesManager.nama,
-              dataktp?.data?.message?.name ?? "");
+              SharedPreferencesManager.nama, dataktp?.data?.name ?? "");
           await sharedPreferencesManager.setString(
-              SharedPreferencesManager.tgllahir,
-              dataktp?.data?.message?.dob ?? "");
+              SharedPreferencesManager.tgllahir, dataktp?.data?.dob ?? "");
           await sharedPreferencesManager.setString(
               SharedPreferencesManager.provinsiid,
-              dataktp?.data?.message?.province ?? "");
+              dataktp?.data?.province ?? "");
           await sharedPreferencesManager.setString(
-              SharedPreferencesManager.kotaid,
-              dataktp?.data?.message?.city ?? "");
+              SharedPreferencesManager.kotaid, dataktp?.data?.city ?? "");
           await sharedPreferencesManager.setString(
-              SharedPreferencesManager.kecamatan,
-              dataktp?.data?.message?.village ?? "");
+              SharedPreferencesManager.kecamatan, dataktp?.data?.village ?? "");
           await sharedPreferencesManager.setString(
-              SharedPreferencesManager.alamat,
-              dataktp?.data?.message?.address ?? "");
+              SharedPreferencesManager.alamat, dataktp?.data?.address ?? "");
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -217,7 +211,6 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
             text: res.data['data']['message']);
         notifyListeners();
       }
-      print('body: ${res.data}');
     } on DioError catch (e) {
       try {
         ErrorModel data = ErrorModel.fromJson(e.response!.data);
@@ -229,8 +222,6 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
         await customSnackbar(
             type: 'error', title: 'error', text: 'Terjadi kesalahan!');
       }
-    } catch (e) {
-      print(e);
     }
   }
 
@@ -238,8 +229,8 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
     try {
       final res = await _dio.get('/v1/region/province');
 
-      await saveResponseGet(res.requestOptions.path, res.statusMessage,
-          res.data.toString());
+      await saveResponseGet(
+          res.requestOptions.path, res.statusMessage, res.data.toString());
 
       dataProvinsi = ModelProvinsi.fromJson(res.data);
       print('body: ${res.data}');
@@ -264,8 +255,8 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
     try {
       final res = await _dio.get('/v1/region/city?province=$id');
 
-      await saveResponseGet(res.requestOptions.path, res.statusMessage,
-          res.data.toString());
+      await saveResponseGet(
+          res.requestOptions.path, res.statusMessage, res.data.toString());
 
       dataKota = ModelKota.fromJson(res.data);
       print('body: ${res.data}');
@@ -290,8 +281,8 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
     try {
       final res = await _dio.get('/v1/region/subdistrict?city=$id');
 
-      await saveResponseGet(res.requestOptions.path, res.statusMessage,
-          res.data.toString());
+      await saveResponseGet(
+          res.requestOptions.path, res.statusMessage, res.data.toString());
 
       dataKecamatan = ModelKecamatan.fromJson(res.data);
       print('body: ${res.data}');
@@ -318,8 +309,8 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
     try {
       final res = await _dio.get('/v1/member/type');
 
-      await saveResponseGet(res.requestOptions.path, res.statusMessage,
-          res.data.toString());
+      await saveResponseGet(
+          res.requestOptions.path, res.statusMessage, res.data.toString());
 
       dataTipeAnggota = ModelTipeAnggota.fromJson(res.data);
       print('body: ${res.data}');
@@ -481,8 +472,8 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
     try {
       final res = await _dio.get('/v1/user/me');
 
-      await saveResponseGet(res.requestOptions.path, res.statusMessage,
-          res.data.toString());
+      await saveResponseGet(
+          res.requestOptions.path, res.statusMessage, res.data.toString());
 
       dataMyinfo = ModelInfoRegister.fromJson(res.data);
       print('body: ${res.data}');

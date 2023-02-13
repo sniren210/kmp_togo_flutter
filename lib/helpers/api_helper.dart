@@ -15,7 +15,8 @@ class Helper {
 
   // final _baseUrl = 'https://digitogo.tech';
   // final _baseUrl = 'http://147.139.168.187:3000';
-  final _baseUrl = 'https://api.digitogo.tech';
+  // final _baseUrl = 'https://api.digitogo.tech';
+  final _baseUrl = 'https://admin.digitogo.tech';
 
   late Dio _dio;
   Dio get dio => _dio;
