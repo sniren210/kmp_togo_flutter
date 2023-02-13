@@ -154,7 +154,7 @@ class _PinPpobState extends State<PinPpob> {
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                         image: AssetImage('assets/images/logon.jpg'))),
               ),
               const SizedBox(
@@ -197,6 +197,12 @@ class _PinPpobState extends State<PinPpob> {
               ),
               InkWell(
                 onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            PpobSuccess(isScan: widget.isScan)),
+                  );
                   if (_pinValue.isNotEmpty) {
                     Navigator.push(
                       context,
@@ -223,7 +229,7 @@ class _PinPpobState extends State<PinPpob> {
                       'Konfirmasi Pembelian',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.normal,
                           fontSize: 15),
                     )),

@@ -36,7 +36,7 @@ class _PpobSuccessState extends State<PpobSuccess> {
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                         image: AssetImage('assets/images/logon.jpg'))),
               ),
               const SizedBox(
@@ -143,7 +143,9 @@ class _PpobSuccessState extends State<PpobSuccess> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) {
-                      return jenisTransaksi();
+                      return Home(
+                        selectedIndex: 2,
+                      );
                     }),
                   );
                 },
@@ -159,7 +161,7 @@ class _PpobSuccessState extends State<PpobSuccess> {
                       'Lihat Riwayat Transaksi',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.normal,
                           fontSize: 15),
                     )),
