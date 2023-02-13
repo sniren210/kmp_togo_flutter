@@ -31,6 +31,7 @@ class _ScanPagePembayaranState extends State<ScanPagePembayaran> {
     }
   }
 
+//
   nextpage() {
     if (validate == true) {
       Navigator.push(context,
@@ -117,8 +118,12 @@ class _ScanPagePembayaranState extends State<ScanPagePembayaran> {
                   padding: const EdgeInsets.symmetric(vertical: 18.0),
                   child: InkWell(
                     onTap: () async {
-                      await _submit();
-                      nextpage();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PinPpob(isScan: true)));
+                      // await _submit();
+                      // nextpage();
                     },
                     child: Container(
                         width: MediaQuery.of(context).size.width,

@@ -10,16 +10,16 @@ import 'package:sizer/sizer.dart';
 import '../../../helpers/ui_helper/textStyling.dart';
 import '../history/jenis_transaksi.dart';
 
-class PpobSuccess extends StatefulWidget {
-  bool isScan;
-
-  PpobSuccess({super.key, required this.isScan});
+class NotificationDetailPage extends StatefulWidget {
+  NotificationDetailPage({
+    super.key,
+  });
 
   @override
-  State<PpobSuccess> createState() => _PpobSuccessState();
+  State<NotificationDetailPage> createState() => _NotificationDetailPageState();
 }
 
-class _PpobSuccessState extends State<PpobSuccess> {
+class _NotificationDetailPageState extends State<NotificationDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,79 +59,77 @@ class _PpobSuccessState extends State<PpobSuccess> {
                 ),
               ),
               const VerticalSpacer(height: 8),
-              widget.isScan
-                  ? Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 7.0, horizontal: 2.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 7.0, horizontal: 2.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
-                                    Text(
-                                      "Kode Pembayaran",
-                                      style: TextStyling.w30013black,
-                                    ),
-                                    VerticalSpacer(height: 8),
-                                    Text(
-                                      "8812 2829 9291 2829",
-                                      style: TextStyling.bold13black,
-                                    ),
-                                  ],
-                                ),
+                            children: const [
+                              Text(
+                                "Kode Pembayaran",
+                                style: TextStyling.w30013black,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 7.0, horizontal: 2.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
-                                    Text(
-                                      "Tujuan Pembayaran",
-                                      style: TextStyling.w30013black,
-                                    ),
-                                    VerticalSpacer(height: 8),
-                                    Text(
-                                      "Sofana Furniture (A91JIJA291)",
-                                      style: TextStyling.bold13black,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Divider(
-                                height: 1,
-                                color: Colors.transparent,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 7.0, horizontal: 2.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
-                                    Text(
-                                      "Jumlah Pembayaran",
-                                      style: TextStyling.w30013black,
-                                    ),
-                                    VerticalSpacer(height: 8),
-                                    Text(
-                                      "500.000 Poin",
-                                      style: TextStyling.bold13black,
-                                    ),
-                                  ],
-                                ),
+                              VerticalSpacer(height: 8),
+                              Text(
+                                "8812 2829 9291 2829",
+                                style: TextStyling.bold13black,
                               ),
                             ],
                           ),
                         ),
-                      ),
-                    )
-                  : Container(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 7.0, horizontal: 2.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text(
+                                "Tujuan Pembayaran",
+                                style: TextStyling.w30013black,
+                              ),
+                              VerticalSpacer(height: 8),
+                              Text(
+                                "Sofana Furniture (A91JIJA291)",
+                                style: TextStyling.bold13black,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Divider(
+                          height: 1,
+                          color: Colors.transparent,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 7.0, horizontal: 2.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text(
+                                "Jumlah Pembayaran",
+                                style: TextStyling.w30013black,
+                              ),
+                              VerticalSpacer(height: 8),
+                              Text(
+                                "500.000 Poin",
+                                style: TextStyling.bold13black,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 3.h,
               ),

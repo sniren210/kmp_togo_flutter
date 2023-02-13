@@ -150,17 +150,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     loading == false
                         ? InkWell(
                             onTap: () async {
-                              try {
-                                if (phoneNumberC.text.startsWith('8')) {
-                                  await _submit(context);
-                                } else {
-                                  await customSnackbar(
-                                      type: 'error',
-                                      title: 'Kesalahan',
-                                      text: 'Nomor HP tidak valid');
-                                }
-                              } catch (e) {
-                                debugPrint('ERROR: $e');
+                              if (phoneNumberC.text.startsWith('8')) {
+                                await _submit(context);
+                              } else {
+                                await customSnackbar(
+                                    type: 'error',
+                                    title: 'Kesalahan',
+                                    text: 'Nomor HP tidak valid');
                               }
                             },
                             child: Container(
