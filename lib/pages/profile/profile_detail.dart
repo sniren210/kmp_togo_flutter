@@ -68,7 +68,7 @@ class profileDetail extends StatelessWidget {
                   Align(
                     alignment: Alignment.topCenter,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 60),
+                      padding: const EdgeInsets.only(top: 70),
                       child: Container(
                         width: 80,
                         height: 80,
@@ -143,7 +143,7 @@ class profileDetail extends StatelessWidget {
                     'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
               ),
               ListTile(
-                title: const Text('BNI a/n Inky ddaaa jdkd'),
+                title: const Text('-nama bank- a/n Inky ddaaa jdkd'),
                 subtitle: Text(nomorRekening.toString()),
                 trailing: InkWell(
                   onTap: () {
@@ -167,52 +167,54 @@ _showSimpleModalDialog(context, int bankAccount) {
         return Dialog(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          child: Container(
+          child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.3,
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Form(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const Center(
-                      child: Text(
-                        'Edit Your bank account',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Center(
+                        child: Text(
+                          'Edit Your bank account',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      controller: TextEditingController(
-                        text: "BNI",
+                      const SizedBox(
+                        height: 10,
                       ),
-                      decoration: new InputDecoration(
-                        hintText: "pilih Bank",
-                        labelText: "Pilih Bank anda",
-                        icon: const Icon(Icons.note),
+                      TextFormField(
+                        controller: TextEditingController(
+                          text: "nama bank",
+                        ),
+                        decoration: new InputDecoration(
+                          hintText: "pilih Bank",
+                          labelText: "Pilih Bank anda",
+                          icon: const Icon(Icons.note),
+                        ),
                       ),
-                    ),
-                    TextFormField(
-                      controller: TextEditingController(
-                        text: bankAccount.toString(),
+                      TextFormField(
+                        controller: TextEditingController(
+                          text: bankAccount.toString(),
+                        ),
+                        decoration: new InputDecoration(
+                          hintText: "Nomor Rekengin",
+                          labelText: "Masukan Nomor Rekening anda",
+                          icon: const Icon(Icons.numbers),
+                        ),
                       ),
-                      decoration: new InputDecoration(
-                        hintText: "Nomor Rekengin",
-                        labelText: "Masukan Nomor Rekening anda",
-                        icon: const Icon(Icons.numbers),
+                      const SizedBox(
+                        height: 10,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('Update'),
-                    ),
-                  ],
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: const Text('Update'),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

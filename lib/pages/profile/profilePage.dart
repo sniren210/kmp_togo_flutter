@@ -19,6 +19,8 @@ import 'package:kmp_togo_mobile/providers/cart/cart_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:settings_ui/settings_ui.dart';
 
+import 'iuran_pokok.dart';
+
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
 
@@ -73,7 +75,7 @@ class _ProfileState extends State<Profile> {
                           email: "inkypramudia27@gmail.com  ",
                           token: 3454948.332,
                           memberType: "admin",
-                          status: "pacaran",
+                          status: "asdasd",
                         ),
                       ),
                     ),
@@ -140,10 +142,11 @@ class _ProfileState extends State<Profile> {
                         ),
                         onPressed: (value) {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      Home(selectedIndex: 2)));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => iuranPokok(),
+                            ),
+                          );
                         },
                       ),
                       SettingsTile(
@@ -184,8 +187,7 @@ class _ProfileState extends State<Profile> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      profileDetail()));
+                                  builder: (context) => profileDetail()));
                         },
                       ),
                       SettingsTile(

@@ -259,8 +259,9 @@ class _DashboardWalletState extends State<DashboardWallet>
                                                     Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              ToGoCoin()),
+                                                        builder: (context) =>
+                                                            ToGoCoin(),
+                                                      ),
                                                     );
                                                   },
                                                   child: Column(
