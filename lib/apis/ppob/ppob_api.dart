@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:dio/dio.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/instance_manager.dart';

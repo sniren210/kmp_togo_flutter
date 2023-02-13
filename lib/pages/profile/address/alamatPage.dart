@@ -67,9 +67,11 @@ class _AlamatPageState extends State<AlamatPage> {
                               //       );
                               //     });
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => editAlamatPage()));
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => editAlamatPage(),
+                                ),
+                              );
                             },
                             child: Container(
                               decoration: BoxDecoration(
