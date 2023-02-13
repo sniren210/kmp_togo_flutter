@@ -132,9 +132,10 @@ class _ScanPagePembayaranState extends State<ScanPagePembayaran> {
                           'Lanjutkan',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 15),
+                            color: Colors.white,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 15,
+                          ),
                         )),
                   ),
                 ),
