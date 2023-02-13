@@ -75,6 +75,9 @@ class _DetailHistoryNFTState extends State<DetailHistoryNFT>
     print(widget.monthlyPercentage);
     print(widget.pembeli);
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Detail History NFT'),
+      ),
       body: Consumer<ProviderNft>(
           builder: (BuildContext context, v, Widget? Child) {
         return SafeArea(
@@ -373,36 +376,6 @@ class _DetailHistoryNFTState extends State<DetailHistoryNFT>
                                     ],
                                   ),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 14.0, vertical: 50),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    flex: 2,
-                                    child: SizedBox(
-                                      height: 50,
-                                      child: ElevatedButton(
-                                        style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all(
-                                                  Colors.red),
-                                        ),
-                                        child: const Text(
-                                          "X",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ],
                               ),
                             ),
                           ],
