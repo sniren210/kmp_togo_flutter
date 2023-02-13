@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/formInputField.dart';
@@ -89,20 +90,14 @@ class _TambahAlamatPageState extends State<TambahAlamatPage> {
         title: const Text('Tambah Alamat'),
       ),
       body: Consumer<ProviderRegister>(
-          builder: (BuildContext context, v, Widget? child) {
-        return SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minWidth: MediaQuery.of(context).size.width,
-              minHeight: MediaQuery.of(context).size.height,
-            ),
-            child: IntrinsicHeight(
+        builder: (BuildContext context, v, Widget? child) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
                   ElevatedButton(
                     onPressed: () async {
                       // print(geoPoint);
@@ -159,153 +154,26 @@ class _TambahAlamatPageState extends State<TambahAlamatPage> {
                   const SizedBox(
                     height: 8,
                   ),
-                  InkWell(
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(border: Border.all()),
-                      child: Row(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(left: 8.0, right: 8),
-                            child:
-                                Icon(Icons.location_city, color: Colors.grey),
-                          ),
-                          Expanded(
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                hint: Text(
-                                  "  Pilih Provinsi",
-                                  style: TextStyle(fontSize: 10.sp),
-                                ),
-                                items: v.dataProvinsi?.data
-                                    ?.map<DropdownMenuItem<String>>(
-                                        (DataProvinsi valuee) {
-                                  return DropdownMenuItem<String>(
-                                    value: valuee.provinceId ?? "",
-                                    child: Text(
-                                      '   ${valuee.province}',
-                                      style:
-                                          const TextStyle(color: Colors.black),
-                                    ),
-                                  );
-                                }).toList(),
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    currentSelectedValueProvinsi = newValue;
-                                  });
-                                  cekKota(newValue);
-                                },
-                                value: currentSelectedValueProvinsi,
-                                style: TextStyle(
-                                    fontSize: 10.sp, color: Colors.black),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  FormInputLongText(
+                    controller: provinceC!,
+                    hintText: 'Provinsi',
+                    icon: Icons.email_outlined,
                   ),
                   const SizedBox(
                     height: 8,
                   ),
-                  InkWell(
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(border: Border.all()),
-                      child: Row(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(left: 8.0, right: 8),
-                            child:
-                                Icon(Icons.location_city, color: Colors.grey),
-                          ),
-                          Expanded(
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                hint: Text(
-                                  "  Pilih Kota / Kabupaten",
-                                  style: TextStyle(fontSize: 10.sp),
-                                ),
-                                items: v.dataKota?.data
-                                    ?.map<DropdownMenuItem<String>>(
-                                        (DataKota valuee) {
-                                  return DropdownMenuItem<String>(
-                                    value: valuee.cityId ?? "",
-                                    child: Text(
-                                      '   ${valuee.cityName}',
-                                      style:
-                                          const TextStyle(color: Colors.black),
-                                    ),
-                                  );
-                                }).toList(),
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    currentSelectedValueKota = newValue;
-                                    // getCekData();
-                                  });
-                                  cekKecamatan(newValue);
-                                },
-                                value: currentSelectedValueKota,
-                                style: TextStyle(
-                                    fontSize: 10.sp, color: Colors.black),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  FormInputLongText(
+                    controller: cityC!,
+                    hintText: 'Kabupaten / kota',
+                    icon: Icons.email_outlined,
                   ),
                   const SizedBox(
                     height: 8,
                   ),
-                  InkWell(
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(border: Border.all()),
-                      child: Row(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(left: 8.0, right: 8),
-                            child:
-                                Icon(Icons.location_city, color: Colors.grey),
-                          ),
-                          Expanded(
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                hint: Text(
-                                  "  Pilih Kecamatan / Desa",
-                                  style: TextStyle(fontSize: 10.sp),
-                                ),
-                                items: v.dataKecamatan?.data
-                                    ?.map<DropdownMenuItem<String>>(
-                                        (DataKecamatan valuee) {
-                                  return DropdownMenuItem<String>(
-                                    value: valuee.subdistrictId ?? "",
-                                    child: Text(
-                                      '   ${valuee.subdistrictName}',
-                                      style:
-                                          const TextStyle(color: Colors.black),
-                                    ),
-                                  );
-                                }).toList(),
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    currentSelectedValueKecamatan = newValue;
-                                    // getCekData();
-                                  });
-                                },
-                                value: currentSelectedValueKecamatan,
-                                style: TextStyle(
-                                    fontSize: 10.sp, color: Colors.black),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  FormInputLongText(
+                    controller: subdisticC!,
+                    hintText: 'Kecamatan / Desa',
+                    icon: Icons.email_outlined,
                   ),
                   const SizedBox(
                     height: 8,
@@ -318,114 +186,120 @@ class _TambahAlamatPageState extends State<TambahAlamatPage> {
                     height: 8,
                   ),
                   FormInput(
-                      controller: postalCodeNumberC!,
-                      inputType: TextInputType.number,
-                      hintText: 'Kode Pos',
-                      maxInputLength: 6,
-                      icon: Icons.location_city),
+                    controller: postalCodeNumberC!,
+                    inputType: TextInputType.number,
+                    hintText: 'Kode Pos',
+                    maxInputLength: 6,
+                    icon: Icons.location_city,
+                  ),
                   const SizedBox(
                     height: 70,
                   ),
-                  loading == false
-                      ? InkWell(
-                          onTap: () async {
-                            if (currentSelectedValueProvinsi == null) {
-                              customSnackbar(
-                                  type: 'error',
-                                  title: 'Data Provinsi',
-                                  text: 'Provinsi tidak boleh kosong');
-                            } else if (currentSelectedValueKota == null) {
-                              customSnackbar(
-                                  type: 'error',
-                                  title: 'Data Kota',
-                                  text: 'Kota tidak boleh kosong');
-                            } else if (currentSelectedValueKecamatan == null) {
-                              customSnackbar(
-                                  type: 'error',
-                                  title: 'Data Kecamatan',
-                                  text: 'Kecamatan tidak boleh kosong');
-                            } else {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SplashPage(
-                                          pinValue: sharedPreferencesManager
-                                                  .getString(
-                                                      SharedPreferencesManager
-                                                          .pin) ??
-                                              '',
-                                          title: 'Berhasil Menambahkan',
-                                          subtitle: '',
-                                          provRepo: 'addressNew',
-                                          nextPage: Home(selectedIndex: 3),
-                                          isReplace: true,
-                                          isUpdate: false,
-                                          name: placeNameC!.text,
-                                          contactName: contactNameC!.text,
-                                          phoneNumber: phoneNumberC!.text,
-                                          detailAddress: addressC!.text,
-                                          provinceId: int.parse(
-                                              currentSelectedValueProvinsi),
-                                          cityId: int.parse(
-                                              currentSelectedValueKota),
-                                          subdistrictId: int.parse(
-                                              currentSelectedValueKecamatan),
-                                          postalCode: postalCodeNumberC!.text,
-                                        )),
-                              );
-                            }
-                          },
-                          child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              margin: const EdgeInsets.only(
-                                  right: 20.0, left: 20.0),
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 15, horizontal: 70),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: const Color(0xFF85014e),
-                              ),
-                              child: const Text(
-                                'Simpan',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 15),
-                              )),
-                        )
-                      : InkWell(
-                          onTap: () {},
-                          child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              margin: const EdgeInsets.only(
-                                right: 20.0,
-                                left: 20.0,
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 15, horizontal: 70),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: Colors.grey),
-                              child: Center(
-                                child: SizedBox(
-                                  child: const CircularProgressIndicator(
-                                    color: Colors.white,
-                                  ),
-                                  height: 2.h,
-                                  width: 4.w,
-                                ),
-                              )),
-                        ),
-                  const SizedBox(
-                    height: 70,
-                  ),
+                  KeyboardVisibilityBuilder(
+                      builder: (context, isKeyboardVisible) {
+                    if (isKeyboardVisible) {
+                      return SizedBox(
+                        height: 20.h,
+                      );
+                    }
+                    return SizedBox.shrink();
+                  }),
                 ],
               ),
             ),
-          ),
-        );
-      }),
+          );
+        },
+      ),
+      bottomSheet: loading == false
+          ? InkWell(
+              onTap: () async {
+                if (currentSelectedValueProvinsi == null) {
+                  customSnackbar(
+                      type: 'error',
+                      title: 'Data Provinsi',
+                      text: 'Provinsi tidak boleh kosong');
+                } else if (currentSelectedValueKota == null) {
+                  customSnackbar(
+                      type: 'error',
+                      title: 'Data Kota',
+                      text: 'Kota tidak boleh kosong');
+                } else if (currentSelectedValueKecamatan == null) {
+                  customSnackbar(
+                      type: 'error',
+                      title: 'Data Kecamatan',
+                      text: 'Kecamatan tidak boleh kosong');
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SplashPage(
+                              pinValue: sharedPreferencesManager.getString(
+                                      SharedPreferencesManager.pin) ??
+                                  '',
+                              title: 'Berhasil Menambahkan',
+                              subtitle: '',
+                              provRepo: 'addressNew',
+                              nextPage: Home(selectedIndex: 3),
+                              isReplace: true,
+                              isUpdate: false,
+                              name: placeNameC!.text,
+                              contactName: contactNameC!.text,
+                              phoneNumber: phoneNumberC!.text,
+                              detailAddress: addressC!.text,
+                              provinceId:
+                                  int.parse(currentSelectedValueProvinsi),
+                              cityId: int.parse(currentSelectedValueKota),
+                              subdistrictId:
+                                  int.parse(currentSelectedValueKecamatan),
+                              postalCode: postalCodeNumberC!.text,
+                            )),
+                  );
+                }
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.only(right: 20.0, left: 20.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 70),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: const Color(0xFF85014e),
+                    ),
+                    child: const Text(
+                      'Simpan',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 15),
+                    )),
+              ),
+            )
+          : InkWell(
+              onTap: () {},
+              child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin: const EdgeInsets.only(
+                    right: 20.0,
+                    left: 20.0,
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 70),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.grey),
+                  child: Center(
+                    child: SizedBox(
+                      child: const CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
+                      height: 2.h,
+                      width: 4.w,
+                    ),
+                  )),
+            ),
     );
   }
 

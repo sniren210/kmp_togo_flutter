@@ -218,9 +218,6 @@ class _AlamatPageState extends State<AlamatPage> {
                 minLines: 1,
                 keyboardType: TextInputType.number,
                 maxLines: 1,
-                decoration: const InputDecoration(
-                  icon: Icon(Icons.contact_phone),
-                ),
               ),
               SizedBox(
                 height: 2.h,
@@ -231,9 +228,6 @@ class _AlamatPageState extends State<AlamatPage> {
                 minLines: 1,
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
-                decoration: const InputDecoration(
-                  icon: Icon(Icons.house),
-                ),
               ),
               SizedBox(
                 height: 2.h,
