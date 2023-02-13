@@ -147,15 +147,17 @@ class _DetailHistoryNFTState extends State<DetailHistoryNFT>
                                         CrossAxisAlignment.start,
                                     children: [
                                       Container(
-                                        height: 150,
+                                        height: 180,
                                         width: double.maxFinite,
                                         alignment: Alignment.bottomCenter,
                                         decoration: BoxDecoration(
                                           borderRadius: const BorderRadius.only(
-                                              topLeft: Radius.circular(10),
-                                              topRight: Radius.circular(10),
-                                              bottomLeft: Radius.circular(10),
-                                              bottomRight: Radius.circular(10)),
+                                            topLeft: Radius.circular(10),
+                                            topRight: Radius.circular(10),
+                                            bottomLeft: Radius.circular(10),
+                                            bottomRight: Radius.circular(10),
+                                          ),
+                                          color: Colors.grey,
                                           image: DecorationImage(
                                             image: NetworkImage(widget.images ??
                                                 kEmptyImageLink),
