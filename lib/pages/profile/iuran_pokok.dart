@@ -49,6 +49,7 @@ class _iuranPokokState extends State<iuranPokok> {
             Navigator.pop(context);
           },
           child: Text('X'),
+          backgroundColor: Theme.of(context).primaryColor,
         ),
         appBar: AppBar(
           toolbarHeight: 140,

@@ -130,16 +130,6 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
 
     return SafeArea(
       child: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.only(top: 15),
-          child: FloatingActionButton(
-            backgroundColor: Theme.of(context).primaryColor,
-            onPressed: () => Navigator.pop(context),
-            child: const Icon(Icons.arrow_back,),
-            mini: true,
-          ),
-        ),
         backgroundColor: Colors.white,
         body: loading == true
             ? const Center(
