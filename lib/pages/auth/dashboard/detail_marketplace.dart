@@ -131,6 +131,9 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: const Text('Detail Produk UMKM'),
+        ),
         body: loading == true
             ? const Center(
                 child: CircularProgressIndicator(),
@@ -174,17 +177,18 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
                                           CrossAxisAlignment.start,
                                       children: [
                                         Container(
-                                          height: 150,
+                                          height: 180,
                                           width: double.maxFinite,
                                           alignment: Alignment.bottomCenter,
                                           decoration: BoxDecoration(
-                                            borderRadius: const BorderRadius
-                                                    .only(
-                                                topLeft: Radius.circular(10),
-                                                topRight: Radius.circular(10),
-                                                bottomLeft: Radius.circular(10),
-                                                bottomRight:
-                                                    Radius.circular(10)),
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(10),
+                                              topRight: Radius.circular(10),
+                                              bottomLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10),
+                                            ),
+                                            color: Colors.grey,
                                             image: DecorationImage(
                                               image: NetworkImage(
                                                   widget.images ??
@@ -289,11 +293,11 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
                                                 .sort((status1, status2) {
                                               var toString1 = status1.price;
                                               var toString2 = status2.price;
-    
+
                                               return toString1
                                                   .compareTo(toString2);
                                             });
-    
+
                                             return Column(
                                               children: [
                                                 Row(
@@ -309,7 +313,7 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
                                                                         e.id;
                                                                     stockBarang =
                                                                         e.stock;
-    
+
                                                                     selectedVariantOptionId =
                                                                         0;
                                                                   });
@@ -366,7 +370,7 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
                                                                               onTap: () {
                                                                                 setState(() {
                                                                                   selectedVariantOptionId = e.variantOptionId;
-    
+
                                                                                   selectedVariantName = e.variantOption.name;
                                                                                 });
                                                                               },
@@ -505,7 +509,7 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
                             setState(() {
                               loading = true;
                             });
-    
+
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
                               return MarketplaceShippingPage(
@@ -516,7 +520,7 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
                                 storeId: 1,
                               );
                             }));
-    
+
                             setState(() {
                               loading = false;
                             });
@@ -579,7 +583,7 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
                                         .price
                                         .toDouble());
                                     cart.addCounter();
-    
+
                                     await customSnackbar(
                                         type: 'success',
                                         title: 'success',
@@ -599,8 +603,9 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
                                   vertical: 15, horizontal: 20),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
-                                  color:
-                                      quantity > 0 ? Colors.orange : Colors.grey),
+                                  color: quantity > 0
+                                      ? Colors.orange
+                                      : Colors.grey),
                               child: const Text(
                                 '+ Keranjang',
                                 textAlign: TextAlign.center,
@@ -612,7 +617,8 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
                         )
                       : Container(
                           width: MediaQuery.of(context).size.width,
-                          margin: const EdgeInsets.only(right: 10.0, left: 10.0),
+                          margin:
+                              const EdgeInsets.only(right: 10.0, left: 10.0),
                           padding: const EdgeInsets.symmetric(
                               vertical: 15, horizontal: 20),
                           decoration: BoxDecoration(
