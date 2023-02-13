@@ -81,6 +81,9 @@ class _DetailNFTState extends State<DetailNFT> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Detail NFT product'),
+      ),
       body: loading == true
           ? Center(
               child: CircularProgressIndicator(),
@@ -129,7 +132,7 @@ class _DetailNFTState extends State<DetailNFT> with TickerProviderStateMixin {
                             delegate: SliverChildBuilderDelegate(
                           (_, int index) {
                             return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -405,138 +408,104 @@ class _DetailNFTState extends State<DetailNFT> with TickerProviderStateMixin {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 14.0, vertical: 50),
-                                  child: Row(
-                                    children: [
-                                      widget.buyer_est ==
-                                              widget.pembeli.toString()
-                                          ? Expanded(
-                                              flex: 8,
-                                              child: SizedBox(
-                                                height: 50,
-                                                child: ElevatedButton(
-                                                  style: ButtonStyle(
-                                                    backgroundColor:
-                                                        MaterialStateProperty
-                                                            .all(Colors
-                                                                .grey.shade500),
-                                                    padding:
-                                                        MaterialStateProperty
-                                                            .all(const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 15,
-                                                                horizontal:
-                                                                    70)),
-                                                  ),
-                                                  child: const Text(
-                                                      "Beli Sekarang",
-                                                      style: TextStyle(
-                                                          fontSize: 13,
-                                                          color: Colors.white)),
-                                                  onPressed: () {},
-                                                ),
-                                              ),
-                                            )
-                                          : Expanded(
-                                              flex: 8,
-                                              child: SizedBox(
-                                                height: 50,
-                                                child: ElevatedButton(
-                                                  style: ButtonStyle(
-                                                    backgroundColor:
-                                                        MaterialStateProperty
-                                                            .all(const Color(
-                                                                0xFF85014e)),
-                                                    padding:
-                                                        MaterialStateProperty
-                                                            .all(const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 15,
-                                                                horizontal:
-                                                                    70)),
-                                                  ),
-                                                  child: const Text(
-                                                      "Beli Sekarang",
-                                                      style: TextStyle(
-                                                          fontSize: 13,
-                                                          color: Colors.white)),
-                                                  onPressed: () {
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) {
-                                                        return NFTPayment(
-                                                          title: v.dataAllNFTid
-                                                              ?.data?.nft?.name,
-                                                          images: v
-                                                              .dataAllNFTid
-                                                              ?.data
-                                                              ?.nft
-                                                              ?.imagePath,
-                                                          buyer_est: v
-                                                              .dataAllNFTid
-                                                              ?.data
-                                                              ?.nft
-                                                              ?.qtyUnit
-                                                              .toString(),
-                                                          buyer: v
-                                                              .dataAllNFTid
-                                                              ?.data
-                                                              ?.nft
-                                                              ?.avlUnit
-                                                              .toString(),
-                                                          expired: v
-                                                              .dataAllNFTid
-                                                              ?.data
-                                                              ?.nft
-                                                              ?.expirationDate,
-                                                          lockNft:
-                                                              widget.lockNft,
-                                                          monthlyPercentage: v
-                                                              .dataAllNFTid
-                                                              ?.data
-                                                              ?.nft
-                                                              ?.monthlyPercentage
-                                                              .toString(),
-                                                          nftSerialId: widget
-                                                              .nftSerialId,
-                                                          priceCoins:
-                                                              widget.priceCoins,
-                                                          gasfee: widget.gasfee,
-                                                          admfee: widget.admfee,
-                                                        );
-                                                      }),
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                            ),
-                                      const SizedBox(width: 10),
-                                      Expanded(
-                                        flex: 2,
-                                        child: SizedBox(
-                                          height: 50,
-                                          child: ElevatedButton(
-                                            style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStateProperty.all(
-                                                      Colors.red),
-                                            ),
-                                            child: const Text(
-                                              "X",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: widget.buyer_est ==
+                                          widget.pembeli.toString()
+                                      ? SizedBox(
+                                        height: 50,
+                                        child: ElevatedButton(
+                                          style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty
+                                                    .all(Colors
+                                                        .grey.shade500),
+                                            padding:
+                                                MaterialStateProperty
+                                                    .all(const EdgeInsets
+                                                            .symmetric(
+                                                        vertical: 15,
+                                                        horizontal:
+                                                            70)),
                                           ),
+                                          child: const Text(
+                                              "Beli Sekarang",
+                                              style: TextStyle(
+                                                  fontSize: 13,
+                                                  color: Colors.white)),
+                                          onPressed: () {},
+                                        ),
+                                      )
+                                      : SizedBox(
+                                        height: 50,
+                                        child: ElevatedButton(
+                                          style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty
+                                                    .all(const Color(
+                                                        0xFF85014e)),
+                                            padding:
+                                                MaterialStateProperty
+                                                    .all(const EdgeInsets
+                                                            .symmetric(
+                                                        vertical: 15,
+                                                        horizontal:
+                                                            70)),
+                                          ),
+                                          child: const Text(
+                                              "Beli Sekarang",
+                                              style: TextStyle(
+                                                  fontSize: 13,
+                                                  color: Colors.white)),
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) {
+                                                return NFTPayment(
+                                                  title: v.dataAllNFTid
+                                                      ?.data?.nft?.name,
+                                                  images: v
+                                                      .dataAllNFTid
+                                                      ?.data
+                                                      ?.nft
+                                                      ?.imagePath,
+                                                  buyer_est: v
+                                                      .dataAllNFTid
+                                                      ?.data
+                                                      ?.nft
+                                                      ?.qtyUnit
+                                                      .toString(),
+                                                  buyer: v
+                                                      .dataAllNFTid
+                                                      ?.data
+                                                      ?.nft
+                                                      ?.avlUnit
+                                                      .toString(),
+                                                  expired: v
+                                                      .dataAllNFTid
+                                                      ?.data
+                                                      ?.nft
+                                                      ?.expirationDate,
+                                                  lockNft:
+                                                      widget.lockNft,
+                                                  monthlyPercentage: v
+                                                      .dataAllNFTid
+                                                      ?.data
+                                                      ?.nft
+                                                      ?.monthlyPercentage
+                                                      .toString(),
+                                                  nftSerialId: widget
+                                                      .nftSerialId,
+                                                  priceCoins:
+                                                      widget.priceCoins,
+                                                  gasfee: widget.gasfee,
+                                                  admfee: widget.admfee,
+                                                );
+                                              }),
+                                            );
+                                          },
                                         ),
                                       ),
-                                    ],
-                                  ),
                                 ),
                               ],
                             );
