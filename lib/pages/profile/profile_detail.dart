@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -7,6 +9,8 @@ import 'package:get/get.dart';
 class profileDetail extends StatelessWidget {
   const profileDetail({super.key});
 
+  final int nomorRekening = 353636;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -15,7 +19,7 @@ class profileDetail extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Icon(Icons.arrow_back),
+          child: const Icon(Icons.arrow_back),
           backgroundColor: Theme.of(context).primaryColor,
         ),
         // appBar: AppBar(
@@ -42,7 +46,7 @@ class profileDetail extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: const [
                         SizedBox(
-                          height: 35,
+                          height: 20,
                         ),
                         Text(
                           'Inky Pramudia Ramdhani',
@@ -61,6 +65,29 @@ class profileDetail extends StatelessWidget {
                       ],
                     ),
                   ),
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 60),
+                      child: Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Theme.of(context).primaryColor,
+                          border: Border.all(
+                            color: Colors.white,
+                            width: 2,
+                          ),
+                        ),
+                        child: Icon(
+                          Icons.account_circle,
+                          size: 60,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
               const SizedBox(
@@ -77,7 +104,7 @@ class profileDetail extends StatelessWidget {
                           subtitle: Text('laki"'),
                         ),
                         ListTile(
-                          title: Text('Tempat, Tanggal lahir'),
+                          title: const Text('Tempat, Tanggal lahir'),
                           subtitle: Row(
                             children: const [
                               Text('Majalengka'),
@@ -112,12 +139,18 @@ class profileDetail extends StatelessWidget {
               ),
               const ListTile(
                 title: Text('alamat'),
-                subtitle: Text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
+                subtitle: Text(
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
               ),
-              const ListTile(
-                title: Text('BNI a/n Inky ddaaa jdkd'),
-                subtitle: Text('5475748456'),
-                trailing: InkWell(child: Icon(Icons.edit)),
+              ListTile(
+                title: const Text('BNI a/n Inky ddaaa jdkd'),
+                subtitle: Text(nomorRekening.toString()),
+                trailing: InkWell(
+                  onTap: () {
+                    _showSimpleModalDialog(context, nomorRekening);
+                  },
+                  child: const Icon(Icons.edit),
+                ),
               )
             ],
           ),
@@ -125,4 +158,65 @@ class profileDetail extends StatelessWidget {
       ),
     );
   }
+}
+
+_showSimpleModalDialog(context, int bankAccount) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.3,
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Form(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const Center(
+                      child: Text(
+                        'Edit Your bank account',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      controller: TextEditingController(
+                        text: "BNI",
+                      ),
+                      decoration: new InputDecoration(
+                        hintText: "pilih Bank",
+                        labelText: "Pilih Bank anda",
+                        icon: const Icon(Icons.note),
+                      ),
+                    ),
+                    TextFormField(
+                      controller: TextEditingController(
+                        text: bankAccount.toString(),
+                      ),
+                      decoration: new InputDecoration(
+                        hintText: "Nomor Rekengin",
+                        labelText: "Masukan Nomor Rekening anda",
+                        icon: const Icon(Icons.numbers),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('Update'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      });
 }
