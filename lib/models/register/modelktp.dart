@@ -17,28 +17,6 @@ class ModelKtpData {
 }
 
 class Data {
-  String? status;
-  Message? message;
-
-  Data({this.status, this.message});
-
-  Data.fromJson(Map<String, dynamic> json) {
-    status = json['status'];
-    message =
-        json['message'] != null ? Message.fromJson(json['message']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['status'] = status;
-    if (message != null) {
-      data['message'] = message!.toJson();
-    }
-    return data;
-  }
-}
-
-class Message {
   String? name;
   String? id;
   String? pob;
@@ -56,7 +34,7 @@ class Message {
   String? city;
   String? province;
 
-  Message(
+  Data(
       {this.name,
       this.id,
       this.pob,
@@ -74,7 +52,7 @@ class Message {
       this.city,
       this.province});
 
-  Message.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     id = json['id'];
     pob = json['pob'];

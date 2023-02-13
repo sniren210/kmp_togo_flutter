@@ -46,16 +46,7 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
   void initState() {
     loadSharedPref();
 
-    getTipeAnggota();
     super.initState();
-  }
-
-  getTipeAnggota() async {
-    final _getkategoriProvider =
-        Provider.of<ProviderRegister>(context, listen: false);
-    await _getkategoriProvider.getTipeAnggota(
-      context,
-    );
   }
 
   int selectedIndex = -1;
@@ -110,275 +101,267 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
       builder: (context, model, child) => WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
-          body: Consumer<ProviderRegister>(
-              builder: (BuildContext context, v, Widget? child) {
-            return SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 70,
-                  ),
-                  const Text(
-                    'Pilih Tipe Anggota',
+          body: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 70,
+                ),
+                const Text(
+                  'Pilih Tipe Anggota',
+                  textAlign: TextAlign.center,
+                  style: TextStyling.titleStyle,
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 20.0),
+                  child: const Text(
+                    'Lörem ipsum putinas eurobävning, pohöpas trev. Odade global hektar rere i biohögån ultras. ',
                     textAlign: TextAlign.center,
-                    style: TextStyling.titleStyle,
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 15),
                   ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 20.0),
-                    child: const Text(
-                      'Lörem ipsum putinas eurobävning, pohöpas trev. Odade global hektar rere i biohögån ultras. ',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.normal,
-                          fontSize: 15),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  model.busy
-                      ? const CircularProgressIndicator()
-                      : ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: v.dataTipeAnggota?.data?.length,
-                          itemBuilder: (_, int index) {
-                            return GestureDetector(
-                              onTap: () => setState(() {
-                                selectedIndex = index;
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                model.busy
+                    ? const CircularProgressIndicator()
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: model.items?.data.length ?? 0,
+                        itemBuilder: (_, int index) {
+                          return GestureDetector(
+                            onTap: () => setState(() {
+                              selectedIndex = index;
 
-                                showModalBottomSheet(
-                                    isScrollControlled: true,
-                                    backgroundColor: Colors.transparent,
-                                    context: context,
-                                    builder: (
-                                      BuildContext context,
-                                    ) {
-                                      return StatefulBuilder(
-                                          builder: (context, setsate1) {
-                                        return Wrap(
-                                          children: [
-                                            Container(
-                                              decoration: const BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(27.0),
-                                                    topRight:
-                                                        Radius.circular(27.0),
-                                                  )),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: <Widget>[
-                                                  const SizedBox(height: 10),
-                                                  Center(
-                                                    child: Container(
-                                                      width: 25.w,
-                                                      height: 1.h,
-                                                      margin: EdgeInsets.only(
-                                                          top: 1.h),
-                                                      decoration: BoxDecoration(
-                                                          color: Colors.grey,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10)),
-                                                    ),
+                              showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  context: context,
+                                  builder: (
+                                    BuildContext context,
+                                  ) {
+                                    return StatefulBuilder(
+                                        builder: (context, setsate1) {
+                                      return Wrap(
+                                        children: [
+                                          Container(
+                                            decoration: const BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.only(
+                                                  topLeft:
+                                                      Radius.circular(27.0),
+                                                  topRight:
+                                                      Radius.circular(27.0),
+                                                )),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                const SizedBox(height: 10),
+                                                Center(
+                                                  child: Container(
+                                                    width: 25.w,
+                                                    height: 1.h,
+                                                    margin: EdgeInsets.only(
+                                                        top: 1.h),
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.grey,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10)),
                                                   ),
-                                                  MemberDetailWidget(
-                                                      name: v.dataTipeAnggota
-                                                          ?.data?[index].name,
-                                                      desc: v
-                                                          .dataTipeAnggota
-                                                          ?.data?[index]
-                                                          .description,
-                                                      harga: v.dataTipeAnggota
-                                                          ?.data?[index].price),
-                                                  loading == false
-                                                      ? InkWell(
-                                                          onTap: () {
-                                                            setsate1(() {
-                                                              loading = true;
-                                                            });
-                                                            sharedPreferencesManager.setString(
-                                                                SharedPreferencesManager
-                                                                    .produsenId,
-                                                                v.dataTipeAnggota
-                                                                        ?.data?[index].id
-                                                                        .toString() ??
-                                                                    "");
+                                                ),
+                                                MemberDetailWidget(
+                                                    name: model.items
+                                                        ?.data[index].name,
+                                                    desc: model
+                                                        .items
+                                                        ?.data[index]
+                                                        .description,
+                                                    harga: model.items
+                                                        ?.data[index].price),
+                                                loading == false
+                                                    ? InkWell(
+                                                        onTap: () {
+                                                          setsate1(() {
+                                                            loading = true;
+                                                          });
+                                                          sharedPreferencesManager.setString(
+                                                              SharedPreferencesManager
+                                                                  .produsenId,
+                                                              model
+                                                                      .items
+                                                                      ?.data[
+                                                                          index]
+                                                                      .id
+                                                                      .toString() ??
+                                                                  "");
 
-                                                            submitRegister(
-                                                                nik,
-                                                                name,
-                                                                cityId,
-                                                                provinceId,
-                                                                subdistrictId,
-                                                                address,
-                                                                email,
-                                                                phoneNumber,
-                                                                birthdate,
-                                                                password,
-                                                                pin,
-                                                                v
-                                                                    .dataTipeAnggota
-                                                                    ?.data?[
-                                                                        index]
-                                                                    .id
-                                                                    .toString(),
-                                                                v
-                                                                    .dataTipeAnggota
-                                                                    ?.data?[
-                                                                        index]
-                                                                    .name
-                                                                    .toString(),
-                                                                otp);
+                                                          submitRegister(
+                                                              nik,
+                                                              name,
+                                                              cityId,
+                                                              provinceId,
+                                                              subdistrictId,
+                                                              address,
+                                                              email,
+                                                              phoneNumber,
+                                                              birthdate,
+                                                              password,
+                                                              pin,
+                                                              model
+                                                                  .items
+                                                                  ?.data[index]
+                                                                  .id
+                                                                  .toString(),
+                                                              model
+                                                                  .items
+                                                                  ?.data[index]
+                                                                  .name
+                                                                  .toString(),
+                                                              otp);
 
-                                                            // Navigator.push(
-                                                            //   context,
-                                                            //   MaterialPageRoute(
-                                                            //       builder: (context) =>
-                                                            //           PaymentProcess(
-                                                            //             popContext:
-                                                            //                 1,
-                                                            //             isRegister:
-                                                            //                 true,
-                                                            //             nik: nik,
-                                                            //             name: name,
-                                                            //             cityId:
-                                                            //                 cityId,
-                                                            //             provinceId:
-                                                            //                 provinceId,
-                                                            //             subdistrictId:
-                                                            //                 subdistrictId,
-                                                            //             address:
-                                                            //                 address,
-                                                            //             email:
-                                                            //                 email,
-                                                            //             phoneNumber:
-                                                            //                 phoneNumber,
-                                                            //             birthdate:
-                                                            //                 birthdate,
-                                                            //             password:
-                                                            //                 password,
-                                                            //             pin: pin,
-                                                            //             tipeAnggotaId: v
-                                                            //                 .dataTipeAnggota
-                                                            //                 ?.data?[
-                                                            //                     index]
-                                                            //                 .id
-                                                            //                 .toString(),
-                                                            //             otp: otp,
-                                                            //           )),
-                                                            // );
-                                                          },
-                                                          child: Container(
-                                                              width: MediaQuery
-                                                                      .of(
-                                                                          context)
-                                                                  .size
-                                                                  .width,
-                                                              margin:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      right:
-                                                                          20.0,
-                                                                      left:
-                                                                          20.0),
-                                                              padding: const EdgeInsets
-                                                                      .symmetric(
-                                                                  vertical: 15,
-                                                                  horizontal:
-                                                                      70),
-                                                              decoration: BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              5),
-                                                                  color: const Color(
-                                                                      0xFF85014e)),
-                                                              child: const Text(
-                                                                'Bergabung',
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                style: TextStyle(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    fontSize:
-                                                                        15),
-                                                              )),
-                                                        )
-                                                      : Container(
-                                                          width: MediaQuery.of(
-                                                                  context)
-                                                              .size
-                                                              .width,
-                                                          margin:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                            right: 20.0,
-                                                            left: 20.0,
-                                                          ),
-                                                          padding: const EdgeInsets
-                                                                  .symmetric(
-                                                              vertical: 15,
-                                                              horizontal: 70),
-                                                          decoration: BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5),
+                                                          // Navigator.push(
+                                                          //   context,
+                                                          //   MaterialPageRoute(
+                                                          //       builder: (context) =>
+                                                          //           PaymentProcess(
+                                                          //             popContext:
+                                                          //                 1,
+                                                          //             isRegister:
+                                                          //                 true,
+                                                          //             nik: nik,
+                                                          //             name: name,
+                                                          //             cityId:
+                                                          //                 cityId,
+                                                          //             provinceId:
+                                                          //                 provinceId,
+                                                          //             subdistrictId:
+                                                          //                 subdistrictId,
+                                                          //             address:
+                                                          //                 address,
+                                                          //             email:
+                                                          //                 email,
+                                                          //             phoneNumber:
+                                                          //                 phoneNumber,
+                                                          //             birthdate:
+                                                          //                 birthdate,
+                                                          //             password:
+                                                          //                 password,
+                                                          //             pin: pin,
+                                                          //             tipeAnggotaId: v
+                                                          //                 .dataTipeAnggota
+                                                          //                 ?.data?[
+                                                          //                     index]
+                                                          //                 .id
+                                                          //                 .toString(),
+                                                          //             otp: otp,
+                                                          //           )),
+                                                          // );
+                                                        },
+                                                        child: Container(
+                                                            width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width,
+                                                            margin:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    right: 20.0,
+                                                                    left: 20.0),
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .symmetric(
+                                                                    vertical:
+                                                                        15,
+                                                                    horizontal:
+                                                                        70),
+                                                            decoration: BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5),
+                                                                color: const Color(
+                                                                    0xFF85014e)),
+                                                            child: const Text(
+                                                              'Bergabung',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  fontSize: 15),
+                                                            )),
+                                                      )
+                                                    : Container(
+                                                        width: MediaQuery.of(
+                                                                context)
+                                                            .size
+                                                            .width,
+                                                        margin: const EdgeInsets
+                                                            .only(
+                                                          right: 20.0,
+                                                          left: 20.0,
+                                                        ),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 15,
+                                                                horizontal: 70),
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            color: Colors.grey),
+                                                        child: Center(
+                                                          child: SizedBox(
+                                                            height: 2.h,
+                                                            width: 4.w,
+                                                            child:
+                                                                const CircularProgressIndicator(
                                                               color:
-                                                                  Colors.grey),
-                                                          child: Center(
-                                                            child: SizedBox(
-                                                              height: 2.h,
-                                                              width: 4.w,
-                                                              child:
-                                                                  const CircularProgressIndicator(
-                                                                color: Colors
-                                                                    .white,
-                                                              ),
+                                                                  Colors.white,
                                                             ),
-                                                          )),
-                                                  const SizedBox(height: 30),
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        );
-                                      });
+                                                          ),
+                                                        )),
+                                                const SizedBox(height: 30),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      );
                                     });
-                              }),
-                              child: BuildMemberCard(
-                                name: v.dataTipeAnggota?.data?[index].name,
-                                description:
-                                    v.dataTipeAnggota?.data?[index].description,
-                                imageAsset: 'assets/images/logobanner.png',
-                                isSelected: (selectedIndex == index),
-                              ),
-                            );
-                          }),
-                  const SizedBox(
-                    height: 100,
-                  ),
-                ],
-              ),
-            );
-          }),
+                                  });
+                            }),
+                            child: BuildMemberCard(
+                              name: model.items?.data[index].name,
+                              description: model.items?.data[index].description,
+                              imageAsset: 'assets/images/logobanner.png',
+                              isSelected: (selectedIndex == index),
+                            ),
+                          );
+                        }),
+                const SizedBox(
+                  height: 100,
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

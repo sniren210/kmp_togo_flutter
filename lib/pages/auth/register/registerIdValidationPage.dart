@@ -144,8 +144,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInput(
-                    enable: false,
-                    isReadOnly: true,
+                    // enable: false,
+                    // isReadOnly: true,
                     controller: birthdateC!,
                     inputType: TextInputType.text,
                     hintText: "Tanggal Lahir",
@@ -333,8 +333,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInputLongText(
-                    enable: false,
-                    readOnly: true,
+                    // enable: false,
+                    // readOnly: true,
                     controller: addressC!,
                     hintText: 'Alamat',
                     icon: Icons.home),

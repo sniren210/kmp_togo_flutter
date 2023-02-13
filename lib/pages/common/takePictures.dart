@@ -224,7 +224,7 @@ class _TakePictureConfPageState extends State<TakePictureConfPage> {
                           });
                           await Provider.of<ProviderRegister>(context,
                                   listen: false)
-                              .validate_ocrktp(context, widget.images);
+                              .validate_ocrktp(context, widget.images!);
                           setState(() {
                             loading = Provider.of<ProviderRegister>(context,
                                     listen: false)
