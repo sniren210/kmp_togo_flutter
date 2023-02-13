@@ -33,6 +33,7 @@ import 'package:sizer/sizer.dart';
 import '../../../apis/repository.dart';
 import '../../../providers/account/provider_account.dart';
 import '../../../providers/nft/provider_nft.dart';
+import '../../notification/notification_page.dart';
 import '../../ppob/wtNumber/inputPpobWTNumber.dart';
 
 class DashboardNew extends StatefulWidget {
@@ -269,9 +270,19 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                     ],
                   ),
                   actions: [
-                    const Icon(
-                      Icons.notifications,
-                      color: Colors.white,
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const notificationPage(),
+                          ),
+                        );
+                      },
+                      child: const Icon(
+                        Icons.notifications,
+                        color: Colors.white,
+                      ),
                     ),
                     const SizedBox(width: 6),
                     Consumer<CartProvider>(builder: (context, value, child) {
@@ -872,23 +883,24 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                     left: 4.w, right: 4.w),
                                                 height: 6.h,
                                                 child: ListView(
-                                                    shrinkWrap: true,
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    children: const [
-                                                      cardMitraKategori(
-                                                        title: 'hasil pertanian',
-                                                        color: Colors.indigo,
-                                                      ),
-                                                      cardMitraKategori(
-                                                        title: 'hasil bumi',
-                                                        color: Colors.pink,
-                                                      ),
-                                                      cardMitraKategori(
-                                                        title: 'kopi',
-                                                        color: Colors.teal,
-                                                      ),
-                                                    ],),
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  children: const [
+                                                    cardMitraKategori(
+                                                      title: 'hasil pertanian',
+                                                      color: Colors.indigo,
+                                                    ),
+                                                    cardMitraKategori(
+                                                      title: 'hasil bumi',
+                                                      color: Colors.pink,
+                                                    ),
+                                                    cardMitraKategori(
+                                                      title: 'kopi',
+                                                      color: Colors.teal,
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                               Container(
                                                 padding: EdgeInsets.only(
@@ -1428,4 +1440,3 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
     Get.offAllNamed('/home');
   }
 }
-

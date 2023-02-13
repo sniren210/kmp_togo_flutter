@@ -136,7 +136,7 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
           child: FloatingActionButton(
             backgroundColor: Theme.of(context).primaryColor,
             onPressed: () => Navigator.pop(context),
-            child: Icon(Icons.arrow_back,),
+            child: const Icon(Icons.arrow_back,),
             mini: true,
           ),
         ),
@@ -172,7 +172,7 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
                                         color: Colors.grey.withOpacity(0.5),
                                         spreadRadius: 5,
                                         blurRadius: 7,
-                                        offset: Offset(
+                                        offset: const Offset(
                                             0, 3), // changes position of shadow
                                       ),
                                     ],
@@ -215,16 +215,16 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
                                                     v.dataAllNFTid?.data?.nft
                                                             ?.name ??
                                                         widget.title!,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       fontSize: 25,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                     ),
                                                   ),
-                                                  Text('0.0 coin'),
+                                                  const Text('0.0 coin'),
                                                 ],
                                               ),
-                                              Spacer(),
+                                              const Spacer(),
                                               const Text(
                                                 'Stok: ',
                                                 style: TextStyling.w40014black,
@@ -277,7 +277,7 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
                                         color: Colors.grey.withOpacity(0.5),
                                         spreadRadius: 5,
                                         blurRadius: 7,
-                                        offset: Offset(
+                                        offset: const Offset(
                                             0, 3), // changes position of shadow
                                       ),
                                     ],
