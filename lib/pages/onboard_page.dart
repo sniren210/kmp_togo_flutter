@@ -35,12 +35,10 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Center(
-                    child: Image.asset(
-                      'assets/onboard/onboard1.jpg',
-                      fit: BoxFit.cover,
-                      height: 100,
-                    ),
+                  Image.asset(
+                    'assets/onboard/onboard1.jpg',
+                    fit: BoxFit.cover,
+                    height: 100,
                   ),
                   // Container(
                   //   margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -53,9 +51,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   //               v.dataApiTextObaroding1?.data?.imagePath ??
                   //                   kEmptyImageLink))),
                   // ),
-                  SizedBox(
-                    height: 10,
-                  ),
                   buildContent('', v.dataApiTextObaroding1?.data?.value ?? ""),
                 ],
               ),
@@ -80,13 +75,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     fit: BoxFit.cover,
                     height: 100,
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  buildContent(
-                      'COIN To-Go',
-                      v.dataApiTextObaroding2?.data?.value ??
-                          "Koperasi pertama di INdonesia yang berbasis coin crypto"),
                 ],
               ),
             ),
@@ -110,13 +98,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     fit: BoxFit.cover,
                     height: 100,
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  buildContent(
-                      'NFT MARKETPLACE',
-                      v.dataApiTextObaroding3?.data?.value ??
-                          "NFT Marketplace koperasi pertama di Indonesia yang memadukan anara investasi dalam produk nyata"),
                 ],
               ),
             ),
@@ -140,13 +121,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     fit: BoxFit.cover,
                     height: 100,
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  buildContent(
-                      'UMKM MARKETPLACE',
-                      v.dataApiTextObaroding3?.data?.value ??
-                          "Mitra terbaik umkm dalam memasarkan produk mereka"),
                 ],
               ),
             ),

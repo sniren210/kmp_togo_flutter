@@ -10,6 +10,8 @@ import 'package:kmp_togo_mobile/pages/profile/address/tambahAlamatPage.dart';
 import 'package:kmp_togo_mobile/providers/address/provider_addressBook.dart';
 import 'package:sizer/sizer.dart';
 
+import 'editAlamatPage.dart';
+
 class AlamatPage extends StatefulWidget {
   const AlamatPage({Key? key}) : super(key: key);
 
@@ -45,25 +47,31 @@ class _AlamatPageState extends State<AlamatPage> {
 
                           return InkWell(
                             onTap: () {
-                              showDialog(
-                                  useSafeArea: true,
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return dialogAddressWidget(
-                                      id: itemAddress.id,
-                                      name: itemAddress.name,
-                                      contactName: itemAddress.contactName,
-                                      phoneNumber: itemAddress.phoneNumber,
-                                      detailAddress: itemAddress.detailAddress,
-                                      provinceId: itemAddress.provinceId,
-                                      cityId: itemAddress.cityId,
-                                      subdistrictId: itemAddress.subdistrictId,
-                                      postalCode: itemAddress.postalCode,
-                                      latitude: itemAddress.latitude,
-                                      longitude: itemAddress.longitude,
-                                      geometry: itemAddress.geometry,
-                                    );
-                                  });
+                              // showDialog(
+                              //     useSafeArea: true,
+                              //     context: context,
+                              //     builder: (BuildContext context) {
+                              //       return dialogAddressWidget(
+                              //         id: itemAddress.id,
+                              //         name: itemAddress.name,
+                              //         contactName: itemAddress.contactName,
+                              //         phoneNumber: itemAddress.phoneNumber,
+                              //         detailAddress: itemAddress.detailAddress,
+                              //         provinceId: itemAddress.provinceId,
+                              //         cityId: itemAddress.cityId,
+                              //         subdistrictId: itemAddress.subdistrictId,
+                              //         postalCode: itemAddress.postalCode,
+                              //         latitude: itemAddress.latitude,
+                              //         longitude: itemAddress.longitude,
+                              //         geometry: itemAddress.geometry,
+                              //       );
+                              //     });
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => editAlamatPage(),
+                                ),
+                              );
                             },
                             child: Container(
                               decoration: BoxDecoration(
