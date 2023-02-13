@@ -15,12 +15,12 @@ class ProviderHistory extends ChangeNotifier with ApiMachine {
     context,
   ) async {
     try {
-      final res = await _dio.get('/v1/history?order=createdAt:desc');
+      // final res = await _dio.get('/v1/history?order=createdAt:desc');
 
-      await saveResponseGet(
-          res.requestOptions.path, res.statusMessage, res.data.toString());
+      // await saveResponseGet(
+      //     res.requestOptions.path, res.statusMessage, res.data.toString());
 
-      print('${res.data['data'].length}');
+      // print('${res.data['data'].length}');
       // dataAllHistory = ModelHistory.fromJson(res.data);
       dataAllHistory = ModelHistory().dummy();
       loadingHistory = false;

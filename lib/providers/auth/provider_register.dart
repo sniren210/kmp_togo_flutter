@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -57,6 +58,9 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
         data: {'phone_number': '0${noHp}'},
       );
 
+      print(res.statusCode);
+      print(res.statusMessage);
+
       await saveResponsePost(
           res.requestOptions.path, res.statusMessage, res.data.toString(), '');
 
@@ -83,18 +87,12 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
         notifyListeners();
       }
     } on DioError catch (e) {
-      try {
-        ErrorModel data = ErrorModel.fromJson(e.response!.data);
-        await customSnackbar(
-            type: 'error', title: 'error', text: data.error.toString());
-      } catch (e) {
-        final msg = e.toString();
-        print(msg);
-        await customSnackbar(
-            type: 'error', title: 'error', text: 'Terjadi kesalahan!');
-      }
-    } catch (e) {
-      print(e);
+      await customSnackbar(
+          type: 'error',
+          title: 'error',
+          text: kDebugMode
+              ? e.message.toString()
+              : 'Server sedang error mohon di coba lagi lain kali');
     }
   }
 

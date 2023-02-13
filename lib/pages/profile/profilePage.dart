@@ -162,20 +162,6 @@ class _ProfileState extends State<Profile> {
                                   builder: (context) => AlamatPage()));
                         },
                       ),
-                      SettingsTile(
-                        leading: Icon(Icons.store_mall_directory),
-                        title: Text(
-                          "UMKM",
-                          style: const TextStyle(fontSize: 15),
-                        ),
-                        onPressed: (value) {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      Home(selectedIndex: 2)));
-                        },
-                      ),
                       titleSection(title: "Pengaturan Umun"),
                       SettingsTile(
                         leading: Icon(Icons.account_circle),
