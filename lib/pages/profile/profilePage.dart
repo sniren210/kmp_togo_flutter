@@ -21,6 +21,7 @@ import 'package:provider/provider.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 import 'iuran_pokok.dart';
+import 'kode_pembayaran.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -175,6 +176,19 @@ class _ProfileState extends State<Profile> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const ReferalPage()));
+                        },
+                      ),
+                      SettingsTile(
+                        leading: Icon(Icons.monetization_on_sharp),
+                        title: Text(
+                          "kode va",
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                        onPressed: (value) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const KodePembayaran()));
                         },
                       ),
                       titleSection(title: "Pengaturan Umun"),
