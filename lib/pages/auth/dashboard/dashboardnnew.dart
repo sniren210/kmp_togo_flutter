@@ -883,7 +883,7 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                 padding: EdgeInsets.only(
                                                     left: 4.w,
                                                     right: 4.w,
-                                                    top: 2.h,
+                                                    top: 4.h,
                                                     bottom: 2.h),
                                                 child: Row(
                                                   mainAxisAlignment:
