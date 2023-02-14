@@ -223,47 +223,6 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
                                                     ],
                                                   ),
                                                 )),
-                                            Expanded(
-                                                flex: 3,
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              ToGoCoin()),
-                                                    );
-                                                  },
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Card(
-                                                        color:
-                                                            Colors.orangeAccent,
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  vertical: 8.0,
-                                                                  horizontal:
-                                                                      12.0),
-                                                          child: Text(
-                                                            'Togo Coin',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 9.sp),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                )),
                                           ],
                                         )
                                       ],
