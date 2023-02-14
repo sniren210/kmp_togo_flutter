@@ -4,6 +4,7 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:kmp_togo_mobile/helpers/user_database_helper.dart';
 import 'package:path_provider/path_provider.dart' as pathProvider;
 import 'package:path/path.dart' as path;
 
@@ -38,6 +39,16 @@ class Helper {
         ),
       ),
     );
+    _dio.interceptors.add(QueuedInterceptorsWrapper(
+      onRequest: (options, handler) {
+        final user = UserHelper.getUser();
+
+        print('okasdaosdk');
+        print(user);
+        handler.next(options);
+      },
+    ));
+
     (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (HttpClient dioClient) {
       dioClient.badCertificateCallback =
