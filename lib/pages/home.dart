@@ -6,14 +6,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:kmp_togo_mobile/helpers/injector.dart';
 import 'package:kmp_togo_mobile/helpers/shared_pref_manager.dart';
-import 'package:kmp_togo_mobile/pages/auth/dashboard/dashboard.dart';
 import 'package:kmp_togo_mobile/pages/auth/dashboard/dashboardnnew.dart';
-import 'package:kmp_togo_mobile/pages/history/history.dart';
 import 'package:kmp_togo_mobile/pages/profile/profilePage.dart';
 import 'package:kmp_togo_mobile/pages/scan/scanPembayaran.dart';
 import 'package:provider/provider.dart';
 import 'package:kmp_togo_mobile/pages/wallet/dashboard_wallet.dart';
-// import 'package:kmp_togo_mobile/pages/wallet/dashboardwallet.dart' as old;
 import 'package:kmp_togo_mobile/providers/cart/cart_provider.dart';
 
 import 'history/jenis_transaksi.dart';
@@ -144,10 +141,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     super.initState();
   }
 
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  // }
+  
 
   @override
   Widget build(BuildContext context) {
