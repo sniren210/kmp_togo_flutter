@@ -24,12 +24,7 @@ class ProductApi with ApiMachine {
     Map<String, dynamic>? query = {"productSelling": productSelling};
 
     try {
-      // final res = await _dio.get('/v1/product', queryParameters: query);
-
-      // await saveResponseGet(res.requestOptions.path, res.statusMessage,
-      //     res.data.toString());
-
-      // return ItemModelProduct.fromJson(res.data);
+    
       return ItemModelProduct.dummy();
     } on DioError catch (e) {
       throw Exception(e.toString());

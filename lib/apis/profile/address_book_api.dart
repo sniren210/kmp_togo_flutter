@@ -71,8 +71,7 @@ class AddressBookApi with ApiMachine {
         await customSnackbar(
             type: 'error', title: 'error', text: 'Terjadi kesalahan');
 
-        // Get.offAllNamed('/home');
-
+     
         throw Exception(e.toString());
       } catch (e) {
         throw Exception(e.toString());

@@ -13,7 +13,6 @@ import 'package:kmp_togo_mobile/pages/profile/profilePage.dart';
 import 'package:kmp_togo_mobile/pages/scan/scanPembayaran.dart';
 import 'package:provider/provider.dart';
 import 'package:kmp_togo_mobile/pages/wallet/dashboard_wallet.dart';
-// import 'package:kmp_togo_mobile/pages/wallet/dashboardwallet.dart' as old;
 import 'package:kmp_togo_mobile/providers/cart/cart_provider.dart';
 
 import 'history/jenis_transaksi.dart';
@@ -33,7 +32,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   int _selectIndex = 0;
 
   List<IconData> iconList = [
-    //list of icons that required by animated navigation bar.
     Icons.home,
     Icons.access_time,
     Icons.date_range,
@@ -41,7 +39,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   ];
 
   List<String> nameLabel = [
-    //list of icons that required by animated navigation bar.
     'Beranda',
     'Saldo',
     'Transaksi',
@@ -142,10 +139,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     super.initState();
   }
 
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -198,7 +191,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           activeIndex: _selectIndex,
           gapLocation: GapLocation.center,
           notchSmoothness: NotchSmoothness.defaultEdge,
-          // inactiveColor: Colors.white,
           onTap: _onTap,
           backgroundColor: Colors.white),
     );

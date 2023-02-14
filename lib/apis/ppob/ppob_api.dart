@@ -1,5 +1,3 @@
-// ignore_for_file: unused_local_variable
-
 import 'package:dio/dio.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/instance_manager.dart';
@@ -38,12 +36,7 @@ class PPOBPrePaidApi with ApiMachine {
         "customer_id": customerId,
       };
 
-      // final res = await _dio.post('/v1/ppob/prepaid/inq-pln', data: data);
-
-      // await saveResponsePost(res.requestOptions.path, res.statusMessage,
-      //     res.data.toString(), data.toString());
-
-      // return ItemModelPrepaidPLN.fromJson(res.data);
+    
       return ItemModelPrepaidPLN.dummy();
     } on DioError catch (e) {
       await customSnackbar(

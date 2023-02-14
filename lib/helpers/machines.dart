@@ -74,41 +74,7 @@ abstract class ApiMachine {
     return sharedPreferencesManager.getString(SharedPreferencesManager.pin);
   }
 
-  saveResponseGet(path, statusMessage, response) async {
-    // await AppDb().insertResponseAPI(ResponseFromAPIData(
-    //   method: 'GET',
-    //   status: statusMessage,
-    //   path: path,
-    //   responseBody: response,
-    // ));
-  }
-
-  saveResponseDelete(path, statusMessage, response) async {
-    // await AppDb().insertResponseAPI(ResponseFromAPIData(
-    //   method: 'DELETE',
-    //   status: statusMessage,
-    //   path: path,
-    //   responseBody: response,
-    // ));
-  }
-
-  saveResponsePost(path, statusMessage, response, data) async {
-    // await AppDb().insertResponseAPI(ResponseFromAPIData(
-    //     method: 'POST',
-    //     status: statusMessage,
-    //     path: path,
-    //     responseBody: response,
-    //     data: data));
-  }
-
-  saveResponsePatch(path, statusMessage, response, data) async {
-    // await AppDb().insertResponseAPI(ResponseFromAPIData(
-    //     method: 'PATCH',
-    //     status: statusMessage,
-    //     path: path,
-    //     responseBody: response,
-    //     data: data));
-  }
+  
 }
 
 final uploadMachine = UploadMachine();

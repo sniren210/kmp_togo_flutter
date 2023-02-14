@@ -40,17 +40,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     fit: BoxFit.cover,
                     height: 100,
                   ),
-                  // Container(
-                  //   margin: const EdgeInsets.symmetric(horizontal: 20),
-                  //   height: 30.h,
-                  //   width: MediaQuery.of(context).size.width,
-                  //   decoration: BoxDecoration(
-                  //       image: DecorationImage(
-                  //           fit: BoxFit.contain,
-                  //           image: NetworkImage(
-                  //               v.dataApiTextObaroding1?.data?.imagePath ??
-                  //                   kEmptyImageLink))),
-                  // ),
+                 
                   buildContent('', v.dataApiTextObaroding1?.data?.value ?? ""),
                 ],
               ),
@@ -190,7 +180,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             index = 3;
             setIndex(3);
             setState(() {
-              // _visible = true;
+              
               warna = const Color(0xFFA1E2C2);
             });
           }
@@ -257,22 +247,22 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
                   if (index == 0) {
                     setState(() {
-                      // _visible = true;
+                      
                       warna = const Color(0xFF353E75);
                     });
                   } else if (index == 1) {
                     setState(() {
-                      // _visible = true;
+                      
                       warna = const Color(0xFFE8BD0C);
                     });
                   } else if (index == 2) {
                     setState(() {
-                      // _visible = true;
+                      
                       warna = Colors.black;
                     });
                   } else if (index == 3) {
                     setState(() {
-                      // _visible = true;
+                      
                       warna = const Color(0xFFA1E2C2);
                     });
                   }

@@ -1,6 +1,3 @@
-// To parse this JSON data, do
-//
-//     final itemModelUserAddressBook = itemModelUserAddressBookFromJson(jsonString);
 
 import 'dart:convert';
 

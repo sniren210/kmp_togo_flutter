@@ -8,14 +8,11 @@ import 'package:path_provider/path_provider.dart' as pathProvider;
 import 'package:path/path.dart' as path;
 
 class Helper {
-  // Singleton
+ 
   Helper._internal();
   static final Helper _helper = Helper._internal();
   factory Helper() => _helper;
 
-  // final _baseUrl = 'https://digitogo.tech';
-  // final _baseUrl = 'http://147.139.168.187:3000';
-  // final _baseUrl = 'https://api.digitogo.tech';
   final _baseUrl = 'https://admin.digitogo.tech';
 
   late Dio _dio;

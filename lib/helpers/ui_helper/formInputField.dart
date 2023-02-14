@@ -57,7 +57,6 @@ class _FormInputState extends State<FormInput> {
                 color: Colors.grey,
               ),
             ),
-            // labelText: 'User Name',
           ),
           validator: (value) {
             if (value!.isEmpty) {
@@ -127,11 +126,8 @@ class _FormInputDateState extends State<FormInputDate> {
     return Container(
       height: 50,
       margin: const EdgeInsets.only(right: 20.0, left: 20),
-      // padding: const EdgeInsets.only(left: 10),
       child: Row(
         children: [
-          // Icon(widget.icon),
-          // const SizedBox(width: 10),
           Expanded(
             child: TextFormField(
               controller: widget.textc,
@@ -149,7 +145,6 @@ class _FormInputDateState extends State<FormInputDate> {
                     color: Colors.grey,
                   ),
                 ),
-                // labelText: 'User Name',
               ),
               autocorrect: false,
               obscureText: widget.isObscure,
@@ -193,11 +188,8 @@ class _FormInputLongTextState extends State<FormInputLongText> {
     return Container(
       height: 100,
       margin: const EdgeInsets.only(right: 20.0, left: 20),
-      // padding: const EdgeInsets.only(left: 10),
       child: Row(
         children: [
-          // Icon(widget.icon),
-          // const SizedBox(width: 10),
           Expanded(
             child: TextFormField(
               controller: widget.controller,
@@ -213,7 +205,6 @@ class _FormInputLongTextState extends State<FormInputLongText> {
                 suffixStyle: TextStyling.normal15grey,
                 border: const OutlineInputBorder(),
                 hintText: widget.hintText,
-                // labelText: 'User Name',
               ),
             ),
           ),

@@ -1,6 +1,4 @@
-// To parse this JSON data, do
-//
-//     final itemModelBuyProduct = itemModelBuyProductFromJson(jsonString);
+
 
 import 'dart:convert';
 

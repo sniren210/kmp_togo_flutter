@@ -24,13 +24,6 @@ class _OnBoardingPageState extends State<OnBoardingPage>
   PageController controller = PageController();
   bool? lastpage = false;
 
-  // @override
-  // void dispose() {
-  //   controller.dispose();
-  //   WidgetsBinding.instance.removeObserver(this);
-  //   super.dispose();
-  // }
-
   String? routeLogin;
   @override
   void initState() {
@@ -42,7 +35,6 @@ class _OnBoardingPageState extends State<OnBoardingPage>
       await getApiTextLogin.getTextOnboarding3(context);
       await getApiTextLogin.getTextOnboarding4(context);
       cektanggal();
-      // await _getkategoriProvider.getMyNFT(context);
     });
     WidgetsBinding.instance.addObserver(this);
 
@@ -129,7 +121,6 @@ class _OnBoardingPageState extends State<OnBoardingPage>
   @override
   Widget build(BuildContext context) {
     return Consumer<ProviderApiText>(builder: (context, v, child) {
-      
       return Scaffold(
         body: SizedBox(
           height: MediaQuery.of(context).size.height,
@@ -142,22 +133,18 @@ class _OnBoardingPageState extends State<OnBoardingPage>
 
                 if (index == 0) {
                   setState(() {
-                    // _visible = true;
                     warna = const Color(0xFF85014e);
                   });
                 } else if (index == 1) {
                   setState(() {
-                    // _visible = true;
                     warna = const Color(0xFFE8BD0C);
                   });
                 } else if (index == 2) {
                   setState(() {
-                    // _visible = true;
                     warna = Colors.black;
                   });
                 } else if (index == 3) {
                   setState(() {
-                    // _visible = true;
                     warna = const Color(0xFFA0E2C1);
                   });
                 }
@@ -265,7 +252,6 @@ class _OnBoardingPageState extends State<OnBoardingPage>
                         v.dataApiTextObaroding4?.data?.value ?? "",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            // color: const Color(0xFF85014e),
                             color: Colors.white,
                             fontWeight: FontWeight.normal,
                             fontSize: 13.sp),
@@ -275,15 +261,14 @@ class _OnBoardingPageState extends State<OnBoardingPage>
                       height: 10.h,
                     ),
                     SmoothPageIndicator(
-                        controller: controller, // PageController
+                        controller: controller, 
                         count: 4,
                         effect: ExpandingDotsEffect(
                           dotHeight: 12,
                           dotWidth: 12,
                           dotColor: Colors.grey.shade500,
-                          // activeDotColor: Color(0xFF85014e),
                           activeDotColor: const Color(0xFF0ACBE3),
-                        ), // your preferred effect
+                        ), 
                         onDotClicked: (index) {
                           controller.animateToPage(index,
                               duration: const Duration(microseconds: 500),
@@ -291,17 +276,11 @@ class _OnBoardingPageState extends State<OnBoardingPage>
                         }),
                     Container(
                       height: 200,
-                      // width: MediaQuery.of(context).size.width,
-                      // color: const Color(0xFFFFFF),
-                      // padding: EdgeInsets.only(bottom: 50),
-                      // color: Colors.white,
                       color: Colors.transparent,
                       child: Stack(
-                        // mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Positioned(
                             top: 50,
-                            // alignment: Alignment.bottomLeft,
                             child: InkWell(
                               onTap: () {
                                 bool login = true, loginKeyExists = false;
@@ -409,121 +388,6 @@ class _OnBoardingPageState extends State<OnBoardingPage>
             ],
           ),
         ),
-        // bottomSheet:
-        // Container(
-        //   height: 200,
-        //   width: MediaQuery.of(context).size.width,
-        //   // color: const Color(0xFFFFFF),
-        //   // padding: EdgeInsets.only(bottom: 50),
-        //   // color: Colors.white,
-        //   color: warna,
-        //   child: Stack(
-        //     // mainAxisAlignment: MainAxisAlignment.start,
-        //     children: [
-        //       Align(
-        //         alignment: Alignment.bottomLeft,
-        //         child: InkWell(
-        //           onTap: () {
-        //             controller.jumpToPage(3);
-        //           },
-        //           child: Container(
-        //             margin: const EdgeInsets.only(left: 50.0, bottom: 50),
-        //             child: Text(
-        //               'Skip',
-        //               textAlign: TextAlign.center,
-        //               style: TextStyle(
-        //                   color: Color(0xFF717171),
-        //                   fontWeight: FontWeight.normal,
-        //                   fontSize: 12.sp),
-        //             ),
-        //           ),
-        //         ),
-        //       ),
-        //       Center(
-        //         child: InkWell(
-        //           onTap: () {
-        //             controller.nextPage(
-        //                 duration: const Duration(milliseconds: 500),
-        //                 curve: Curves.easeInOut);
-        //           },
-        //           child: Container(
-        //             padding: EdgeInsets.all(5),
-        //             height: 85,
-        //             width: 85,
-        //             decoration: BoxDecoration(
-        //                 shape: BoxShape.circle, color: Colors.white),
-        //             child: Container(
-        //               padding: EdgeInsets.all(10),
-        //               height: 85,
-        //               width: 85,
-        //               decoration:
-        //                   BoxDecoration(shape: BoxShape.circle, color: warna),
-        //               child: Container(
-        //                 height: 85,
-        //                 width: 85,
-        //                 decoration: BoxDecoration(
-        //                     shape: BoxShape.circle, color: Colors.green),
-        //                 child: Icon(
-        //                   Icons.arrow_forward,
-        //                   color: Colors.white,
-        //                 ),
-        //               ),
-        //             ),
-        //           ),
-        //         ),
-        //       ),
-        // lastpage == false
-        //     ? InkWell(
-        //         onTap: () {
-        //           controller.nextPage(
-        //               duration: const Duration(milliseconds: 500),
-        //               curve: Curves.easeInOut);
-        //         },
-        //         child: Container(
-        //             margin: const EdgeInsets.only(right: 20.0),
-        //             padding: const EdgeInsets.symmetric(
-        //                 vertical: 15, horizontal: 70),
-        //             decoration: BoxDecoration(
-        //               borderRadius: BorderRadius.circular(5),
-        //               color: const Color(0xFF85014e),
-        //             ),
-        //             child: Text(
-        //               'Mulai',
-        //               textAlign: TextAlign.center,
-        //               style: TextStyle(
-        //                   color: Colors.white,
-        //                   fontWeight: FontWeight.normal,
-        //                   fontSize: 12.sp),
-        //             )),
-        //       )
-        //     : InkWell(
-        //         onTap: () {
-        //           Navigator.push(
-        //             context,
-        //             MaterialPageRoute(
-        //                 builder: (context) => const LoginPages()),
-        //           );
-        //         },
-        //         child: Container(
-        //             margin: const EdgeInsets.only(right: 20.0),
-        //             padding: const EdgeInsets.symmetric(
-        //                 vertical: 15, horizontal: 70),
-        //             decoration: BoxDecoration(
-        //               borderRadius: BorderRadius.circular(5),
-        //               color: const Color(0xFF85014e),
-        //             ),
-        //             child: Text(
-        //               'Login',
-        //               textAlign: TextAlign.center,
-        //               style: TextStyle(
-        //                   color: Colors.white,
-        //                   fontWeight: FontWeight.normal,
-        //                   fontSize: 12.sp),
-        //             )),
-        //       ),
-        // ],
-        // ),
-        // ),
       );
     });
   }

@@ -1,6 +1,4 @@
-// To parse this JSON data, do
-//
-//     final postPaidType = postPaidTypeFromJson(jsonString);
+
 
 import 'dart:convert';
 
