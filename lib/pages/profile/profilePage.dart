@@ -20,6 +20,7 @@ import 'package:kmp_togo_mobile/providers/cart/cart_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:settings_ui/settings_ui.dart';
 
+import '../nft/payment_success.dart';
 import 'iuran_pokok.dart';
 import 'kode_pembayaran.dart';
 
@@ -189,6 +190,19 @@ class _ProfileState extends State<Profile> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const KodePembayaran()));
+                        },
+                      ),
+                      SettingsTile(
+                        leading: Icon(Icons.monetization_on_sharp),
+                        title: Text(
+                          "payment success",
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                        onPressed: (value) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PaymentSuccess()));
                         },
                       ),
                       titleSection(title: "Pengaturan Umun"),
