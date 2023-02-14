@@ -55,6 +55,7 @@ class User {
     required this.createdAt,
     required this.updatedAt,
     required this.status,
+    required this.role,
     required this.currentMember,
   });
 
@@ -65,6 +66,7 @@ class User {
   DateTime createdAt;
   DateTime updatedAt;
   String status;
+  String role;
   CurrentMember currentMember;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
@@ -75,6 +77,7 @@ class User {
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         status: json["status"],
+        role: 'admin',
         currentMember: CurrentMember.fromJson(json["current_member"]),
       );
 
@@ -86,6 +89,7 @@ class User {
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
         "status": status,
+        "role": role,
         "current_member": currentMember.toJson(),
       };
 }

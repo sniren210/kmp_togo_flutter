@@ -75,7 +75,7 @@ abstract class ApiMachine {
   }
 
   saveResponseGet(path, statusMessage, response) async {
-    // await AppDb().insertResponseAPI(ResponseFromAPIData(
+    // await databaseApp().insertResponseAPI(ResponseFromAPIData(
     //   method: 'GET',
     //   status: statusMessage,
     //   path: path,
@@ -84,7 +84,7 @@ abstract class ApiMachine {
   }
 
   saveResponseDelete(path, statusMessage, response) async {
-    // await AppDb().insertResponseAPI(ResponseFromAPIData(
+    // await databaseApp().insertResponseAPI(ResponseFromAPIData(
     //   method: 'DELETE',
     //   status: statusMessage,
     //   path: path,
@@ -93,7 +93,7 @@ abstract class ApiMachine {
   }
 
   saveResponsePost(path, statusMessage, response, data) async {
-    // await AppDb().insertResponseAPI(ResponseFromAPIData(
+    // await databaseApp().insertResponseAPI(ResponseFromAPIData(
     //     method: 'POST',
     //     status: statusMessage,
     //     path: path,
@@ -102,7 +102,7 @@ abstract class ApiMachine {
   }
 
   saveResponsePatch(path, statusMessage, response, data) async {
-    // await AppDb().insertResponseAPI(ResponseFromAPIData(
+    // await databaseApp().insertResponseAPI(ResponseFromAPIData(
     //     method: 'PATCH',
     //     status: statusMessage,
     //     path: path,

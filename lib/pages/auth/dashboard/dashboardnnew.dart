@@ -406,12 +406,10 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                               children: [
                                                 cardmenu('Topup',
                                                     Icons.monetization_on, () {
-                                                  if (model.items!.data.membertype == 'konsumen1' ||
-                                                      model.items!.data
-                                                              .membertype ==
+                                                  if (model.items!.role == 'konsumen1' ||
+                                                      model.items!.role ==
                                                           'konsumen2' ||
-                                                      model.items!.data
-                                                              .membertype ==
+                                                      model.items!.role ==
                                                           'produsen') {
                                                     Navigator.push(
                                                       context,
@@ -426,12 +424,10 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                 cardmenu(
                                                     'Withdraw', Icons.wallet,
                                                     () {
-                                                  if (model.items!.data.membertype == 'konsumen1' ||
-                                                      model.items!.data
-                                                              .membertype ==
+                                                  if (model.items!.role == 'konsumen1' ||
+                                                      model.items!.role ==
                                                           'konsumen2' ||
-                                                      model.items!.data
-                                                              .membertype ==
+                                                      model.items!.role ==
                                                           'produsen') {
                                                     Navigator.push(
                                                       context,
@@ -445,8 +441,7 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                 }),
                                                 cardmenu('NFT', Icons.layers,
                                                     () {
-                                                  if (model.items!.data
-                                                          .membertype ==
+                                                  if (model.items!.role ==
                                                       'konsumen1') {
                                                     Navigator.push(
                                                       context,
@@ -461,18 +456,15 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                 cardmenu(
                                                     'UMKM', Icons.shopping_cart,
                                                     () {
-                                                  if (model.items!.data.membertype ==
+                                                  if (model.items!.role ==
                                                           'produsen' ||
-                                                      model.items!.data.membertype ==
+                                                      model.items!.role ==
                                                           'konsumen1' ||
-                                                      model.items!.data
-                                                              .membertype ==
+                                                      model.items!.role ==
                                                           'konsumen2' ||
-                                                      model.items!.data
-                                                              .membertype ==
+                                                      model.items!.role ==
                                                           'trader' ||
-                                                      model.items!.data
-                                                              .membertype ==
+                                                      model.items!.role ==
                                                           'umkm') {
                                                     Navigator.push(
                                                       context,
@@ -577,7 +569,7 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                 //             )),
                                                 //   );
                                                 // }),
-                                                // model.items!.data.membertype ==
+                                                // model.items!.data.role ==
                                                 //             'trader' ||
                                                 //         model.items!.data
                                                 //                 .membertype ==
@@ -596,8 +588,8 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                     () {
                                                   // klikBottom();
                                                   Get.to(() => ExtendsMenu(
-                                                      membertype: model.items!
-                                                          .data.membertype));
+                                                      membertype:
+                                                          model.items!.role));
                                                 })
                                               ]),
                                           SizedBox(
@@ -615,7 +607,7 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                 margin: EdgeInsets.only(top: 58.h),
                                 child: Column(
                                   children: [
-                                    model.items!.data.membertype == 'konsumen1'
+                                    model.items!.role == 'konsumen1'
                                         ? Column(
                                             children: [
                                               Container(
@@ -801,16 +793,11 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                             ],
                                           )
                                         : Container(),
-                                    model.items!.data.membertype ==
-                                                'produsen' ||
-                                            model.items!.data.membertype ==
-                                                'konsumen1' ||
-                                            model.items!.data.membertype ==
-                                                'konsumen2' ||
-                                            model.items!.data.membertype ==
-                                                'trader' ||
-                                            model.items!.data.membertype ==
-                                                'umkm'
+                                    model.items!.role == 'produsen' ||
+                                            model.items!.role == 'konsumen1' ||
+                                            model.items!.role == 'konsumen2' ||
+                                            model.items!.role == 'trader' ||
+                                            model.items!.role == 'umkm'
                                         ? Column(
                                             children: [
                                               const VerticalSpacer(height: 20),
@@ -1211,11 +1198,12 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                                     12.sp),
                                                           )
                                                         : Text(
-                                                            calcSaparator(model
-                                                                .items!
-                                                                .data
-                                                                .tokenWallet
-                                                                .token),
+                                                            calcSaparator(
+                                                                12000),
+                                                            // calcSaparator(model
+                                                            //     .items!.
+                                                            //     .tokenWallet
+                                                            //     .token),
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .black54,
@@ -1310,11 +1298,13 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                                     12.sp),
                                                           )
                                                         : Text(
-                                                            calcSaparator(model
-                                                                .items!
-                                                                .data
-                                                                .coinWallet
-                                                                .coin),
+                                                            calcSaparator(
+                                                                12220),
+                                                            // calcSaparator(model
+                                                            //     .items!
+                                                            //     .data
+                                                            //     .coinWallet
+                                                            //     .coin),
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .black54,

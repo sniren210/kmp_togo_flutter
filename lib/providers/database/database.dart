@@ -19,6 +19,8 @@ abstract class JsonConverter
   tables: [Cart, ResponseFromAPI],
   // include: {'tables.drift'},
 )
+final databaseApp = AppDb();
+
 class AppDb extends _$AppDb {
   AppDb() : super(_openConnection());
 

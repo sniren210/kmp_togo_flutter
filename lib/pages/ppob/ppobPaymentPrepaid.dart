@@ -33,7 +33,8 @@ class PPOBPaymentPrePaid extends StatefulWidget {
   State<PPOBPaymentPrePaid> createState() => _PPOBPaymentPrePaidState();
 }
 
-class _PPOBPaymentPrePaidState extends State<PPOBPaymentPrePaid> with NumberFormatMachine {
+class _PPOBPaymentPrePaidState extends State<PPOBPaymentPrePaid>
+    with NumberFormatMachine {
   int? groupValue = 1;
 
   @override
@@ -244,7 +245,8 @@ class _PPOBPaymentPrePaidState extends State<PPOBPaymentPrePaid> with NumberForm
                                                       const EdgeInsets.only(
                                                           left: 8.0),
                                                   child: Text(
-                                                      '${getNumberFormatSeparator(model2.items!.data.tokenWallet.token)} Poin Kamu',
+                                                      '${getNumberFormatSeparator(0)} Poin Kamu',
+                                                      // '${getNumberFormatSeparator(model2.items!.data.tokenWallet.token)} Poin Kamu',
                                                       style: TextStyling
                                                           .w40014black),
                                                 ),
@@ -279,9 +281,9 @@ class _PPOBPaymentPrePaidState extends State<PPOBPaymentPrePaid> with NumberForm
                                                       color: Colors.white)),
                                               onPressed: () {
                                                 final SharedPreferencesManager
-                                                sharedPreferencesManager =
-                                                locator<
-                                                    SharedPreferencesManager>();
+                                                    sharedPreferencesManager =
+                                                    locator<
+                                                        SharedPreferencesManager>();
 
                                                 CheckOutBody(
                                                   code: widget.code,
@@ -297,10 +299,9 @@ class _PPOBPaymentPrePaidState extends State<PPOBPaymentPrePaid> with NumberForm
                                                     return EnterPinPage(
                                                         isAllowBack: true,
                                                         nextPage: SplashPage(
-                                                            pinValue: sharedPreferencesManager
-                                                                .getString(
-                                                                SharedPreferencesManager
-                                                                    .pin) ??
+                                                            pinValue: sharedPreferencesManager.getString(
+                                                                    SharedPreferencesManager
+                                                                        .pin) ??
                                                                 '',
                                                             nextPage:
                                                                 BuySuccessPage(
@@ -316,8 +317,11 @@ class _PPOBPaymentPrePaidState extends State<PPOBPaymentPrePaid> with NumberForm
                                                                 'prepaid_checkout',
                                                             product:
                                                                 widget.product,
-                                                            ppob_tipe: widget.product_type,
-                                                            ppob_customer_id: widget.customer_id,
+                                                            ppob_tipe: widget
+                                                                .product_type,
+                                                            ppob_customer_id:
+                                                                widget
+                                                                    .customer_id,
                                                             model: null,
                                                             isReplace: false),
                                                         isContainFunctionBack:

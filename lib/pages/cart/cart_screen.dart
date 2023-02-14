@@ -74,7 +74,7 @@ class _CartScreenState extends State<CartScreen> with NumberFormatMachine {
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) =>
-                                        DriftDbViewer(AppDb())));
+                                        DriftDbViewer(databaseApp)));
                               },
                               icon: const Icon(Icons.shopping_cart),
                               color: Colors.white));
@@ -90,7 +90,8 @@ class _CartScreenState extends State<CartScreen> with NumberFormatMachine {
                       child: IconButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => DriftDbViewer(AppDb())));
+                              builder: (context) =>
+                                  DriftDbViewer(databaseApp)));
                         },
                         icon: const Icon(Icons.shopping_cart,
                             color: Colors.white),
@@ -213,7 +214,7 @@ class _CartScreenState extends State<CartScreen> with NumberFormatMachine {
                                       addQuantity: () {
                                         cart.addQuantity(
                                             provider.cart[index].id);
-                                        AppDb()
+                                        databaseApp
                                             .updateQuantity(CartData(
                                                 id: provider.cart[index].id,
                                                 userId: sharedPreferencesManager
@@ -258,7 +259,7 @@ class _CartScreenState extends State<CartScreen> with NumberFormatMachine {
                                     ),
                                     IconButton(
                                         onPressed: () {
-                                          AppDb().deleteCartItem(
+                                          databaseApp.deleteCartItem(
                                               provider.cart[index].id);
                                           provider.removeItem(
                                               provider.cart[index].id);

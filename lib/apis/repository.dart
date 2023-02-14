@@ -5,6 +5,7 @@ import 'package:kmp_togo_mobile/apis/product/product_api.dart';
 import 'package:kmp_togo_mobile/apis/profile/address_book_api.dart';
 import 'package:kmp_togo_mobile/apis/wallet/topup/topup_api.dart';
 import 'package:kmp_togo_mobile/models/account/accountInfo.dart';
+import 'package:kmp_togo_mobile/models/account/login_info.dart';
 import 'package:kmp_togo_mobile/models/address/addressBook.dart';
 import 'package:kmp_togo_mobile/models/member_model.dart';
 import 'package:kmp_togo_mobile/models/ppob/PPOBCheckOut.dart';
@@ -35,8 +36,7 @@ class Repository {
   Future<ItemModelMemberType> fetchAllMemberType() =>
       memberTypeApi.fetchAllMemberType();
 
-  Future<ItemModelAccountInfo> fetchAccountInfo() =>
-      accountApi.fetchAccountInfo();
+  Future<User> fetchAccountInfo() => accountApi.fetchAccountInfo();
 
   Future<ItemModelUserAddressBook> fetchMyAddress() =>
       addressBookApi.fetchMyAddress();

@@ -66,7 +66,7 @@ class _LoginPagesState extends State<LoginPages> {
   void _submit() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
-        loading = true;
+        loading = false;
       });
       await Provider.of<ProviderAuthLogin>(context, listen: false).login(
         context,
@@ -133,7 +133,7 @@ class _LoginPagesState extends State<LoginPages> {
       prefs.remove('item_quantity');
       prefs.remove('total_price');
 
-      AppDb().emptyCart();
+      databaseApp.emptyCart();
 
       for (var node in _focusNodes) {
         node.addListener(() {
@@ -375,6 +375,13 @@ class _LoginPagesState extends State<LoginPages> {
                                   right: 20.0, left: 20.0, top: 40),
                               child: InkWell(
                                 onTap: () async {
+                                  // await Provider.of<ProviderAuthLogin>(context,
+                                  //         listen: false)
+                                  //     .login(
+                                  //   context,
+                                  //   nameController.text,
+                                  //   passController.text,
+                                  // );
                                   // Get.offAllNamed('/home');
                                   _submit();
                                 },

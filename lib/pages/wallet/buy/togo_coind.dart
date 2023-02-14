@@ -126,7 +126,8 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
                                                     fontSize: 9.sp),
                                               )
                                             : Text(
-                                                'coin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
+                                                'coin : ${getNumberFormatSeparator(0)}',
+                                                // 'coin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w700,
                                                     color: Colors.white,
@@ -277,7 +278,8 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
                                               fontSize: 17.sp),
                                         )
                                       : Text(
-                                          'coin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
+                                          'coin : ${getNumberFormatSeparator(0)}',
+                                          // 'coin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               color: Colors.black,

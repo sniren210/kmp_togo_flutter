@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +12,7 @@ import 'package:kmp_togo_mobile/models/account/login_info.dart';
 import 'package:kmp_togo_mobile/models/response/error/model_error.dart';
 import 'package:kmp_togo_mobile/pages/auth/login/changepasswordpages.dart';
 import 'package:kmp_togo_mobile/pages/auth/login/loginPages.dart';
+import 'package:kmp_togo_mobile/providers/database/database.dart';
 
 import '../../models/myinfo/modelinforegister.dart';
 import '../../pages/auth/register/payments/registerPaymentsProcess.dart';
@@ -30,22 +33,27 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
         "password": password,
       };
       final res = await _dio.post('/api/v1/login', data: body);
+      print(res.data);
 
       if (res.data['success'] == true) {
         dataMyinfo = LoginInfo.fromJson(res.data);
+
+        print(dataMyinfo);
+
+        await databaseApp.insertResponseAPI(ResponseFromAPIData(
+          method: 'GET',
+          status: res.statusMessage ?? '',
+          path: 'login',
+          responseBody: jsonEncode(res.data),
+        ));
 
         if (dataMyinfo?.data.user.status == 'ACTIVE') {
           await sharedPreferencesManager.setBool(
               SharedPreferencesManager.isLoggedIn, true);
           Get.offAllNamed('/home');
           loading = false;
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => RegisterLoadingPage()),
-          // );
         } else {
           loading = false;
-          // Get.toNamed('/payment');
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -56,9 +64,6 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
                       // tipeAnggota: membertypeanggota,
                       tipeAnggotaId: dataMyinfo?.data.user.status)));
         }
-        // * Get.toNamed('/home'); -> boleh balik pake routing
-        // * Get.offAll(Home()); -> ngga boleh balik pake class
-        // * Get.to(Home()); -> boleh balik pake class
       } else {}
     } on DioError catch (e) {
       try {
@@ -75,14 +80,6 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
           print('b');
           notifyListeners();
         }
-        // return Fluttertoast.showToast(
-        //     msg: data.error.toString(),
-        //     toastLength: Toast.LENGTH_SHORT,
-        //     gravity: ToastGravity.CENTER,
-        //     timeInSecForIosWeb: 1,
-        //     backgroundColor: Colors.red,
-        //     textColor: Colors.white,
-        //     fontSize: 16.0);
       } catch (e) {
         final msg = e.toString();
         print(msg);

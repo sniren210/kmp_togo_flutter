@@ -558,7 +558,7 @@ class _DetailMarketPlaceState extends State<DetailMarketPlace>
                                       sharedPreferencesManager =
                                       locator<SharedPreferencesManager>();
                                   try {
-                                    await AppDb().insertToCart(CartData(
+                                    await databaseApp.insertToCart(CartData(
                                         id: selectedSkuId,
                                         userId: sharedPreferencesManager.getInt(
                                             SharedPreferencesManager.userId)!,

@@ -154,7 +154,8 @@ class _DashboardWalletState extends State<DashboardWallet>
                                                     fontSize: 9.sp),
                                               )
                                             : Text(
-                                                'Poin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
+                                                'Poin : ${getNumberFormatSeparator(0)}',
+                                                // 'Poin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w700,
                                                     color: Colors.white,
@@ -347,7 +348,8 @@ class _DashboardWalletState extends State<DashboardWallet>
                                               fontSize: 17.sp),
                                         )
                                       : Text(
-                                          'Poin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
+                                          'Poin : ${getNumberFormatSeparator(0)}',
+                                          // 'Poin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               color: Colors.black,

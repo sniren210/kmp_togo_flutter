@@ -71,11 +71,11 @@ class _ProfileState extends State<Profile> {
                           ],
                         ),
                         child: const MainProfile(
-                          name: "Inky pramudia ramdhani",
-                          email: "inkypramudia27@gmail.com  ",
-                          token: 3454948.332,
-                          memberType: "admin",
-                          status: "asdasd",
+                          name: "",
+                          email: "",
+                          token: 0,
+                          memberType: "",
+                          status: "",
                         ),
                       ),
                     ),
@@ -102,11 +102,12 @@ class _ProfileState extends State<Profile> {
                           ],
                         ),
                         child: MainProfile(
-                          name: model.items!.data.name,
-                          email: model.items!.data.email,
-                          token: model.items!.data.tokenWallet.token,
-                          memberType: model.items!.data.membertype,
-                          status: model.items!.data.status,
+                          name: model.items!.name,
+                          email: model.items!.email,
+                          token: 0,
+                          // token: model.items!.tokenWallet.token,
+                          memberType: model.items!.role,
+                          status: model.items!.status.toLowerCase(),
                         ),
                       ),
                     ),
@@ -245,13 +246,13 @@ class _ProfileState extends State<Profile> {
   }
 
   buildNavigationByMember(ProviderAccountInfo model) {
-    String memberType = model.items!.data.membertype.toLowerCase();
+    String memberType = model.items!.role.toLowerCase();
     if (memberType == 'produsen' ||
         memberType == 'konsumen1' ||
         memberType == 'umkm') {
       return SettingsTile.navigation(
         onPressed: (value) {
-          switch (model.items!.data.membertype.toLowerCase()) {
+          switch (model.items!.role.toLowerCase()) {
             case 'produsen':
               Get.to(() => DashboardMyNFTKonsumen());
               break;
@@ -264,7 +265,7 @@ class _ProfileState extends State<Profile> {
           }
         },
         leading: const Icon(Icons.shopping_cart),
-        title: buildButtonMember(model.items!.data.membertype.toLowerCase()),
+        title: buildButtonMember(model.items!.role.toLowerCase()),
       );
     }
     return SettingsTile(

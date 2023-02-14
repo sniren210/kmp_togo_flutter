@@ -128,7 +128,8 @@ class _DashboardWalletState extends State<DashboardWallet>
                                                       fontSize: 9.sp),
                                                 )
                                               : Text(
-                                                  'Rp. ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
+                                                  'Rp. ${getNumberFormatSeparator(0)}',
+                                                  // 'Rp. ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w700,

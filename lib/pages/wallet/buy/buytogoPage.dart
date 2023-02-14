@@ -393,7 +393,8 @@ class _BeliToGoState extends State<BeliToGo> with NumberFormatMachine {
                                                               model.busy
                                                                   ? Container()
                                                                   : Text(
-                                                                      '${getNumberFormatSeparator(model.items!.data.coinWallet.coin.toDouble())} ToGo',
+                                                                      '${getNumberFormatSeparator(0)} ToGo',
+                                                                      // '${getNumberFormatSeparator(model.items!.data.coinWallet.coin.toDouble())} ToGo',
                                                                       style: TextStyling
                                                                           .w600bold12black),
                                                               SizedBox(

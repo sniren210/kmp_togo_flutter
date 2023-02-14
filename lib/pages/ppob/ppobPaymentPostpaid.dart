@@ -97,7 +97,8 @@ class _PPOBPaymentPostPaidState extends State<PPOBPaymentPostPaid>
                                                         .toString() ==
                                                     'ItemModelPostPaidInquery'
                                                 ? dataInquery.desc.pdamName
-                                                : dataInquery.desc!.bill.detail.first.period,
+                                                : dataInquery.desc!.bill.detail
+                                                    .first.period,
                                             style: TextStyling.w40014black),
                                         // const VerticalSpacer(height: 7),
                                         // Row(
@@ -248,7 +249,8 @@ class _PPOBPaymentPostPaidState extends State<PPOBPaymentPostPaid>
                                                       const EdgeInsets.only(
                                                           left: 8.0),
                                                   child: Text(
-                                                      '${getNumberFormatSeparator(model2.items!.data.tokenWallet.token)} Poin Kamu',
+                                                      '${getNumberFormatSeparator(0)} Poin Kamu',
+                                                      // '${getNumberFormatSeparator(model2.items!.data.tokenWallet.token)} Poin Kamu',
                                                       style: TextStyling
                                                           .w40014black),
                                                 ),

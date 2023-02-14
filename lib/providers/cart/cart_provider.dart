@@ -3,7 +3,7 @@ import 'package:kmp_togo_mobile/providers/database/database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CartProvider with ChangeNotifier {
-  AppDb dbHelper = AppDb();
+  // AppDb dbHelper = databaseApp();
   int _counter = 0;
   int _quantity = 1;
   int get counter => _counter;
@@ -15,17 +15,18 @@ class CartProvider with ChangeNotifier {
   List<CartData> cart = [];
 
   Future<List<CartData>> getData(userId) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    cart = await dbHelper.getCart(userId);
-    _counter = await dbHelper.getCart(userId).then((value) => value.length);
-    await dbHelper.getCart(userId).then((value) => value.forEach((element) {
-          _quantity = element.quantity!;
-        }));
-    prefs.setInt('cart_items', _counter);
-    prefs.setInt('item_quantity', _quantity);
-    prefs.setDouble('total_price', _totalPrice);
-    notifyListeners();
-    return cart;
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // cart = await dbHelper.getCart(userId);
+    // _counter = await dbHelper.getCart(userId).then((value) => value.length);
+    // await dbHelper.getCart(userId).then((value) => value.forEach((element) {
+    //       _quantity = element.quantity!;
+    //     }));
+    // prefs.setInt('cart_items', _counter);
+    // prefs.setInt('item_quantity', _quantity);
+    // prefs.setDouble('total_price', _totalPrice);
+    // notifyListeners();
+    // return cart;
+    return [];
   }
 
   void _setPrefsItems() async {
