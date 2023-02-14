@@ -181,19 +181,23 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   }
 
   Material _skipButton({void Function(int)? setIndex}) {
+    bool login = sharedPreferencesManager.getBool("isLoggedIn") ?? false;
+
     return Material(
       borderRadius: BorderRadius.all(Radius.circular(8.0)),
       color: defaultSkipButtonColor,
       child: InkWell(
         onTap: () {
-          if (setIndex != null) {
-            index = 3;
-            setIndex(3);
-            setState(() {
-              // _visible = true;
-              warna = const Color(0xFFA1E2C2);
-            });
+          if (login) {
+            routeLogin = '/home';
+            debugPrint(routeLogin);
           }
+
+          if (!login) {
+            routeLogin = '/login';
+            debugPrint(routeLogin);
+          }
+          Get.offAllNamed(routeLogin!);
         },
         child: Padding(
           padding: defaultSkipButtonPadding,
