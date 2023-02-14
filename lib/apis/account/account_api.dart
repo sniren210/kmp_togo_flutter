@@ -12,17 +12,17 @@ import 'package:kmp_togo_mobile/providers/database/database.dart';
 class AccountApi with ApiMachine {
   final _dio = Helper().dio;
 
-  Future<User> fetchAccountInfo() async {
+  Future<DataUser> fetchAccountInfo() async {
     final SharedPreferencesManager sharedPreferencesManager =
         locator<SharedPreferencesManager>();
     try {
       final db = await databaseApp.getResponse();
       final res = LoginInfo.fromJson(jsonDecode(
               db.firstWhere((element) => element.path == 'login').responseBody))
-          .data
-          .user;
+          .data;
 
-      sharedPreferencesManager.setInt(SharedPreferencesManager.userId, res.id);
+      sharedPreferencesManager.setInt(
+          SharedPreferencesManager.userId, res.user.id);
 
       return res;
     } on DioError catch (e) {

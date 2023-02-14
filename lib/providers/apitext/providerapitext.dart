@@ -215,7 +215,6 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
       listImage.add(gambar2);
       listImage.add(gambar3);
       listImage.add(gambar4);
-
       listImageA = listImage;
 
       if (listImageA!.isNotEmpty) {
@@ -238,8 +237,6 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
         final msg = e.toString();
         print(msg);
       }
-    } catch (e) {
-      print(e);
     }
   }
 

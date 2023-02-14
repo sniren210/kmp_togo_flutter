@@ -76,8 +76,6 @@ class ProviderNft with ChangeNotifier, ApiMachine {
         await customSnackbar(
             type: 'error', title: 'error', text: 'Terjadi kesalahan!');
       }
-    } catch (e) {
-      print(e);
     }
   }
 

@@ -102,12 +102,12 @@ class _ProfileState extends State<Profile> {
                           ],
                         ),
                         child: MainProfile(
-                          name: model.items!.name,
-                          email: model.items!.email,
+                          name: model.items!.user.name,
+                          email: model.items!.user.email,
                           token: 0,
-                          // token: model.items!.tokenWallet.token,
-                          memberType: model.items!.role,
-                          status: model.items!.status.toLowerCase(),
+                          // token: model.items!.user.tokenWallet.token,
+                          memberType: model.items!.user.role,
+                          status: model.items!.user.status.toLowerCase(),
                         ),
                       ),
                     ),
@@ -246,13 +246,13 @@ class _ProfileState extends State<Profile> {
   }
 
   buildNavigationByMember(ProviderAccountInfo model) {
-    String memberType = model.items!.role.toLowerCase();
+    String memberType = model.items!.user.role.toLowerCase();
     if (memberType == 'produsen' ||
         memberType == 'konsumen1' ||
         memberType == 'umkm') {
       return SettingsTile.navigation(
         onPressed: (value) {
-          switch (model.items!.role.toLowerCase()) {
+          switch (model.items!.user.role.toLowerCase()) {
             case 'produsen':
               Get.to(() => DashboardMyNFTKonsumen());
               break;
@@ -265,7 +265,7 @@ class _ProfileState extends State<Profile> {
           }
         },
         leading: const Icon(Icons.shopping_cart),
-        title: buildButtonMember(model.items!.role.toLowerCase()),
+        title: buildButtonMember(model.items!.user.role.toLowerCase()),
       );
     }
     return SettingsTile(

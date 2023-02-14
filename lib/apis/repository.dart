@@ -36,7 +36,7 @@ class Repository {
   Future<ItemModelMemberType> fetchAllMemberType() =>
       memberTypeApi.fetchAllMemberType();
 
-  Future<User> fetchAccountInfo() => accountApi.fetchAccountInfo();
+  Future<DataUser> fetchAccountInfo() => accountApi.fetchAccountInfo();
 
   Future<ItemModelUserAddressBook> fetchMyAddress() =>
       addressBookApi.fetchMyAddress();

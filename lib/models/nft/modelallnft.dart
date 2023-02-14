@@ -18,7 +18,8 @@ class ModelAllNFT {
     return ModelAllNFT(
       data: [
         Data(
-          imagePath: 'https://i.imgur.com/NO25iZV.png',
+          imagePath:
+              'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg',
           status: '',
           nftId: 'example id',
           categoryId: '',
@@ -55,7 +56,8 @@ class ModelAllNFT {
               updatedAt: '',
               deletedAt: '2011-11-02T02:50:12.208Z',
               owner: Owner(
-                imagePath: 'https://i.imgur.com/NO25iZV.png',
+                imagePath:
+                    'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg',
                 name: '',
                 image: '',
                 email: '',
@@ -68,7 +70,8 @@ class ModelAllNFT {
           ],
         ),
         Data(
-          imagePath: 'https://i.imgur.com/NO25iZV.png',
+          imagePath:
+              'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg',
           status: '',
           nftId: 'example id',
           categoryId: '',
@@ -105,7 +108,8 @@ class ModelAllNFT {
               updatedAt: '',
               deletedAt: '2011-11-02T02:50:12.208Z',
               owner: Owner(
-                imagePath: 'https://i.imgur.com/NO25iZV.png',
+                imagePath:
+                    'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg',
                 name: '',
                 image: '',
                 email: '',

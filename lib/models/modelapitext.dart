@@ -10,10 +10,12 @@ class ModelApiText {
   ModelApiText dummy() {
     return ModelApiText(
       data: Data(
-        imagePath: 'https://i.imgur.com/NO25iZV.png',
+        imagePath:
+            'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg',
         key: '0',
         value: 'example',
-        image: 'https://i.imgur.com/NO25iZV.png',
+        image:
+            'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg',
       ),
     );
   }

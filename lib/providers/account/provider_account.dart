@@ -11,22 +11,22 @@ import 'package:kmp_togo_mobile/models/member_model.dart';
 class ProviderAccountInfo with ChangeNotifier implements BaseModel {
   final Repository _authenticationService;
   bool _busy = false;
-  User? _items;
+  DataUser? _items;
 
   ProviderAccountInfo(this._authenticationService);
 
-  final _streamController = StreamController<User>();
-  Stream<User> get catPhotoStream {
+  final _streamController = StreamController<DataUser>();
+  Stream<DataUser> get catPhotoStream {
     return _streamController.stream;
   }
 
-  Future<User> fetchAccountInfo() async {
+  Future<DataUser> fetchAccountInfo() async {
     setBusy(true);
 
     var success = await _authenticationService.fetchAccountInfo();
     _items = success;
 
-    sharedPreferencesManager.setInt('ownerId', success.id);
+    sharedPreferencesManager.setInt('ownerId', success.user.id);
 
     setBusy(false);
     return success;
@@ -35,7 +35,7 @@ class ProviderAccountInfo with ChangeNotifier implements BaseModel {
   @override
   // TODO: implement busy
   bool get busy => _busy;
-  User? get items => _items;
+  DataUser? get items => _items;
 
   @override
   void setBusy(bool value) {

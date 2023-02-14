@@ -7,12 +7,12 @@ class LoginInfo {
 
   int status;
   bool success;
-  Data data;
+  DataUser data;
 
   factory LoginInfo.fromJson(Map<String, dynamic> json) => LoginInfo(
         status: json["status"],
         success: json["success"],
-        data: Data.fromJson(json["data"]),
+        data: DataUser.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -22,8 +22,8 @@ class LoginInfo {
       };
 }
 
-class Data {
-  Data({
+class DataUser {
+  DataUser({
     required this.message,
     required this.user,
     required this.token,
@@ -33,7 +33,7 @@ class Data {
   User user;
   String token;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory DataUser.fromJson(Map<String, dynamic> json) => DataUser(
         message: json["message"],
         user: User.fromJson(json["user"]),
         token: json["token"],
@@ -77,7 +77,7 @@ class User {
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         status: json["status"],
-        role: 'admin',
+        role: 'konsumen1',
         currentMember: CurrentMember.fromJson(json["current_member"]),
       );
 

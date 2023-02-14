@@ -29,13 +29,15 @@ class ItemModelProduct {
         meta: Meta(storeId: ''),
         data: [
           Datum(
-            imagePath: 'https://i.imgur.com/NO25iZV.png',
+            imagePath:
+                'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg',
             id: 0,
             storeId: 0,
             categoryId: 0,
             subCategoryId: '',
             name: 'example',
-            image: 'https://i.imgur.com/NO25iZV.png',
+            image:
+                'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg',
             description: 'example desc',
             productSelling: '',
             rating: 0,
@@ -63,13 +65,15 @@ class ItemModelProduct {
             ],
           ),
           Datum(
-            imagePath: 'https://i.imgur.com/NO25iZV.png',
+            imagePath:
+                'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg',
             id: 0,
             storeId: 0,
             categoryId: 0,
             subCategoryId: '',
             name: 'example',
-            image: 'https://i.imgur.com/NO25iZV.png',
+            image:
+                'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg',
             description: 'example desc',
             productSelling: '',
             rating: 0,
@@ -97,13 +101,15 @@ class ItemModelProduct {
             ],
           ),
           Datum(
-            imagePath: 'https://i.imgur.com/NO25iZV.png',
+            imagePath:
+                'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg',
             id: 0,
             storeId: 0,
             categoryId: 0,
             subCategoryId: '',
             name: 'example',
-            image: 'https://i.imgur.com/NO25iZV.png',
+            image:
+                'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg',
             description: 'example desc',
             productSelling: '',
             rating: 0,
