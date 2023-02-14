@@ -202,6 +202,16 @@ class _ProfileState extends State<Profile> {
                         },
                       ),
                       SettingsTile(
+                        leading: Icon(Icons.branding_watermark_outlined),
+                        title: Text(
+                          "Peraturan anggota",
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                        onPressed: (value) {
+                          Get.toNamed('/privacyPolicy');
+                        },
+                      ),
+                      SettingsTile(
                         leading: Icon(Icons.people),
                         title: Text(
                           "About us",

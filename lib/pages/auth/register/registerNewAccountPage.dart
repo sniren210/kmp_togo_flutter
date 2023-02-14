@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:kmp_togo_mobile/helpers/injector.dart';
 import 'package:kmp_togo_mobile/helpers/shared_pref_manager.dart';
@@ -20,13 +21,13 @@ class RegisterMakeAccountPage extends StatefulWidget {
 
 class _RegisterMakeAccountPageState extends State<RegisterMakeAccountPage> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController? emailC, passwordC, passwordValC;
+  TextEditingController? emailC, passwordC, passwordValC, kodeRef;
   bool passhide = true;
   bool passhide1 = true;
+
+  String termText = 'Kebijakan privasi dan Peraturan anggota';
   Map<String, bool> terms_conditions = {
-    'Perjanjian anggota koperasi': false,
-    'Peraturan anggota koperasi': false,
-    'Perjanjian aplikasi KMP - ToGo': false,
+    'Kebijakan privasi dan Peraturan anggota': false,
   };
 
   bool validatePassword(String value) {
@@ -47,6 +48,7 @@ class _RegisterMakeAccountPageState extends State<RegisterMakeAccountPage> {
     emailC = TextEditingController();
     passwordC = TextEditingController();
     passwordValC = TextEditingController();
+    kodeRef = TextEditingController();
 
     super.initState();
   }
@@ -93,7 +95,7 @@ class _RegisterMakeAccountPageState extends State<RegisterMakeAccountPage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: () async => true,
       child: Scaffold(
         body: SingleChildScrollView(
           child: Form(
@@ -189,97 +191,99 @@ class _RegisterMakeAccountPageState extends State<RegisterMakeAccountPage> {
                     },
                   ),
                 ),
+                const SizedBox(
+                  height: 8,
+                ),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: TextFormField(
-                    controller: passwordValC,
-                    obscureText: passhide,
+                    controller: kodeRef,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.symmetric(vertical: 20),
-                      prefixIcon: const Icon(Icons.lock),
-                      labelText: 'Masukan Kode Referral',
+                      prefixIcon: const Icon(Icons.account_balance),
+                      labelText: 'Masukan Kode Referral (Opsional)',
                       border: const OutlineInputBorder(),
-                      suffixIcon: IconButton(
-                          icon: Icon(
-                            passhide ? Icons.visibility_off : Icons.visibility,
-                            size: 7.w,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              passhide = !passhide;
-                            });
-                          }),
-                      // labelText: 'User Name',
                     ),
                   ),
                 ),
                 const SizedBox(
                   height: 8,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  margin: const EdgeInsets.symmetric(
-                      horizontal: 20.0, vertical: 10),
-                  child: const Text(
-                    'Lörem ipsum putinas eurobävning, pohöpas trev. Odade global hektar rere i biohögån ultras. ',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 15),
-                  ),
-                ),
-                SizedBox(
-                  height: 170,
-                  child: ListView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: terms_conditions.keys.map((String key) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 0, horizontal: 8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Checkbox(
-                              fillColor:
-                                  MaterialStateProperty.resolveWith((states) {
-                                if (states.contains(MaterialState.selected)) {
-                                  return const Color(0xFF85014e);
-                                }
-                                return const Color(0xFF000000);
-                              }),
-                              value: terms_conditions[key],
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  terms_conditions[key] = value!;
-                                });
-                              },
-                            ),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  if (terms_conditions[key] == true) {
-                                    terms_conditions[key] = false;
-                                  } else {
-                                    terms_conditions[key] = true;
-                                  }
-                                });
-                              },
-                              child: Text(
-                                key,
-                                style: const TextStyle(fontSize: 17.0),
-                              ),
-                            ),
-                          ],
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Checkbox(
+                        fillColor: MaterialStateProperty.resolveWith((states) {
+                          if (states.contains(MaterialState.selected)) {
+                            return const Color(0xFF85014e);
+                          }
+                          return const Color(0xFF000000);
+                        }),
+                        value: terms_conditions[termText],
+                        onChanged: (bool? value) {
+                          setState(() {
+                            terms_conditions[termText] = value!;
+                          });
+                        },
+                      ),
+                      Expanded(
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              if (terms_conditions[termText] == true) {
+                                terms_conditions[termText] = false;
+                              } else {
+                                terms_conditions[termText] = true;
+                              }
+                            });
+                          },
+                          child: RichText(
+                            text: TextSpan(
+                                text: 'saya telah membaca dan menyetujui',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: ' Kebijakan privasi ',
+                                      style: TextStyle(
+                                        color: const Color(0xFF85014e),
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          // navigate to desired screen
+                                        }),
+                                  TextSpan(
+                                      text: ' dan ',
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          // navigate to desired screen
+                                        }),
+                                  TextSpan(
+                                      text: '  Peraturan anggota ',
+                                      style: TextStyle(
+                                        color: const Color(0xFF85014e),
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          // navigate to desired screen
+                                        })
+                                ]),
+                          ),
+                          // child: Text(
+                          //   'saya telah membaca dan menyetujui $termText',
+                          //   style: const TextStyle(fontSize: 12.0),
+                          // ),
                         ),
-                      );
-                    }).toList(),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 InkWell(
                   onTap: () async {
