@@ -143,7 +143,13 @@ class profileDetail extends StatelessWidget {
                     'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
               ),
               ListTile(
-                title: const Text('-nama bank- a/n Inky ddaaa jdkd'),
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('BANK ARTHA'),
+                    Text('INKY PRAMUDIA RAMDHANI'),
+                  ],
+                ),
                 subtitle: Text(nomorRekening.toString()),
                 trailing: InkWell(
                   onTap: () {
@@ -168,7 +174,7 @@ _showSimpleModalDialog(context, int bankAccount) {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
           child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
+            height: MediaQuery.of(context).size.height * 0.37,
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Form(
@@ -187,13 +193,24 @@ _showSimpleModalDialog(context, int bankAccount) {
                         height: 10,
                       ),
                       TextFormField(
+                        readOnly: true,
                         controller: TextEditingController(
-                          text: "nama bank",
+                          text: "ARTHA",
                         ),
                         decoration: new InputDecoration(
                           hintText: "pilih Bank",
                           labelText: "Pilih Bank anda",
                           icon: const Icon(Icons.note),
+                        ),
+                      ),
+                      TextFormField(
+                        controller: TextEditingController(
+                          text: "Inky Pramudira Ramdhani",
+                        ),
+                        decoration: new InputDecoration(
+                          hintText: "Masukan Nama",
+                          labelText: "Masukan Nama anda",
+                          icon: const Icon(Icons.account_circle_rounded),
                         ),
                       ),
                       TextFormField(
