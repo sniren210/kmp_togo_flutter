@@ -64,27 +64,23 @@ class _MainProfileState extends State<MainProfile> with NumberFormatMachine {
             children: <Widget>[
               Stack(
                 children: [
-                  const CircleAvatar(
-                    radius: 37,
-                    backgroundImage: AssetImage('assets/images/logon.jpg'),
+                  Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Theme.of(context).primaryColor,
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 2,
+                      ),
+                    ),
+                    child: Icon(
+                      Icons.account_circle,
+                      size: 60,
+                      color: Colors.white,
+                    ),
                   ),
-                  // Positioned(
-                  //   bottom: 0,
-                  //   right: 0,
-                  //   child: Container(
-                  //     width: 23,
-                  //     height: 23,
-                  //     decoration: BoxDecoration(
-                  //       borderRadius: BorderRadius.circular(100),
-                  //       color: Colors.orange,
-                  //     ),
-                  //     child: Icon(
-                  //       Icons.email,
-                  //       size: 15,
-                  //       color: Colors.white,
-                  //     ),
-                  //   ),
-                  // )
                 ],
               ),
               const SizedBox(height: 15),
