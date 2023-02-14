@@ -66,26 +66,37 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
     String? birthdate,
     String? password,
     String? pin,
-    String? tipeAnngota,
-    String? anggotatipe,
+    String? membertypeId,
+    String? membertypeanggota,
     String? otp,
   ) async {
-    await Provider.of<ProviderRegister>(context, listen: false).registerPost(
-        context,
-        nik,
-        name,
-        cityId,
-        provinceId,
-        subdistrictId,
-        address,
-        email,
-        phoneNumber,
-        birthdate,
-        password,
-        pin,
-        tipeAnngota,
-        anggotatipe,
-        otp);
+    // await Provider.of<ProviderRegister>(context, listen: false).registerPost(
+    //     context,
+    //     nik,
+    //     name,
+    //     cityId,
+    //     provinceId,
+    //     subdistrictId,
+    //     address,
+    //     email,
+    //     phoneNumber,
+    //     birthdate,
+    //     password,
+    //     pin,
+    //     tipeAnngota,
+    //     anggotatipe,
+    //     otp);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => PaymentProcess(
+                isTopup: false,
+                popContext: 1,
+                isRegister: true,
+                tipeAnggota: membertypeId,
+                tipeAnggotaId: membertypeanggota,
+              )),
+    );
     setState(() {
       loading =
           Provider.of<ProviderRegister>(context, listen: false).loadingRegister;
@@ -95,190 +106,192 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
   @override
   Widget build(BuildContext context) {
     return BaseWidget<ProviderMemberType>(
-      model: ProviderMemberType(Repository()),
-      onModelReady: (model) => model.fetchAllMemberType(),
-      child: Container(),
-      builder: (context, model, child) => WillPopScope(
-        onWillPop: () async => false,
-        child: Scaffold(
-          body: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 70,
-                ),
-                const Text(
-                  'Pilih Tipe Anggota',
-                  textAlign: TextAlign.center,
-                  style: TextStyling.titleStyle,
-                ),
-                Container(
-                  margin: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 20.0),
-                  child: const Text(
-                    'Lörem ipsum putinas eurobävning, pohöpas trev. Odade global hektar rere i biohögån ultras. ',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 15),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                model.busy
-                    ? const CircularProgressIndicator()
-                    : ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: model.items?.data.length ?? 0,
-                        itemBuilder: (_, int index) {
-                          return GestureDetector(
-                            onTap: () => setState(() {
-                              selectedIndex = index;
+        model: ProviderMemberType(Repository()),
+        onModelReady: (model) => model.fetchAllMemberType(),
+        child: Container(),
+        builder: (context, model, child) {
+          return WillPopScope(
+            onWillPop: () async => true,
+            child: Scaffold(
+              body: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      height: 70,
+                    ),
+                    const Text(
+                      'Pilih Tipe Anggota',
+                      textAlign: TextAlign.center,
+                      style: TextStyling.titleStyle,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 20.0),
+                      child: const Text(
+                        'Lörem ipsum putinas eurobävning, pohöpas trev. Odade global hektar rere i biohögån ultras. ',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 15),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    model.busy
+                        ? const CircularProgressIndicator()
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: model.items?.data.length ?? 0,
+                            itemBuilder: (_, int index) {
+                              return GestureDetector(
+                                onTap: () => setState(() {
+                                  selectedIndex = index;
 
-                              showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  context: context,
-                                  builder: (
-                                    BuildContext context,
-                                  ) {
-                                    return StatefulBuilder(
-                                        builder: (context, setsate1) {
-                                      return Wrap(
-                                        children: [
-                                          Container(
-                                            decoration: const BoxDecoration(
-                                                color: Colors.white,
-                                                borderRadius: BorderRadius.only(
-                                                  topLeft:
-                                                      Radius.circular(27.0),
-                                                  topRight:
-                                                      Radius.circular(27.0),
-                                                )),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                const SizedBox(height: 10),
-                                                Center(
-                                                  child: Container(
-                                                    width: 25.w,
-                                                    height: 1.h,
-                                                    margin: EdgeInsets.only(
-                                                        top: 1.h),
-                                                    decoration: BoxDecoration(
-                                                        color: Colors.grey,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10)),
-                                                  ),
-                                                ),
-                                                MemberDetailWidget(
-                                                    name: model.items
-                                                        ?.data[index].name,
-                                                    desc: model
-                                                        .items
-                                                        ?.data[index]
-                                                        .description,
-                                                    harga: model.items
-                                                        ?.data[index].price),
-                                                loading == false
-                                                    ? InkWell(
-                                                        onTap: () {
-                                                          setsate1(() {
-                                                            loading = true;
-                                                          });
-                                                          sharedPreferencesManager.setString(
-                                                              SharedPreferencesManager
-                                                                  .produsenId,
-                                                              model
+                                  showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      context: context,
+                                      builder: (
+                                        BuildContext context,
+                                      ) {
+                                        return StatefulBuilder(
+                                            builder: (context, setsate1) {
+                                          return Wrap(
+                                            children: [
+                                              Container(
+                                                decoration: const BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(27.0),
+                                                      topRight:
+                                                          Radius.circular(27.0),
+                                                    )),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: <Widget>[
+                                                    const SizedBox(height: 10),
+                                                    Center(
+                                                      child: Container(
+                                                        width: 25.w,
+                                                        height: 1.h,
+                                                        margin: EdgeInsets.only(
+                                                            top: 1.h),
+                                                        decoration: BoxDecoration(
+                                                            color: Colors.grey,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10)),
+                                                      ),
+                                                    ),
+                                                    MemberDetailWidget(
+                                                      data: model
+                                                          .items!.data[index],
+                                                    ),
+                                                    loading == false
+                                                        ? InkWell(
+                                                            onTap: () {
+                                                              setsate1(() {
+                                                                loading = true;
+                                                              });
+                                                              sharedPreferencesManager.setString(
+                                                                  SharedPreferencesManager
+                                                                      .produsenId,
+                                                                  model
+                                                                          .items
+                                                                          ?.data[
+                                                                              index]
+                                                                          .id
+                                                                          .toString() ??
+                                                                      "");
+
+                                                              submitRegister(
+                                                                  nik,
+                                                                  name,
+                                                                  cityId,
+                                                                  provinceId,
+                                                                  subdistrictId,
+                                                                  address,
+                                                                  email,
+                                                                  phoneNumber,
+                                                                  birthdate,
+                                                                  password,
+                                                                  pin,
+                                                                  model
                                                                       .items
                                                                       ?.data[
                                                                           index]
                                                                       .id
-                                                                      .toString() ??
-                                                                  "");
-
-                                                          submitRegister(
-                                                              nik,
-                                                              name,
-                                                              cityId,
-                                                              provinceId,
-                                                              subdistrictId,
-                                                              address,
-                                                              email,
-                                                              phoneNumber,
-                                                              birthdate,
-                                                              password,
-                                                              pin,
-                                                              model
-                                                                  .items
-                                                                  ?.data[index]
-                                                                  .id
-                                                                  .toString(),
-                                                              model
-                                                                  .items
-                                                                  ?.data[index]
-                                                                  .name
-                                                                  .toString(),
-                                                              otp);
-
-                                                          // Navigator.push(
-                                                          //   context,
-                                                          //   MaterialPageRoute(
-                                                          //       builder: (context) =>
-                                                          //           PaymentProcess(
-                                                          //             popContext:
-                                                          //                 1,
-                                                          //             isRegister:
-                                                          //                 true,
-                                                          //             nik: nik,
-                                                          //             name: name,
-                                                          //             cityId:
-                                                          //                 cityId,
-                                                          //             provinceId:
-                                                          //                 provinceId,
-                                                          //             subdistrictId:
-                                                          //                 subdistrictId,
-                                                          //             address:
-                                                          //                 address,
-                                                          //             email:
-                                                          //                 email,
-                                                          //             phoneNumber:
-                                                          //                 phoneNumber,
-                                                          //             birthdate:
-                                                          //                 birthdate,
-                                                          //             password:
-                                                          //                 password,
-                                                          //             pin: pin,
-                                                          //             tipeAnggotaId: v
-                                                          //                 .dataTipeAnggota
-                                                          //                 ?.data?[
-                                                          //                     index]
-                                                          //                 .id
-                                                          //                 .toString(),
-                                                          //             otp: otp,
-                                                          //           )),
-                                                          // );
-                                                        },
-                                                        child: Container(
+                                                                      .toString(),
+                                                                  model
+                                                                      .items
+                                                                      ?.data[
+                                                                          index]
+                                                                      .name
+                                                                      .toString(),
+                                                                  otp);
+                                                            },
+                                                            child: Container(
+                                                                width: MediaQuery
+                                                                        .of(
+                                                                            context)
+                                                                    .size
+                                                                    .width,
+                                                                margin: const EdgeInsets
+                                                                        .only(
+                                                                    right: 20.0,
+                                                                    left: 20.0),
+                                                                padding: const EdgeInsets
+                                                                        .symmetric(
+                                                                    vertical:
+                                                                        15,
+                                                                    horizontal:
+                                                                        70),
+                                                                decoration: BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                5),
+                                                                    color: const Color(
+                                                                        0xFF85014e)),
+                                                                child:
+                                                                    const Text(
+                                                                  'Bergabung',
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
+                                                                      fontSize:
+                                                                          15),
+                                                                )),
+                                                          )
+                                                        : Container(
                                                             width: MediaQuery.of(
                                                                     context)
                                                                 .size
                                                                 .width,
                                                             margin:
                                                                 const EdgeInsets
-                                                                        .only(
-                                                                    right: 20.0,
-                                                                    left: 20.0),
+                                                                    .only(
+                                                              right: 20.0,
+                                                              left: 20.0,
+                                                            ),
                                                             padding:
                                                                 const EdgeInsets
                                                                         .symmetric(
@@ -291,80 +304,46 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
                                                                     BorderRadius
                                                                         .circular(
                                                                             5),
-                                                                color: const Color(
-                                                                    0xFF85014e)),
-                                                            child: const Text(
-                                                              'Bergabung',
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .grey),
+                                                            child: Center(
+                                                              child: SizedBox(
+                                                                height: 2.h,
+                                                                width: 4.w,
+                                                                child:
+                                                                    const CircularProgressIndicator(
                                                                   color: Colors
                                                                       .white,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                  fontSize: 15),
+                                                                ),
+                                                              ),
                                                             )),
-                                                      )
-                                                    : Container(
-                                                        width: MediaQuery.of(
-                                                                context)
-                                                            .size
-                                                            .width,
-                                                        margin: const EdgeInsets
-                                                            .only(
-                                                          right: 20.0,
-                                                          left: 20.0,
-                                                        ),
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 15,
-                                                                horizontal: 70),
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        5),
-                                                            color: Colors.grey),
-                                                        child: Center(
-                                                          child: SizedBox(
-                                                            height: 2.h,
-                                                            width: 4.w,
-                                                            child:
-                                                                const CircularProgressIndicator(
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
-                                                          ),
-                                                        )),
-                                                const SizedBox(height: 30),
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      );
-                                    });
-                                  });
+                                                    const SizedBox(height: 30),
+                                                  ],
+                                                ),
+                                              )
+                                            ],
+                                          );
+                                        });
+                                      });
+                                }),
+                                child: BuildMemberCard(
+                                  name: model.items?.data[index].name,
+                                  description:
+                                      model.items?.data[index].description,
+                                  imageAsset: 'assets/images/logobanner.png',
+                                  isSelected: (selectedIndex == index),
+                                ),
+                              );
                             }),
-                            child: BuildMemberCard(
-                              name: model.items?.data[index].name,
-                              description: model.items?.data[index].description,
-                              imageAsset: 'assets/images/logobanner.png',
-                              isSelected: (selectedIndex == index),
-                            ),
-                          );
-                        }),
-                const SizedBox(
-                  height: 100,
+                    const SizedBox(
+                      height: 100,
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
-    );
+          );
+        });
   }
 
   loadSharedPref() async {
@@ -424,20 +403,22 @@ class _BuildMemberCardState extends State<BuildMemberCard> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                children: [
-                  Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(widget.imageAsset ?? ''))),
+              Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Theme.of(context).primaryColor,
+                  border: Border.all(
+                    color: Colors.white,
+                    width: 2,
                   ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                ],
+                ),
+                child: Icon(
+                  Icons.tips_and_updates_rounded,
+                  size: 60,
+                  color: Colors.white,
+                ),
               ),
               const SizedBox(
                 width: 8,
@@ -477,12 +458,12 @@ class _BuildMemberCardState extends State<BuildMemberCard> {
 }
 
 class MemberDetailWidget extends StatelessWidget {
-  String? name, desc;
-  int? harga;
+  Datum data;
 
-  MemberDetailWidget(
-      {Key? key, required this.name, required this.desc, required this.harga})
-      : super(key: key);
+  MemberDetailWidget({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -492,14 +473,41 @@ class MemberDetailWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(name ?? '', style: TextStyling.w50018black),
+            Text(data.name, style: TextStyling.w50018black),
             const SizedBox(height: 18),
-            Text(desc ?? '', style: TextStyling.w40014grey),
+            Text(data.description, style: TextStyling.w40014grey),
             const SizedBox(height: 18),
+            Text(data.benefit, style: TextStyling.w40014grey),
+            const SizedBox(height: 18),
+            Text('Tarif', style: TextStyling.w40014grey),
+            const SizedBox(height: 8),
             Row(
               children: [
-                const Text('Harga : ', style: TextStyling.w30013black),
-                Text(currencyFormatter.format(harga),
+                const Text('Bulanan Wajib : ', style: TextStyling.w30013black),
+                Text(currencyFormatter.format(data.monthlyMandatoryFee),
+                    style: TextStyling.w30013black),
+              ],
+            ),
+            Row(
+              children: [
+                const Text('Bulanan Pokok : ', style: TextStyling.w30013black),
+                Text(currencyFormatter.format(data.monthlyPrincipalFee),
+                    style: TextStyling.w30013black),
+              ],
+            ),
+            Row(
+              children: [
+                const Text('Admin : ', style: TextStyling.w30013black),
+                Text(currencyFormatter.format(data.adminFee),
+                    style: TextStyling.w30013black),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                const Text('Jumlah : ', style: TextStyling.w30013black),
+                Text(currencyFormatter.format(data.adminFee + data.monthlyPrincipalFee +
+                        data.monthlyMandatoryFee),
                     style: TextStyling.w30013black),
               ],
             ),

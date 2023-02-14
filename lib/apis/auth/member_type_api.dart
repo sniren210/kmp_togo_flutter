@@ -8,7 +8,7 @@ class MemberTypeApi with ApiMachine {
 
   Future<ItemModelMemberType> fetchAllMemberType() async {
     try {
-      final res = await _dio.get('/v1/member/type');
+      final res = await _dio.get('/api/v1/get-role');
 
       await saveResponseGet(
           res.requestOptions.path, res.statusMessage, res.data.toString());
