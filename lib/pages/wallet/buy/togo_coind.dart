@@ -223,47 +223,6 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
                                                     ],
                                                   ),
                                                 )),
-                                            Expanded(
-                                                flex: 3,
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              ToGoCoin()),
-                                                    );
-                                                  },
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Card(
-                                                        color:
-                                                            Colors.orangeAccent,
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  vertical: 8.0,
-                                                                  horizontal:
-                                                                      12.0),
-                                                          child: Text(
-                                                            'Togo Coin',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 9.sp),
-                                                          ),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                )),
                                           ],
                                         )
                                       ],
@@ -378,255 +337,34 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
                         // for (int i = 0;
                         //     i < (v.dataHistorySaldo?.data?.length ?? 0);
                         //     i++)
+                        // CardTopup(
+                        //   kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
+                        //       ? 'Top Up'
+                        //       : 'Withdraw',
+                        //   icon: Icons.monetization_on,
+                        //   ref: v.dataHistorySaldo?.data?[0].description,
+                        //   harga: v.dataHistorySaldo?.data?[0].trxOut == 0
+                        //       ? '${v.dataHistorySaldo?.data?[0].trxIn}'
+                        //       : '${v.dataHistorySaldo?.data?[0].trxOut}',
+                        //   tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
+                        //   waktu: '',
+                        //   metode: 'Artha Graha Internasional',
+                        //   pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
+                        //       ? '${v.dataHistorySaldo?.data?[0].trxIn}'
+                        //       : '-',
+                        //   total: v.dataHistorySaldo?.data?[0].trxIn == 0
+                        //       ? '${v.dataHistorySaldo?.data?[0].trxOut}'
+                        //       : '-',
+                        // ),
                         CardTopup(
-                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? 'Top Up'
-                              : 'Withdraw',
-                          icon: Icons.monetization_on,
-                          ref: v.dataHistorySaldo?.data?[0].description,
-                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
-                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
-                          waktu: '',
-                          metode: 'Artha Graha Internasional',
-                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '-',
-                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
-                              : '-',
-                        ),
-                        CardTopup(
-                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? 'Top Up'
-                              : 'Withdraw',
-                          icon: Icons.monetization_on,
-                          ref: v.dataHistorySaldo?.data?[0].description,
-                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
-                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
-                          waktu: '',
-                          metode: 'Artha Graha Internasional',
-                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '-',
-                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
-                              : '-',
-                        ),
-                        CardTopup(
-                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? 'Top Up'
-                              : 'Withdraw',
-                          icon: Icons.monetization_on,
-                          ref: v.dataHistorySaldo?.data?[0].description,
-                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
-                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
-                          waktu: '',
-                          metode: 'Artha Graha Internasional',
-                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '-',
-                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
-                              : '-',
-                        ),
-                        CardTopup(
-                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? 'Top Up'
-                              : 'Withdraw',
-                          icon: Icons.monetization_on,
-                          ref: v.dataHistorySaldo?.data?[0].description,
-                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
-                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
-                          waktu: '',
-                          metode: 'Artha Graha Internasional',
-                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '-',
-                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
-                              : '-',
-                        ),
-
-                        CardTopup(
-                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? 'Top Up'
-                              : 'Withdraw',
-                          icon: Icons.monetization_on,
-                          ref: v.dataHistorySaldo?.data?[0].description,
-                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
-                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
-                          waktu: '',
-                          metode: 'Artha Graha Internasional',
-                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '-',
-                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
-                              : '-',
-                        ),
-
-                        CardTopup(
-                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? 'Top Up'
-                              : 'Withdraw',
-                          icon: Icons.monetization_on,
-                          ref: v.dataHistorySaldo?.data?[0].description,
-                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
-                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
-                          waktu: '',
-                          metode: 'Artha Graha Internasional',
-                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '-',
-                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
-                              : '-',
-                        ),
-
-                        CardTopup(
-                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? 'Top Up'
-                              : 'Withdraw',
-                          icon: Icons.monetization_on,
-                          ref: v.dataHistorySaldo?.data?[0].description,
-                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
-                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
-                          waktu: '',
-                          metode: 'Artha Graha Internasional',
-                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '-',
-                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
-                              : '-',
-                        ),
-                        CardTopup(
-                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? 'Top Up'
-                              : 'Withdraw',
-                          icon: Icons.monetization_on,
-                          ref: v.dataHistorySaldo?.data?[0].description,
-                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
-                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
-                          waktu: '',
-                          metode: 'Artha Graha Internasional',
-                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '-',
-                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
-                              : '-',
-                        ),
-                        CardTopup(
-                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? 'Top Up'
-                              : 'Withdraw',
-                          icon: Icons.monetization_on,
-                          ref: v.dataHistorySaldo?.data?[0].description,
-                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
-                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
-                          waktu: '',
-                          metode: 'Artha Graha Internasional',
-                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '-',
-                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
-                              : '-',
-                        ),
-                        CardTopup(
-                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? 'Top Up'
-                              : 'Withdraw',
-                          icon: Icons.monetization_on,
-                          ref: v.dataHistorySaldo?.data?[0].description,
-                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
-                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
-                          waktu: '',
-                          metode: 'Artha Graha Internasional',
-                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '-',
-                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
-                              : '-',
-                        ),
-                        CardTopup(
-                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? 'Top Up'
-                              : 'Withdraw',
-                          icon: Icons.monetization_on,
-                          ref: v.dataHistorySaldo?.data?[0].description,
-                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
-                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
-                          waktu: '',
-                          metode: 'Artha Graha Internasional',
-                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '-',
-                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
-                              : '-',
-                        ),
-                        CardTopup(
-                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? 'Top Up'
-                              : 'Withdraw',
-                          icon: Icons.monetization_on,
-                          ref: v.dataHistorySaldo?.data?[0].description,
-                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
-                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
-                          waktu: '',
-                          metode: 'Artha Graha Internasional',
-                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '-',
-                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
-                              : '-',
-                        ),
-                        CardTopup(
-                          kategori: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? 'Top Up'
-                              : 'Withdraw',
-                          icon: Icons.monetization_on,
-                          ref: v.dataHistorySaldo?.data?[0].description,
-                          harga: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '${v.dataHistorySaldo?.data?[0].trxOut}',
-                          tanggal: '${v.dataHistorySaldo?.data?[0].createdAt}',
-                          waktu: '',
-                          metode: 'Artha Graha Internasional',
-                          pembayaran: v.dataHistorySaldo?.data?[0].trxOut == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxIn}'
-                              : '-',
-                          total: v.dataHistorySaldo?.data?[0].trxIn == 0
-                              ? '${v.dataHistorySaldo?.data?[0].trxOut}'
-                              : '-',
+                          harga: '50.000',
+                          icon: Icons.people,
+                          kategori: "top up",
+                          metode: 'transfer',
+                          pembayaran: 'lunas',
+                          tanggal: '12',
+                          total: '50.000',
+                          waktu: 'siang hari',
                         ),
                       ],
                     ),

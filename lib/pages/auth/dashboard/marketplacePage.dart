@@ -10,6 +10,8 @@ import 'package:kmp_togo_mobile/providers/product/provider_product.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../helpers/ui_helper/textStyling.dart';
+
 class MarketplacePage extends StatefulWidget {
   MarketplacePage({Key? key}) : super(key: key);
 
@@ -31,7 +33,29 @@ class _MarketplacePageState extends State<MarketplacePage> {
           appBar: AppBar(
             backgroundColor: const Color(0xFF85014e),
             elevation: 0,
-            title: const Text("Produk UMKM"),
+            title: InkWell(
+              onTap: () {},
+              child: Container(
+                  padding: EdgeInsets.only(
+                    top: 1.5.w,
+                    bottom: 1.5.w,
+                    left: 2.w,
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.search,
+                        size: 5.w,
+                        color: Colors.black87,
+                      ),
+                      SizedBox(width: 1.w),
+                      Text('Cari Disini', style: TextStyling.normal14black),
+                    ],
+                  )),
+            ),
             actions: [
               Consumer<CartProvider>(builder: (context, value, child) {
                 if (value.getCounter() < 1) {

@@ -86,31 +86,6 @@ class Data {
 
 
 class CheckOutBody {
-  // CheckOutBody({
-  //   this.code,
-  //   this.tipe,
-  //   this.customerId,
-  // });
-  //
-  // String? code;
-  // String? tipe;
-  // String? customerId;
-  //
-  // factory CheckOutBody.fromJson(Map<String, dynamic> json) => CheckOutBody(
-  //   code: json["code"],
-  //   tipe: json["tipe"],
-  //   customerId: json["customer_id"],
-  // );
-  //
-  // Map<String, dynamic> toJson() => {
-  //   "code": code,
-  //   "tipe": tipe,
-  //   "customer_id": customerId,
-  // };
-  //
-  // String? get codeV => code;
-  // String? get tipeV => tipe;
-  // String? get customerIdV => customerId;
 
   CheckOutBody({
     this.code,

@@ -104,32 +104,6 @@ class _HistoryState extends State<History> with NumberFormatMachine {
     return SafeArea(
       child: Scaffold(
           resizeToAvoidBottomInset: false,
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) {
-                  return DetailHistoryNFT(
-                    title: "title",
-                    images: "image",
-                    buyer_est: "0987678909",
-                    buyer: "0978678900",
-                    expired: "expired",
-                    lockNft: "lockNFT",
-                    monthlyPercentage:
-                        "monthlypercen",
-                    nftSerialId: "NFT serial Id",
-                    priceCoins: "Price coin",
-                    gasfee: "gassfee",
-                    admfee: "adm fee",
-                    deskripsi: "deskripsi",
-                    // owner: owner,
-                  );
-                }),
-              );
-            },
-            child: Text('detail'),
-          ),
           appBar: AppBar(
             title: Text("Transaksi ${widget.jenisTransaksi}"),
           ),
@@ -325,147 +299,170 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                       ],
                                     ),
                                     child: InkWell(
-                                      onTap: () {
-                                        if (nftTransaction != null) {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) {
-                                              return DetailHistoryNFT(
-                                                title:
-                                                    nftTransaction.nft!.name ??
-                                                        "",
-                                                images: nftTransaction
-                                                        .nft!.imagePath ??
-                                                    "",
-                                                buyer_est: nftTransaction
-                                                    .nft!.qtyUnit
-                                                    .toString(),
-                                                buyer: nftTransaction
-                                                    .nft!.avlUnit
-                                                    .toString(),
-                                                expired: nftTransaction
-                                                    .nft!.expirationDate
-                                                    .toString(),
-                                                lockNft: nftTransaction
-                                                    .nft!.holdLimitinDay
-                                                    .toString(),
-                                                monthlyPercentage:
-                                                    nftTransaction
-                                                        .nft!.monthlyPercentage
-                                                        .toString(),
-                                                nftSerialId: nftTransaction
-                                                    .nft!.nftId
-                                                    .toString(),
-                                                priceCoins: nftTransaction
-                                                    .priceCoin!
-                                                    .toString(),
-                                                gasfee: nftTransaction.gasFee!
-                                                    .toString(),
-                                                admfee: nftTransaction.admFee!
-                                                    .toString(),
-                                                deskripsi: nftTransaction
-                                                    .nft!.description
-                                                    .toString(),
-                                                // owner: owner,
-                                              );
-                                            }),
-                                          );
-                                        } else if (ppobTransaction != null) {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) {
-                                              return DetailHistoryPpobPage(
-                                                  title:
-                                                      '${ppobTransaction.ppobType!.name} ${ppobTransaction.ppobMobileOperatorId.toString()}',
-                                                  customerId: ppobTransaction
-                                                      .customerId,
-                                                  subTotal: ppobTransaction
-                                                      .subTotal!
-                                                      .toString(),
-                                                  status: ppobTransaction
-                                                      .status!
-                                                      .toString(),
-                                                  gasfee: ppobTransaction
-                                                      .gasFee!
-                                                      .toString(),
-                                                  total: ppobTransaction.total!
-                                                      .toString(),
-                                                  date: ppobTransaction
-                                                      .createdAt!
-                                                      .toString(),
-                                                  noPesanan: ppobTransaction.id
-                                                      .toString());
-                                              // return DetailHistoryPPOB(
-                                              //   title: ppobTransaction.ppobTypeId!
-                                              //       .toString(),
-                                              //   images: "",
-                                              //   status: ppobTransaction.status!
-                                              //       .toString(),
-                                              //   ppobMobileOperatorId:
-                                              //       ppobTransaction
-                                              //           .ppobMobileOperatorId!
-                                              //           .toString(),
-                                              //   gasfee: ppobTransaction.gasFee!
-                                              //       .toString(),
-                                              //   subTotal: ppobTransaction
-                                              //       .subTotal!
-                                              //       .toString(),
-                                              //   total: ppobTransaction.total!
-                                              //       .toString(),
-                                              //   // owner: owner,
-                                              // );
-                                            }),
-                                          );
-                                        } else if (productOrder != null) {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) {
-                                              return DetailHistoryUMKM(
-                                                title: productOrder
-                                                    .orders
-                                                    ?.first
-                                                    .orderItems
-                                                    ?.first
-                                                    .product
-                                                    ?.name
-                                                    .toString(),
-                                                images: productOrder
-                                                    .orders
-                                                    ?.first
-                                                    .orderItems
-                                                    ?.first
-                                                    .product
-                                                    ?.imagePath
-                                                    .toString(),
-                                                status: productOrder
-                                                    .orders?.first.status,
-                                                deskripsi: productOrder
-                                                    .orders
-                                                    ?.first
-                                                    .orderItems
-                                                    ?.first
-                                                    .product
-                                                    ?.description
-                                                    .toString(),
-                                                gasfee: productOrder.gasFee
-                                                    .toString(),
-                                                subTotal: productOrder.subTotal
-                                                    .toString(),
-                                                total: productOrder.total
-                                                    .toString(),
+                                      // onTap: () {
+                                      //   if (nftTransaction != null) {
+                                      //     Navigator.push(
+                                      //       context,
+                                      //       MaterialPageRoute(
+                                      //           builder: (context) {
+                                      //         return DetailHistoryNFT(
+                                      //           title:
+                                      //               nftTransaction.nft!.name ??
+                                      //                   "",
+                                      //           images: nftTransaction
+                                      //                   .nft!.imagePath ??
+                                      //               "",
+                                      //           buyer_est: nftTransaction
+                                      //               .nft!.qtyUnit
+                                      //               .toString(),
+                                      //           buyer: nftTransaction
+                                      //               .nft!.avlUnit
+                                      //               .toString(),
+                                      //           expired: nftTransaction
+                                      //               .nft!.expirationDate
+                                      //               .toString(),
+                                      //           lockNft: nftTransaction
+                                      //               .nft!.holdLimitinDay
+                                      //               .toString(),
+                                      //           monthlyPercentage:
+                                      //               nftTransaction
+                                      //                   .nft!.monthlyPercentage
+                                      //                   .toString(),
+                                      //           nftSerialId: nftTransaction
+                                      //               .nft!.nftId
+                                      //               .toString(),
+                                      //           priceCoins: nftTransaction
+                                      //               .priceCoin!
+                                      //               .toString(),
+                                      //           gasfee: nftTransaction.gasFee!
+                                      //               .toString(),
+                                      //           admfee: nftTransaction.admFee!
+                                      //               .toString(),
+                                      //           deskripsi: nftTransaction
+                                      //               .nft!.description
+                                      //               .toString(),
+                                      //           // owner: owner,
+                                      //         );
+                                      //       }),
+                                      //     );
+                                      //   } else if (ppobTransaction != null) {
+                                      //     Navigator.push(
+                                      //       context,
+                                      //       MaterialPageRoute(
+                                      //           builder: (context) {
+                                      //         return DetailHistoryPpobPage(
+                                      //             title:
+                                      //                 '${ppobTransaction.ppobType!.name} ${ppobTransaction.ppobMobileOperatorId.toString()}',
+                                      //             customerId: ppobTransaction
+                                      //                 .customerId,
+                                      //             subTotal: ppobTransaction
+                                      //                 .subTotal!
+                                      //                 .toString(),
+                                      //             status: ppobTransaction
+                                      //                 .status!
+                                      //                 .toString(),
+                                      //             gasfee: ppobTransaction
+                                      //                 .gasFee!
+                                      //                 .toString(),
+                                      //             total: ppobTransaction.total!
+                                      //                 .toString(),
+                                      //             date: ppobTransaction
+                                      //                 .createdAt!
+                                      //                 .toString(),
+                                      //             noPesanan: ppobTransaction.id
+                                      //                 .toString());
+                                      //         // return DetailHistoryPPOB(
+                                      //         //   title: ppobTransaction.ppobTypeId!
+                                      //         //       .toString(),
+                                      //         //   images: "",
+                                      //         //   status: ppobTransaction.status!
+                                      //         //       .toString(),
+                                      //         //   ppobMobileOperatorId:
+                                      //         //       ppobTransaction
+                                      //         //           .ppobMobileOperatorId!
+                                      //         //           .toString(),
+                                      //         //   gasfee: ppobTransaction.gasFee!
+                                      //         //       .toString(),
+                                      //         //   subTotal: ppobTransaction
+                                      //         //       .subTotal!
+                                      //         //       .toString(),
+                                      //         //   total: ppobTransaction.total!
+                                      //         //       .toString(),
+                                      //         //   // owner: owner,
+                                      //         // );
+                                      //       }),
+                                      //     );
+                                      //   } else if (productOrder != null) {
+                                      //     Navigator.push(
+                                      //       context,
+                                      //       MaterialPageRoute(
+                                      //           builder: (context) {
+                                      //         return DetailHistoryUMKM(
+                                      //           title: productOrder
+                                      //               .orders
+                                      //               ?.first
+                                      //               .orderItems
+                                      //               ?.first
+                                      //               .product
+                                      //               ?.name
+                                      //               .toString(),
+                                      //           images: productOrder
+                                      //               .orders
+                                      //               ?.first
+                                      //               .orderItems
+                                      //               ?.first
+                                      //               .product
+                                      //               ?.imagePath
+                                      //               .toString(),
+                                      //           status: productOrder
+                                      //               .orders?.first.status,
+                                      //           deskripsi: productOrder
+                                      //               .orders
+                                      //               ?.first
+                                      //               .orderItems
+                                      //               ?.first
+                                      //               .product
+                                      //               ?.description
+                                      //               .toString(),
+                                      //           gasfee: productOrder.gasFee
+                                      //               .toString(),
+                                      //           subTotal: productOrder.subTotal
+                                      //               .toString(),
+                                      //           total: productOrder.total
+                                      //               .toString(),
 
-                                                admfee: productOrder.admFee
-                                                    .toString(),
-                                                discount: productOrder.discount
-                                                    .toString(),
-                                                // owner: owner,
-                                              );
-                                            }),
-                                          );
-                                        }
+                                      //           admfee: productOrder.admFee
+                                      //               .toString(),
+                                      //           discount: productOrder.discount
+                                      //               .toString(),
+                                      //           // owner: owner,
+                                      //         );
+                                      //       }),
+                                      //     );
+                                      //   }
+                                      // },
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) {
+                                            return DetailHistoryNFT(
+                                              title: "title",
+                                              images: "image",
+                                              buyer_est: "0987678909",
+                                              buyer: "0978678900",
+                                              expired: "expired",
+                                              lockNft: "lockNFT",
+                                              monthlyPercentage:
+                                                  "monthlypercen",
+                                              nftSerialId: "NFT serial Id",
+                                              priceCoins: "Price coin",
+                                              gasfee: "gassfee",
+                                              admfee: "adm fee",
+                                              deskripsi: "deskripsi",
+                                              // owner: owner,
+                                            );
+                                          }),
+                                        );
                                       },
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),

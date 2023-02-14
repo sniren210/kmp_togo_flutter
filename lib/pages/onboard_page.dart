@@ -40,17 +40,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     fit: BoxFit.cover,
                     height: 100,
                   ),
-                  // Container(
-                  //   margin: const EdgeInsets.symmetric(horizontal: 20),
-                  //   height: 30.h,
-                  //   width: MediaQuery.of(context).size.width,
-                  //   decoration: BoxDecoration(
-                  //       image: DecorationImage(
-                  //           fit: BoxFit.contain,
-                  //           image: NetworkImage(
-                  //               v.dataApiTextObaroding1?.data?.imagePath ??
-                  //                   kEmptyImageLink))),
-                  // ),
                   buildContent('', v.dataApiTextObaroding1?.data?.value ?? ""),
                 ],
               ),
@@ -181,19 +170,23 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   }
 
   Material _skipButton({void Function(int)? setIndex}) {
+    bool login = sharedPreferencesManager.getBool("isLoggedIn") ?? false;
+
     return Material(
       borderRadius: BorderRadius.all(Radius.circular(8.0)),
       color: defaultSkipButtonColor,
       child: InkWell(
         onTap: () {
-          if (setIndex != null) {
-            index = 3;
-            setIndex(3);
-            setState(() {
-              // _visible = true;
-              warna = const Color(0xFFA1E2C2);
-            });
+          if (login) {
+            routeLogin = '/home';
+            debugPrint(routeLogin);
           }
+
+          if (!login) {
+            routeLogin = '/login';
+            debugPrint(routeLogin);
+          }
+          Get.offAllNamed(routeLogin!);
         },
         child: Padding(
           padding: defaultSkipButtonPadding,
