@@ -6,6 +6,30 @@ class ModelSelectMemberID {
   ModelSelectMemberID.fromJson(Map<String, dynamic> json) {
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
+  ModelSelectMemberID.dummy() {
+    ModelSelectMemberID(
+        data: Data(
+      id: 'id',
+      name: 'name',
+      price: 0,
+      description: 'description',
+      benefit: 'benefit',
+      createdAt: 'createdAt',
+      updatedAt: 'updatedAt',
+      deletedAt: 'deletedAt',
+      va: Va(
+        id: 0,
+        vanumber: 'vanumber',
+        userId: 0,
+        isOpenAmount: true,
+        amount: 0,
+        expireAt: 'expireAt',
+        membertypeTransactionId: 0,
+        deletedAt: null,
+        name: 'name',
+      ),
+    ));
+  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -21,10 +45,10 @@ class Data {
   String? name;
   int? price;
   String? description;
-  Null? benefit;
+  String? benefit;
   String? createdAt;
   String? updatedAt;
-  Null? deletedAt;
+  String? deletedAt;
   Va? va;
 
   Data(
