@@ -14,6 +14,7 @@ import 'package:kmp_togo_mobile/pages/auth/login/changepasswordpages.dart';
 import 'package:kmp_togo_mobile/pages/auth/login/loginPages.dart';
 import 'package:kmp_togo_mobile/pages/auth/register/registerUserTypePage.dart';
 import 'package:kmp_togo_mobile/providers/database/database.dart';
+import 'package:platform_device_id/platform_device_id.dart';
 
 import '../../models/myinfo/modelinforegister.dart';
 import '../../pages/auth/register/payments/registerPaymentsProcess.dart';
@@ -29,9 +30,12 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
   String? time = '';
   login(context, username, password) async {
     try {
+      String? deviceId = await PlatformDeviceId.getDeviceId;
+
       final body = {
         "email": username,
         "password": password,
+        'device_id': deviceId,
       };
       final res = await _dio.post('/api/v1/login', data: body);
       print(res.data);
@@ -93,6 +97,14 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
     } catch (e) {
       print(e);
     }
+  }
+
+  logout() async {
+    final res = await _dio.get(
+      '/api/v1/logout',
+    );
+
+    return res.data['success'] == true;
   }
 
   kirimotpresetPass(
