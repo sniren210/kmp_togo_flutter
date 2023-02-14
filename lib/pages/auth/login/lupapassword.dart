@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kmp_togo_mobile/providers/auth/provider_auth.dart';
+import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -11,6 +12,7 @@ class LupaPassword extends StatefulWidget {
 }
 
 class _LupaPasswordState extends State<LupaPassword> {
+  String _pinValue = '';
   bool passhide = true;
   bool passhide1 = true;
   bool passhide2 = true;
@@ -25,11 +27,12 @@ class _LupaPasswordState extends State<LupaPassword> {
   ];
   final _formKey = GlobalKey<FormState>();
 
+  bool isPin = false;
+
   changepasswprd(String? number) async {
-    if (_formKey.currentState!.validate()) {
-      print('asas');
+    if (_formKey.currentState!.validate() && _pinValue.isNotEmpty) {
       await Provider.of<ProviderAuthLogin>(context, listen: false)
-          .kirimotpresetPass(context, number);
+          .kirimotpresetPass(context, number, _pinValue);
       setState(() {
         loading = Provider.of<ProviderAuthLogin>(context, listen: false)
             .loadingLupaPassword;
@@ -72,138 +75,66 @@ class _LupaPasswordState extends State<LupaPassword> {
                           fontWeight: FontWeight.bold,
                           fontSize: 19.sp),
                     )),
-                const SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(top: 20),
-                  margin: const EdgeInsets.only(right: 20.0, left: 20),
-                  child: TextFormField(
-                    // obscureText: passhide,
-
-                    keyboardType: TextInputType.phone,
-                    controller: numbercontroller,
-                    decoration: InputDecoration(
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.all(14.0),
-                          child: Text(
-                            '+62',
-                            style: TextStyle(fontSize: 17),
-                          ),
-                        ),
-                        filled: true,
-                        fillColor: Colors.grey.shade200,
-                        border: InputBorder.none,
-                        // contentPadding:
-                        //     const EdgeInsets.symmetric(vertical: 20),
-                        // prefixIcon: Icon(
-                        //   Icons.phone_android,
-                        //   color: _focusNodes[0].hasFocus
-                        //       ? Color(0xFF85014e)
-                        //       : Colors.grey.shade400,
-                        //   size: 7.w,
-                        // ),
-
-                        // labelText: "Masukan Nomor Telphone",
-                        hintText: 'Masukan Nomor Telephone',
-                        hintStyle: TextStyle(fontSize: 17)
-                        // suffixIcon: IconButton(
-                        //     icon: Icon(
-                        //       passhide ? Icons.visibility_off : Icons.visibility,
-                        //       color: _focusNodes[1].hasFocus
-                        //           ? Color(0xFF85014e)
-                        //           : Colors.grey.shade400,
-                        //       size: 7.w,
-                        //     ),
-                        //     onPressed: () {
-                        //       setState(() {
-                        //         passhide = !passhide;
-                        //       });
-                        //     })
-                        ),
-                    validator: (password) {
-                      if (password!.isEmpty) {
-                        return "Masukan Nomor Telphone";
-                      } else {
-                        return null;
-                      }
-                    },
+                if (isPin)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 8.0),
+                    child: Pinput(
+                      length: 6,
+                      obscureText: true,
+                      onChanged: (pin) {
+                        setState(() {
+                          _pinValue = pin;
+                        });
+                      },
+                    ),
+                  )
+                else ...[
+                  const SizedBox(
+                    height: 20,
                   ),
-                ),
-
-                // Container(
-                //   margin: const EdgeInsets.only(right: 20.0, left: 20),
-                //   padding: const EdgeInsets.only(right: 5.0, left: 5),
-                //   decoration: BoxDecoration(
-                //       border: Border.all(),
-                //       borderRadius: BorderRadius.circular(3)),
-                //   child: Row(
-                //     children: [
-                //       const Text(
-                //         '+62',
-                //         style: TextStyle(fontSize: 17),
-                //       ),
-                //       const SizedBox(
-                //         width: 5,
-                //       ),
-                //       Expanded(
-                //         child: TextFormField(
-                //           // obscureText: passhide,
-
-                //           keyboardType: TextInputType.phone,
-                //           controller: numbercontroller,
-                //           decoration: const InputDecoration(
-                //               suffixIcon: const Text(
-                //                 '+62',
-                //                 style: TextStyle(fontSize: 17),
-                //               ),
-                //               // contentPadding:
-                //               //     const EdgeInsets.symmetric(vertical: 20),
-                //               // prefixIcon: Icon(
-                //               //   Icons.phone_android,
-                //               //   color: _focusNodes[0].hasFocus
-                //               //       ? Color(0xFF85014e)
-                //               //       : Colors.grey.shade400,
-                //               //   size: 7.w,
-                //               // ),
-
-                //               // labelText: "Masukan Nomor Telphone",
-                //               // border: const OutlineInputBorder(),
-                //               border: InputBorder.none,
-                //               hintText: 'Masukan Nomor Telphone',
-                //               hintStyle: TextStyle(fontSize: 17)
-                //               // suffixIcon: IconButton(
-                //               //     icon: Icon(
-                //               //       passhide ? Icons.visibility_off : Icons.visibility,
-                //               //       color: _focusNodes[1].hasFocus
-                //               //           ? Color(0xFF85014e)
-                //               //           : Colors.grey.shade400,
-                //               //       size: 7.w,
-                //               //     ),
-                //               //     onPressed: () {
-                //               //       setState(() {
-                //               //         passhide = !passhide;
-                //               //       });
-                //               //     })
-                //               ),
-                //           validator: (password) {
-                //             if (password!.isEmpty) {
-                //               return "Masukan Nomor Telphone";
-                //             } else {
-                //               return null;
-                //             }
-                //           },
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
+                  Container(
+                    padding: const EdgeInsets.only(top: 20),
+                    margin: const EdgeInsets.only(right: 20.0, left: 20),
+                    child: TextFormField(
+                      keyboardType: TextInputType.phone,
+                      controller: numbercontroller,
+                      decoration: InputDecoration(
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.all(14.0),
+                            child: Text(
+                              '+62',
+                              style: TextStyle(fontSize: 17),
+                            ),
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey.shade200,
+                          border: InputBorder.none,
+                          hintText: 'Masukan Nomor Telephone',
+                          hintStyle: TextStyle(fontSize: 17)),
+                      validator: (password) {
+                        if (password!.isEmpty) {
+                          return "Masukan Nomor Telphone";
+                        } else {
+                          return null;
+                        }
+                      },
+                    ),
+                  ),
+                ],
                 loading == false
                     ? Padding(
                         padding: const EdgeInsets.only(
                             right: 20.0, left: 20.0, top: 40),
                         child: InkWell(
                           onTap: () {
+                            if (!isPin) {
+                              setState(() {
+                                isPin = true;
+                              });
+                              return;
+                            }
+
                             setState(() {
                               loading = true;
                             });

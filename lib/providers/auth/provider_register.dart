@@ -145,11 +145,6 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
 
   validate_ocrktp(context, File image) async {
     try {
-      // String fileName = images!.path.split('/').last;
-      // FormData formData = FormData.fromMap({
-      //   "img": await MultipartFile.fromFile(images.path, filename: fileName),
-      // });
-      // print('body: $formData');
       final res = await _dio.post('/api/v1/ktp-ocr',
           data: {'image': base64Encode(await image.readAsBytes())});
 

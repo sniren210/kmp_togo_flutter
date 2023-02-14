@@ -14,6 +14,7 @@ import 'package:kmp_togo_mobile/pages/auth/login/changepasswordpages.dart';
 import 'package:kmp_togo_mobile/pages/auth/login/loginPages.dart';
 import 'package:kmp_togo_mobile/pages/auth/register/registerUserTypePage.dart';
 import 'package:kmp_togo_mobile/providers/database/database.dart';
+import 'package:platform_device_id/platform_device_id.dart';
 
 import '../../models/myinfo/modelinforegister.dart';
 import '../../pages/auth/register/payments/registerPaymentsProcess.dart';
@@ -29,9 +30,12 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
   String? time = '';
   login(context, username, password) async {
     try {
+      String? deviceId = await PlatformDeviceId.getDeviceId;
+
       final body = {
         "email": username,
         "password": password,
+        'device_id': deviceId,
       };
       final res = await _dio.post('/api/v1/login', data: body);
       print(res.data);
@@ -81,29 +85,30 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
         loading = false;
         await customSnackbar(
             type: 'error', title: 'error', text: 'Terjadi kesalahan!');
-        // return Fluttertoast.showToast(
-        //     msg: 'Terjadi kesalahan!',
-        //     toastLength: Toast.LENGTH_SHORT,
-        //     gravity: ToastGravity.CENTER,
-        //     timeInSecForIosWeb: 1,
-        //     backgroundColor: Colors.red,
-        //     textColor: Colors.white,
-        //     fontSize: 16.0);
       }
     } catch (e) {
       print(e);
     }
   }
 
-  kirimotpresetPass(
-    context,
-    String? phoneNumber,
-  ) async {
-    String numberA = '+62$phoneNumber';
-    print(numberA);
+  logout() async {
+    final res = await _dio.get(
+      '/api/v1/logout',
+    );
+
+    return res.data['success'] == true;
+  }
+
+  kirimotpresetPass(context, String? phoneNumber, String pin) async {
     try {
-      final body = {"phoneNumber": numberA};
-      final res = await _dio.post('/v1/recovery/password', data: body);
+      final body = {
+        "phone_number": '0$phoneNumber',
+        'pin': pin,
+      };
+
+      print(body);
+
+      final res = await _dio.post('/api/v1/forgot', data: body);
 
       await saveResponsePost(res.requestOptions.path, res.statusMessage,
           res.data.toString(), body.toString());
@@ -112,10 +117,7 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
         loadingLupaPassword = false;
         Navigator.push(
           context,
-          MaterialPageRoute(
-              builder: (context) => ChangePasswordPages(
-                    number: numberA,
-                  )),
+          MaterialPageRoute(builder: (context) => LoginPages()),
         );
         await customSnackbar(
             type: 'success', title: 'success', text: 'Berhasil Terkirim');
@@ -125,45 +127,7 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
             type: 'success', title: 'error', text: 'Terjadi kesalahan!');
       }
     } on DioError catch (e) {
-      try {
-        ErrorModel data = ErrorModel.fromJson(e.response!.data);
-        await customSnackbar(
-            type: 'error', title: 'error', text: data.error.toString());
-        if (data.meta?.suspend == false && data.meta!.nexttry != null) {
-          statususpen = true;
-          print('a');
-          notifyListeners();
-        } else if (data.meta?.suspend == true) {
-          statususpen = false;
-          statusbanned = true;
-          print('b');
-          notifyListeners();
-        }
-        // return Fluttertoast.showToast(
-        //     msg: data.error.toString(),
-        //     toastLength: Toast.LENGTH_SHORT,
-        //     gravity: ToastGravity.CENTER,
-        //     timeInSecForIosWeb: 1,
-        //     backgroundColor: Colors.red,
-        //     textColor: Colors.white,
-        //     fontSize: 16.0);
-      } catch (e) {
-        final msg = e.toString();
-        print(msg);
-        loading = false;
-        await customSnackbar(
-            type: 'error', title: 'error', text: 'Terjadi kesalahan!');
-        // return Fluttertoast.showToast(
-        //     msg: 'Terjadi kesalahan!',
-        //     toastLength: Toast.LENGTH_SHORT,
-        //     gravity: ToastGravity.CENTER,
-        //     timeInSecForIosWeb: 1,
-        //     backgroundColor: Colors.red,
-        //     textColor: Colors.white,
-        //     fontSize: 16.0);
-      }
-    } catch (e) {
-      print(e);
+      await customSnackbar(type: 'error', title: 'error', text: e.message);
     }
   }
 

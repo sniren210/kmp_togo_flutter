@@ -16,7 +16,9 @@ import 'package:kmp_togo_mobile/pages/profile/profile_widget.dart';
 import 'package:kmp_togo_mobile/pages/profile/referal.dart';
 import 'package:kmp_togo_mobile/pages/profile/transaksi/transaksi_page.dart';
 import 'package:kmp_togo_mobile/providers/account/provider_account.dart';
+import 'package:kmp_togo_mobile/providers/auth/provider_auth.dart';
 import 'package:kmp_togo_mobile/providers/cart/cart_provider.dart';
+import 'package:kmp_togo_mobile/providers/database/database.dart';
 import 'package:provider/provider.dart';
 import 'package:settings_ui/settings_ui.dart';
 
@@ -271,14 +273,16 @@ class _ProfileState extends State<Profile> {
                           style:
                               const TextStyle(fontSize: 15, color: Colors.red),
                         ),
-                        onPressed: (val) {
+                        onPressed: (val) async {
                           final SharedPreferencesManager
                               sharedPreferencesManager =
                               locator<SharedPreferencesManager>();
 
-                          // cart.resetCounter();
-                          //
                           sharedPreferencesManager.clearAll();
+
+                          await Provider.of<ProviderAuthLogin>(context,
+                                  listen: false)
+                              .logout();
 
                           Get.offAllNamed('/login');
                         },

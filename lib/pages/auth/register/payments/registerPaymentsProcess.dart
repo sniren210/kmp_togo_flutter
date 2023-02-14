@@ -166,14 +166,24 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              dateConvert(v.dataMemberID?.data
-                                                      ?.va?.expireAt) ??
-                                                  "",
+                                              DateTime.now()
+                                                  .toLocal()
+                                                  .toUtc()
+                                                  .toString()
+                                                  .substring(0, 10),
+                                              // dateConvert(v.dataMemberID?.data
+                                              //         ?.va?.expireAt) ??
+                                              //     "",
                                               style: TextStyling.bold13black,
                                             ),
                                             Text(
-                                              dateConvert2(v.dataMemberID?.data
-                                                  ?.va?.expireAt),
+                                              DateTime.now()
+                                                  .toLocal()
+                                                  .toUtc()
+                                                  .toString()
+                                                  .substring(0, 10),
+                                              // dateConvert2(v.dataMemberID?.data
+                                              //     ?.va?.expireAt),
                                               style: TextStyling.bold13black,
                                             ),
                                           ],
@@ -302,11 +312,7 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                                               height: 10),
                                                           Text(
                                                             currencyFormatter
-                                                                .format(v
-                                                                    .dataMemberID
-                                                                    ?.data
-                                                                    ?.va
-                                                                    ?.amount),
+                                                                .format(00),
                                                             style: TextStyling
                                                                 .w600bold16black,
                                                           ),
@@ -437,7 +443,7 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                                   BorderRadius.circular(5),
                                               color: const Color(0xFF85014e)),
                                           child: const Center(
-                                            child: Text("Lanjutkan",
+                                            child: Text("Cek pembayaran",
                                                 style: TextStyle(
                                                     color: Colors.white)),
                                           ),
