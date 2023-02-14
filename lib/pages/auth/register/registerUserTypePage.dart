@@ -196,13 +196,9 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
                                                       ),
                                                     ),
                                                     MemberDetailWidget(
-                                                        name: model.items
-                                                            ?.data[index].name,
-                                                        desc: model
-                                                            .items
-                                                            ?.data[index]
-                                                            .guardName,
-                                                        harga: 0),
+                                                      data: model
+                                                          .items!.data[index],
+                                                    ),
                                                     loading == false
                                                         ? InkWell(
                                                             onTap: () {
@@ -333,7 +329,7 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
                                 child: BuildMemberCard(
                                   name: model.items?.data[index].name,
                                   description:
-                                      model.items?.data[index].guardName,
+                                      model.items?.data[index].description,
                                   imageAsset: 'assets/images/logobanner.png',
                                   isSelected: (selectedIndex == index),
                                 ),
@@ -407,20 +403,22 @@ class _BuildMemberCardState extends State<BuildMemberCard> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                children: [
-                  Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(widget.imageAsset ?? ''))),
+              Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Theme.of(context).primaryColor,
+                  border: Border.all(
+                    color: Colors.white,
+                    width: 2,
                   ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                ],
+                ),
+                child: Icon(
+                  Icons.tips_and_updates_rounded,
+                  size: 60,
+                  color: Colors.white,
+                ),
               ),
               const SizedBox(
                 width: 8,
@@ -460,12 +458,12 @@ class _BuildMemberCardState extends State<BuildMemberCard> {
 }
 
 class MemberDetailWidget extends StatelessWidget {
-  String? name, desc;
-  int? harga;
+  Datum data;
 
-  MemberDetailWidget(
-      {Key? key, required this.name, required this.desc, required this.harga})
-      : super(key: key);
+  MemberDetailWidget({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -475,14 +473,41 @@ class MemberDetailWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(name ?? '', style: TextStyling.w50018black),
+            Text(data.name, style: TextStyling.w50018black),
             const SizedBox(height: 18),
-            Text(desc ?? '', style: TextStyling.w40014grey),
+            Text(data.description, style: TextStyling.w40014grey),
             const SizedBox(height: 18),
+            Text(data.benefit, style: TextStyling.w40014grey),
+            const SizedBox(height: 18),
+            Text('Tarif', style: TextStyling.w40014grey),
+            const SizedBox(height: 8),
             Row(
               children: [
-                const Text('Harga : ', style: TextStyling.w30013black),
-                Text(currencyFormatter.format(harga),
+                const Text('Bulanan Wajib : ', style: TextStyling.w30013black),
+                Text(currencyFormatter.format(data.monthlyMandatoryFee),
+                    style: TextStyling.w30013black),
+              ],
+            ),
+            Row(
+              children: [
+                const Text('Bulanan Pokok : ', style: TextStyling.w30013black),
+                Text(currencyFormatter.format(data.monthlyPrincipalFee),
+                    style: TextStyling.w30013black),
+              ],
+            ),
+            Row(
+              children: [
+                const Text('Admin : ', style: TextStyling.w30013black),
+                Text(currencyFormatter.format(data.adminFee),
+                    style: TextStyling.w30013black),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                const Text('Jumlah : ', style: TextStyling.w30013black),
+                Text(currencyFormatter.format(data.adminFee + data.monthlyPrincipalFee +
+                        data.monthlyMandatoryFee),
                     style: TextStyling.w30013black),
               ],
             ),

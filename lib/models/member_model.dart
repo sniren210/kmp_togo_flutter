@@ -30,21 +30,36 @@ class Datum {
   Datum({
     required this.id,
     required this.name,
-    required this.guardName,
     required this.createdAt,
     required this.updatedAt,
+    required this.monthlyPrincipalFee,
+    required this.monthlyMandatoryFee,
+    required this.adminFee,
+    required this.benefit,
+    required this.description,
+    required this.status,
   });
 
   int id;
   String name;
-  String guardName;
+  int monthlyPrincipalFee;
+  int monthlyMandatoryFee;
+  int adminFee;
+  String benefit;
+  String description;
+  String status;
   DateTime createdAt;
   DateTime updatedAt;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["id"],
         name: json["name"],
-        guardName: json["guard_name"],
+        monthlyPrincipalFee: json["monthly_principal_fee"],
+        monthlyMandatoryFee: json["monthly_mandatory_fee"],
+        adminFee: json["admin_fee"],
+        benefit: json["description"],
+        description: json["benefit"],
+        status: json["status"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
       );
@@ -52,7 +67,6 @@ class Datum {
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
-        "guard_name": guardName,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };

@@ -376,13 +376,13 @@ class _LoginPagesState extends State<LoginPages> {
                                   right: 20.0, left: 20.0, top: 40),
                               child: InkWell(
                                 onTap: () async {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) =>
-                                  //           const RegisterMemberTypePage()),
-                                  // );
-                                  _submit();
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const RegisterMemberTypePage()),
+                                  );
+                                  // _submit();
                                 },
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
