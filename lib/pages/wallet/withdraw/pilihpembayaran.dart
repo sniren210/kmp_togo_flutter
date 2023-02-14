@@ -49,25 +49,12 @@ class _PilihPembayaranState extends State<PilihPembayaran> {
         description: 'Bank Artha Graha Internasional',
         imageAsset: 'assets/images/logo-bagi-resize.png'));
 
-    // data_ot.add(PaymentMethodOT(
-    //     val: 0, description: 'Dana', imageAsset: 'assets/images/logon.jpg'));
-    //
-    // data_ot.add(PaymentMethodOT(
-    //     val: 0, description: 'Go Pay', imageAsset: 'assets/images/logon.jpg'));
-    //
-    // data_ot.add(PaymentMethodOT(
-    //     val: 0, description: 'OVO', imageAsset: 'assets/images/logon.jpg'));
-    //
-    // data_ot.add(PaymentMethodOT(
-    //     val: 0,
-    //     description: 'Link Aja',
-    //     imageAsset: 'assets/images/logon.jpg'));
+  
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final _getkategoriProvider =
           Provider.of<ProviderWithDraw>(context, listen: false);
       await _getkategoriProvider.getNomorbank();
-      // await _getkategoriProvider.getMyNFT(context);
       setState(() {
         loading = _getkategoriProvider.loadinggetBank = false;
       });
@@ -76,9 +63,6 @@ class _PilihPembayaranState extends State<PilihPembayaran> {
   }
 
   void _submit(int? idBank) async {
-    // if (_formKey.currentState!.validate()) {
-    //   // if (checkedValue != false) {
-    //   print(widget.amount);
     Navigator.push(
       context,
       MaterialPageRoute(

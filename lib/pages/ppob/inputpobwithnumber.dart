@@ -162,7 +162,6 @@ class _InputPPOBWithNumberState extends State<InputPPOBWithNumber>
 
       setState(() {
         _phoneContact = contact;
-        print('haloasdsad ${_phoneContact!.phoneNumber!.number}');
 
         numbersC.text = _phoneContact!.phoneNumber!.number.toString();
       });
@@ -293,8 +292,6 @@ class _InputPPOBWithNumberState extends State<InputPPOBWithNumber>
                                     border: const OutlineInputBorder(),
                                   ),
                                   onChanged: (value) async {
-                                    // print(value
-                                    //     .contains(RegExp(r'^(\+62|62|0)')));
                                     if (value.isNotEmpty) {
                                       if (widget.product_type == 'pulsa' ||
                                           widget.product_type == 'data') {

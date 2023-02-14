@@ -44,7 +44,6 @@ class _SplashNftState extends State<SplashNft> {
       //     context, widget.nftSerialId, widget.priceCoin, pinSave);
       setState(() {
         statusPayment = _getkategoriProvider.statusPayment;
-        print(statusPayment);
         if (statusPayment = true) {
           //   var duration = const Duration(seconds: 2);
           //   return Timer(duration, navigationPage);

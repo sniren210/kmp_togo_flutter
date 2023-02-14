@@ -40,12 +40,6 @@ class CardSearching extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print(pembeli);
-        print(nftSerialId);
-        print(lockNft);
-        print(monthlyPercentage);
-        print(priceCoins);
-        print(images);
         if (owner == '') {
           customSnackbar(
               type: 'error', title: 'error', text: 'NFT tidak tersedia');

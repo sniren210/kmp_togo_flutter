@@ -46,7 +46,6 @@ class _InputPPOBWithoutNumberState extends State<InputPPOBWithoutNumber> {
 
   nextPage(String code, String customer_id) {
     if (validate == true) {
-      print(validate);
       Navigator.push(
           context,
           MaterialPageRoute(

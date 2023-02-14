@@ -61,7 +61,6 @@ class _CardNFTItemProdusenState extends State<CardNFTItemProdusen> {
                 ),
         child: InkWell(
           onTap: () {
-            print(widget.statusnft);
             // Navigator.push(context, MaterialPageRoute(builder: (context) {
             //   return AddUpdateProductPage(
             //     isUpdate: false,

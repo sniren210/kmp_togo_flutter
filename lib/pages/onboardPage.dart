@@ -58,7 +58,6 @@ class _OnBoardingPageState extends State<OnBoardingPage>
   cektanggal() async {
     String? tanggalShare = sharedPreferencesManager
         .getString(SharedPreferencesManager.tanggalogout);
-    // print('halo pak : $tanggalShare');
     var now = DateTime.now();
 
     String? cekAda;
@@ -70,34 +69,25 @@ class _OnBoardingPageState extends State<OnBoardingPage>
         DateTime.now().hour - i,
       );
       String? passday = pastMonth.toString().substring(0, 13);
-      // print('passday  = ${passday}');
-      // print('tanngal share : $tanggalShare');
       if (tanggalShare == passday) {
-        // print('masih login');
         setState(() {
           cekAda = 'ada';
         });
       } else {
-        // print('masih cari');
+        debugPrint('masih cari');
       }
     }
     if (cekAda == 'ada') {
-      print('login');
+      debugPrint('login');
     } else {
       sharedPreferencesManager.setBool("isLoggedIn", false);
-      print('logout');
+      debugPrint('logout');
     }
-    // if (tanggalShare == passday) {
-    //   print('masih di tanggal yang sama');
-    // } else {
-    //   print('logout');
-    // }
   }
 
   gettanggaNow() async {
     var now = DateTime.now();
     String nowSplit = now.toString();
-    // String nowSplit = now.toString().substring(0, 10);
 
     DateTime pastMonth = DateTime(
       DateTime.now().year,
@@ -106,38 +96,22 @@ class _OnBoardingPageState extends State<OnBoardingPage>
       DateTime.now().hour,
     );
     String? passday = pastMonth.toString().substring(0, 13);
-    // String? passday = pastMonth.toString().substring(0, 16);
-    print('asasas $passday');
     tanggalAA = passday;
-    // if (mounted) {
-    //   setState(() {
-    //     tanggalAA = passday;
-    //   });
-    // }
-    print('asasas $tanggalAA');
     await sharedPreferencesManager.setString(
         SharedPreferencesManager.tanggalogout, tanggalAA!);
     await sharedPreferencesManager.setString(
         SharedPreferencesManager.tanggalbanner, tanggalAA!);
-    // tanggalAA = sharedPreferencesManager.getString("tanggalogout");
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
     _notification = state;
-    print('qwerty : $_notification');
-    // setState(() {
-    // AppLifecycleState.inactive;
 
     if (_notification == AppLifecycleState.detached) {
       gettanggaNow();
     } else if (_notification == AppLifecycleState.inactive) {
       gettanggaNow();
     }
-    //  else if (_notification == AppLifecycleState.paused) {
-    //   gettanggaNow();
-    // }
-    // });
   }
 
   Color? warna = const Color(0xFF85014e);
@@ -148,7 +122,6 @@ class _OnBoardingPageState extends State<OnBoardingPage>
       _visible = false;
     });
     if (controller.page!.toInt() == controller.page) {
-      print('GOTO: ${controller.page!.toInt()}');
       _visible = true;
     }
   }
@@ -156,7 +129,7 @@ class _OnBoardingPageState extends State<OnBoardingPage>
   @override
   Widget build(BuildContext context) {
     return Consumer<ProviderApiText>(builder: (context, v, child) {
-      print("hello ${v.dataApiTextObaroding1}");
+      
       return Scaffold(
         body: SizedBox(
           height: MediaQuery.of(context).size.height,

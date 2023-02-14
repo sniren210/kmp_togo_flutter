@@ -108,7 +108,6 @@ class _AddUpdateProductPageState extends State<AddUpdateProductPage>
 
   @override
   Widget build(BuildContext context) {
-    print('${widget.storeId} saya');
     return Consumer<ProviderNft>(
         builder: (BuildContext context, v, Widget? child) {
       return SafeArea(
@@ -212,8 +211,6 @@ class _AddUpdateProductPageState extends State<AddUpdateProductPage>
                                           setState(() {
                                             currentSelectedValuekategori =
                                                 value;
-                                            print(
-                                                'haloo  id :${currentSelectedValuekategori}');
                                           });
                                         },
                                       ),

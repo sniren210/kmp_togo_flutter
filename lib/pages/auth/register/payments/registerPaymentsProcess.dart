@@ -7,10 +7,7 @@ import 'package:kmp_togo_mobile/helpers/ui_helper/spacer.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/textStyling.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kmp_togo_mobile/pages/auth/register/registerloadingpage.dart';
-import 'package:kmp_togo_mobile/pages/common/carapembayaran_widget.dart';
 import 'package:kmp_togo_mobile/pages/common/customAppBar.dart';
-import 'package:kmp_togo_mobile/pages/common/takePictures.dart';
-import 'package:kmp_togo_mobile/pages/home.dart';
 import 'package:kmp_togo_mobile/providers/auth/provider_register.dart';
 import 'package:provider/provider.dart';
 
@@ -106,22 +103,13 @@ class _PaymentProcessState extends State<PaymentProcess> {
       locator<SharedPreferencesManager>();
 
   final currencyFormatter = NumberFormat.currency(locale: 'ID');
-  // print(currencyFormatter.format(d));
 
   @override
   Widget build(BuildContext context) {
-    // print(sharedPreferencesManager.getString(SharedPreferencesManager.pin));
-    // String? name =
-    //     sharedPreferencesManager.getString(SharedPreferencesManager.nama);
     return Scaffold(
       body: Consumer<ProviderRegister>(builder: (context, v, child) {
         return LayoutBuilder(
           builder: (context, constraints) {
-            // SizeConfig().init(
-            //     context: context,
-            //     safeAreaBox: constraints,
-            //     referenceHeight: 800,
-            //     referenceWidth: 360);
             return loading == true
                 ? const Center(
                     child: CircularProgressIndicator(),

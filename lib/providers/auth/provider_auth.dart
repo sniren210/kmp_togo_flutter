@@ -70,12 +70,10 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
             type: 'error', title: 'error', text: data.error.toString());
         if (data.meta?.suspend == false && data.meta!.nexttry != null) {
           statususpen = true;
-          print('a');
           notifyListeners();
         } else if (data.meta?.suspend == true) {
           statususpen = false;
           statusbanned = true;
-          print('b');
           notifyListeners();
         }
         // return Fluttertoast.showToast(
@@ -88,7 +86,6 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
         //     fontSize: 16.0);
       } catch (e) {
         final msg = e.toString();
-        print(msg);
         loading = false;
         await customSnackbar(
             type: 'error', title: 'error', text: 'Terjadi kesalahan!');
@@ -111,7 +108,6 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
     String? phoneNumber,
   ) async {
     String numberA = '+62$phoneNumber';
-    print(numberA);
     try {
       final body = {"phoneNumber": numberA};
       final res = await _dio.post('/v1/recovery/password', data: body);
@@ -142,12 +138,10 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
             type: 'error', title: 'error', text: data.error.toString());
         if (data.meta?.suspend == false && data.meta!.nexttry != null) {
           statususpen = true;
-          print('a');
           notifyListeners();
         } else if (data.meta?.suspend == true) {
           statususpen = false;
           statusbanned = true;
-          print('b');
           notifyListeners();
         }
         // return Fluttertoast.showToast(
@@ -180,7 +174,6 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
 
   changePass(context, String? phoneNumber, String? password,
       String? tokenRecovery) async {
-    print(phoneNumber);
     try {
       final body = {
         "phoneNumber": phoneNumber,
@@ -216,12 +209,10 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
             type: 'error', title: 'error', text: data.error.toString());
         if (data.meta?.suspend == false && data.meta!.nexttry != null) {
           statususpen = true;
-          print('a');
           notifyListeners();
         } else if (data.meta?.suspend == true) {
           statususpen = false;
           statusbanned = true;
-          print('b');
           notifyListeners();
         }
         // return Fluttertoast.showToast(

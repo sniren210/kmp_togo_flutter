@@ -136,10 +136,7 @@ class _TakePictureConfPageState extends State<TakePictureConfPage> {
     setState(() {
       if (image != null) {
         widget.images = File(image.path);
-        // String fileName = _image!.path.split('/').last;
-        print('opopo : ${widget.images}');
       } else {
-        // print("No Image selected");
       }
     });
   }

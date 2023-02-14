@@ -25,7 +25,6 @@ class _HakAksesProdukState extends State<HakAksesProduk> {
   bool? isLoading = false;
 
   submitHakAksesNFT(String? username, String? password) async {
-    print(widget.storeId);
     if (username == '') {
       isLoading = false;
       await customSnackbar(type: 'error', title: 'nama belum diisi', text: '');

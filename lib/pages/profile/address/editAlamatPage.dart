@@ -49,33 +49,6 @@ class _editAlamatPageState extends State<editAlamatPage> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // ElevatedButton(
-              //   onPressed: () async {
-              //     // print(geoPoint);
-
-              //     GeoPoint? p = await showSimplePickerLocation(
-              //       context: context,
-              //       isDismissible: true,
-              //       title: "Title dialog",
-              //       textConfirmPicker: "pick",
-              //       initCurrentUserPosition: true,
-              //       initZoom: 15,
-              //     );
-
-              //     if (p != null) {
-              //       List<Placemark> placemarks =
-              //           await placemarkFromCoordinates(p.latitude, p.longitude);
-
-              //       placeNameC!.text = placemarks.first.locality ?? '';
-              //       postalCodeNumberC!.text = placemarks.first.postalCode ?? '';
-              //       cityC!.text = placemarks.first.country ?? '';
-              //       subdisticC!.text =
-              //           placemarks.first.subAdministrativeArea ?? '';
-              //       addressC!.text = placemarks.first.street ?? '';
-              //     }
-              //   },
-              //   child: Text('Pilih lokasi'),
-              // ),
               const SizedBox(
                 height: 8,
               ),

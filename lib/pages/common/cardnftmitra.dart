@@ -57,7 +57,6 @@ class cardnftmitra extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // print('owner id = ${owner}');
     return InkWell(
       onTap: () {
         Navigator.push(

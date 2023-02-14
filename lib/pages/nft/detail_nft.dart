@@ -53,7 +53,6 @@ class _DetailNFTState extends State<DetailNFT> with TickerProviderStateMixin {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (widget.owner != null) {
-        print('${widget.owner}');
         final _getkategoriProvider =
             Provider.of<ProviderNft>(context, listen: false);
         await _getkategoriProvider.getNFTbyId(context, widget.nftSerialId);

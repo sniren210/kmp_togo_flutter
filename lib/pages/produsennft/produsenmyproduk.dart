@@ -70,7 +70,6 @@ class _ProdusenMyProdukState extends State<ProdusenMyProduk> {
 
   @override
   Widget build(BuildContext context) {
-    print('${widget.storeId} saya');
     return Consumer<ProviderNft>(
         builder: (BuildContext context, v, Widget? child) {
       return SafeArea(
@@ -99,8 +98,6 @@ class _ProdusenMyProdukState extends State<ProdusenMyProduk> {
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (BuildContext context, int index) {
-                                print(
-                                    '${v.dataNFTItemProdusen?.data?.length} panjangnya');
                                 return InkWell(
                                   onTap: () {
                                     Navigator.push(context,

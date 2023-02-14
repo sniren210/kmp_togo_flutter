@@ -87,7 +87,6 @@ class _DashboardNFTState extends State<DashboardNFT>
             )
           : Consumer<ProviderNft>(
               builder: (BuildContext context, v, Widget? child) {
-              print(v.dataAllNFT?.data?.last.name);
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CustomScrollView(

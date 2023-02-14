@@ -100,7 +100,6 @@ class _TambahAlamatPageState extends State<TambahAlamatPage> {
                 children: [
                   ElevatedButton(
                     onPressed: () async {
-                      // print(geoPoint);
 
                       GeoPoint? p = await showSimplePickerLocation(
                         context: context,

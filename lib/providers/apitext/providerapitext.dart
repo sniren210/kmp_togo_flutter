@@ -54,26 +54,19 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
     print('ok1');
     try {
       final res = await _dio.get('/v1/app/onboarding1');
-      print(res.statusMessage);
 
       await saveResponseGet(
           res.requestOptions.path, res.statusMessage, res.data.toString());
 
-      print('ok');
-      print(res.data);
 
       dataApiTextObaroding1 = ModelApiText.fromJson(res.data);
       notifyListeners();
     } on DioError catch (e) {
       try {
         ErrorModel data = ErrorModel.fromJson(e.response!.data);
-        // await customSnackbar(
-        //     type: 'error', title: 'error', text: data.error.toString());
       } catch (e) {
         final msg = e.toString();
         print(msg);
-        // await customSnackbar(
-        //     type: 'error', title: 'error', text: 'Terjadi kesalahan!');
       }
     } catch (e) {
       print(e);
@@ -94,13 +87,9 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
     } on DioError catch (e) {
       try {
         ErrorModel data = ErrorModel.fromJson(e.response!.data);
-        // await customSnackbar(
-        //     type: 'error', title: 'error', text: data.error.toString());
       } catch (e) {
         final msg = e.toString();
         print(msg);
-        // await customSnackbar(
-        //     type: 'error', title: 'error', text: 'Terjadi kesalahan!');
       }
     } catch (e) {
       print(e);
@@ -121,13 +110,9 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
     } on DioError catch (e) {
       try {
         ErrorModel data = ErrorModel.fromJson(e.response!.data);
-        // await customSnackbar(
-        //     type: 'error', title: 'error', text: data.error.toString());
       } catch (e) {
         final msg = e.toString();
         print(msg);
-        // await customSnackbar(
-        //     type: 'error', title: 'error', text: 'Terjadi kesalahan!');
       }
     } catch (e) {
       print(e);
@@ -148,13 +133,9 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
     } on DioError catch (e) {
       try {
         ErrorModel data = ErrorModel.fromJson(e.response!.data);
-        // await customSnackbar(
-        //     type: 'error', title: 'error', text: data.error.toString());
       } catch (e) {
         final msg = e.toString();
         print(msg);
-        // await customSnackbar(
-        //     type: 'error', title: 'error', text: 'Terjadi kesalahan!');
       }
     } catch (e) {
       print(e);
@@ -175,13 +156,9 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
     } on DioError catch (e) {
       try {
         ErrorModel data = ErrorModel.fromJson(e.response!.data);
-        // await customSnackbar(
-        //     type: 'error', title: 'error', text: data.error.toString());
       } catch (e) {
         final msg = e.toString();
         print(msg);
-        // await customSnackbar(
-        //     type: 'error', title: 'error', text: 'Terjadi kesalahan!');
       }
     } catch (e) {
       print(e);
@@ -192,14 +169,6 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
     context,
   ) async {
     try {
-      // final res1 = await _dio.get('/v1/app/banner1');
-      // final res2 = await _dio.get('/v1/app/banner2');
-      // final res3 = await _dio.get('/v1/app/banner3');
-      // final res4 = await _dio.get('/v1/app/banner4');
-      // dataApiBanner1 = ModelApiText.fromJson(res1.data);
-      // dataApiBanner2 = ModelApiText.fromJson(res2.data);
-      // dataApiBanner3 = ModelApiText.fromJson(res3.data);
-      // dataApiBanner4 = ModelApiText.fromJson(res4.data);
       dataApiBanner1 = ModelApiText().dummy();
       dataApiBanner2 = ModelApiText().dummy();
       dataApiBanner3 = ModelApiText().dummy();
@@ -225,10 +194,6 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
         loadinbanner = true;
         notifyListeners();
       }
-      // listImage?.add(gambar1);
-      // listImage?.add(gambar2);
-      // listImage?.add(gambar3);
-      // listImage?.add(gambar4);
 
       notifyListeners();
     } on DioError catch (e) {
@@ -243,77 +208,7 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
     }
   }
 
-  // getTextBanner2(
-  //   context,
-  // ) async {
-  //   try {
-  //     final res = await _dio.get('/v1/app/banner1');
-  //     dataApiRegister = ModelApiText.fromJson(res.data);
-  //     listImage?.add(dataApiBanner?.data?.imagePath ?? "");
-  //     notifyListeners();
-  //   } on DioError catch (e) {
-  //     try {
-  //       ErrorModel data = ErrorModel.fromJson(e.response!.data);
-  //       // await customSnackbar(
-  //       //     type: 'error', title: 'error', text: data.error.toString());
-  //     } catch (e) {
-  //       final msg = e.toString();
-  //       print(msg);
-  //       // await customSnackbar(
-  //       //     type: 'error', title: 'error', text: 'Terjadi kesalahan!');
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
-
-  // getTextBanner3(
-  //   context,
-  // ) async {
-  //   try {
-  //     final res = await _dio.get('/v1/app/banner1');
-  //     dataApiRegister = ModelApiText.fromJson(res.data);
-  //     listImage?.add(dataApiBanner?.data?.imagePath ?? "");
-  //     notifyListeners();
-  //   } on DioError catch (e) {
-  //     try {
-  //       ErrorModel data = ErrorModel.fromJson(e.response!.data);
-  //       // await customSnackbar(
-  //       //     type: 'error', title: 'error', text: data.error.toString());
-  //     } catch (e) {
-  //       final msg = e.toString();
-  //       print(msg);
-  //       // await customSnackbar(
-  //       //     type: 'error', title: 'error', text: 'Terjadi kesalahan!');
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
-
-  // getTextBanner4(
-  //   context,
-  // ) async {
-  //   try {
-  //     final res = await _dio.get('/v1/app/banner1');
-  //     dataApiRegister = ModelApiText.fromJson(res.data);
-  //     listImage?.add(dataApiBanner?.data?.imagePath ?? "");
-  //     notifyListeners();
-  //   } on DioError catch (e) {
-  //     try {
-  //       ErrorModel data = ErrorModel.fromJson(e.response!.data);
-  //       // await customSnackbar(
-  //       //     type: 'error', title: 'error', text: data.error.toString());
-  //     } catch (e) {
-  //       final msg = e.toString();
-  //       print(msg);
-  //       // await customSnackbar(
-  //       //     type: 'error', title: 'error', text: 'Terjadi kesalahan!');
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
+  
 
   getTextHubungiCS(
     context,
@@ -329,13 +224,9 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
     } on DioError catch (e) {
       try {
         ErrorModel data = ErrorModel.fromJson(e.response!.data);
-        // await customSnackbar(
-        //     type: 'error', title: 'error', text: data.error.toString());
       } catch (e) {
         final msg = e.toString();
         print(msg);
-        // await customSnackbar(
-        //     type: 'error', title: 'error', text: 'Terjadi kesalahan!');
       }
     } catch (e) {
       print(e);
@@ -356,13 +247,8 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
     } on DioError catch (e) {
       try {
         ErrorModel data = ErrorModel.fromJson(e.response!.data);
-        // await customSnackbar(
-        //     type: 'error', title: 'error', text: data.error.toString());
       } catch (e) {
         final msg = e.toString();
-        // print(msg);
-        // await customSnackbar(
-        //     type: 'error', title: 'error', text: 'Terjadi kesalahan!');
       }
     } catch (e) {
       print(e);

@@ -264,7 +264,6 @@ class _AlamatPageState extends State<AlamatPage> {
         ElevatedButton(
             child: const Text('Update'),
             onPressed: () {
-              print('LEO: ${phoneNumberC.text}');
               Navigator.push(
                 context,
                 MaterialPageRoute(

@@ -62,7 +62,6 @@ class _MyNFTProdusenState extends State<MyNFTProdusen>
         statusNFTTamplian = 'umum';
       });
     } else if (aa == 1) {
-      print('a');
       final _getkategoriProvider =
           Provider.of<ProviderNft>(context, listen: false);
       await _getkategoriProvider.getMyStatusNFT(context, 'usaha');
@@ -364,7 +363,6 @@ class _MyNFTProdusenState extends State<MyNFTProdusen>
                                           return Container();
                                         }
                                       }
-                                      print('data konsumen ${jmlahData}');
                                       return CardNftTerjual(
                                         images: v.dataAllStatusNFT!.data![index]
                                                 .nft?.imagePath ??

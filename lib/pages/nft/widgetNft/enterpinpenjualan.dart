@@ -174,7 +174,6 @@ class _EnterPinPejualanNFTState extends State<EnterPinPejualanNFT> {
     await _getkategoriProvider.sellNft(
         context, widget.nftSerialId, widget.priceCoin, _pinValue);
     bool? statusSell = _getkategoriProvider.statusSell;
-    print(statusSell);
     if (statusSell == true) {
       // ignore: use_build_context_synchronously
       Navigator.push(
@@ -184,7 +183,6 @@ class _EnterPinPejualanNFTState extends State<EnterPinPejualanNFT> {
     } else if (statusSell == false) {
       setState(() {
         loading = false;
-        print('aa');
       });
     }
   }

@@ -139,7 +139,6 @@ class _CardInformasiPenjualanState extends State<CardInformasiPenjualan> {
                             border: const OutlineInputBorder(),
                           ),
                           onSaved: (value){
-                            print('COBA: $value');
                           },
                         ),
                       ),
@@ -315,7 +314,6 @@ class _CardInformasiPenjualanState extends State<CardInformasiPenjualan> {
                               child: TextFormField(
                                 style: TextStyle(color: Colors.grey.shade500),
                                 validator: (value) {
-                                  print(value);
                                   if (value!.isEmpty) {
                                     return 'Harga';
                                   }

@@ -54,7 +54,6 @@ class _EnterPinNFTState extends State<EnterPinNFT> {
     await _getkategoriProvider.sendPaymentNft(
         context, widget.nftSerialId, widget.priceCoin, _pinValue);
     bool? statuspayment = _getkategoriProvider.statusPayment;
-    print(statuspayment);
     if (statuspayment == true) {
       // ignore: use_build_context_synchronously
       Navigator.push(
@@ -64,7 +63,6 @@ class _EnterPinNFTState extends State<EnterPinNFT> {
     } else if (statuspayment == false) {
       setState(() {
         loading = false;
-        print('aaas');
       });
     }
   }

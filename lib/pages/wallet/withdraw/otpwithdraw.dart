@@ -40,8 +40,6 @@ class _OtpWithDrawState extends State<OtpWithDraw> {
       setState(() {
         loading = true;
       });
-      print(widget.amount);
-      print(widget.nomor);
       await Provider.of<ProviderWithDraw>(context, listen: false)
           .sendwithdraw(context, widget.amount, widget.nomor, pinAA);
       setState(() {

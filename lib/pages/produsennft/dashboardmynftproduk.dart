@@ -63,7 +63,6 @@ class _DashboardMyNFTKonsumenState extends State<DashboardMyNFTKonsumen>
         statusNFTTamplian = 'umum';
       });
     } else if (aa == 1) {
-      print('a');
       final _getkategoriProvider =
           Provider.of<ProviderNft>(context, listen: false);
       await _getkategoriProvider.getMyNFTProdusen(context, 'usaha');
