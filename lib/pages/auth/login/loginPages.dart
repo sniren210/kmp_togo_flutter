@@ -169,7 +169,7 @@ class _LoginPagesState extends State<LoginPages> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 4.w, right: 4.w, top: 5.h),
+                    margin: EdgeInsets.only(left: 4.w, right: 4.w, top: 2.h),
                     height: 25.h,
                     width: MediaQuery.of(context).size.width,
                     decoration: const BoxDecoration(
@@ -235,7 +235,7 @@ class _LoginPagesState extends State<LoginPages> {
                                     : Colors.grey.shade400,
                                 size: 7.w,
                               ),
-                              hintText: "Please Enter Username",
+                              hintText: "Masukan Email",
                               filled: true,
                               fillColor: Colors.grey.shade200,
                               border: InputBorder.none,
@@ -247,7 +247,7 @@ class _LoginPagesState extends State<LoginPages> {
                             ),
                             validator: (username) {
                               if (username!.isEmpty) {
-                                return "You must enter username";
+                                return "Harus masukan Email";
                               } else {
                                 return null;
                               }
@@ -294,7 +294,7 @@ class _LoginPagesState extends State<LoginPages> {
                                     })),
                             validator: (password) {
                               if (password!.isEmpty) {
-                                return "You must enter password";
+                                return "Harus masukan password";
                               } else {
                                 return null;
                               }
@@ -551,7 +551,7 @@ class _LoginPagesState extends State<LoginPages> {
                           ),
                         ),
                         SizedBox(
-                          height: 4.h,
+                          height: 6.h,
                         ),
                       ],
                     ),
