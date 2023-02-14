@@ -22,13 +22,15 @@ class _RegisterOtpPageState extends State<RegisterOtpPage> {
   bool? loading = false;
   String? nomorhp;
 
-  // @override
-  // void initState() {
-  //   nomorhp = sharedPreferencesManager.getString("nomer_hp");
-  //   _submit(context, init: 'init');
-  //   Provider.of<ProviderRegister>(context, listen: false).setCountOtp(0);
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    // nomorhp = sharedPreferencesManager.getString("nomer_hp");
+    _submit(context, init: 'init');
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      Provider.of<ProviderRegister>(context, listen: false).setCountOtp(0);
+    });
+    super.initState();
+  }
 
   String otpValue = "";
 
@@ -104,19 +106,29 @@ class _RegisterOtpPageState extends State<RegisterOtpPage> {
                               fontSize: 15),
                         ),
                         InkWell(
-                          onTap: () async {
-                            print('ok');
-                            // loadingMintaLagi = true;
-                            // await _submit(context);
-                          },
-                          child: const Text(
-                            ' Minta lagi',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Color(0xFF85014e),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15),
-                          ),
+                          onTap: !loadingMintaLagi!
+                              ? () async {
+                                  loadingMintaLagi = true;
+                                  await _submit(context);
+                                }
+                              : null,
+                          child: loadingMintaLagi!
+                              ? Text(
+                                  ' Minta lagi dalam: ${_start.toString()} s',
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                      color: Color(0xFF85014e),
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 15),
+                                )
+                              : const Text(
+                                  ' Minta lagi',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Color(0xFF85014e),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
                         ),
                       ],
                     ),
@@ -124,50 +136,78 @@ class _RegisterOtpPageState extends State<RegisterOtpPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  InkWell(
-                    onTap: () async {
-                      if (otpValue.length >= 6) {
-                        print(vRegister.countOtp.toString());
-                        int count = vRegister.countOtp;
-                        await vRegister.setCountOtp(count + 1);
+                  loading == false
+                      ? InkWell(
+                          onTap: () async {
+                            if (otpValue.length >= 6) {
+                              print(vRegister.countOtp.toString());
+                              int count = vRegister.countOtp;
+                              await vRegister.setCountOtp(count + 1);
 
-                        final SharedPreferencesManager
-                            sharedPreferencesManager =
-                            locator<SharedPreferencesManager>();
+                              final SharedPreferencesManager
+                                  sharedPreferencesManager =
+                                  locator<SharedPreferencesManager>();
 
-                        setState(() {
-                          loading = true;
-                        });
-                        await vRegister.validate_otp(
-                            context,
-                            sharedPreferencesManager.getString('nomer_hp'),
-                            otpValue.toString());
+                              setState(() {
+                                loading = true;
+                              });
+                              await vRegister.validate_otp(
+                                  context,
+                                  sharedPreferencesManager
+                                      .getString('nomer_hp'),
+                                  otpValue.toString());
 
-                        setState(() {
-                          loading = Provider.of<ProviderRegister>(context,
-                                  listen: false)
-                              .loadingOtp;
-                        });
-                        // }
-                      }
-                    },
-                    child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        margin: const EdgeInsets.only(right: 20.0, left: 20.0),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 70),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(24),
-                            color: const Color(0xFF85014e)),
-                        child: const Text(
-                          'Verifikasi',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 15),
-                        )),
-                  ),
+                              setState(() {
+                                loading = Provider.of<ProviderRegister>(context,
+                                        listen: false)
+                                    .loadingOtp;
+                              });
+                              // }
+                            }
+                          },
+                          child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              margin: const EdgeInsets.only(
+                                  right: 20.0, left: 20.0),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 70),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(24),
+                                  color: loadingMintaLagi ?? false
+                                      ? const Color(0xFF85014e)
+                                      : Colors.grey),
+                              child: const Text(
+                                'Verifikasi',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 15),
+                              )),
+                        )
+                      : InkWell(
+                          onTap: () {},
+                          child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              margin: const EdgeInsets.only(
+                                right: 20.0,
+                                left: 20.0,
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 70),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.grey),
+                              child: Center(
+                                child: SizedBox(
+                                  height: 2.h,
+                                  width: 4.w,
+                                  child: const CircularProgressIndicator(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              )),
+                        ),
                 ],
               ),
             ),
@@ -181,13 +221,35 @@ class _RegisterOtpPageState extends State<RegisterOtpPage> {
 
   Timer? timer;
   int _start = 60;
-
+//
   _submit(BuildContext context, {String? init}) async {
+    _start = 60;
+
+    setState(() {
+      loadingMintaLagi = true;
+    });
+
     if (init == null) {
       await Provider.of<ProviderRegister>(context, listen: false).request_otp(
-          context,
-          sharedPreferencesManager.getString('nomer_hp')!.replaceAll('+62', ''),
-          false);
+          context, sharedPreferencesManager.getString('nomer_hp'), false);
     }
+
+    const oneSec = Duration(seconds: 1);
+
+    timer = Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+            loadingMintaLagi = false;
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
   }
 }

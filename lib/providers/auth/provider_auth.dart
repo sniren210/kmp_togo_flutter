@@ -22,19 +22,23 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
   bool statususpen = false;
   bool statusbanned = false;
   String? time = '';
-  login(context, username, password) async {
+  login(context, username, password, passwordConfirm) async {
     try {
-      final body = {"email": username, "password": password};
-      final res = await _dio.post('/v1/auth/login', data: body);
+      final body = {
+        "email": username,
+        "password": password,
+        'password_confirmation': passwordConfirm,
+      };
+      final res = await _dio.post('/api/v1/login', data: body);
 
       await saveResponsePost(res.requestOptions.path, res.statusMessage,
           res.data.toString(), body.toString());
 
-      if (res.data['data'] == 'success') {
+      if (res.data['success'] == true) {
         final resa = await _dio.get('/v1/user/me');
 
-        await saveResponseGet(resa.requestOptions.path, resa.statusMessage,
-            resa.data.toString());
+        await saveResponseGet(
+            resa.requestOptions.path, resa.statusMessage, resa.data.toString());
 
         dataMyinfo = ModelInfoRegister.fromJson(resa.data);
         if (dataMyinfo?.data?.status == 'active') {
@@ -119,7 +123,7 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
       await saveResponsePost(res.requestOptions.path, res.statusMessage,
           res.data.toString(), body.toString());
 
-      if (res.data['data'] == 'success') {
+      if (res.data['success'] == true) {
         loadingLupaPassword = false;
         Navigator.push(
           context,
