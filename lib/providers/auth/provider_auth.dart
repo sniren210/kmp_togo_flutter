@@ -38,8 +38,6 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
       if (res.data['success'] == true) {
         dataMyinfo = LoginInfo.fromJson(res.data);
 
-        print(dataMyinfo);
-
         await databaseApp.insertResponseAPI(ResponseFromAPIData(
           method: 'GET',
           status: res.statusMessage ?? '',

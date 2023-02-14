@@ -4,8 +4,10 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:kmp_togo_mobile/helpers/user_database_helper.dart';
 import 'package:path_provider/path_provider.dart' as pathProvider;
 import 'package:path/path.dart' as path;
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 class Helper {
   // Singleton
@@ -38,6 +40,20 @@ class Helper {
         ),
       ),
     );
+    _dio.interceptors.add(QueuedInterceptorsWrapper(
+      onRequest: (options, handler) async {
+        final user = await UserHelper.getUser();
+
+        if (user != null) {
+          if (JwtDecoder.isExpired(user.token)) {
+            // auto logout
+          }
+          options.headers['authorization'] = 'Bearer ${user.token}';
+        }
+        handler.next(options);
+      },
+    ));
+
     (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (HttpClient dioClient) {
       dioClient.badCertificateCallback =
