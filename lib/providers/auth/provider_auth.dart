@@ -6,6 +6,7 @@ import 'package:kmp_togo_mobile/helpers/machines.dart';
 import 'package:kmp_togo_mobile/helpers/shared_pref_manager.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/custom_snackbar.dart';
 import 'package:kmp_togo_mobile/main.dart';
+import 'package:kmp_togo_mobile/models/account/login_info.dart';
 import 'package:kmp_togo_mobile/models/response/error/model_error.dart';
 import 'package:kmp_togo_mobile/pages/auth/login/changepasswordpages.dart';
 import 'package:kmp_togo_mobile/pages/auth/login/loginPages.dart';
@@ -15,33 +16,25 @@ import '../../pages/auth/register/payments/registerPaymentsProcess.dart';
 
 class ProviderAuthLogin with ChangeNotifier, ApiMachine {
   final _dio = Helper().dio;
-  ModelInfoRegister? dataMyinfo;
+  LoginInfo? dataMyinfo;
   bool loading = false;
   bool loadingLupaPassword = false;
   bool loadingLupaPasswordA = false;
   bool statususpen = false;
   bool statusbanned = false;
   String? time = '';
-  login(context, username, password, passwordConfirm) async {
+  login(context, username, password) async {
     try {
       final body = {
         "email": username,
         "password": password,
-        'password_confirmation': passwordConfirm,
       };
       final res = await _dio.post('/api/v1/login', data: body);
 
-      await saveResponsePost(res.requestOptions.path, res.statusMessage,
-          res.data.toString(), body.toString());
-
       if (res.data['success'] == true) {
-        final resa = await _dio.get('/v1/user/me');
+        dataMyinfo = LoginInfo.fromJson(res.data);
 
-        await saveResponseGet(
-            resa.requestOptions.path, resa.statusMessage, resa.data.toString());
-
-        dataMyinfo = ModelInfoRegister.fromJson(resa.data);
-        if (dataMyinfo?.data?.status == 'active') {
+        if (dataMyinfo?.data.user.status == 'ACTIVE') {
           await sharedPreferencesManager.setBool(
               SharedPreferencesManager.isLoggedIn, true);
           Get.offAllNamed('/home');
@@ -61,7 +54,7 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
                       popContext: 1,
                       isRegister: true,
                       // tipeAnggota: membertypeanggota,
-                      tipeAnggotaId: dataMyinfo?.data?.membertype)));
+                      tipeAnggotaId: dataMyinfo?.data.user.status)));
         }
         // * Get.toNamed('/home'); -> boleh balik pake routing
         // * Get.offAll(Home()); -> ngga boleh balik pake class
