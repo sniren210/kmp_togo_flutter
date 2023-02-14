@@ -13,6 +13,7 @@ import 'package:kmp_togo_mobile/pages/produsennft/dashboardmynftproduk.dart';
 import 'package:kmp_togo_mobile/pages/profile/address/alamatPage.dart';
 import 'package:kmp_togo_mobile/pages/profile/profile_detail.dart';
 import 'package:kmp_togo_mobile/pages/profile/profile_widget.dart';
+import 'package:kmp_togo_mobile/pages/profile/referal.dart';
 import 'package:kmp_togo_mobile/pages/profile/transaksi/transaksi_page.dart';
 import 'package:kmp_togo_mobile/providers/account/provider_account.dart';
 import 'package:kmp_togo_mobile/providers/cart/cart_provider.dart';
@@ -161,6 +162,19 @@ class _ProfileState extends State<Profile> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => AlamatPage()));
+                        },
+                      ),
+                      SettingsTile(
+                        leading: Icon(Icons.monetization_on_sharp),
+                        title: Text(
+                          "Pendapatan Referal",
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                        onPressed: (value) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ReferalPage()));
                         },
                       ),
                       titleSection(title: "Pengaturan Umun"),
