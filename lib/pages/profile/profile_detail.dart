@@ -146,7 +146,7 @@ class profileDetail extends StatelessWidget {
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('BANK ARTHA'),
+                    Text('Artha Graha Internasional'),
                     Text('INKY PRAMUDIA RAMDHANI'),
                   ],
                 ),
@@ -195,7 +195,7 @@ _showSimpleModalDialog(context, int bankAccount) {
                       TextFormField(
                         readOnly: true,
                         controller: TextEditingController(
-                          text: "ARTHA",
+                          text: "Artha Graha Internasional",
                         ),
                         decoration: new InputDecoration(
                           hintText: "pilih Bank",
