@@ -28,7 +28,8 @@ class _LoginPagesState extends State<LoginPages> {
   final _formKey = GlobalKey<FormState>();
   bool passhide = true;
   TextEditingController nameController = TextEditingController();
-  TextEditingController passcontroller = TextEditingController();
+  TextEditingController passController = TextEditingController();
+  TextEditingController passConfirmnController = TextEditingController();
   CountdownTimerController? Coundowncontroller;
   String? endTime;
   bool pinaltytime = false;
@@ -67,8 +68,12 @@ class _LoginPagesState extends State<LoginPages> {
       setState(() {
         loading = true;
       });
-      await Provider.of<ProviderAuthLogin>(context, listen: false)
-          .login(context, nameController.text, passcontroller.text);
+      await Provider.of<ProviderAuthLogin>(context, listen: false).login(
+        context,
+        nameController.text,
+        passController.text,
+        passController.text,
+      );
       var now = DateTime.now();
       String nowSplit = now.toString();
       DateTime pastMonth = DateTime(
@@ -163,7 +168,7 @@ class _LoginPagesState extends State<LoginPages> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 4.w, right: 4.w, top: 5.h),
+                    margin: EdgeInsets.only(left: 4.w, right: 4.w, top: 2.h),
                     height: 25.h,
                     width: MediaQuery.of(context).size.width,
                     decoration: const BoxDecoration(
@@ -229,7 +234,7 @@ class _LoginPagesState extends State<LoginPages> {
                                     : Colors.grey.shade400,
                                 size: 7.w,
                               ),
-                              hintText: "Please Enter Username",
+                              hintText: "Masukan Email",
                               filled: true,
                               fillColor: Colors.grey.shade200,
                               border: InputBorder.none,
@@ -241,7 +246,7 @@ class _LoginPagesState extends State<LoginPages> {
                             ),
                             validator: (username) {
                               if (username!.isEmpty) {
-                                return "You must enter username";
+                                return "Harus masukan Email";
                               } else {
                                 return null;
                               }
@@ -256,7 +261,7 @@ class _LoginPagesState extends State<LoginPages> {
                           child: TextFormField(
                             obscureText: passhide,
                             focusNode: _focusNodes[1],
-                            controller: passcontroller,
+                            controller: passController,
                             decoration: InputDecoration(
                                 contentPadding:
                                     const EdgeInsets.symmetric(vertical: 18),
@@ -267,7 +272,7 @@ class _LoginPagesState extends State<LoginPages> {
                                       : Colors.grey.shade400,
                                   size: 7.w,
                                 ),
-                                labelText: "Please Enter Password",
+                                labelText: "Masukan Password",
                                 filled: true,
                                 fillColor: Colors.grey.shade200,
                                 border: InputBorder.none,
@@ -288,13 +293,61 @@ class _LoginPagesState extends State<LoginPages> {
                                     })),
                             validator: (password) {
                               if (password!.isEmpty) {
-                                return "You must enter password";
+                                return "Harus masukan password";
                               } else {
                                 return null;
                               }
                             },
                           ),
                         ),
+                  // bannedtime == true
+                  //     ? Container()
+                  //     : Container(
+                  //         padding: const EdgeInsets.only(top: 20),
+                  //         margin: const EdgeInsets.only(right: 20.0, left: 20),
+                  //         child: TextFormField(
+                  //           obscureText: passhide,
+                  //           focusNode: _focusNodes[1],
+                  //           controller: passConfirmnController,
+                  //           decoration: InputDecoration(
+                  //               contentPadding:
+                  //                   const EdgeInsets.symmetric(vertical: 18),
+                  //               prefixIcon: Icon(
+                  //                 Icons.lock,
+                  //                 color: _focusNodes[1].hasFocus
+                  //                     ? const Color(0xFF85014e)
+                  //                     : Colors.grey.shade400,
+                  //                 size: 7.w,
+                  //               ),
+                  //               labelText: "Masukan Konfirmasi Password",
+                  //               filled: true,
+                  //               fillColor: Colors.grey.shade200,
+                  //               border: InputBorder.none,
+                  //               suffixIcon: IconButton(
+                  //                   icon: Icon(
+                  //                     passhide
+                  //                         ? Icons.visibility_off
+                  //                         : Icons.visibility,
+                  //                     color: _focusNodes[1].hasFocus
+                  //                         ? const Color(0xFF85014e)
+                  //                         : Colors.grey.shade400,
+                  //                     size: 7.w,
+                  //                   ),
+                  //                   onPressed: () {
+                  //                     setState(() {
+                  //                       passhide = !passhide;
+                  //                     });
+                  //                   })),
+                  //           validator: (password) {
+                  //             if (password!.isEmpty) {
+                  //               return "You must enter password";
+                  //             } else {
+                  //               return null;
+                  //             }
+                  //           },
+                  //         ),
+                  //       ),
+
                   Padding(
                     padding: const EdgeInsets.only(
                         right: 20.0, left: 20, top: 15, bottom: 10),
@@ -322,19 +375,6 @@ class _LoginPagesState extends State<LoginPages> {
                                   right: 20.0, left: 20.0, top: 40),
                               child: InkWell(
                                 onTap: () async {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) => TakePicturePage(
-                                  //           title: 'Unggah Foto KTP')),
-                                  // );
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) =>
-                                  //           const RegisterOtpPage()),
-                                  // );
-
                                   Get.offAllNamed('/home');
                                   // _submit();
                                 },
@@ -510,7 +550,7 @@ class _LoginPagesState extends State<LoginPages> {
                           ),
                         ),
                         SizedBox(
-                          height: 4.h,
+                          height: 6.h,
                         ),
                       ],
                     ),

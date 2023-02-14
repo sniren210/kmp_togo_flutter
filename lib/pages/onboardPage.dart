@@ -24,6 +24,7 @@ class _OnBoardingPageState extends State<OnBoardingPage>
   PageController controller = PageController();
   bool? lastpage = false;
 
+
   String? routeLogin;
   @override
   void initState() {
@@ -66,7 +67,6 @@ class _OnBoardingPageState extends State<OnBoardingPage>
           cekAda = 'ada';
         });
       } else {
-        debugPrint('masih cari');
       }
     }
     if (cekAda == 'ada') {

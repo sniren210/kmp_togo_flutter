@@ -98,33 +98,39 @@ class _TambahAlamatPageState extends State<TambahAlamatPage> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  ElevatedButton(
-                    onPressed: () async {
 
-                      GeoPoint? p = await showSimplePickerLocation(
-                        context: context,
-                        isDismissible: true,
-                        title: "Title dialog",
-                        textConfirmPicker: "pick",
-                        initCurrentUserPosition: true,
-                        initZoom: 15,
-                      );
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        // print(geoPoint);
 
-                      if (p != null) {
-                        List<Placemark> placemarks =
-                            await placemarkFromCoordinates(
-                                p.latitude, p.longitude);
-                        placeNameC!.text = placemarks.first.street ?? '';
-                        postalCodeNumberC!.text =
-                            placemarks.first.postalCode ?? '';
-                        cityC!.text = placemarks.first.administrativeArea ?? '';
-                        provinceC!.text = placemarks.first.subLocality ?? '';
-                        subdisticC!.text =
-                            placemarks.first.administrativeArea ?? '';
-                        addressC!.text = placemarks.first.locality ?? '';
-                      }
-                    },
-                    child: Text('Pilih lokasi'),
+                        GeoPoint? p = await showSimplePickerLocation(
+                          isDismissible: true,
+                          context: context,
+                          title: "Pilih alamat",
+                          textConfirmPicker: "pilih",
+                          initCurrentUserPosition: true,
+                          initZoom: 15,
+                        );
+
+                        if (p != null) {
+                          List<Placemark> placemarks =
+                              await placemarkFromCoordinates(
+                                  p.latitude, p.longitude);
+                          placeNameC!.text = placemarks.first.street ?? '';
+                          postalCodeNumberC!.text =
+                              placemarks.first.postalCode ?? '';
+                          cityC!.text =
+                              placemarks.first.administrativeArea ?? '';
+                          provinceC!.text = placemarks.first.subLocality ?? '';
+                          subdisticC!.text =
+                              placemarks.first.administrativeArea ?? '';
+                          addressC!.text = placemarks.first.locality ?? '';
+                        }
+                      },
+                      child: Text('Pilih lokasi'),
+                    ),
                   ),
                   const SizedBox(
                     height: 8,

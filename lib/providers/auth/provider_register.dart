@@ -55,10 +55,10 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
     try {
       final res = await _dio.post(
         '/api/v1/get-otp',
-        data: {'phone_number': '0${noHp}'},
+        data: {'phone_number': firstRequest ? '0${noHp}' : noHp},
       );
 
-      print(res.statusCode);
+      print(res.data);
       print(res.statusMessage);
 
       await saveResponsePost(

@@ -377,30 +377,6 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                   ),
                                 ),
                               ),
-                        loadingbanner == false
-                            ? Padding(
-                                padding: EdgeInsets.only(top: 17.5.h),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children:
-                                      map<Widget>(va.listImageA!, (index, url) {
-                                    return Container(
-                                      width: _currentIndex == index ? 10 : 10.0,
-                                      height: 10.0,
-                                      margin: const EdgeInsets.symmetric(
-                                          vertical: 10.0, horizontal: 2.0),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        color: _currentIndex == index
-                                            ? const Color(0xFF85014e)
-                                            : const Color(0xFF85014e)
-                                                .withOpacity(0.3),
-                                      ),
-                                    );
-                                  }),
-                                ),
-                              )
-                            : Container(),
                         model.busy
                             ? Container()
                             : Container(
@@ -905,7 +881,7 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                 padding: EdgeInsets.only(
                                                     left: 4.w,
                                                     right: 4.w,
-                                                    top: 2.h,
+                                                    top: 4.h,
                                                     bottom: 2.h),
                                                 child: Row(
                                                   mainAxisAlignment:

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/textStyling.dart';
 import 'package:kmp_togo_mobile/pages/nft/nft_components.dart';
 import 'package:kmp_togo_mobile/pages/nft/widgetNft/searchingnft.dart';
+import 'package:kmp_togo_mobile/pages/notification/notification_page.dart';
 import 'package:kmp_togo_mobile/providers/nft/provider_nft.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -72,11 +73,21 @@ class _DashboardNFTState extends State<DashboardNFT>
               )),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: Icon(
-              Icons.notifications,
-              color: Colors.white,
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => notificationPage(),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: Icon(
+                Icons.notifications,
+                color: Colors.white,
+              ),
             ),
           )
         ],

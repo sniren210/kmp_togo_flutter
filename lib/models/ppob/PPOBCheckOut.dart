@@ -82,7 +82,6 @@ class Data {
 
 
 class CheckOutBody {
-  
 
   CheckOutBody({
     this.code,
