@@ -376,8 +376,8 @@ class _LoginPagesState extends State<LoginPages> {
                                   right: 20.0, left: 20.0, top: 40),
                               child: InkWell(
                                 onTap: () async {
-                                  // Get.offAllNamed('/home');
-                                  _submit();
+                                  Get.offAllNamed('/home');
+                                  // _submit();
                                 },
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
