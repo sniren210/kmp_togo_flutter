@@ -189,6 +189,30 @@ class _RegisterMakeAccountPageState extends State<RegisterMakeAccountPage> {
                     },
                   ),
                 ),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: TextFormField(
+                    controller: passwordValC,
+                    obscureText: passhide,
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(vertical: 20),
+                      prefixIcon: const Icon(Icons.lock),
+                      labelText: 'Masukan Kode Referral',
+                      border: const OutlineInputBorder(),
+                      suffixIcon: IconButton(
+                          icon: Icon(
+                            passhide ? Icons.visibility_off : Icons.visibility,
+                            size: 7.w,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              passhide = !passhide;
+                            });
+                          }),
+                      // labelText: 'User Name',
+                    ),
+                  ),
+                ),
                 const SizedBox(
                   height: 8,
                 ),

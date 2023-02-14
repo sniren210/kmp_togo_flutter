@@ -12,6 +12,7 @@ import 'package:kmp_togo_mobile/models/account/login_info.dart';
 import 'package:kmp_togo_mobile/models/response/error/model_error.dart';
 import 'package:kmp_togo_mobile/pages/auth/login/changepasswordpages.dart';
 import 'package:kmp_togo_mobile/pages/auth/login/loginPages.dart';
+import 'package:kmp_togo_mobile/pages/auth/register/registerUserTypePage.dart';
 import 'package:kmp_togo_mobile/providers/database/database.dart';
 
 import '../../models/myinfo/modelinforegister.dart';
@@ -53,14 +54,10 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
         } else {
           loading = false;
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => PaymentProcess(
-                      isTopup: false,
-                      popContext: 1,
-                      isRegister: true,
-                      // tipeAnggota: membertypeanggota,
-                      tipeAnggotaId: dataMyinfo?.data.user.status)));
+            context,
+            MaterialPageRoute(
+                builder: (context) => const RegisterMemberTypePage()),
+          );
         }
       } else {}
     } on DioError catch (e) {
