@@ -24,12 +24,6 @@ class _OnBoardingPageState extends State<OnBoardingPage>
   PageController controller = PageController();
   bool? lastpage = false;
 
-  // @override
-  // void dispose() {
-  //   controller.dispose();
-  //   WidgetsBinding.instance.removeObserver(this);
-  //   super.dispose();
-  // }
 
   String? routeLogin;
   @override
@@ -58,7 +52,6 @@ class _OnBoardingPageState extends State<OnBoardingPage>
   cektanggal() async {
     String? tanggalShare = sharedPreferencesManager
         .getString(SharedPreferencesManager.tanggalogout);
-    // print('halo pak : $tanggalShare');
     var now = DateTime.now();
 
     String? cekAda;
@@ -70,15 +63,11 @@ class _OnBoardingPageState extends State<OnBoardingPage>
         DateTime.now().hour - i,
       );
       String? passday = pastMonth.toString().substring(0, 13);
-      // print('passday  = ${passday}');
-      // print('tanngal share : $tanggalShare');
       if (tanggalShare == passday) {
-        // print('masih login');
         setState(() {
           cekAda = 'ada';
         });
       } else {
-        // print('masih cari');
       }
     }
     if (cekAda == 'ada') {
@@ -87,11 +76,7 @@ class _OnBoardingPageState extends State<OnBoardingPage>
       sharedPreferencesManager.setBool("isLoggedIn", false);
       print('logout');
     }
-    // if (tanggalShare == passday) {
-    //   print('masih di tanggal yang sama');
-    // } else {
-    //   print('logout');
-    // }
+    
   }
 
   gettanggaNow() async {

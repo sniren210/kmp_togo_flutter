@@ -48,7 +48,7 @@ class _iuranPokokState extends State<iuranPokok> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('X'),
+          child: Icon(Icons.arrow_back),
           backgroundColor: Theme.of(context).primaryColor,
         ),
         appBar: AppBar(

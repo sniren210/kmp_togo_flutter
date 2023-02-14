@@ -40,17 +40,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     fit: BoxFit.cover,
                     height: 100,
                   ),
-                  // Container(
-                  //   margin: const EdgeInsets.symmetric(horizontal: 20),
-                  //   height: 30.h,
-                  //   width: MediaQuery.of(context).size.width,
-                  //   decoration: BoxDecoration(
-                  //       image: DecorationImage(
-                  //           fit: BoxFit.contain,
-                  //           image: NetworkImage(
-                  //               v.dataApiTextObaroding1?.data?.imagePath ??
-                  //                   kEmptyImageLink))),
-                  // ),
                   buildContent('', v.dataApiTextObaroding1?.data?.value ?? ""),
                 ],
               ),
