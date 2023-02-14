@@ -13,13 +13,16 @@ import 'package:kmp_togo_mobile/pages/produsennft/dashboardmynftproduk.dart';
 import 'package:kmp_togo_mobile/pages/profile/address/alamatPage.dart';
 import 'package:kmp_togo_mobile/pages/profile/profile_detail.dart';
 import 'package:kmp_togo_mobile/pages/profile/profile_widget.dart';
+import 'package:kmp_togo_mobile/pages/profile/referal.dart';
 import 'package:kmp_togo_mobile/pages/profile/transaksi/transaksi_page.dart';
 import 'package:kmp_togo_mobile/providers/account/provider_account.dart';
 import 'package:kmp_togo_mobile/providers/cart/cart_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:settings_ui/settings_ui.dart';
 
+import '../nft/payment_success.dart';
 import 'iuran_pokok.dart';
+import 'kode_pembayaran.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -161,6 +164,45 @@ class _ProfileState extends State<Profile> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => AlamatPage()));
+                        },
+                      ),
+                      SettingsTile(
+                        leading: Icon(Icons.monetization_on_sharp),
+                        title: Text(
+                          "Pendapatan Referal",
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                        onPressed: (value) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ReferalPage()));
+                        },
+                      ),
+                      SettingsTile(
+                        leading: Icon(Icons.monetization_on_sharp),
+                        title: Text(
+                          "kode va",
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                        onPressed: (value) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const KodePembayaran()));
+                        },
+                      ),
+                      SettingsTile(
+                        leading: Icon(Icons.monetization_on_sharp),
+                        title: Text(
+                          "payment success",
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                        onPressed: (value) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PaymentSuccess()));
                         },
                       ),
                       titleSection(title: "Pengaturan Umun"),
