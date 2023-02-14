@@ -66,7 +66,7 @@ class _LoginPagesState extends State<LoginPages> {
   void _submit() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
-        loading = false;
+        loading = true;
       });
       await Provider.of<ProviderAuthLogin>(context, listen: false).login(
         context,

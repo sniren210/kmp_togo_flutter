@@ -13,6 +13,7 @@ import 'package:kmp_togo_mobile/models/response/error/model_error.dart';
 import 'package:kmp_togo_mobile/pages/auth/login/changepasswordpages.dart';
 import 'package:kmp_togo_mobile/pages/auth/login/loginPages.dart';
 import 'package:kmp_togo_mobile/providers/database/database.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 import '../../models/myinfo/modelinforegister.dart';
 import '../../pages/auth/register/payments/registerPaymentsProcess.dart';
@@ -37,8 +38,6 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
 
       if (res.data['success'] == true) {
         dataMyinfo = LoginInfo.fromJson(res.data);
-
-        print(dataMyinfo);
 
         await databaseApp.insertResponseAPI(ResponseFromAPIData(
           method: 'GET',
