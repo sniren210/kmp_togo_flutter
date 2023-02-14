@@ -73,7 +73,6 @@ class _NFTPaymentState extends State<NFTPayment> {
 
   @override
   Widget build(BuildContext context) {
-    print('haloo ya ${widget.total}');
     return Scaffold(
       appBar: AppBar(
         title: Text('${widget.title}'),

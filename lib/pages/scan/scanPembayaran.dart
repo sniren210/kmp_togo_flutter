@@ -25,9 +25,9 @@ class _ScanPagePembayaranState extends State<ScanPagePembayaran> {
       setState(() {
         validate = true;
       });
-      print(validate);
+      debugPrint(validate.toString());
     } else {
-      print(validate);
+      debugPrint(validate.toString());
     }
   }
 

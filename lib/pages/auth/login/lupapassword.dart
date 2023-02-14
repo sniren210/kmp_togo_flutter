@@ -27,7 +27,6 @@ class _LupaPasswordState extends State<LupaPassword> {
 
   changepasswprd(String? number) async {
     if (_formKey.currentState!.validate()) {
-      print('asas');
       await Provider.of<ProviderAuthLogin>(context, listen: false)
           .kirimotpresetPass(context, number);
       setState(() {

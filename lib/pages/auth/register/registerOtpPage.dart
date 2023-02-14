@@ -105,9 +105,6 @@ class _RegisterOtpPageState extends State<RegisterOtpPage> {
                         ),
                         InkWell(
                           onTap: () async {
-                            print('ok');
-                            // loadingMintaLagi = true;
-                            // await _submit(context);
                           },
                           child: const Text(
                             ' Minta lagi',
@@ -127,7 +124,7 @@ class _RegisterOtpPageState extends State<RegisterOtpPage> {
                   InkWell(
                     onTap: () async {
                       if (otpValue.length >= 6) {
-                        print(vRegister.countOtp.toString());
+                        debugPrint(vRegister.countOtp.toString());
                         int count = vRegister.countOtp;
                         await vRegister.setCountOtp(count + 1);
 

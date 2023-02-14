@@ -56,7 +56,6 @@ class _HistoryState extends State<History> with NumberFormatMachine {
   }
 
   getSelectDropdown(String? status, String? tanggala) async {
-    // print('a');
     if (status == "all") {
       getData();
     } else {
@@ -116,8 +115,7 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                     buyer: "0978678900",
                     expired: "expired",
                     lockNft: "lockNFT",
-                    monthlyPercentage:
-                        "monthlypercen",
+                    monthlyPercentage: "monthlypercen",
                     nftSerialId: "NFT serial Id",
                     priceCoins: "Price coin",
                     gasfee: "gassfee",
@@ -128,7 +126,7 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                 }),
               );
             },
-            child: Text('detail'),
+            child: const Text('detail'),
           ),
           appBar: AppBar(
             title: Text("Transaksi ${widget.jenisTransaksi}"),
@@ -145,7 +143,7 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                         Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                               bottomLeft: Radius.circular(15),
                               bottomRight: Radius.circular(15),
                             ),
@@ -155,7 +153,7 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                 spreadRadius: 5,
                                 blurRadius: 7,
                                 offset:
-                                    Offset(0, 3), // changes position of shadow
+                                    const Offset(0, 3), // changes position of shadow
                               ),
                             ],
                           ),
@@ -232,7 +230,6 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                     setState(() {
                                       status = value;
                                     });
-                                    print('haloo  $status');
                                     getSelectDropdown(status, tanggal);
                                   },
                                   // selectedItem: "done",
@@ -264,10 +261,8 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                       tanggal = value;
                                     });
                                     if (tanggal == 'Atur Tanggal Sendiri') {
-                                      print('atur sendiri');
                                       klikBottom();
                                     } else {
-                                      print('haloo  $status');
                                       getSelectDropdown(status, tanggal);
                                     }
                                   },
@@ -295,21 +290,12 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                         ?.data?[index].productOrder ??
                                     ProductOrder();
 
-                                return
-                                    // if (_cariC.text.isNotEmpty) {
-                                    //   if (v.dataAllHistory!.data![index].status
-                                    //       .toString()
-                                    //       .toLowerCase()
-                                    //       .contains(_cariC.text.toLowerCase())) {
-                                    //     print(_cariC.text);
-                                    //     print(v.dataAllHistory!.data!.length);
-                                    //     return
-                                    Padding(
+                                return Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
                                     decoration: BoxDecoration(
                                       color: Colors.white,
-                                      borderRadius: BorderRadius.only(
+                                      borderRadius: const BorderRadius.only(
                                           topLeft: Radius.circular(10),
                                           topRight: Radius.circular(10),
                                           bottomLeft: Radius.circular(10),
@@ -319,7 +305,7 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                           color: Colors.grey.withOpacity(0.5),
                                           spreadRadius: 5,
                                           blurRadius: 7,
-                                          offset: Offset(0,
+                                          offset: const Offset(0,
                                               3), // changes position of shadow
                                         ),
                                       ],
@@ -536,7 +522,7 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                                             : const Text(''),
                                                         const VerticalSpacer(
                                                             height: 7),
-                                                        Text(
+                                                        const Text(
                                                             // dateConvert(
                                                             //   v
                                                             //           .dataAllHistory
@@ -771,325 +757,8 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                                     ),
                                   ),
                                 );
-                                //   } else {
-                                //     return Container();
-                                //   }
-                                // }
-                                // return Padding(
-                                //   padding: const EdgeInsets.all(8.0),
-                                //   child: Card(
-                                //     child: Padding(
-                                //       padding: const EdgeInsets.all(8.0),
-                                //       child: Column(
-                                //         crossAxisAlignment:
-                                //             CrossAxisAlignment.start,
-                                //         children: [
-                                //           Row(
-                                //             crossAxisAlignment:
-                                //                 CrossAxisAlignment.start,
-                                //             mainAxisAlignment:
-                                //                 MainAxisAlignment.spaceBetween,
-                                //             children: [
-                                //               Row(
-                                //                 children: [
-                                //                   Container(
-                                //                     width: 60,
-                                //                     height: 60,
-                                //                     decoration:
-                                //                         const BoxDecoration(
-                                //                             image:
-                                //                                 DecorationImage(
-                                //                       image: AssetImage(
-                                //                           'assets/images/logon.jpg'),
-                                //                       fit: BoxFit.fitHeight,
-                                //                     )),
-                                //                     alignment: Alignment.center,
-                                //                   ),
-                                //                   const HorizontalSpacer(
-                                //                       width: 10),
-                                //                   Column(
-                                //                     crossAxisAlignment:
-                                //                         CrossAxisAlignment.start,
-                                //                     children: [
-                                //                       v
-                                //                                   .dataAllHistory!
-                                //                                   .data![index]
-                                //                                   .ppobTransaction !=
-                                //                               null
-                                //                           ? Text(
-                                //                               v
-                                //                                   .dataAllHistory!
-                                //                                   .data![index]
-                                //                                   .ppobTransaction!
-                                //                                   .ppobType!
-                                //                                   .name
-                                //                                   .toString(),
-                                //                               style: TextStyling
-                                //                                   .w600bold16black)
-                                //                           : Text(''),
-                                //                       v
-                                //                                   .dataAllHistory!
-                                //                                   .data![index]
-                                //                                   .productOrder !=
-                                //                               null
-                                //                           ? Text(
-                                //                               v
-                                //                                   .dataAllHistory!
-                                //                                   .data![index]
-                                //                                   .productOrder!
-                                //                                   .orders!
-                                //                                   .first
-                                //                                   .orderItems!
-                                //                                   .first
-                                //                                   .product!
-                                //                                   .name
-                                //                                   .toString(),
-                                //                               style: TextStyling
-                                //                                   .w600bold16black)
-                                //                           : Text(''),
-                                //                       v
-                                //                                   .dataAllHistory!
-                                //                                   .data![index]
-                                //                                   .nftTransaction !=
-                                //                               null
-                                //                           ? Text(
-                                //                               v
-                                //                                   .dataAllHistory!
-                                //                                   .data![index]
-                                //                                   .nftTransaction!
-                                //                                   .toString(),
-                                //                               style: TextStyling
-                                //                                   .w600bold16black)
-                                //                           : Text(''),
-                                //                       const VerticalSpacer(
-                                //                           height: 7),
-                                //                       Text(
-                                //                           dateConvert(
-                                //                             v
-                                //                                 .dataAllHistory!
-                                //                                 .data![index]
-                                //                                 .createdAt
-                                //                                 .toString(),
-                                //                           ),
-                                //                           style: TextStyling
-                                //                               .w40012black),
-                                //                     ],
-                                //                   ),
-                                //                 ],
-                                //               ),
-                                //               Card(
-                                //                 color: Colors.greenAccent,
-                                //                 shape: RoundedRectangleBorder(
-                                //                   borderRadius:
-                                //                       BorderRadius.circular(20),
-                                //                 ),
-                                //                 child: Padding(
-                                //                   padding: EdgeInsets.symmetric(
-                                //                       horizontal: 8, vertical: 8),
-                                //                   child: Text(
-                                //                       v.dataAllHistory!
-                                //                           .data![index].status
-                                //                           .toString(),
-                                //                       style: TextStyling
-                                //                           .w40012black),
-                                //                 ),
-                                //               ),
-                                //             ],
-                                //           ),
-                                //           const VerticalSpacer(height: 7),
-                                //           Divider(
-                                //             color: Colors.grey,
-                                //             thickness: 1,
-                                //           ),
-                                //           Padding(
-                                //             padding: const EdgeInsets.symmetric(
-                                //                 vertical: 7.0, horizontal: 2.0),
-                                //             child: Column(
-                                //               crossAxisAlignment:
-                                //                   CrossAxisAlignment.start,
-                                //               mainAxisAlignment:
-                                //                   MainAxisAlignment.spaceBetween,
-                                //               children: [
-                                //                 Text(
-                                //                   "Layanan Produk",
-                                //                   style: TextStyling.w40014grey,
-                                //                 ),
-                                //                 VerticalSpacer(height: 10),
-
-                                //                 v.dataAllHistory!.data![index]
-                                //                             .ppobTransaction !=
-                                //                         null
-                                //                     ? Text(
-                                //                         v
-                                //                             .dataAllHistory!
-                                //                             .data![index]
-                                //                             .ppobTransaction!
-                                //                             .ppobMobileOperatorId
-                                //                             .toString(),
-                                //                         style: TextStyling
-                                //                             .w600bold16black,
-                                //                       )
-                                //                     : Text(''),
-                                //                 v.dataAllHistory!.data![index]
-                                //                             .productOrder !=
-                                //                         null
-                                //                     ? Text(
-                                //                         v
-                                //                             .dataAllHistory!
-                                //                             .data![index]
-                                //                             .productOrder!
-                                //                             .orders!
-                                //                             .first
-                                //                             .id
-                                //                             .toString(),
-                                //                         style: TextStyling
-                                //                             .w600bold16black)
-                                //                     : Text(''),
-                                //                 v.dataAllHistory!.data![index]
-                                //                             .nftTransaction !=
-                                //                         null
-                                //                     ? Text(
-                                //                         v
-                                //                             .dataAllHistory!
-                                //                             .data![index]
-                                //                             .nftTransaction!
-                                //                             .toString(),
-                                //                         style: TextStyling
-                                //                             .w600bold16black)
-                                //                     : Text(''),
-                                //                 // Text(
-                                //                 //   v
-                                //                 //       .dataAllHistory!
-                                //                 //       .data![index]
-                                //                 //       .ppobTransaction!
-                                //                 //       .ppobMobileOperatorId
-                                //                 //       .toString(),
-                                //                 //   style: TextStyling
-                                //                 //       .w600bold16black,
-                                //                 // ),
-                                //               ],
-                                //             ),
-                                //           ),
-                                //           const VerticalSpacer(height: 8),
-                                //           Padding(
-                                //             padding: const EdgeInsets.symmetric(
-                                //                 vertical: 7.0, horizontal: 2.0),
-                                //             child: Row(
-                                //               mainAxisAlignment:
-                                //                   MainAxisAlignment.spaceBetween,
-                                //               children: [
-                                //                 Column(
-                                //                   crossAxisAlignment:
-                                //                       CrossAxisAlignment.start,
-                                //                   mainAxisAlignment:
-                                //                       MainAxisAlignment
-                                //                           .spaceBetween,
-                                //                   children: [
-                                //                     Text(
-                                //                       "Total Harga",
-                                //                       style:
-                                //                           TextStyling.w40014grey,
-                                //                     ),
-                                //                     VerticalSpacer(height: 10),
-                                //                     Text(
-                                //                       "${v.dataAllHistory!.data![index].total} Poin",
-                                //                       style: TextStyling
-                                //                           .w600bold16black,
-                                //                     ),
-                                //                   ],
-                                //                 ),
-                                //                 InkWell(
-                                //                   onTap: () {
-                                //                     Navigator.push(
-                                //                       context,
-                                //                       MaterialPageRoute(
-                                //                           builder: (context) =>
-                                //                               InputPPOBWithoutNumber(
-                                //                                   title: 'PLN',
-                                //                                   product_type:
-                                //                                       'pln')),
-                                //                     );
-                                //                   },
-                                //                   child: Container(
-                                //                     height: 49.h,
-                                //                     width: 70.w,
-                                //                     decoration: BoxDecoration(
-                                //                         borderRadius:
-                                //                             BorderRadius.circular(
-                                //                                 5),
-                                //                         color: const Color(
-                                //                             0xFF85014e)),
-                                //                     child: Row(
-                                //                       mainAxisAlignment:
-                                //                           MainAxisAlignment
-                                //                               .center,
-                                //                       children: [
-                                //                         Text(
-                                //                           "Beli Lagi",
-                                //                           style: TextStyle(
-                                //                             color: Colors.white,
-                                //                             fontSize: 12.sp,
-                                //                             fontWeight:
-                                //                                 FontWeight.w500,
-                                //                           ),
-                                //                         ),
-                                //                       ],
-                                //                     ),
-                                //                   ),
-                                //                 ),
-                                //               ],
-                                //             ),
-                                //           ),
-                                //         ],
-                                //       ),
-                                //     ),
-                                //   ),
-                                // );
                               }),
                         ),
-
-                        // pencarian != null
-                        //     ? Container()
-                        //     : Padding(
-                        //         padding: EdgeInsets.symmetric(
-                        //             vertical: 20, horizontal: 12),
-                        //         child: SizedBox(
-                        //           width: MediaQuery.of(context).size.width,
-                        //           child: DropdownSearch<String>(
-                        //             popupProps: PopupProps.dialog(
-                        //               showSelectedItems: true,
-                        //               disabledItemFn: (String s) =>
-                        //                   s.startsWith('I'),
-                        //             ),
-                        //             items: [
-                        //               "PPOB",
-                        //               "UMKM",
-                        //               "NFT",
-                        //             ],
-                        //             dropdownDecoratorProps:
-                        //                 DropDownDecoratorProps(
-                        //               dropdownSearchDecoration: InputDecoration(
-                        //                 hintText: "Cari Pembelian...",
-                        //               ),
-                        //             ),
-                        //             onChanged: (value) {
-                        //               setState(() {
-                        //                 // status = value;
-                        //                 pencarian = value;
-                        //               });
-                        //               print('haloo  ${pencarian}');
-                        //             },
-                        //             // selectedItem: "done",
-                        //           ),
-                        //         ),
-                        //       ),
-
-                        // pencarian == null
-                        //     ? Container()
-
-                        //     :
-                        // ),
-                        // buildFloatingSearchBar(),
                       ],
                     ),
                   );
@@ -1100,28 +769,16 @@ class _HistoryState extends State<History> with NumberFormatMachine {
   DateTime selectedDateAwal = DateTime.now();
   DateTime selectedDateAkhir = DateTime.now();
 
-  // Future<void> _selectDate(BuildContext context) async {
-  //   final DateTime? picked = await showDatePicker(
-  //       context: context,
-  //       initialDate: selectedDate,
-  //       firstDate: DateTime(2015, 8),
-  //       lastDate: DateTime(2101));
-  //   if (picked != null && picked != selectedDate) {
-  //     setState(() {
-  //       selectedDate = picked;
-  //     });
-  //   }
-  // }
-
   klikBottom() {
     return showModalBottomSheet(
-        isScrollControlled: true,
-        backgroundColor: Colors.transparent,
-        context: context,
-        builder: (BuildContext context) {
-          return Wrap(
-            children: [
-              StatefulBuilder(builder: (BuildContext context, setState) {
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (BuildContext context) {
+        return Wrap(
+          children: [
+            StatefulBuilder(
+              builder: (BuildContext context, setState) {
                 return Container(
                   decoration: const BoxDecoration(
                       color: Colors.white,
@@ -1282,44 +939,11 @@ class _HistoryState extends State<History> with NumberFormatMachine {
                     ],
                   ),
                 );
-              })
-            ],
-          );
-        });
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
-
-//   Widget buildFloatingSearchBar() {
-//     final isPortrait =
-//         MediaQuery.of(context).orientation == Orientation.portrait;
-
-//     return FloatingSearchBar(
-//       automaticallyImplyBackButton: false,
-//       hint: 'Cari Pembelian...',
-//       scrollPadding: const EdgeInsets.only(top: 16, bottom: 56),
-//       transitionDuration: const Duration(milliseconds: 800),
-//       transitionCurve: Curves.easeInOut,
-//       physics: const BouncingScrollPhysics(),
-//       axisAlignment: isPortrait ? 0.0 : -1.0,
-//       openAxisAlignment: 0.0,
-//       width: isPortrait ? 600 : 500,
-//       debounceDelay: const Duration(milliseconds: 500),
-//       onQueryChanged: (query) {},
-//       transition: CircularFloatingSearchBarTransition(),
-//       builder: (context, transition) {
-//         return ClipRRect(
-//           borderRadius: BorderRadius.circular(8),
-//           child: Material(
-//             color: Colors.white,
-//             elevation: 4.0,
-//             child: Column(
-//               mainAxisSize: MainAxisSize.min,
-//               children: Colors.accents.map((color) {
-//                 return Container(height: 112, color: color);
-//               }).toList(),
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
 }

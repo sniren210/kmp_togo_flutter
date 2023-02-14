@@ -146,10 +146,6 @@ class _TambahProdukDenganVariantState extends State<TambahProdukDenganVariant> {
                           children: [
                             InkWell(
                               onTap: () async {
-                                print(
-                                    'YEY: ${widget.listSkuHeadersHarga.first.text}');
-                                print(
-                                    'YEY: ${widget.listSkuHeadersStock.first.text}');
                                 await _navigateAndRefreshAddUpdate(
                                     context, widget.model, false, null);
                               },

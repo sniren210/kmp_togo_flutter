@@ -108,44 +108,13 @@ class _PhoneBookState extends State<PhoneBook> {
                   // for (var i = 0; i < contactsA!.length; i++)
                   Expanded(
                     child: ListView.builder(
-                        itemCount: contactsA!.length,
-                        itemBuilder: (context, int i) {
-                          if (_cariC.text.isNotEmpty) {
-                            if (contactsA![i]
-                                .displayName!
-                                .toLowerCase()
-                                .contains(_cariC.text.toLowerCase())) {
-                              return Card(
-                                margin: EdgeInsets.only(
-                                    bottom: 10, left: 10, right: 10),
-                                child: InkWell(
-                                  onTap: () {
-                                    if (contactsA![i].phones!.isNotEmpty) {
-                                      Navigator.pop(context,
-                                          contactsA?[i].phones?.first.value);
-                                    } else {
-                                      print('nothing');
-                                    }
-                                  },
-                                  child: ListTile(
-                                    leading: Icon(
-                                      Icons.phone,
-                                      color: const Color(0xFF85014e),
-                                    ),
-                                    title:
-                                        Text(contactsA?[i].displayName ?? ""),
-                                    subtitle: contactsA![i].phones!.isNotEmpty
-                                        ? Text(
-                                            contactsA?[i].phones?.first.value ??
-                                                "")
-                                        : Text('-'),
-                                  ),
-                                ),
-                              );
-                            } else {
-                              return Container();
-                            }
-                          } else {
+                      itemCount: contactsA!.length,
+                      itemBuilder: (context, int i) {
+                        if (_cariC.text.isNotEmpty) {
+                          if (contactsA![i]
+                              .displayName!
+                              .toLowerCase()
+                              .contains(_cariC.text.toLowerCase())) {
                             return Card(
                               margin: EdgeInsets.only(
                                   bottom: 10, left: 10, right: 10),
@@ -155,7 +124,7 @@ class _PhoneBookState extends State<PhoneBook> {
                                     Navigator.pop(context,
                                         contactsA?[i].phones?.first.value);
                                   } else {
-                                    print('nothing');
+                                    debugPrint('nothing');
                                   }
                                 },
                                 child: ListTile(
@@ -172,34 +141,39 @@ class _PhoneBookState extends State<PhoneBook> {
                                 ),
                               ),
                             );
+                          } else {
+                            return Container();
                           }
-                        }),
-                  )
-
-                  // Card(
-                  //   margin:
-                  //       EdgeInsets.only(bottom: 10, left: 10, right: 10),
-                  //   child: InkWell(
-                  //     onTap: () {
-                  //       if (contactsA![i].phones!.isNotEmpty) {
-                  //         Navigator.pop(
-                  //             context, contactsA?[i].phones?.first.value);
-                  //       } else {
-                  //         print('nothing');
-                  //       }
-                  //     },
-                  //     child: ListTile(
-                  //       leading: Icon(
-                  //         Icons.phone,
-                  //         color: const Color(0xFF85014e),
-                  //       ),
-                  //       title: Text(contactsA?[i].displayName ?? ""),
-                  //       subtitle: contactsA![i].phones!.isNotEmpty
-                  //           ? Text(contactsA?[i].phones?.first.value ?? "")
-                  //           : Text('-'),
-                  //     ),
-                  //   ),
-                  // ),
+                        } else {
+                          return Card(
+                            margin: EdgeInsets.only(
+                                bottom: 10, left: 10, right: 10),
+                            child: InkWell(
+                              onTap: () {
+                                if (contactsA![i].phones!.isNotEmpty) {
+                                  Navigator.pop(context,
+                                      contactsA?[i].phones?.first.value);
+                                } else {
+                                  debugPrint('nothing');
+                                }
+                              },
+                              child: ListTile(
+                                leading: Icon(
+                                  Icons.phone,
+                                  color: const Color(0xFF85014e),
+                                ),
+                                title: Text(contactsA?[i].displayName ?? ""),
+                                subtitle: contactsA![i].phones!.isNotEmpty
+                                    ? Text(
+                                        contactsA?[i].phones?.first.value ?? "")
+                                    : Text('-'),
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 ],
               )
             : Center(

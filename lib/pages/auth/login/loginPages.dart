@@ -79,10 +79,9 @@ class _LoginPagesState extends State<LoginPages> {
       );
       String? passday = pastMonth.toString().substring(0, 13);
       // String? passday = pastMonth.toString().substring(0, 16);
-      print('asasas $passday');
+   
       tanggalAA = passday;
 
-      print('asasas $tanggalAA');
       await sharedPreferencesManager.setString(
           SharedPreferencesManager.tanggalogout, tanggalAA!);
       // await sharedPreferencesManager.setString(

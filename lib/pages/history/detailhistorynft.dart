@@ -71,12 +71,9 @@ class _DetailHistoryNFTState extends State<DetailHistoryNFT>
 
   @override
   Widget build(BuildContext context) {
-    print(widget.priceCoins);
-    print(widget.monthlyPercentage);
-    print(widget.pembeli);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detail History NFT'),
+        title: const Text('Detail History NFT'),
       ),
       body: Consumer<ProviderNft>(
           builder: (BuildContext context, v, Widget? Child) {

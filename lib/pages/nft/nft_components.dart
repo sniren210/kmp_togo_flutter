@@ -44,12 +44,6 @@ class NFTDashCard extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        print(pembeli);
-        print('nfgtid ${nftSerialId}');
-        print('locknft ${lockNft}');
-        print('montly ${monthlyPercentage}');
-        print('price ${priceCoins}');
-        print('halooo ${images}');
 
         // if (owner == '') {
         //   customSnackbar(

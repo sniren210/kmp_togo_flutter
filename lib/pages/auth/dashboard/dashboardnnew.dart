@@ -63,7 +63,7 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
           Provider.of<ProviderNft>(context, listen: false);
       await getkategoriProvider.getAllNFT(context);
       cektanggal();
-      print(getkategoriProvider.loadinggetNFTALL);
+      debugPrint(getkategoriProvider.loadinggetNFTALL.toString());
       setState(() {
         loading = getkategoriProvider.loadinggetNFTALL;
         loadingbanner = getApiTextLogin.loadinbanner;
@@ -111,7 +111,6 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
   cektanggal() async {
     String? tanggalShare = sharedPreferencesManager
         .getString(SharedPreferencesManager.tanggalbanner);
-    // print('halo pak : $tanggalShare');
     var now = DateTime.now();
 
     String? cekAda;
@@ -129,13 +128,12 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
           cekAda = 'ada';
         });
       } else {
-        // print('tidak ada');
       }
     }
     if (cekAda == 'ada') {
-      print('ada');
+      debugPrint('ada');
     } else {
-      print('kosong');
+      debugPrint('kosong');
       _showOpenDialog(context);
     }
   }
@@ -217,10 +215,10 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                 String? passday =
                                     pastMonth.toString().substring(0, 13);
                                 // String? passday = pastMonth.toString().substring(0, 16);
-                                print('asasas $passday');
+                                debugPrint('asasas $passday');
                                 tanggalAA = passday;
 
-                                print('asasas $tanggalAA');
+                                debugPrint('asasas $tanggalAA');
 
                                 await sharedPreferencesManager.setString(
                                     SharedPreferencesManager.tanggalbanner,
