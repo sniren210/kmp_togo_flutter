@@ -100,42 +100,6 @@ class ItemModelProduct {
               )
             ],
           ),
-          Datum(
-            imagePath:
-                'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg',
-            id: 0,
-            storeId: 0,
-            categoryId: 0,
-            subCategoryId: '',
-            name: 'example',
-            image:
-                'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg',
-            description: 'example desc',
-            productSelling: '',
-            rating: 0,
-            ratingCount: 0,
-            ratingTotal: 0,
-            soldCount: 0,
-            createdAt: DateTime.now(),
-            updatedAt: DateTime.now(),
-            deletedAt: '2011-11-02T02:50:12.208Z',
-            store: null,
-            category: null,
-            subCategory: '',
-            sku: [
-              Sku(
-                id: 0,
-                productId: 0,
-                price: 0,
-                stock: 0,
-                weight: 0,
-                createdAt: DateTime.now(),
-                updatedAt: DateTime.now(),
-                deletedAt: '2011-11-02T02:50:12.208Z',
-                skuvariants: [],
-              )
-            ],
-          ),
         ],
       );
 
