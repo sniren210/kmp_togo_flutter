@@ -44,8 +44,6 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
 
   @override
   void initState() {
-    loadSharedPref();
-
     super.initState();
   }
 
@@ -55,20 +53,9 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
       locator<SharedPreferencesManager>();
 
   submitRegister(
-    String? nik,
-    String? name,
-    String? cityId,
-    String? provinceId,
-    String? subdistrictId,
-    String? address,
-    String? email,
-    String? phoneNumber,
-    String? birthdate,
-    String? password,
-    String? pin,
     String? membertypeId,
     String? membertypeanggota,
-    String? otp,
+    Datum? userType,
   ) async {
     // await Provider.of<ProviderRegister>(context, listen: false).registerPost(
     //     context,
@@ -90,11 +77,12 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
       context,
       MaterialPageRoute(
           builder: (context) => PaymentProcess(
-                isTopup: false,
-                popContext: 1,
-                isRegister: true,
-                tipeAnggota: membertypeId,
-                tipeAnggotaId: membertypeanggota,
+                // isTopup: false,
+                // popContext: 1,
+                // isRegister: true,
+                userType: userType,
+                tipeAnggota:membertypeanggota ,
+                tipeAnggotaId: membertypeId,
               )),
     );
     setState(() {
@@ -217,17 +205,6 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
                                                                       "");
 
                                                               submitRegister(
-                                                                  nik,
-                                                                  name,
-                                                                  cityId,
-                                                                  provinceId,
-                                                                  subdistrictId,
-                                                                  address,
-                                                                  email,
-                                                                  phoneNumber,
-                                                                  birthdate,
-                                                                  password,
-                                                                  pin,
                                                                   model
                                                                       .items
                                                                       ?.data[
@@ -240,7 +217,9 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
                                                                           index]
                                                                       .name
                                                                       .toString(),
-                                                                  otp);
+                                                                  model.items
+                                                                          ?.data[
+                                                                      index]);
                                                             },
                                                             child: Container(
                                                                 width: MediaQuery
@@ -344,28 +323,6 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
             ),
           );
         });
-  }
-
-  loadSharedPref() async {
-    nik = sharedPreferencesManager.getString(SharedPreferencesManager.nomorKTP);
-    name = sharedPreferencesManager.getString(SharedPreferencesManager.nama);
-    cityId =
-        sharedPreferencesManager.getString(SharedPreferencesManager.kotaid);
-    provinceId =
-        sharedPreferencesManager.getString(SharedPreferencesManager.provinsiid);
-    subdistrictId =
-        sharedPreferencesManager.getString(SharedPreferencesManager.kecamatan);
-    address =
-        sharedPreferencesManager.getString(SharedPreferencesManager.alamat);
-    email = sharedPreferencesManager.getString(SharedPreferencesManager.email);
-    phoneNumber =
-        sharedPreferencesManager.getString(SharedPreferencesManager.nomerHP);
-    birthdate =
-        sharedPreferencesManager.getString(SharedPreferencesManager.tgllahir);
-    password =
-        sharedPreferencesManager.getString(SharedPreferencesManager.password);
-    pin = sharedPreferencesManager.getString(SharedPreferencesManager.pin);
-    otp = sharedPreferencesManager.getString(SharedPreferencesManager.otp);
   }
 }
 
@@ -483,160 +440,38 @@ class MemberDetailWidget extends StatelessWidget {
             const SizedBox(height: 8),
             Row(
               children: [
-                const Text('Bulanan Wajib : ', style: TextStyling.w30013black),
+                const Text('Iuran Wajib : ', style: TextStyling.w30013black),
                 Text(currencyFormatter.format(data.monthlyMandatoryFee),
                     style: TextStyling.w30013black),
               ],
             ),
             Row(
               children: [
-                const Text('Bulanan Pokok : ', style: TextStyling.w30013black),
+                const Text('Iuran Pokok : ', style: TextStyling.w30013black),
                 Text(currencyFormatter.format(data.monthlyPrincipalFee),
                     style: TextStyling.w30013black),
               ],
             ),
-            Row(
-              children: [
-                const Text('Admin : ', style: TextStyling.w30013black),
-                Text(currencyFormatter.format(data.adminFee),
-                    style: TextStyling.w30013black),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                const Text('Jumlah : ', style: TextStyling.w30013black),
-                Text(currencyFormatter.format(data.adminFee + data.monthlyPrincipalFee +
-                        data.monthlyMandatoryFee),
-                    style: TextStyling.w30013black),
-              ],
-            ),
+            // Row(
+            //   children: [
+            //     const Text('Admin : ', style: TextStyling.w30013black),
+            //     Text(currencyFormatter.format(data.adminFee),
+            //         style: TextStyling.w30013black),
+            //   ],
+            // ),
+            // const SizedBox(height: 8),
+            // Row(
+            //   children: [
+            //     const Text('Jumlah : ', style: TextStyling.w30013black),
+            //     Text(``
+            //         currencyFormatter.format(data.adminFee +
+            //             data.monthlyPrincipalFee +
+            //             data.monthlyMandatoryFee),
+            //         style: TextStyling.w30013black),
+            //   ],
+            // ),
             const SizedBox(height: 18),
-            // Row(
-            //   mainAxisSize: MainAxisSize.min,
-            //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   children: [
-            //     const Icon(Icons.check),
-            //     SizedBox(
-            //       width: MediaQuery.of(context).size.width - 95,
-            //       child: Padding(
-            //         padding: const EdgeInsets.only(left: 8.0),
-            //         child: Column(
-            //           crossAxisAlignment: CrossAxisAlignment.start,
-            //           children: [
-            //             const SizedBox(height: 4),
-            //             const Text('Keuntungan',
-            //                 style: TextStyling.w50015black),
-            //             const SizedBox(height: 15),
-            //             Row(
-            //               crossAxisAlignment: CrossAxisAlignment.start,
-            //               children: [
-            //                 Text('\u2022', style: TextStyling.w30013black),
-            //                 const HorizontalSpacer(width: 4),
-            //                 Flexible(
-            //                   child: Text(description ?? '',
-            //                       style: TextStyling.w30013black),
-            //                 ),
-            //               ],
-            //             ),
-            //             const SizedBox(height: 2),
-            //             Row(
-            //               crossAxisAlignment: CrossAxisAlignment.start,
-            //               children: [
-            //                 Text('\u2022', style: TextStyling.w30013black),
-            //                 const HorizontalSpacer(width: 4),
-            //                 Flexible(
-            //                   child: Text(description ?? '',
-            //                       style: TextStyling.w30013black),
-            //                 ),
-            //               ],
-            //             ),
-            //             const SizedBox(height: 2),
-            //             Row(
-            //               crossAxisAlignment: CrossAxisAlignment.start,
-            //               children: [
-            //                 Text('\u2022', style: TextStyling.w30013black),
-            //                 const HorizontalSpacer(width: 4),
-            //                 Flexible(
-            //                   child: Text(description ?? '',
-            //                       style: TextStyling.w30013black),
-            //                 ),
-            //               ],
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
-            // const SizedBox(height: 25),
-            // Row(
-            //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   children: [
-            //     const Icon(Icons.check),
-            //     SizedBox(
-            //       width: MediaQuery.of(context).size.width - 96,
-            //       child: Padding(
-            //         padding: const EdgeInsets.only(left: 8.0),
-            //         child: Column(
-            //           crossAxisAlignment: CrossAxisAlignment.start,
-            //           children: [
-            //             const SizedBox(height: 4),
-            //             const Text('Iuran', style: TextStyling.w50015black),
-            //             const SizedBox(height: 15),
-            //             Row(
-            //               crossAxisAlignment: CrossAxisAlignment.start,
-            //               children: [
-            //                 Text('\u2022', style: TextStyling.w30013black),
-            //                 const HorizontalSpacer(width: 4),
-            //                 Flexible(
-            //                   child: Text(description ?? '',
-            //                       style: TextStyling.w30013black),
-            //                 ),
-            //               ],
-            //             ),
-            //             const SizedBox(height: 2),
-            //             Row(
-            //               crossAxisAlignment: CrossAxisAlignment.start,
-            //               children: [
-            //                 Text('\u2022', style: TextStyling.w30013black),
-            //                 const HorizontalSpacer(width: 4),
-            //                 Flexible(
-            //                   child: Text(description ?? '',
-            //                       style: TextStyling.w30013black),
-            //                 ),
-            //               ],
-            //             ),
-            //             const SizedBox(height: 2),
-            //             Row(
-            //               crossAxisAlignment: CrossAxisAlignment.start,
-            //               children: [
-            //                 Text('\u2022', style: TextStyling.w30013black),
-            //                 const HorizontalSpacer(width: 4),
-            //                 Flexible(
-            //                   child: Text(description ?? '',
-            //                       style: TextStyling.w30013black),
-            //                 ),
-            //               ],
-            //             ),
-            //             const SizedBox(height: 2),
-            //             Row(
-            //               crossAxisAlignment: CrossAxisAlignment.start,
-            //               children: [
-            //                 Text('\u2022', style: TextStyling.w30013black),
-            //                 const HorizontalSpacer(width: 4),
-            //                 Flexible(
-            //                   child: Text(description ?? '',
-            //                       style: TextStyling.w30013black),
-            //                 ),
-            //               ],
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
+
             const SizedBox(height: 25),
           ],
         ));

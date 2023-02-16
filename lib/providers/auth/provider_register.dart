@@ -386,9 +386,9 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
             context,
             MaterialPageRoute(
                 builder: (context) => PaymentProcess(
-                      isTopup: false,
-                      popContext: 1,
-                      isRegister: true,
+                      // isTopup: false,
+                      // popContext: 1,
+                      // isRegister: true,
                       tipeAnggota: membertypeanggota,
                       tipeAnggotaId: membertypeId,
                     )),

@@ -181,32 +181,32 @@ class _ProfileState extends State<Profile> {
                                   builder: (context) => const ReferalPage()));
                         },
                       ),
-                      SettingsTile(
-                        leading: Icon(Icons.monetization_on_sharp),
-                        title: Text(
-                          "kode va",
-                          style: const TextStyle(fontSize: 15),
-                        ),
-                        onPressed: (value) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const KodePembayaran()));
-                        },
-                      ),
-                      SettingsTile(
-                        leading: Icon(Icons.monetization_on_sharp),
-                        title: Text(
-                          "payment success",
-                          style: const TextStyle(fontSize: 15),
-                        ),
-                        onPressed: (value) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PaymentSuccess()));
-                        },
-                      ),
+                      // SettingsTile(
+                      //   leading: Icon(Icons.monetization_on_sharp),
+                      //   title: Text(
+                      //     "kode va",
+                      //     style: const TextStyle(fontSize: 15),
+                      //   ),
+                      //   onPressed: (value) {
+                      //     Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (context) => const KodePembayaran()));
+                      //   },
+                      // ),
+                      // SettingsTile(
+                      //   leading: Icon(Icons.monetization_on_sharp),
+                      //   title: Text(
+                      //     "payment success",
+                      //     style: const TextStyle(fontSize: 15),
+                      //   ),
+                      //   onPressed: (value) {
+                      //     Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (context) => PaymentSuccess()));
+                      //   },
+                      // ),
                       titleSection(title: "Pengaturan Umun"),
                       SettingsTile(
                         leading: Icon(Icons.account_circle),

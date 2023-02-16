@@ -6,6 +6,7 @@ import 'package:kmp_togo_mobile/helpers/injector.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/spacer.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/textStyling.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:kmp_togo_mobile/models/member_model.dart';
 import 'package:kmp_togo_mobile/pages/auth/register/registerloadingpage.dart';
 import 'package:kmp_togo_mobile/pages/common/carapembayaran_widget.dart';
 import 'package:kmp_togo_mobile/pages/common/customAppBar.dart';
@@ -18,43 +19,16 @@ import '../../../../helpers/shared_pref_manager.dart';
 // import 'package:size_config/size_config.dart';
 
 class PaymentProcess extends StatefulWidget {
-  int? popContext;
-  bool isRegister;
-  bool isTopup;
-
-  // String? nik;
-  // String? name;
-  // String? cityId;
-  // String? provinceId;
-  // String? subdistrictId;
-  // String? address;
-  // String? email;
-  // String? phoneNumber;
-  // String? birthdate;
-  // String? password;
-  // String? pin;
-  String? tipeAnggota;
-  String? tipeAnggotaId;
+  final String? tipeAnggota;
+  final String? tipeAnggotaId;
+  final Datum? userType;
   // String? otp;
 
   PaymentProcess({
     Key? key,
-    this.popContext,
-    required this.isRegister,
-    required this.isTopup,
-    // this.nik,
-    // this.name,
-    // this.cityId,
-    // this.provinceId,
-    // this.subdistrictId,
-    // this.address,
-    // this.email,
-    // this.phoneNumber,
-    // this.birthdate,
-    // this.password,
-    // this.pin,
     this.tipeAnggota,
     this.tipeAnggotaId,
+    this.userType,
     // this.otp,
   }) : super(key: key);
 
@@ -65,9 +39,25 @@ class PaymentProcess extends StatefulWidget {
 class _PaymentProcessState extends State<PaymentProcess> {
   bool? loading = true;
 
+  String? nik;
+  String? name;
+  String? cityId;
+  String? provinceId;
+  String? subdistrictId;
+  String? address;
+  String? email;
+  String? phoneNumber;
+  String? birthdate;
+  String? password;
+  String? pin;
+  String? otp;
+
   @override
   void initState() {
     super.initState();
+
+    loadSharedPref();
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       submitRegister();
     });
@@ -105,7 +95,10 @@ class _PaymentProcessState extends State<PaymentProcess> {
   final SharedPreferencesManager sharedPreferencesManager =
       locator<SharedPreferencesManager>();
 
-  final currencyFormatter = NumberFormat.currency(locale: 'ID');
+  final currencyFormatter = NumberFormat.currency(
+    locale: 'ID',
+    symbol: 'Rp',
+  );
   // print(currencyFormatter.format(d));
 
   @override
@@ -132,8 +125,8 @@ class _PaymentProcessState extends State<PaymentProcess> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomAppBar(
-                          title: 'Pilih cara pembayaran',
-                          popContext: widget.popContext,
+                          title: 'Tagihan iuran keanggotaan',
+                          popContext: 1,
                           height: 105,
                           padding: 15,
                         ),
@@ -216,8 +209,7 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                             ),
                                             const VerticalSpacer(height: 10),
                                             Text(
-                                              v.dataMemberID?.data?.va?.name ??
-                                                  "",
+                                              name ?? '',
                                               style:
                                                   TextStyling.w600bold16black,
                                             ),
@@ -240,7 +232,7 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                             ),
                                             const VerticalSpacer(height: 10),
                                             Text(
-                                              v.dataMemberID?.data?.name ?? "",
+                                              widget.tipeAnggota ?? "",
                                               style:
                                                   TextStyling.w600bold16black,
                                             ),
@@ -248,99 +240,147 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                         ),
                                       ),
                                       const VerticalSpacer(height: 8),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 7.0, horizontal: 2.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            const Text(
-                                              "Tujuan",
-                                              style: TextStyling.w40014grey,
-                                            ),
-                                            const VerticalSpacer(height: 10),
-                                            SizedBox(
-                                              width: 24.w,
-                                              height: 24.h,
-                                              child: FittedBox(
-                                                fit: BoxFit.cover,
-                                                child: Image.asset(
-                                                  'assets/images/logo-bagi-resize.png',
-                                                ),
-                                              ),
-                                            ),
-                                            const HorizontalSpacer(width: 6),
-                                            const Text(
-                                              "Bank Artha Graha International",
-                                              style:
-                                                  TextStyling.w600bold16black,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      widget.isRegister == true
-                                          ? Column(
+                                      // Padding(
+                                      //   padding: const EdgeInsets.symmetric(
+                                      //       vertical: 7.0, horizontal: 2.0),
+                                      //   child: Column(
+                                      //     crossAxisAlignment:
+                                      //         CrossAxisAlignment.start,
+                                      //     mainAxisAlignment:
+                                      //         MainAxisAlignment.spaceBetween,
+                                      //     children: [
+                                      //       const Text(
+                                      //         "Tujuan",
+                                      //         style: TextStyling.w40014grey,
+                                      //       ),
+                                      //       const VerticalSpacer(height: 10),
+                                      //       SizedBox(
+                                      //         width: 24.w,
+                                      //         height: 24.h,
+                                      //         child: FittedBox(
+                                      //           fit: BoxFit.cover,
+                                      //           child: Image.asset(
+                                      //             'assets/images/logo-bagi-resize.png',
+                                      //           ),
+                                      //         ),
+                                      //       ),
+                                      //       const HorizontalSpacer(width: 6),
+                                      //       const Text(
+                                      //         "Bank Artha Graha International",
+                                      //         style:
+                                      //             TextStyling.w600bold16black,
+                                      //       ),
+                                      //     ],
+                                      //   ),
+                                      // ),
+                                      Column(
+                                        children: [
+                                          const VerticalSpacer(height: 8),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 7.0, horizontal: 2.0),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.stretch,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
-                                                const VerticalSpacer(height: 8),
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      vertical: 7.0,
-                                                      horizontal: 2.0),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          const Text(
-                                                            "Total Biaya",
-                                                            style: TextStyling
-                                                                .w40014grey,
-                                                          ),
-                                                          const VerticalSpacer(
-                                                              height: 10),
-                                                          Text(
-                                                            currencyFormatter
-                                                                .format(00),
-                                                            style: TextStyling
-                                                                .w600bold16black,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      widget.isRegister == false
-                                                          ? Container()
-                                                          : InkWell(
-                                                              splashColor: Color(
-                                                                  0xFF85014e),
-                                                              onTap: () {
-                                                                Clipboard.setData(ClipboardData(
-                                                                    text: v
-                                                                        .dataMemberID
-                                                                        ?.data
-                                                                        ?.va
-                                                                        ?.amount
-                                                                        .toString()));
-                                                              },
-                                                              child: const Icon(
-                                                                  Icons.copy,
-                                                                  size: 20))
-                                                    ],
-                                                  ),
+                                                const Text(
+                                                  "Total Biaya",
+                                                  style: TextStyling.w40014grey,
+                                                ),
+                                                const VerticalSpacer(
+                                                    height: 10),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    const Text('Iuran Pokok',
+                                                        style: TextStyling
+                                                            .w30013black),
+                                                    Text(
+                                                      currencyFormatter.format(
+                                                          widget.userType
+                                                                  ?.monthlyPrincipalFee ??
+                                                              0),
+                                                      style: TextStyling
+                                                          .w30013black,
+                                                      // style: TextStyling
+                                                      //     .w600bold16black,
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    const Text('Iuran Wajib ',
+                                                        style: TextStyling
+                                                            .w30013black),
+                                                    Text(
+                                                        currencyFormatter
+                                                                .format(widget
+                                                                    .userType
+                                                                    ?.monthlyMandatoryFee) +
+                                                            ' x 12',
+                                                        style: TextStyling
+                                                            .w30013black),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    const Text('Biaya Admin ',
+                                                        style: TextStyling
+                                                            .w30013black),
+                                                    Text(
+                                                        currencyFormatter
+                                                            .format(widget
+                                                                    .userType
+                                                                    ?.adminFee ??
+                                                                ''),
+                                                        style: TextStyling
+                                                            .w30013black),
+                                                  ],
+                                                ),
+                                                Divider(
+                                                  thickness: 1,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    const Text('Jumlah ',
+                                                        style: TextStyling
+                                                            .w600bold16black),
+                                                    Builder(builder: (context) {
+                                                      int jumlah = widget
+                                                              .userType!
+                                                              .adminFee +
+                                                          widget.userType!
+                                                              .monthlyPrincipalFee +
+                                                          (widget.userType!
+                                                                  .monthlyMandatoryFee *
+                                                              12);
+                                                      return Text(
+                                                          currencyFormatter
+                                                              .format(jumlah),
+                                                          style: TextStyling
+                                                              .w600bold16black);
+                                                    }),
+                                                  ],
                                                 ),
                                               ],
-                                            )
-                                          : Container(),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                       const VerticalSpacer(height: 8),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
@@ -421,19 +461,7 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                           ),
                                         ))
                                     : InkWell(
-                                        onTap: () {
-                                          if (widget.isRegister) {
-                                            setState(() {
-                                              loading = true;
-                                            });
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      RegisterLoadingPage()),
-                                            );
-                                          }
-                                        },
+                                        onTap: () {},
                                         child: Container(
                                           height: 49.h,
                                           width:
@@ -463,39 +491,25 @@ class _PaymentProcessState extends State<PaymentProcess> {
     );
   }
 
-  // submitRegister(
-  //   String? nik,
-  //   String? name,
-  //   String? cityId,
-  //   String? provinceId,
-  //   String? subdistrictId,
-  //   String? address,
-  //   String? email,
-  //   String? phoneNumber,
-  //   String? birthdate,
-  //   String? password,
-  //   String? pin,
-  //   String? tipeAnngota,
-  //   String? otp,
-  // ) async {
-  //   await Provider.of<ProviderRegister>(context, listen: false).registerPost(
-  //       context,
-  //       nik,
-  //       name,
-  //       cityId,
-  //       provinceId,
-  //       subdistrictId,
-  //       address,
-  //       email,
-  //       phoneNumber,
-  //       birthdate,
-  //       password,
-  //       pin,
-  //       tipeAnngota,
-  //       otp);
-  //   setState(() {
-  //     loading =
-  //         Provider.of<ProviderRegister>(context, listen: false).loadingRegister;
-  //   });
-  // }
+  loadSharedPref() async {
+    nik = sharedPreferencesManager.getString(SharedPreferencesManager.nomorKTP);
+    name = sharedPreferencesManager.getString(SharedPreferencesManager.nama);
+    cityId =
+        sharedPreferencesManager.getString(SharedPreferencesManager.kotaid);
+    provinceId =
+        sharedPreferencesManager.getString(SharedPreferencesManager.provinsiid);
+    subdistrictId =
+        sharedPreferencesManager.getString(SharedPreferencesManager.kecamatan);
+    address =
+        sharedPreferencesManager.getString(SharedPreferencesManager.alamat);
+    email = sharedPreferencesManager.getString(SharedPreferencesManager.email);
+    phoneNumber =
+        sharedPreferencesManager.getString(SharedPreferencesManager.nomerHP);
+    birthdate =
+        sharedPreferencesManager.getString(SharedPreferencesManager.tgllahir);
+    password =
+        sharedPreferencesManager.getString(SharedPreferencesManager.password);
+    pin = sharedPreferencesManager.getString(SharedPreferencesManager.pin);
+    otp = sharedPreferencesManager.getString(SharedPreferencesManager.otp);
+  }
 }

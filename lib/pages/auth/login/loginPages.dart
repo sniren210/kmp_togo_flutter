@@ -301,54 +301,6 @@ class _LoginPagesState extends State<LoginPages> {
                             },
                           ),
                         ),
-                  // bannedtime == true
-                  //     ? Container()
-                  //     : Container(
-                  //         padding: const EdgeInsets.only(top: 20),
-                  //         margin: const EdgeInsets.only(right: 20.0, left: 20),
-                  //         child: TextFormField(
-                  //           obscureText: passhide,
-                  //           focusNode: _focusNodes[1],
-                  //           controller: passConfirmnController,
-                  //           decoration: InputDecoration(
-                  //               contentPadding:
-                  //                   const EdgeInsets.symmetric(vertical: 18),
-                  //               prefixIcon: Icon(
-                  //                 Icons.lock,
-                  //                 color: _focusNodes[1].hasFocus
-                  //                     ? const Color(0xFF85014e)
-                  //                     : Colors.grey.shade400,
-                  //                 size: 7.w,
-                  //               ),
-                  //               labelText: "Masukan Konfirmasi Password",
-                  //               filled: true,
-                  //               fillColor: Colors.grey.shade200,
-                  //               border: InputBorder.none,
-                  //               suffixIcon: IconButton(
-                  //                   icon: Icon(
-                  //                     passhide
-                  //                         ? Icons.visibility_off
-                  //                         : Icons.visibility,
-                  //                     color: _focusNodes[1].hasFocus
-                  //                         ? const Color(0xFF85014e)
-                  //                         : Colors.grey.shade400,
-                  //                     size: 7.w,
-                  //                   ),
-                  //                   onPressed: () {
-                  //                     setState(() {
-                  //                       passhide = !passhide;
-                  //                     });
-                  //                   })),
-                  //           validator: (password) {
-                  //             if (password!.isEmpty) {
-                  //               return "You must enter password";
-                  //             } else {
-                  //               return null;
-                  //             }
-                  //           },
-                  //         ),
-                  //       ),
-
                   Padding(
                     padding: const EdgeInsets.only(
                         right: 20.0, left: 20, top: 15, bottom: 10),
@@ -376,13 +328,13 @@ class _LoginPagesState extends State<LoginPages> {
                                   right: 20.0, left: 20.0, top: 40),
                               child: InkWell(
                                 onTap: () async {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) =>
-                                  //           const RegisterMemberTypePage()),
-                                  // );
-                                  _submit();
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const RegisterMemberTypePage()),
+                                  );
+                                  // _submit();
                                 },
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
