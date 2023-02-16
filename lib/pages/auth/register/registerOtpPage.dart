@@ -220,10 +220,10 @@ class _RegisterOtpPageState extends State<RegisterOtpPage> {
   bool? loadingMintaLagi = true;
 
   Timer? timer;
-  int _start = 60;
+  int _start = 240;
 //
   _submit(BuildContext context, {String? init}) async {
-    _start = 60;
+    _start = 240;
 
     setState(() {
       loadingMintaLagi = true;
