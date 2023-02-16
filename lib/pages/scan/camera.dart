@@ -11,9 +11,7 @@ import 'package:kmp_togo_mobile/providers/auth/provider_register.dart';
 import 'package:provider/provider.dart';
 
 class CameraIDCardOverlay extends StatefulWidget {
-  final List<CameraDescription> cameras;
-  const CameraIDCardOverlay({Key? key, required this.cameras})
-      : super(key: key);
+  const CameraIDCardOverlay({Key? key}) : super(key: key);
 
   @override
   _CameraIDCardOverlayState createState() => _CameraIDCardOverlayState();
@@ -24,37 +22,6 @@ class _CameraIDCardOverlayState extends State<CameraIDCardOverlay> {
 
   bool isLoading = false;
 
-  late CameraController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = CameraController(widget.cameras[0], ResolutionPreset.max);
-    controller.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {});
-    }).catchError((Object e) {
-      if (e is CameraException) {
-        switch (e.code) {
-          case 'CameraAccessDenied':
-            break;
-          default:
-            break;
-        }
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    controller.dispose();
-    controller.removeListener(() {});
-    controller.stopImageStream();
-  }
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -63,11 +30,20 @@ class _CameraIDCardOverlayState extends State<CameraIDCardOverlay> {
           debugShowCheckedModeBanner: false,
           home: Scaffold(
             backgroundColor: Colors.white,
-            body: Builder(builder: (context) {
-              try {
-                if (controller.value.isInitialized) {
+            body: FutureBuilder<List<CameraDescription>?>(
+              future: availableCameras(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  if (snapshot.data == null) {
+                    return const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'No camera found',
+                          style: TextStyle(color: Colors.black),
+                        ));
+                  }
                   return CameraOverlay(
-                      controller.description,
+                      snapshot.data!.first,
                       CardOverlay.byFormat(OverlayFormat.cardID3),
                       (XFile file) => showDialog(
                             context: context,
@@ -75,62 +51,66 @@ class _CameraIDCardOverlayState extends State<CameraIDCardOverlay> {
                             builder: (context) {
                               CardOverlay overlay =
                                   CardOverlay.byFormat(OverlayFormat.cardID3);
-                              return AlertDialog(
-                                  actionsAlignment: MainAxisAlignment.center,
-                                  backgroundColor: Colors.black,
-                                  title: const Text('Capture',
-                                      style: TextStyle(color: Colors.white),
-                                      textAlign: TextAlign.center),
-                                  actions: [
-                                    OutlinedButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            isLoading = false;
-                                          });
+                              return StatefulBuilder(
+                                  builder: (context, _satset) {
+                                return AlertDialog(
+                                    actionsAlignment: MainAxisAlignment.center,
+                                    backgroundColor: Colors.black,
+                                    title: const Text('Capture',
+                                        style: TextStyle(color: Colors.white),
+                                        textAlign: TextAlign.center),
+                                    actions: [
+                                      OutlinedButton(
+                                          onPressed: () {
+                                            _satset(() {
+                                              isLoading = false;
+                                            });
 
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: const Icon(Icons.close)),
-                                    isLoading
-                                        ? OutlinedButton(
-                                            onPressed: () {},
-                                            child: const SizedBox(
-                                                width: 14,
-                                                height: 14,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                        strokeWidth: 2.0)))
-                                        : OutlinedButton(
-                                            onPressed: () async {
-                                              setState(() {
-                                                isLoading = true;
-                                              });
-                                              await Provider.of<
-                                                          ProviderRegister>(
-                                                      context,
-                                                      listen: false)
-                                                  .validate_ocrktp(
-                                                      context, File(file.path));
-                                              setState(() {
-                                                isLoading = false;
-                                              });
-                                            },
-                                            child: const Icon(Icons.check)),
-                                  ],
-                                  content: SizedBox(
-                                      width: double.infinity,
-                                      child: AspectRatio(
-                                        aspectRatio: overlay.ratio!,
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            alignment: FractionalOffset.center,
-                                            image: FileImage(File(file.path),
-                                                scale: 1.5),
-                                          )),
-                                        ),
-                                      )));
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Icon(Icons.close)),
+                                      isLoading
+                                          ? OutlinedButton(
+                                              onPressed: () {},
+                                              child: const SizedBox(
+                                                  width: 14,
+                                                  height: 14,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                          strokeWidth: 2.0)))
+                                          : OutlinedButton(
+                                              onPressed: () async {
+                                                _satset(() {
+                                                  isLoading = true;
+                                                });
+                                                await Provider.of<
+                                                            ProviderRegister>(
+                                                        context,
+                                                        listen: false)
+                                                    .validate_ocrktp(context,
+                                                        File(file.path));
+                                                _satset(() {
+                                                  isLoading = false;
+                                                });
+                                              },
+                                              child: const Icon(Icons.check)),
+                                    ],
+                                    content: SizedBox(
+                                        width: double.infinity,
+                                        child: AspectRatio(
+                                          aspectRatio: overlay.ratio!,
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              alignment:
+                                                  FractionalOffset.center,
+                                              image: FileImage(File(file.path),
+                                                  scale: 1.5),
+                                            )),
+                                          ),
+                                        )));
+                              });
                             },
                           ),
                       info:
@@ -144,15 +124,8 @@ class _CameraIDCardOverlayState extends State<CameraIDCardOverlay> {
                         style: TextStyle(color: Colors.black),
                       ));
                 }
-              } on CameraException catch (e) {
-                return const Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'No camera found',
-                      style: TextStyle(color: Colors.black),
-                    ));
-              }
-            }),
+              },
+            ),
           )),
     );
   }

@@ -151,19 +151,43 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
       await saveResponsePost(
           res.requestOptions.path, res.statusMessage, res.data.toString(), '');
 
-      print(res.statusCode);
-
       print('res: ${res.data['data']}');
       if (res.data['success'] == true) {
         dataktp = ModelKtpData.fromJson(res.data);
 
-        if (dataktp!.data!.id! != '' &&
-            dataktp!.data!.name! != '' &&
-            dataktp!.data!.dob! != '' &&
-            dataktp!.data!.province! != '' &&
-            dataktp!.data!.city! != '' &&
-            dataktp!.data!.village! != '' &&
-            dataktp!.data!.address! != '') {
+        print(dataktp!.data!.id != '');
+        print(dataktp!.data!.name != '');
+        print(dataktp!.data!.dob != '');
+        print(dataktp!.data!.province != '');
+        print(dataktp!.data!.city != '');
+        print(dataktp!.data!.village != '');
+        print(dataktp!.data!.address != '');
+        print(dataktp!.data!.pob != '');
+        print(dataktp!.data!.religion != '');
+        print(dataktp!.data!.maritalStatus != '');
+        print(dataktp!.data!.work != '');
+        print(dataktp!.data!.gender != '');
+        print(dataktp!.data!.nationnality != '');
+        print(dataktp!.data!.village != '');
+        print(dataktp!.data!.rt != '');
+        print(dataktp!.data!.rw != '');
+
+        if (dataktp!.data!.id != '' &&
+            dataktp!.data!.name != '' &&
+            dataktp!.data!.dob != '' &&
+            dataktp!.data!.province != '' &&
+            dataktp!.data!.city != '' &&
+            dataktp!.data!.village != '' &&
+            dataktp!.data!.address != '' &&
+            dataktp!.data!.pob != '' &&
+            dataktp!.data!.religion != '' &&
+            dataktp!.data!.maritalStatus != '' &&
+            dataktp!.data!.work != '' &&
+            dataktp!.data!.gender != '' &&
+            dataktp!.data!.nationnality != '' &&
+            dataktp!.data!.village != '' &&
+            dataktp!.data!.rt != '' &&
+            dataktp!.data!.rw != '') {
           loadingKodeOtp = false;
           await sharedPreferencesManager.setString(
               SharedPreferencesManager.nomorKTP, dataktp?.data?.id ?? "");
@@ -177,9 +201,30 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
           await sharedPreferencesManager.setString(
               SharedPreferencesManager.kotaid, dataktp?.data?.city ?? "");
           await sharedPreferencesManager.setString(
-              SharedPreferencesManager.kecamatan, dataktp?.data?.village ?? "");
+              SharedPreferencesManager.kecamatan,
+              dataktp?.data?.district ?? "");
           await sharedPreferencesManager.setString(
               SharedPreferencesManager.alamat, dataktp?.data?.address ?? "");
+          await sharedPreferencesManager.setString(
+              SharedPreferencesManager.birthPlace, dataktp?.data?.pob ?? "");
+          await sharedPreferencesManager.setString(
+              SharedPreferencesManager.religion, dataktp?.data?.religion ?? "");
+          await sharedPreferencesManager.setString(
+              SharedPreferencesManager.status,
+              dataktp?.data?.maritalStatus ?? "");
+          await sharedPreferencesManager.setString(
+              SharedPreferencesManager.work, dataktp?.data?.work ?? "");
+          await sharedPreferencesManager.setString(
+              SharedPreferencesManager.gender, dataktp?.data?.gender ?? "");
+          await sharedPreferencesManager.setString(
+              SharedPreferencesManager.nationnality,
+              dataktp?.data?.nationnality ?? "");
+          await sharedPreferencesManager.setString(
+              SharedPreferencesManager.village, dataktp?.data?.village ?? "");
+          await sharedPreferencesManager.setString(
+              SharedPreferencesManager.rt, dataktp?.data?.rt ?? "");
+          await sharedPreferencesManager.setString(
+              SharedPreferencesManager.rw, dataktp?.data?.rw ?? "");
           Navigator.push(
             context,
             MaterialPageRoute(

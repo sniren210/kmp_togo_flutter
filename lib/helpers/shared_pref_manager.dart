@@ -18,6 +18,15 @@ class SharedPreferencesManager {
   static const String provinsiid = 'provinsiid';
   static const String kotaid = 'kotaid';
   static const String kecamatan = 'kecamatan';
+  static const String birthPlace = 'birthPlace';
+  static const String religion = 'religion';
+  static const String status = 'status';
+  static const String work = 'work';
+  static const String gender = 'gender';
+  static const String nationnality = 'nationnality';
+  static const String village = 'village';
+  static const String rt = 'rt';
+  static const String rw = 'rw';
   static const String alamat = 'alamat';
   static const String email = 'email';
   static const String password = 'password';

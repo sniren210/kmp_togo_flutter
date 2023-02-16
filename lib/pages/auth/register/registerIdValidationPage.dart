@@ -23,9 +23,6 @@ class RegisterIdValidationPage extends StatefulWidget {
 
 class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
   GlobalKey? _formKey;
-  var currentSelectedValue;
-  var currentSelectedValueKota;
-  var currentSelectedValueKecamatan;
 
   TextEditingController? idNumberC,
       nameC,
@@ -33,7 +30,16 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
       cityC,
       provinceC,
       kecamatanC,
-      addressC;
+      birthPlaceC,
+      addressC,
+      religionC,
+      statusC,
+      workC,
+      genderC,
+      nationnalityC,
+      villageC,
+      rtC,
+      rwC;
 
   final SharedPreferencesManager sharedPreferencesManager =
       locator<SharedPreferencesManager>();
@@ -56,6 +62,24 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
         sharedPreferencesManager.getString(SharedPreferencesManager.provinsiid);
     String? kecamatan =
         sharedPreferencesManager.getString(SharedPreferencesManager.kecamatan);
+    String? birthPlace =
+        sharedPreferencesManager.getString(SharedPreferencesManager.birthPlace);
+    String? religion =
+        sharedPreferencesManager.getString(SharedPreferencesManager.religion);
+    String? status =
+        sharedPreferencesManager.getString(SharedPreferencesManager.status);
+    String? work =
+        sharedPreferencesManager.getString(SharedPreferencesManager.work);
+    String? gender =
+        sharedPreferencesManager.getString(SharedPreferencesManager.gender);
+    String? nationnality = sharedPreferencesManager
+        .getString(SharedPreferencesManager.nationnality);
+    String? village =
+        sharedPreferencesManager.getString(SharedPreferencesManager.village);
+    String? rt =
+        sharedPreferencesManager.getString(SharedPreferencesManager.rt);
+    String? rw =
+        sharedPreferencesManager.getString(SharedPreferencesManager.rw);
 
     idNumberC = TextEditingController(text: nik);
     nameC = TextEditingController(text: name);
@@ -64,24 +88,17 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
     provinceC = TextEditingController(text: province);
     kecamatanC = TextEditingController(text: kecamatan);
     addressC = TextEditingController(text: address);
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      // final _getkategoriProvider =
-      //     Provider.of<ProviderRegister>(context, listen: false);
-      // await _getkategoriProvider.getProvinsi(context);
-    });
+    birthPlaceC = TextEditingController(text: birthPlace);
+    religionC = TextEditingController(text: religion);
+    statusC = TextEditingController(text: status);
+    workC = TextEditingController(text: work);
+    genderC = TextEditingController(text: gender);
+    nationnalityC = TextEditingController(text: nationnality);
+    villageC = TextEditingController(text: village);
+    rtC = TextEditingController(text: rt);
+    rwC = TextEditingController(text: rw);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {});
     super.initState();
-  }
-
-  cekKota(String? id) async {
-    final _getkategoriProvider =
-        Provider.of<ProviderRegister>(context, listen: false);
-    await _getkategoriProvider.getKota(context, id);
-  }
-
-  cekKecamatan(String? id) async {
-    final _getkategoriProvider =
-        Provider.of<ProviderRegister>(context, listen: false);
-    await _getkategoriProvider.getKecamatan(context, id);
   }
 
   @override
@@ -144,12 +161,71 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInput(
-                    // enable: false,
-                    // isReadOnly: true,
+                    enable: false,
+                    isReadOnly: true,
                     controller: birthdateC!,
                     inputType: TextInputType.text,
                     hintText: "Tanggal Lahir",
                     icon: Icons.date_range),
+                const SizedBox(
+                  height: 8,
+                ),
+                FormInput(
+                    enable: false,
+                    isReadOnly: true,
+                    controller: birthPlaceC!,
+                    inputType: TextInputType.text,
+                    hintText: "Tempat Lahir",
+                    icon: Icons.date_range),
+                const SizedBox(
+                  height: 8,
+                ),
+                FormInput(
+                    enable: false,
+                    isReadOnly: true,
+                    controller: religionC!,
+                    inputType: TextInputType.text,
+                    hintText: "Agama",
+                    icon: Icons.date_range),
+                const SizedBox(
+                  height: 8,
+                ),
+                FormInput(
+                    enable: false,
+                    isReadOnly: true,
+                    controller: statusC!,
+                    inputType: TextInputType.text,
+                    hintText: "Status perkawinan",
+                    icon: Icons.date_range),
+                const SizedBox(
+                  height: 8,
+                ),
+                FormInput(
+                    enable: false,
+                    isReadOnly: true,
+                    controller: workC!,
+                    inputType: TextInputType.text,
+                    hintText: "Pekerjaan",
+                    icon: Icons.date_range),
+                const SizedBox(
+                  height: 8,
+                ),
+                FormInput(
+                    enable: false,
+                    isReadOnly: true,
+                    controller: genderC!,
+                    inputType: TextInputType.text,
+                    hintText: "Jenis kelamin",
+                    icon: Icons.date_range),
+                const SizedBox(
+                  height: 8,
+                ),
+                FormInput(
+                    enable: false,
+                    controller: nationnalityC!,
+                    inputType: TextInputType.text,
+                    hintText: 'Kewarganegaraan',
+                    icon: Icons.house),
                 const SizedBox(
                   height: 8,
                 ),
@@ -176,8 +252,40 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                     isReadOnly: true,
                     controller: kecamatanC!,
                     inputType: TextInputType.text,
+                    hintText: 'Kecamatan',
+                    icon: Icons.house),
+                const SizedBox(
+                  height: 8,
+                ),
+                FormInput(
+                    enable: false,
+                    isReadOnly: true,
+                    controller: villageC!,
+                    inputType: TextInputType.text,
                     hintText: 'Desa',
                     icon: Icons.house),
+                const SizedBox(
+                  height: 8,
+                ),
+                FormInput(
+                  enable: false,
+                  isReadOnly: true,
+                  controller: rtC!,
+                  inputType: TextInputType.text,
+                  hintText: 'RT',
+                  icon: Icons.house,
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                FormInput(
+                  enable: false,
+                  isReadOnly: true,
+                  controller: rwC!,
+                  inputType: TextInputType.text,
+                  hintText: 'RW',
+                  icon: Icons.house,
+                ),
                 const SizedBox(
                   height: 8,
                 ),

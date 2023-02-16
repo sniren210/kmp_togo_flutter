@@ -17,59 +17,77 @@ class ModelKtpData {
 }
 
 class Data {
-  String? name;
-  String? id;
-  String? pob;
-  String? dob;
-  String? gender;
-  String? address;
-  String? rt;
-  String? rw;
-  String? village;
-  String? district;
-  String? religion;
-  String? maritalStatus;
-  String? work;
-  String? nationnality;
-  String? city;
-  String? province;
+  final String name;
+  final String id;
+  final String pob;
+  final String dob;
+  final String gender;
+  final String address;
+  final String rt;
+  final String rw;
+  final String village;
+  final String district;
+  final String religion;
+  final String maritalStatus;
+  final String work;
+  final String nationnality;
+  final String city;
+  final String province;
 
   Data(
-      {this.name,
-      this.id,
-      this.pob,
-      this.dob,
-      this.gender,
-      this.address,
-      this.rt,
-      this.rw,
-      this.village,
-      this.district,
-      this.religion,
-      this.maritalStatus,
-      this.work,
-      this.nationnality,
-      this.city,
-      this.province});
+      {required this.name,
+      required this.id,
+      required this.pob,
+      required this.dob,
+      required this.gender,
+      required this.address,
+      required this.rt,
+      required this.rw,
+      required this.village,
+      required this.district,
+      required this.religion,
+      required this.maritalStatus,
+      required this.work,
+      required this.nationnality,
+      required this.city,
+      required this.province});
 
-  Data.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    id = json['id'];
-    pob = json['pob'];
-    dob = json['dob'];
-    gender = json['gender'];
-    address = json['address'];
-    rt = json['rt'];
-    rw = json['rw'];
-    village = json['village'];
-    district = json['district'];
-    religion = json['religion'];
-    maritalStatus = json['marital_status'];
-    work = json['work'];
-    nationnality = json['nationnality'];
-    city = json['city'];
-    province = json['province'];
-  }
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+        name: json['name'],
+        id: json['id'],
+        pob: json['pob'],
+        dob: json['dob'],
+        gender: json['gender'],
+        address: json['address'],
+        rt: json['rt'],
+        rw: json['rw'],
+        village: json['village'],
+        district: json['district'],
+        religion: json['religion'],
+        maritalStatus: json['marital_status'],
+        work: json['work'],
+        nationnality: json['nationnality'],
+        city: json['city'],
+        province: json['province'],
+      );
+  // {
+  //   name = json['name'];
+  //   id = json['id'];
+  //   pob = json['pob'];
+  //   dob = json['dob'];
+  //   gender = json['gender'];
+  //   address = json['address'];
+  //   rt = json['rt'];
+  //   rw = json['rw'];
+  //   village = json['village'];
+  //   district = json['district'];
+  //   religion = json['religion'];
+  //   maritalStatus = json['marital_status'];
+  //   work = json['work'];
+  //   nationnality = json['nationnality'];
+  //   city = json['city'];
+  //   province = json['province'];
+  // }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};

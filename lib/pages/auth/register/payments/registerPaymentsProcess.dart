@@ -51,6 +51,15 @@ class _PaymentProcessState extends State<PaymentProcess> {
   String? password;
   String? pin;
   String? otp;
+  String? pob;
+  String? religion;
+  String? status;
+  String? work;
+  String? gender;
+  String? nationnality;
+  String? village;
+  String? rt;
+  String? rw;
 
   @override
   void initState() {
@@ -70,26 +79,6 @@ class _PaymentProcessState extends State<PaymentProcess> {
       loading =
           Provider.of<ProviderRegister>(context, listen: false).loadingmemberid;
     });
-  }
-
-  dateConvert(date) {
-    DateTime parseDate = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(date);
-    var inputDate = DateTime.parse(parseDate.toString());
-    var outputFormat = DateFormat('MM/dd/yyyy hh:mm a');
-    // var outputDate = outputFormat.format(inputDate);
-    var outputFormat3 =
-        DateFormat.yMMMMd(Localizations.localeOf(context).toString());
-    var outputDate = outputFormat3.format(inputDate);
-
-    return outputDate;
-  }
-
-  dateConvert2(date) {
-    DateTime parseDate = DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(date);
-    var inputDate = DateTime.parse(parseDate.toString());
-    var outputFormat = DateFormat('HH:mm:ss');
-    var outputDate = outputFormat.format(inputDate);
-    return outputDate;
   }
 
   final SharedPreferencesManager sharedPreferencesManager =
@@ -240,39 +229,6 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                         ),
                                       ),
                                       const VerticalSpacer(height: 8),
-                                      // Padding(
-                                      //   padding: const EdgeInsets.symmetric(
-                                      //       vertical: 7.0, horizontal: 2.0),
-                                      //   child: Column(
-                                      //     crossAxisAlignment:
-                                      //         CrossAxisAlignment.start,
-                                      //     mainAxisAlignment:
-                                      //         MainAxisAlignment.spaceBetween,
-                                      //     children: [
-                                      //       const Text(
-                                      //         "Tujuan",
-                                      //         style: TextStyling.w40014grey,
-                                      //       ),
-                                      //       const VerticalSpacer(height: 10),
-                                      //       SizedBox(
-                                      //         width: 24.w,
-                                      //         height: 24.h,
-                                      //         child: FittedBox(
-                                      //           fit: BoxFit.cover,
-                                      //           child: Image.asset(
-                                      //             'assets/images/logo-bagi-resize.png',
-                                      //           ),
-                                      //         ),
-                                      //       ),
-                                      //       const HorizontalSpacer(width: 6),
-                                      //       const Text(
-                                      //         "Bank Artha Graha International",
-                                      //         style:
-                                      //             TextStyling.w600bold16black,
-                                      //       ),
-                                      //     ],
-                                      //   ),
-                                      // ),
                                       if (widget.userType != null)
                                         Column(
                                           children: [
@@ -516,6 +472,21 @@ class _PaymentProcessState extends State<PaymentProcess> {
     password =
         sharedPreferencesManager.getString(SharedPreferencesManager.password);
     pin = sharedPreferencesManager.getString(SharedPreferencesManager.pin);
-    otp = sharedPreferencesManager.getString(SharedPreferencesManager.otp);
+    // otp = sharedPreferencesManager.getString(SharedPreferencesManager.otp);
+    pob =
+        sharedPreferencesManager.getString(SharedPreferencesManager.birthPlace);
+    religion =
+        sharedPreferencesManager.getString(SharedPreferencesManager.religion);
+    status =
+        sharedPreferencesManager.getString(SharedPreferencesManager.status);
+    work = sharedPreferencesManager.getString(SharedPreferencesManager.work);
+    gender =
+        sharedPreferencesManager.getString(SharedPreferencesManager.gender);
+    nationnality = sharedPreferencesManager
+        .getString(SharedPreferencesManager.nationnality);
+    village =
+        sharedPreferencesManager.getString(SharedPreferencesManager.village);
+    rt = sharedPreferencesManager.getString(SharedPreferencesManager.rt);
+    rw = sharedPreferencesManager.getString(SharedPreferencesManager.rw);
   }
 }

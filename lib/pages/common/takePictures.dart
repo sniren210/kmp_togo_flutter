@@ -74,12 +74,10 @@ class _TakePicturePageState extends State<TakePicturePage> {
               ),
               InkWell(
                 onTap: () async {
-                  final cameras = await availableCameras();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            CameraIDCardOverlay(cameras: cameras)),
+                        builder: (context) => CameraIDCardOverlay()),
                   );
                 },
                 child: Container(
