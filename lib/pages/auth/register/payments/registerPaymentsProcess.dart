@@ -273,114 +273,120 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                       //     ],
                                       //   ),
                                       // ),
-                                      Column(
-                                        children: [
-                                          const VerticalSpacer(height: 8),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 7.0, horizontal: 2.0),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.stretch,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                const Text(
-                                                  "Total Biaya",
-                                                  style: TextStyling.w40014grey,
-                                                ),
-                                                const VerticalSpacer(
-                                                    height: 10),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    const Text('Iuran Pokok',
-                                                        style: TextStyling
-                                                            .w30013black),
-                                                    Text(
-                                                      currencyFormatter.format(
-                                                          widget.userType
-                                                                  ?.monthlyPrincipalFee ??
-                                                              0),
-                                                      style: TextStyling
-                                                          .w30013black,
-                                                      // style: TextStyling
-                                                      //     .w600bold16black,
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    const Text('Iuran Wajib ',
-                                                        style: TextStyling
-                                                            .w30013black),
-                                                    Text(
-                                                        currencyFormatter
-                                                                .format(widget
-                                                                    .userType
-                                                                    ?.monthlyMandatoryFee) +
-                                                            ' x 12',
-                                                        style: TextStyling
-                                                            .w30013black),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    const Text('Biaya Admin ',
-                                                        style: TextStyling
-                                                            .w30013black),
-                                                    Text(
+                                      if (widget.userType != null)
+                                        Column(
+                                          children: [
+                                            const VerticalSpacer(height: 8),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 7.0,
+                                                      horizontal: 2.0),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.stretch,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const Text(
+                                                    "Total Biaya",
+                                                    style:
+                                                        TextStyling.w40014grey,
+                                                  ),
+                                                  const VerticalSpacer(
+                                                      height: 10),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      const Text('Iuran Pokok',
+                                                          style: TextStyling
+                                                              .w30013black),
+                                                      Text(
                                                         currencyFormatter
                                                             .format(widget
                                                                     .userType
-                                                                    ?.adminFee ??
-                                                                ''),
+                                                                    ?.monthlyPrincipalFee ??
+                                                                0),
                                                         style: TextStyling
-                                                            .w30013black),
-                                                  ],
-                                                ),
-                                                Divider(
-                                                  thickness: 1,
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    const Text('Jumlah ',
-                                                        style: TextStyling
-                                                            .w600bold16black),
-                                                    Builder(builder: (context) {
-                                                      int jumlah = widget
-                                                              .userType!
-                                                              .adminFee +
-                                                          widget.userType!
-                                                              .monthlyPrincipalFee +
-                                                          (widget.userType!
-                                                                  .monthlyMandatoryFee *
-                                                              12);
-                                                      return Text(
-                                                          currencyFormatter
-                                                              .format(jumlah),
+                                                            .w30013black,
+                                                        // style: TextStyling
+                                                        //     .w600bold16black,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      const Text('Iuran Wajib ',
                                                           style: TextStyling
-                                                              .w600bold16black);
-                                                    }),
-                                                  ],
-                                                ),
-                                              ],
+                                                              .w30013black),
+                                                      Text(
+                                                          currencyFormatter
+                                                                  .format(widget
+                                                                      .userType
+                                                                      ?.monthlyMandatoryFee) +
+                                                              ' x 12',
+                                                          style: TextStyling
+                                                              .w30013black),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      const Text('Biaya Admin ',
+                                                          style: TextStyling
+                                                              .w30013black),
+                                                      Text(
+                                                          currencyFormatter
+                                                              .format(widget
+                                                                      .userType
+                                                                      ?.adminFee ??
+                                                                  ''),
+                                                          style: TextStyling
+                                                              .w30013black),
+                                                    ],
+                                                  ),
+                                                  Divider(
+                                                    thickness: 1,
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      const Text('Jumlah ',
+                                                          style: TextStyling
+                                                              .w600bold16black),
+                                                      Builder(
+                                                          builder: (context) {
+                                                        int jumlah = widget
+                                                                .userType!
+                                                                .adminFee +
+                                                            widget.userType!
+                                                                .monthlyPrincipalFee +
+                                                            (widget.userType!
+                                                                    .monthlyMandatoryFee *
+                                                                12);
+                                                        return Text(
+                                                            currencyFormatter
+                                                                .format(jumlah),
+                                                            style: TextStyling
+                                                                .w600bold16black);
+                                                      }),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
+                                          ],
+                                        ),
                                       const VerticalSpacer(height: 8),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(

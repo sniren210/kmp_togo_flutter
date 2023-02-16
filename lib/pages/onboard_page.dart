@@ -223,7 +223,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         child: Padding(
           padding: defaultSkipButtonPadding,
           child: Text(
-            login ? 'Home' : 'Sign up',
+            login ? 'Home' : 'Login',
             style: defaultProceedButtonTextStyle.copyWith(
               fontSize: 16.sp,
             ),
