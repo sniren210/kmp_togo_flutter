@@ -86,7 +86,7 @@ class _PaymentProcessState extends State<PaymentProcess> {
 
   final currencyFormatter = NumberFormat.currency(
     locale: 'ID',
-    symbol: 'Rp',
+    symbol: ' ',
   );
   // print(currencyFormatter.format(d));
 
@@ -148,22 +148,16 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              DateTime.now()
-                                                  .toLocal()
-                                                  .toUtc()
-                                                  .toString()
-                                                  .substring(0, 10),
+                                              DateFormat('dd-MM-yyyy')
+                                                  .format(DateTime.now()),
                                               // dateConvert(v.dataMemberID?.data
                                               //         ?.va?.expireAt) ??
                                               //     "",
                                               style: TextStyling.bold13black,
                                             ),
                                             Text(
-                                              DateTime.now()
-                                                  .toLocal()
-                                                  .toUtc()
-                                                  .toString()
-                                                  .substring(0, 10),
+                                              DateFormat('dd-MM-yyyy')
+                                                  .format(DateTime.now()),
                                               // dateConvert2(v.dataMemberID?.data
                                               //     ?.va?.expireAt),
                                               style: TextStyling.bold13black,
@@ -257,19 +251,35 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
-                                                      const Text('Iuran Pokok',
+                                                      Expanded(
+                                                        flex: 2,
+                                                        child: const Text(
+                                                            'Iuran Pokok',
+                                                            style: TextStyling
+                                                                .w30013black),
+                                                      ),
+                                                      Expanded(
+                                                          child: Text('Rp.',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .right,
+                                                              style: TextStyling
+                                                                  .w30013black)),
+                                                      Expanded(
+                                                        flex: 2,
+                                                        child: Text(
+                                                          currencyFormatter
+                                                              .format(widget
+                                                                      .userType
+                                                                      ?.monthlyPrincipalFee ??
+                                                                  0),
+                                                          textAlign:
+                                                              TextAlign.right,
                                                           style: TextStyling
-                                                              .w30013black),
-                                                      Text(
-                                                        currencyFormatter
-                                                            .format(widget
-                                                                    .userType
-                                                                    ?.monthlyPrincipalFee ??
-                                                                0),
-                                                        style: TextStyling
-                                                            .w30013black,
-                                                        // style: TextStyling
-                                                        //     .w600bold16black,
+                                                              .w30013black,
+                                                          // style: TextStyling
+                                                          //     .w600bold16black,
+                                                        ),
                                                       ),
                                                     ],
                                                   ),
@@ -278,17 +288,33 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
-                                                      const Text('Iuran Wajib ',
-                                                          style: TextStyling
-                                                              .w30013black),
-                                                      Text(
-                                                          currencyFormatter
-                                                                  .format(widget
-                                                                      .userType
-                                                                      ?.monthlyMandatoryFee) +
-                                                              ' x 12',
-                                                          style: TextStyling
-                                                              .w30013black),
+                                                      Expanded(
+                                                        flex: 2,
+                                                        child: const Text(
+                                                            'Iuran Wajib (12 bulan)',
+                                                            style: TextStyling
+                                                                .w30013black),
+                                                      ),
+                                                      Expanded(
+                                                          child: Text('Rp.',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .right,
+                                                              style: TextStyling
+                                                                  .w30013black)),
+                                                      Expanded(
+                                                        flex: 2,
+                                                        child: Text(
+                                                            currencyFormatter.format(
+                                                                (widget.userType
+                                                                            ?.monthlyMandatoryFee ??
+                                                                        0) *
+                                                                    12),
+                                                            textAlign:
+                                                                TextAlign.right,
+                                                            style: TextStyling
+                                                                .w30013black),
+                                                      ),
                                                     ],
                                                   ),
                                                   Row(
@@ -296,17 +322,33 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
-                                                      const Text('Biaya Admin ',
-                                                          style: TextStyling
-                                                              .w30013black),
-                                                      Text(
-                                                          currencyFormatter
-                                                              .format(widget
-                                                                      .userType
-                                                                      ?.adminFee ??
-                                                                  ''),
-                                                          style: TextStyling
-                                                              .w30013black),
+                                                      Expanded(
+                                                        flex: 2,
+                                                        child: const Text(
+                                                            'Biaya Admin ',
+                                                            style: TextStyling
+                                                                .w30013black),
+                                                      ),
+                                                      Expanded(
+                                                          child: Text('Rp.',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .right,
+                                                              style: TextStyling
+                                                                  .w30013black)),
+                                                      Expanded(
+                                                        flex: 2,
+                                                        child: Text(
+                                                            currencyFormatter
+                                                                .format(widget
+                                                                        .userType
+                                                                        ?.adminFee ??
+                                                                    ''),
+                                                            textAlign:
+                                                                TextAlign.right,
+                                                            style: TextStyling
+                                                                .w30013black),
+                                                      ),
                                                     ],
                                                   ),
                                                   Divider(
@@ -317,25 +359,43 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
-                                                      const Text('Jumlah ',
-                                                          style: TextStyling
-                                                              .w600bold16black),
-                                                      Builder(
-                                                          builder: (context) {
-                                                        int jumlah = widget
-                                                                .userType!
-                                                                .adminFee +
-                                                            widget.userType!
-                                                                .monthlyPrincipalFee +
-                                                            (widget.userType!
-                                                                    .monthlyMandatoryFee *
-                                                                12);
-                                                        return Text(
-                                                            currencyFormatter
-                                                                .format(jumlah),
+                                                      Expanded(
+                                                        flex: 2,
+                                                        child: const Text(
+                                                            'Jumlah ',
                                                             style: TextStyling
-                                                                .w600bold16black);
-                                                      }),
+                                                                .w600bold16black),
+                                                      ),
+                                                      Expanded(
+                                                          child: Text('Rp.',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .right,
+                                                              style: TextStyling
+                                                                  .w30013black)),
+                                                      Expanded(
+                                                        flex: 2,
+                                                        child: Builder(
+                                                            builder: (context) {
+                                                          int jumlah = widget
+                                                                  .userType!
+                                                                  .adminFee +
+                                                              widget.userType!
+                                                                  .monthlyPrincipalFee +
+                                                              (widget.userType!
+                                                                      .monthlyMandatoryFee *
+                                                                  12);
+                                                          return Text(
+                                                              currencyFormatter
+                                                                  .format(
+                                                                      jumlah),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .right,
+                                                              style: TextStyling
+                                                                  .w600bold16black);
+                                                        }),
+                                                      ),
                                                     ],
                                                   ),
                                                 ],
