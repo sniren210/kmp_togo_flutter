@@ -48,11 +48,11 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
 
   bool? loading = true;
   getMyHistorySaldo() async {
-    final _getkategoriProvider =
+    final _getCoinProvider =
         Provider.of<ProviderWithDraw>(context, listen: false);
-    await _getkategoriProvider.getHistorySaldoWallet(context);
+    await _getCoinProvider.getCoinWallet();
     setState(() {
-      loading = _getkategoriProvider.loadinghistory;
+      loading = _getCoinProvider.loadinghistory;
     });
   }
 

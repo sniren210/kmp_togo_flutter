@@ -62,11 +62,11 @@ class _DashboardWalletState extends State<DashboardWallet>
 
   bool? loading = true;
   getMyHistorySaldo() async {
-    final _getkategoriProvider =
+    final _getTokenProvider =
         Provider.of<ProviderWithDraw>(context, listen: false);
-    await _getkategoriProvider.getHistorySaldoWallet(context);
+    await _getTokenProvider.getTokenWallet();
 
-    loading = _getkategoriProvider.loadinghistory;
+    loading = _getTokenProvider.loadinghistory;
   }
 
   @override
@@ -99,25 +99,6 @@ class _DashboardWalletState extends State<DashboardWallet>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (!_isSliverAppBarExpanded) ...[
-                            // widget.isHome
-                            //     ? Container()
-                            //     : Expanded(
-                            //         flex: 3,
-                            //         child: CustomAppBar(
-                            //           iconDataApp: Icon(
-                            //             Icons.monetization_on,
-                            //             color: Colors.black,
-                            //             size: 8.w,
-                            //           ),
-                            //           title: 'IDR WALLET',
-                            //           popContext: 1,
-                            //           height: 200,
-                            //           padding: 15,
-                            //         ),
-                            //       ),
-                            // SizedBox(
-                            //   height: 2.h,
-                            // ),
                             SizedBox(
                               height: 230,
                               child: Stack(
