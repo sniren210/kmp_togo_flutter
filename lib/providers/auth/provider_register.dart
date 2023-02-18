@@ -370,93 +370,117 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
   }
 
   registerPost(
-    context,
-    String? nik,
-    String? name,
-    String? cityId,
-    String? provinceId,
-    String? subdistrictId,
-    String? address,
-    String? email,
-    String? phoneNumber,
-    String? birthdate,
-    String? password,
-    String? pin,
-    String? membertypeId,
-    String? membertypeanggota,
-    String? otp,
-  ) async {
+    context, {
+    required String email,
+    required String password,
+    required String name,
+    required String nik,
+    required String birthdate,
+    required String birthPlace,
+    required String gender,
+    required String address,
+    required String rt,
+    required String rw,
+    required String village,
+    required String subdistrict,
+    required String religion,
+    required String maritalStatus,
+    required String work,
+    required String nationnality,
+    required String city,
+    required String province,
+    required String phoneNumber,
+    required String pin,
+    required String membertypeId,
+    required String membertypeanggota,
+    required String referral,
+    required int adminFee,
+    required int monthlyPrincipalFee,
+    required int monthlyMandatoryFee,
+  }) async {
     try {
       var inputFormat = DateFormat('dd-MM-yyyy');
-      var outputFormat = DateFormat('yyyy-MM-dd');
-      var date1 = inputFormat.parse(birthdate ?? "");
+      var outputFormat = DateFormat('dd-MM-yyyy');
+      var date1 = inputFormat.parse(birthdate);
       var date2 = outputFormat.format(date1);
-      print(date2);
 
       final body = {
-        "nik": nik,
-        "name": name,
-        "city": cityId,
-        "province": provinceId,
-        "subdistrict": subdistrictId,
-        "address": address,
-        "email": email,
-        "phoneNumber": phoneNumber,
-        "birthdate": date2,
-        "password": password,
-        "pin": pin,
-        "membertypeId": membertypeId,
-        "otp": otp
+        'email': email,
+        'password': password,
+        'name': name,
+        'nik': nik,
+        'birth_place': birthPlace,
+        'birth_date': date2,
+        'gender': gender,
+        'address': address,
+        'rt': rt,
+        'rw': rw,
+        'village': village,
+        'district': subdistrict,
+        'religion': religion,
+        'marital_status': maritalStatus,
+        'work': work,
+        'nationnality': nationnality,
+        'city': city,
+        'province': province,
+        'phone_number': phoneNumber,
+        'pin': pin,
+        'member_type': membertypeanggota,
+        // 'membertypeanggota': membertypeanggota,
+        'referral': ' ',
       };
-      final body1 = {"email": email, "password": password};
+      // final body1 = {"email": email, "password": password};
 
       print('body: $body');
-      print('body: $body1');
-      final res = await _dio.post('/v1/auth/register', data: body);
+      // print('body: $body1');
+      final res = await _dio.post('/api/v1/register', data: body);
 
       await saveResponsePost(res.requestOptions.path, res.statusMessage,
           res.data.toString(), body.toString());
 
-      print(res.data['data']);
+      print(res.data);
       if (res.data['data'] == 'success') {
-        final resa = await _dio.post('/v1/auth/login', data: body1);
+        // final resa = await _dio.post('/v1/auth/login', data: body1);
 
-        await saveResponsePost(res.requestOptions.path, res.statusMessage,
-            res.data.toString(), body.toString());
+        // await saveResponsePost(res.requestOptions.path, res.statusMessage,
+        //     res.data.toString(), body.toString());
 
-        if (resa.data['data'] == 'success') {
-          // await sharedPreferencesManager.setBool(
-          //     SharedPreferencesManager.isLoggedIn, true);
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => PaymentProcess(
-                      // isTopup: false,
-                      // popContext: 1,
-                      // isRegister: true,
-                      tipeAnggota: membertypeanggota,
-                      tipeAnggotaId: membertypeId,
-                    )),
-          );
-        }
+        // if (resa.data['data'] == 'success') {
+        // await sharedPreferencesManager.setBool(
+        //     SharedPreferencesManager.isLoggedIn, true);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => PaymentProcess(
+                    adminFee: adminFee,
+                    monthlyPrincipalFee: monthlyPrincipalFee,
+                    monthlyMandatoryFee: monthlyMandatoryFee,
+                    tipeAnggota: membertypeanggota,
+                    tipeAnggotaId: membertypeId,
+                  )),
+        );
+        // }
         notifyListeners();
       } else {
         loadingRegister = false;
         notifyListeners();
       }
     } on DioError catch (e) {
+      // loadingRegister = false;
+      // notifyListeners();
+      print(e.response);
+      print(e.message);
+      print(e.error);
+      if (kDebugMode) rethrow;
       try {
         ErrorModel data = ErrorModel.fromJson(e.response!.data);
         await customSnackbar(
             type: 'error', title: 'error', text: data.error.toString());
       } catch (e) {
-        final msg = e.toString();
-        print(msg);
         await customSnackbar(
             type: 'error', title: 'error', text: 'Terjadi kesalahan!');
+        rethrow;
       }
-    } catch (e) {
-      print(e);
     }
   }
 

@@ -43,6 +43,7 @@ class Helper {
     _dio.interceptors.add(QueuedInterceptorsWrapper(
       onRequest: (options, handler) async {
         final user = await UserHelper.getUser();
+        print(user);
 
         if (user != null) {
           if (JwtDecoder.isExpired(user.token)) {

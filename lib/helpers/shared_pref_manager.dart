@@ -27,6 +27,7 @@ class SharedPreferencesManager {
   static const String village = 'village';
   static const String rt = 'rt';
   static const String rw = 'rw';
+  static const String referral = 'referral';
   static const String alamat = 'alamat';
   static const String email = 'email';
   static const String password = 'password';

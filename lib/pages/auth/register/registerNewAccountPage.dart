@@ -67,6 +67,8 @@ class _RegisterMakeAccountPageState extends State<RegisterMakeAccountPage> {
                 SharedPreferencesManager.email, emailC!.text);
             await sharedPreferencesManager.setString(
                 SharedPreferencesManager.password, passwordC!.text);
+            await sharedPreferencesManager.setString(
+                SharedPreferencesManager.referral, kodeRef!.text);
             // ignore: use_build_context_synchronously
             Navigator.push(
               context,

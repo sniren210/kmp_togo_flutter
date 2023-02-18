@@ -41,10 +41,22 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
   String? password;
   String? pin;
   String? otp;
+  String? pob;
+  String? religion;
+  String? status;
+  String? work;
+  String? gender;
+  String? nationnality;
+  String? village;
+  String? rt;
+  String? rw;
+  String? referral;
 
   @override
   void initState() {
     super.initState();
+
+    loadSharedPref();
   }
 
   int selectedIndex = -1;
@@ -52,43 +64,102 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
   final SharedPreferencesManager sharedPreferencesManager =
       locator<SharedPreferencesManager>();
 
-  submitRegister(
+  submitRegister({
     String? membertypeId,
     String? membertypeanggota,
-    Datum? userType,
-  ) async {
-    // await Provider.of<ProviderRegister>(context, listen: false).registerPost(
-    //     context,
-    //     nik,
-    //     name,
-    //     cityId,
-    //     provinceId,
-    //     subdistrictId,
-    //     address,
-    //     email,
-    //     phoneNumber,
-    //     birthdate,
-    //     password,
-    //     pin,
-    //     tipeAnngota,
-    //     anggotatipe,
-    //     otp);
-    Navigator.push(
+    int? adminFee,
+    int? monthlyMandatoryFee,
+    int? monthlyPrincipalFee,
+  }) async {
+    setState(() {
+      loading = false;
+    });
+    await Provider.of<ProviderRegister>(context, listen: false).registerPost(
       context,
-      MaterialPageRoute(
-          builder: (context) => PaymentProcess(
-                // isTopup: false,
-                // popContext: 1,
-                // isRegister: true,
-                userType: userType,
-                tipeAnggota:membertypeanggota ,
-                tipeAnggotaId: membertypeId,
-              )),
+      email: email ?? '',
+      password: password ?? '',
+      name: name ?? '',
+      nik: nik ?? '',
+      birthdate: birthdate ?? '',
+      birthPlace: pob ?? '',
+      gender: gender ?? '',
+      address: address ?? '',
+      rt: rt ?? '',
+      rw: rw ?? '',
+      village: village ?? '',
+      subdistrict: subdistrictId ?? '',
+      religion: religion ?? '',
+      maritalStatus: status ?? '',
+      work: work ?? '',
+      nationnality: nationnality ?? '',
+      city: cityId ?? '',
+      province: provinceId ?? '',
+      phoneNumber: phoneNumber ?? '',
+      pin: pin ?? '',
+      membertypeId: membertypeId ?? '',
+      membertypeanggota: membertypeanggota ?? '',
+      referral: referral ?? '',
+      adminFee: adminFee ?? 0,
+      monthlyMandatoryFee: monthlyMandatoryFee ?? 0,
+      monthlyPrincipalFee: monthlyPrincipalFee ?? 0,
     );
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //       builder: (context) => PaymentProcess(
+    //             // isTopup: false,
+    //             // popContext: 1,
+    //             // isRegister: true,
+    //             adminFee: adminFee ?? 0,
+    //             monthlyMandatoryFee: monthlyMandatoryFee ?? 0,
+    //             monthlyPrincipalFee: monthlyPrincipalFee ?? 0,
+    //             tipeAnggota: membertypeanggota,
+    //             tipeAnggotaId: membertypeId,
+    //           )),
+    // );
     setState(() {
       loading =
           Provider.of<ProviderRegister>(context, listen: false).loadingRegister;
     });
+  }
+
+  loadSharedPref() async {
+    nik = sharedPreferencesManager.getString(SharedPreferencesManager.nomorKTP);
+    name = sharedPreferencesManager.getString(SharedPreferencesManager.nama);
+    cityId =
+        sharedPreferencesManager.getString(SharedPreferencesManager.kotaid);
+    provinceId =
+        sharedPreferencesManager.getString(SharedPreferencesManager.provinsiid);
+    subdistrictId =
+        sharedPreferencesManager.getString(SharedPreferencesManager.kecamatan);
+    address =
+        sharedPreferencesManager.getString(SharedPreferencesManager.alamat);
+    email = sharedPreferencesManager.getString(SharedPreferencesManager.email);
+    phoneNumber =
+        sharedPreferencesManager.getString(SharedPreferencesManager.nomerHP);
+    birthdate =
+        sharedPreferencesManager.getString(SharedPreferencesManager.tgllahir);
+    password =
+        sharedPreferencesManager.getString(SharedPreferencesManager.password);
+    pin = sharedPreferencesManager.getString(SharedPreferencesManager.pin);
+    // otp = sharedPreferencesManager.getString(SharedPreferencesManager.otp);
+    pob =
+        sharedPreferencesManager.getString(SharedPreferencesManager.birthPlace);
+    religion =
+        sharedPreferencesManager.getString(SharedPreferencesManager.religion);
+    status =
+        sharedPreferencesManager.getString(SharedPreferencesManager.status);
+    work = sharedPreferencesManager.getString(SharedPreferencesManager.work);
+    gender =
+        sharedPreferencesManager.getString(SharedPreferencesManager.gender);
+    nationnality = sharedPreferencesManager
+        .getString(SharedPreferencesManager.nationnality);
+    village =
+        sharedPreferencesManager.getString(SharedPreferencesManager.village);
+    rt = sharedPreferencesManager.getString(SharedPreferencesManager.rt);
+    rw = sharedPreferencesManager.getString(SharedPreferencesManager.rw);
+    referral =
+        sharedPreferencesManager.getString(SharedPreferencesManager.referral);
   }
 
   @override
@@ -205,21 +276,32 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
                                                                       "");
 
                                                               submitRegister(
-                                                                  model
+                                                                  adminFee: model
+                                                                      .items
+                                                                      ?.data[
+                                                                          index]
+                                                                      .adminFee,
+                                                                  monthlyMandatoryFee: model
+                                                                      .items
+                                                                      ?.data[
+                                                                          index]
+                                                                      .monthlyMandatoryFee,
+                                                                  monthlyPrincipalFee: model
+                                                                      .items
+                                                                      ?.data[
+                                                                          index]
+                                                                      .monthlyPrincipalFee,
+                                                                  membertypeId: model
                                                                       .items
                                                                       ?.data[
                                                                           index]
                                                                       .id
                                                                       .toString(),
-                                                                  model
+                                                                  membertypeanggota: model
                                                                       .items
                                                                       ?.data[
                                                                           index]
-                                                                      .name
-                                                                      .toString(),
-                                                                  model.items
-                                                                          ?.data[
-                                                                      index]);
+                                                                      .name);
                                                             },
                                                             child: Container(
                                                                 width: MediaQuery
@@ -260,42 +342,49 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
                                                                           15),
                                                                 )),
                                                           )
-                                                        : Container(
-                                                            width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width,
-                                                            margin:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                              right: 20.0,
-                                                              left: 20.0,
-                                                            ),
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .symmetric(
-                                                                    vertical:
-                                                                        15,
-                                                                    horizontal:
-                                                                        70),
-                                                            decoration: BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5),
-                                                                color: Colors
-                                                                    .grey),
-                                                            child: Center(
-                                                              child: SizedBox(
-                                                                height: 2.h,
-                                                                width: 4.w,
-                                                                child:
-                                                                    const CircularProgressIndicator(
-                                                                  color: Colors
-                                                                      .white,
-                                                                ),
+                                                        : InkWell(
+                                                          onTap: (){
+                                                            setState(() {
+                                                                loading = false;
+                                                              });
+                                                          },
+                                                          child: Container(
+                                                              width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width,
+                                                              margin:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                right: 20.0,
+                                                                left: 20.0,
                                                               ),
-                                                            )),
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .symmetric(
+                                                                      vertical:
+                                                                          15,
+                                                                      horizontal:
+                                                                          70),
+                                                              decoration: BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              5),
+                                                                  color: Colors
+                                                                      .grey),
+                                                              child: Center(
+                                                                child: SizedBox(
+                                                                  height: 2.h,
+                                                                  width: 4.w,
+                                                                  child:
+                                                                      const CircularProgressIndicator(
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                ),
+                                                              )),
+                                                        ),
                                                     const SizedBox(height: 30),
                                                   ],
                                                 ),
