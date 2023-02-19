@@ -74,49 +74,49 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
     setState(() {
       loading = false;
     });
-    await Provider.of<ProviderRegister>(context, listen: false).registerPost(
-      context,
-      email: email ?? '',
-      password: password ?? '',
-      name: name ?? '',
-      nik: nik ?? '',
-      birthdate: birthdate ?? '',
-      birthPlace: pob ?? '',
-      gender: gender ?? '',
-      address: address ?? '',
-      rt: rt ?? '',
-      rw: rw ?? '',
-      village: village ?? '',
-      subdistrict: subdistrictId ?? '',
-      religion: religion ?? '',
-      maritalStatus: status ?? '',
-      work: work ?? '',
-      nationnality: nationnality ?? '',
-      city: cityId ?? '',
-      province: provinceId ?? '',
-      phoneNumber: phoneNumber ?? '',
-      pin: pin ?? '',
-      membertypeId: membertypeId ?? '',
-      membertypeanggota: membertypeanggota ?? '',
-      referral: referral ?? '',
-      adminFee: adminFee ?? 0,
-      monthlyMandatoryFee: monthlyMandatoryFee ?? 0,
-      monthlyPrincipalFee: monthlyPrincipalFee ?? 0,
-    );
-    // Navigator.push(
+    // await Provider.of<ProviderRegister>(context, listen: false).registerPost(
     //   context,
-    //   MaterialPageRoute(
-    //       builder: (context) => PaymentProcess(
-    //             // isTopup: false,
-    //             // popContext: 1,
-    //             // isRegister: true,
-    //             adminFee: adminFee ?? 0,
-    //             monthlyMandatoryFee: monthlyMandatoryFee ?? 0,
-    //             monthlyPrincipalFee: monthlyPrincipalFee ?? 0,
-    //             tipeAnggota: membertypeanggota,
-    //             tipeAnggotaId: membertypeId,
-    //           )),
+    //   email: email ?? '',
+    //   password: password ?? '',
+    //   name: name ?? '',
+    //   nik: nik ?? '',
+    //   birthdate: birthdate ?? '',
+    //   birthPlace: pob ?? '',
+    //   gender: gender ?? '',
+    //   address: address ?? '',
+    //   rt: rt ?? '',
+    //   rw: rw ?? '',
+    //   village: village ?? '',
+    //   subdistrict: subdistrictId ?? '',
+    //   religion: religion ?? '',
+    //   maritalStatus: status ?? '',
+    //   work: work ?? '',
+    //   nationnality: nationnality ?? '',
+    //   city: cityId ?? '',
+    //   province: provinceId ?? '',
+    //   phoneNumber: phoneNumber ?? '',
+    //   pin: pin ?? '',
+    //   membertypeId: membertypeId ?? '',
+    //   membertypeanggota: membertypeanggota ?? '',
+    //   referral: referral ?? '',
+    //   adminFee: adminFee ?? 0,
+    //   monthlyMandatoryFee: monthlyMandatoryFee ?? 0,
+    //   monthlyPrincipalFee: monthlyPrincipalFee ?? 0,
     // );
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => PaymentProcess(
+                // isTopup: false,
+                // popContext: 1,
+                // isRegister: true,
+                adminFee: adminFee ?? 0,
+                monthlyMandatoryFee: monthlyMandatoryFee ?? 0,
+                monthlyPrincipalFee: monthlyPrincipalFee ?? 0,
+                tipeAnggota: membertypeanggota,
+                tipeAnggotaId: membertypeId,
+              )),
+    );
     setState(() {
       loading =
           Provider.of<ProviderRegister>(context, listen: false).loadingRegister;
@@ -343,48 +343,48 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
                                                                 )),
                                                           )
                                                         : InkWell(
-                                                          onTap: (){
-                                                            setState(() {
+                                                            onTap: () {
+                                                              setState(() {
                                                                 loading = false;
                                                               });
-                                                          },
-                                                          child: Container(
-                                                              width: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width,
-                                                              margin:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                right: 20.0,
-                                                                left: 20.0,
-                                                              ),
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .symmetric(
-                                                                      vertical:
-                                                                          15,
-                                                                      horizontal:
-                                                                          70),
-                                                              decoration: BoxDecoration(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              5),
-                                                                  color: Colors
-                                                                      .grey),
-                                                              child: Center(
-                                                                child: SizedBox(
-                                                                  height: 2.h,
-                                                                  width: 4.w,
-                                                                  child:
-                                                                      const CircularProgressIndicator(
-                                                                    color: Colors
-                                                                        .white,
-                                                                  ),
+                                                            },
+                                                            child: Container(
+                                                                width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                                margin:
+                                                                    const EdgeInsets
+                                                                        .only(
+                                                                  right: 20.0,
+                                                                  left: 20.0,
                                                                 ),
-                                                              )),
-                                                        ),
+                                                                padding: const EdgeInsets
+                                                                        .symmetric(
+                                                                    vertical:
+                                                                        15,
+                                                                    horizontal:
+                                                                        70),
+                                                                decoration: BoxDecoration(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                5),
+                                                                    color: Colors
+                                                                        .grey),
+                                                                child: Center(
+                                                                  child:
+                                                                      SizedBox(
+                                                                    height: 2.h,
+                                                                    width: 4.w,
+                                                                    child:
+                                                                        const CircularProgressIndicator(
+                                                                      color: Colors
+                                                                          .white,
+                                                                    ),
+                                                                  ),
+                                                                )),
+                                                          ),
                                                     const SizedBox(height: 30),
                                                   ],
                                                 ),

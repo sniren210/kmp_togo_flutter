@@ -5,6 +5,7 @@ import 'package:get/utils.dart';
 import 'package:kmp_togo_mobile/apis/repository.dart';
 import 'package:kmp_togo_mobile/helpers/injector.dart';
 import 'package:kmp_togo_mobile/helpers/shared_pref_manager.dart';
+import 'package:kmp_togo_mobile/helpers/user_database_helper.dart';
 import 'package:kmp_togo_mobile/pages/base.dart';
 import 'package:kmp_togo_mobile/pages/history/jenis_transaksi.dart';
 import 'package:kmp_togo_mobile/pages/home.dart';
@@ -283,6 +284,8 @@ class _ProfileState extends State<Profile> {
                           await Provider.of<ProviderAuthLogin>(context,
                                   listen: false)
                               .logout();
+
+                          await UserHelper.deleteUser();
 
                           Get.offAllNamed('/login');
                         },

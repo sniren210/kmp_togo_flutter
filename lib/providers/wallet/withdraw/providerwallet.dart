@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kmp_togo_mobile/helpers/api_helper.dart';
@@ -39,6 +40,7 @@ class ProviderWithDraw with ChangeNotifier, ApiMachine {
         notifyListeners();
       }
     } on DioError catch (e) {
+      if (kDebugMode) rethrow;
       try {
         ErrorModel data = ErrorModel.fromJson(e.response!.data);
         await customSnackbar(
@@ -46,17 +48,16 @@ class ProviderWithDraw with ChangeNotifier, ApiMachine {
         loadinggetBank = false;
         notifyListeners();
       } catch (e) {
-        final msg = e.toString();
-        print(msg);
         loading = false;
         await customSnackbar(
             type: 'error', title: 'error', text: 'Terjadi kesalahan!');
         notifyListeners();
         loadinggetBank = false;
+        rethrow;
       }
     } catch (e) {
-      print(e);
       loadinggetBank = false;
+      rethrow;
     }
   }
 
@@ -76,6 +77,7 @@ class ProviderWithDraw with ChangeNotifier, ApiMachine {
         notifyListeners();
       }
     } on DioError catch (e) {
+      if (kDebugMode) rethrow;
       try {
         ErrorModel data = ErrorModel.fromJson(e.response!.data);
         await customSnackbar(
@@ -92,8 +94,8 @@ class ProviderWithDraw with ChangeNotifier, ApiMachine {
         loadinggetBank = false;
       }
     } catch (e) {
-      print(e);
       loadinggetBank = false;
+      rethrow;
     }
   }
 

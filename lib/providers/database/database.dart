@@ -52,6 +52,10 @@ class AppDb extends _$AppDb {
     return (select(responseFromAPI)).get();
   }
 
+  Future<int> deleteResponse() async {
+    return (delete(responseFromAPI)).go();
+  }
+
   Future<int> insertResponseAPI(ResponseFromAPIData companion) async {
     return await into(responseFromAPI).insertOnConflictUpdate(companion);
   }

@@ -405,10 +405,11 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
       var date2 = outputFormat.format(date1);
 
       final body = {
-        'email': email,
+        'email': 'rendycross9@gmai.com',
         'password': password,
+        'password_confirmation': password,
         'name': name,
-        'nik': nik,
+        'nik': int.parse(nik),
         'birth_place': birthPlace,
         'birth_date': date2,
         'gender': gender,
@@ -423,8 +424,8 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
         'nationnality': nationnality,
         'city': city,
         'province': province,
-        'phone_number': phoneNumber,
-        'pin': pin,
+        'phone_number': int.parse(phoneNumber),
+        'pin': int.parse(pin),
         'member_type': membertypeanggota,
         // 'membertypeanggota': membertypeanggota,
         'referral': ' ',

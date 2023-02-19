@@ -28,11 +28,13 @@ class Helper {
     final pathCookie = path.join(dir.path, '.cookies');
 
     _dio = Dio(BaseOptions(
-        baseUrl: _baseUrl,
-        receiveDataWhenStatusError: true,
-        connectTimeout: 15 * 1000, // 15 seconds
-        receiveTimeout: 10 * 1000, // 10 seconds
-        contentType: Headers.formUrlEncodedContentType));
+      baseUrl: _baseUrl,
+      receiveDataWhenStatusError: true,
+      connectTimeout: 15 * 1000, // 15 seconds
+      receiveTimeout: 10 * 1000, // 10 seconds
+      // contentType: Headers.formUrlEncodedContentType,
+      headers: {'Accept': 'application/json'},
+    ));
     _dio.interceptors.add(
       CookieManager(
         PersistCookieJar(
@@ -43,7 +45,6 @@ class Helper {
     _dio.interceptors.add(QueuedInterceptorsWrapper(
       onRequest: (options, handler) async {
         final user = await UserHelper.getUser();
-        print(user);
 
         if (user != null) {
           if (JwtDecoder.isExpired(user.token)) {

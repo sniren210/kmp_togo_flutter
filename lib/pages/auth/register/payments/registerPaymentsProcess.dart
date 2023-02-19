@@ -227,9 +227,32 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                         ),
                                       ),
                                       const VerticalSpacer(height: 8),
+                                      const VerticalSpacer(height: 8),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 7.0, horizontal: 2.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Text(
+                                              "Kode Voucher",
+                                              style: TextStyling.w40014grey,
+                                            ),
+                                            TextField(
+                                              decoration: InputDecoration(
+                                                hintText: 'masukan voucher',
+                                                hintStyle:
+                                                    TextStyling.w30013black,
+                                                border: InputBorder.none,
+                                              ),
+                                              onChanged: (value) {},
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                       Column(
                                         children: [
-                                          const VerticalSpacer(height: 8),
                                           Padding(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 7.0, horizontal: 2.0),

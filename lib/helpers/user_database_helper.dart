@@ -14,4 +14,11 @@ class UserHelper {
 
     return LoginInfo.fromJson(jsonDecode(user.responseBody)).data;
   }
+
+  static Future<bool> deleteUser() async {
+    final db = await databaseApp.deleteResponse();
+
+    print(db);
+    return true;
+  }
 }
