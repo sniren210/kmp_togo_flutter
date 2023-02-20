@@ -259,7 +259,7 @@ class _ProfileState extends State<Profile> {
                       SettingsTile(
                         leading: Icon(Icons.people),
                         title: Text(
-                          "About us",
+                          "Tentang kmptogo",
                           style: const TextStyle(fontSize: 15),
                         ),
                         onPressed: (value) {
