@@ -8,15 +8,15 @@ import 'package:kmp_togo_mobile/helpers/shared_pref_manager.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/custom_snackbar.dart';
 import 'package:kmp_togo_mobile/main.dart';
 import 'package:kmp_togo_mobile/models/response/error/model_error.dart';
+import 'package:kmp_togo_mobile/models/wallet/balance_model.dart';
 import 'package:kmp_togo_mobile/models/wallet/historywallet/historysaldowallet.dart';
 import 'package:kmp_togo_mobile/models/wallet/withdraw/modelbankwithdraw.dart';
 import 'package:kmp_togo_mobile/pages/wallet/withdraw/withdrawsuccess.dart';
 
 class ProviderWithDraw with ChangeNotifier, ApiMachine {
   final _dio = Helper().dio;
-  ModelBankWithdraw? dataToken;
+  BalanceModel? balanceWallet;
   ModelBankWithdraw? dataMybank;
-  ModelHistorySaldoWallet? dataCoin;
   ModelHistorySaldoWallet? dataHistorySaldo;
   bool loading = false;
   bool loadinggetBank = false;
@@ -24,14 +24,14 @@ class ProviderWithDraw with ChangeNotifier, ApiMachine {
   bool loadinghistory = false;
   int? id;
 
-  getTokenWallet() async {
+  getBalanceWallet() async {
     try {
-      final res = await _dio.post('/api/v1/wallet/check-token');
+      final res = await _dio.get('/api/v1/check-balance');
       print(res.data);
       await saveResponseGet(
           res.requestOptions.path, res.statusMessage, res.data.toString());
-      if (res.data != null) {
-        dataToken = ModelBankWithdraw.fromJson(res.data);
+      if (res.data['success'] == true) {
+        balanceWallet = BalanceModel.fromJson(res.data);
         // dataToken = ModelBankWithdraw.dummy();
         // print(dataToken);
         // print('${dataToken.data?.first.id}');
@@ -54,44 +54,6 @@ class ProviderWithDraw with ChangeNotifier, ApiMachine {
         notifyListeners();
         loadinggetBank = false;
         rethrow;
-      }
-    } catch (e) {
-      loadinggetBank = false;
-      rethrow;
-    }
-  }
-
-  getCoinWallet() async {
-    try {
-      final res = await _dio.post('/api/v1/wallet/check-coin');
-      print(res.data);
-      await saveResponseGet(
-          res.requestOptions.path, res.statusMessage, res.data.toString());
-      if (res.data != null) {
-        dataCoin = ModelHistorySaldoWallet.fromJson(res.data);
-        // dataToken = ModelBankWithdraw.dummy();
-        // print(dataToken);
-        // print('${dataToken.data?.first.id}');
-        // id = dataToken.data?.first.id;
-        loadinggetBank = false;
-        notifyListeners();
-      }
-    } on DioError catch (e) {
-      if (kDebugMode) rethrow;
-      try {
-        ErrorModel data = ErrorModel.fromJson(e.response!.data);
-        await customSnackbar(
-            type: 'error', title: 'error', text: data.error.toString());
-        loadinggetBank = false;
-        notifyListeners();
-      } catch (e) {
-        final msg = e.toString();
-        print(msg);
-        loading = false;
-        await customSnackbar(
-            type: 'error', title: 'error', text: 'Terjadi kesalahan!');
-        notifyListeners();
-        loadinggetBank = false;
       }
     } catch (e) {
       loadinggetBank = false;
@@ -260,7 +222,7 @@ class ProviderWithDraw with ChangeNotifier, ApiMachine {
           res.requestOptions.path, res.statusMessage, res.data.toString());
 
       // dataHistorySaldo = ModelHistorySaldoWallet.fromJson(res.data);
-      dataCoin = ModelHistorySaldoWallet().dummy();
+      dataHistorySaldo = ModelHistorySaldoWallet().dummy();
 
       loadinggetBank = false;
       notifyListeners();

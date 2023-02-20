@@ -405,7 +405,7 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
       var date2 = outputFormat.format(date1);
 
       final body = {
-        'email': 'rendycross9@gmai.com',
+        'email': email,
         'password': password,
         'password_confirmation': password,
         'name': name,
@@ -428,7 +428,7 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
         'pin': int.parse(pin),
         'member_type': membertypeanggota,
         // 'membertypeanggota': membertypeanggota,
-        'referral': ' ',
+        // 'referral': ' ',
       };
       // final body1 = {"email": email, "password": password};
 
@@ -440,7 +440,7 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
           res.data.toString(), body.toString());
 
       print(res.data);
-      if (res.data['data'] == 'success') {
+      if (res.data['success'] == true) {
         // final resa = await _dio.post('/v1/auth/login', data: body1);
 
         // await saveResponsePost(res.requestOptions.path, res.statusMessage,

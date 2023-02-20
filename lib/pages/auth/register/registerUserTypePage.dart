@@ -74,49 +74,48 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
     setState(() {
       loading = false;
     });
-    // await Provider.of<ProviderRegister>(context, listen: false).registerPost(
-    //   context,
-    //   email: email ?? '',
-    //   password: password ?? '',
-    //   name: name ?? '',
-    //   nik: nik ?? '',
-    //   birthdate: birthdate ?? '',
-    //   birthPlace: pob ?? '',
-    //   gender: gender ?? '',
-    //   address: address ?? '',
-    //   rt: rt ?? '',
-    //   rw: rw ?? '',
-    //   village: village ?? '',
-    //   subdistrict: subdistrictId ?? '',
-    //   religion: religion ?? '',
-    //   maritalStatus: status ?? '',
-    //   work: work ?? '',
-    //   nationnality: nationnality ?? '',
-    //   city: cityId ?? '',
-    //   province: provinceId ?? '',
-    //   phoneNumber: phoneNumber ?? '',
-    //   pin: pin ?? '',
-    //   membertypeId: membertypeId ?? '',
-    //   membertypeanggota: membertypeanggota ?? '',
-    //   referral: referral ?? '',
-    //   adminFee: adminFee ?? 0,
-    //   monthlyMandatoryFee: monthlyMandatoryFee ?? 0,
-    //   monthlyPrincipalFee: monthlyPrincipalFee ?? 0,
-    // );
-    Navigator.push(
+    await Provider.of<ProviderRegister>(context, listen: false).registerPost(
       context,
-      MaterialPageRoute(
-          builder: (context) => PaymentProcess(
-                // isTopup: false,
-                // popContext: 1,
-                // isRegister: true,
-                adminFee: adminFee ?? 0,
-                monthlyMandatoryFee: monthlyMandatoryFee ?? 0,
-                monthlyPrincipalFee: monthlyPrincipalFee ?? 0,
-                tipeAnggota: membertypeanggota,
-                tipeAnggotaId: membertypeId,
-              )),
+      email: email ?? '',
+      password: password ?? '',
+      name: name ?? '',
+      nik: nik ?? '',
+      birthdate: birthdate ?? '',
+      birthPlace: pob ?? '',
+      gender: gender ?? '',
+      address: address ?? '',
+      rt: rt ?? '',
+      rw: rw ?? '',
+      village: village ?? '',
+      subdistrict: subdistrictId ?? '',
+      religion: religion ?? '',
+      maritalStatus: status ?? '',
+      work: work ?? '',
+      nationnality: nationnality ?? '',
+      city: cityId ?? '',
+      province: provinceId ?? '',
+      phoneNumber: phoneNumber ?? '',
+      pin: pin ?? '',
+      membertypeId: membertypeId ?? '',
+      membertypeanggota: membertypeanggota ?? '',
+      referral: referral ?? '',
+      adminFee: adminFee ?? 0,
+      monthlyMandatoryFee: monthlyMandatoryFee ?? 0,
+      monthlyPrincipalFee: monthlyPrincipalFee ?? 0,
     );
+
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => PaymentProcess(
+    //       adminFee: adminFee ?? 0,
+    //       monthlyMandatoryFee: monthlyMandatoryFee ?? 0,
+    //       monthlyPrincipalFee: monthlyPrincipalFee ?? 0,
+    //       tipeAnggota: membertypeanggota,
+    //       tipeAnggotaId: membertypeId,
+    //     ),
+    //   ),
+    // );
     setState(() {
       loading =
           Provider.of<ProviderRegister>(context, listen: false).loadingRegister;

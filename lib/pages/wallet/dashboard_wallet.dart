@@ -64,7 +64,7 @@ class _DashboardWalletState extends State<DashboardWallet>
   getMyHistorySaldo() async {
     final _getTokenProvider =
         Provider.of<ProviderWithDraw>(context, listen: false);
-    await _getTokenProvider.getTokenWallet();
+    await _getTokenProvider.getBalanceWallet();
 
     loading = _getTokenProvider.loadinghistory;
   }
@@ -135,8 +135,7 @@ class _DashboardWalletState extends State<DashboardWallet>
                                                     fontSize: 9.sp),
                                               )
                                             : Text(
-                                                'Poin : ${getNumberFormatSeparator(0)}',
-                                                // 'Poin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
+                                                'Poin : ${getNumberFormatSeparator(double.parse(v.balanceWallet?.data.point ?? '0'))}',
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w700,
                                                     color: Colors.white,
@@ -329,8 +328,7 @@ class _DashboardWalletState extends State<DashboardWallet>
                                               fontSize: 17.sp),
                                         )
                                       : Text(
-                                          'Poin : ${getNumberFormatSeparator(0)}',
-                                          // 'Poin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
+                                          'Poin : ${getNumberFormatSeparator(double.parse(v.balanceWallet?.data.point ?? '0'))}',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               color: Colors.black,

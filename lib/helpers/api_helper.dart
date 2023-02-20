@@ -32,8 +32,8 @@ class Helper {
       receiveDataWhenStatusError: true,
       connectTimeout: 15 * 1000, // 15 seconds
       receiveTimeout: 10 * 1000, // 10 seconds
-      // contentType: Headers.formUrlEncodedContentType,
-      headers: {'Accept': 'application/json'},
+      contentType: Headers.formUrlEncodedContentType,
+      // headers: {'Accept': 'application/json'},
     ));
     _dio.interceptors.add(
       CookieManager(

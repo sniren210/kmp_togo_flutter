@@ -50,7 +50,7 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
   getMyHistorySaldo() async {
     final _getCoinProvider =
         Provider.of<ProviderWithDraw>(context, listen: false);
-    await _getCoinProvider.getCoinWallet();
+    await _getCoinProvider.getBalanceWallet();
     setState(() {
       loading = _getCoinProvider.loadinghistory;
     });
@@ -126,8 +126,7 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
                                                     fontSize: 9.sp),
                                               )
                                             : Text(
-                                                'coin : ${getNumberFormatSeparator(0)}',
-                                                // 'coin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
+                                                'coin : ${getNumberFormatSeparator(double.parse(v.balanceWallet?.data.point ?? '0'))}',
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w700,
                                                     color: Colors.white,
@@ -278,8 +277,7 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
                                               fontSize: 17.sp),
                                         )
                                       : Text(
-                                          'coin : ${getNumberFormatSeparator(0)}',
-                                          // 'coin : ${getNumberFormatSeparator(model.items!.data.tokenWallet.token)}',
+                                          'coin : ${getNumberFormatSeparator(double.parse(v.balanceWallet?.data.point ?? '0'))}',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               color: Colors.black,
