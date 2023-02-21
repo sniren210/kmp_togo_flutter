@@ -17,6 +17,7 @@ import 'package:kmp_togo_mobile/models/modelprovinsi.dart';
 import 'package:kmp_togo_mobile/models/modeltipeanggota.dart';
 import 'package:kmp_togo_mobile/models/myinfo/modelinforegister.dart';
 import 'package:kmp_togo_mobile/models/register/modelktp.dart';
+import 'package:kmp_togo_mobile/models/register/payment_create.dart';
 import 'package:kmp_togo_mobile/models/response/error/model_error.dart';
 import 'package:kmp_togo_mobile/pages/auth/register/registerIdValidationPage.dart';
 import 'package:kmp_togo_mobile/pages/auth/register/registerOtpPage.dart';
@@ -35,6 +36,7 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
   ModelTipeAnggota? dataTipeAnggota;
   ModelSelectMemberID? dataMemberID;
   ModelInfoRegister? dataMyinfo;
+  PaymentCreateModel? dataPayment;
   bool? loadingOtp = false;
   bool? loadingKodeOtp = false;
   bool? loadingOcrKtp = false;
@@ -154,23 +156,6 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
       print('res: ${res.data['data']}');
       if (res.data['success'] == true) {
         dataktp = ModelKtpData.fromJson(res.data);
-
-        print(dataktp!.data!.id != '');
-        print(dataktp!.data!.name != '');
-        print(dataktp!.data!.dob != '');
-        print(dataktp!.data!.province != '');
-        print(dataktp!.data!.city != '');
-        print(dataktp!.data!.village != '');
-        print(dataktp!.data!.address != '');
-        print(dataktp!.data!.pob != '');
-        print(dataktp!.data!.religion != '');
-        print(dataktp!.data!.maritalStatus != '');
-        print(dataktp!.data!.work != '');
-        print(dataktp!.data!.gender != '');
-        print(dataktp!.data!.nationnality != '');
-        print(dataktp!.data!.village != '');
-        print(dataktp!.data!.rt != '');
-        print(dataktp!.data!.rw != '');
 
         if (dataktp!.data!.id != '' &&
             dataktp!.data!.name != '' &&
@@ -472,6 +457,39 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
       print(e.response);
       print(e.message);
       print(e.error);
+      if (kDebugMode) rethrow;
+      try {
+        ErrorModel data = ErrorModel.fromJson(e.response!.data);
+        await customSnackbar(
+            type: 'error', title: 'error', text: data.error.toString());
+      } catch (e) {
+        await customSnackbar(
+            type: 'error', title: 'error', text: 'Terjadi kesalahan!');
+        rethrow;
+      }
+    }
+  }
+
+  createPayment(
+    context, {
+    required String role,
+  }) async {
+    try {
+      final res =
+          await _dio.post('/api/v1/create-payment', data: {'role': role});
+
+      await saveResponsePost(
+          res.requestOptions.path, res.statusMessage, res.data.toString(), '');
+
+      print(res.data);
+      if (res.data['success'] == true) {
+        dataPayment = PaymentCreateModel.fromJson(res.data);
+        notifyListeners();
+      } else {
+        loadingRegister = false;
+        notifyListeners();
+      }
+    } on DioError catch (e) {
       if (kDebugMode) rethrow;
       try {
         ErrorModel data = ErrorModel.fromJson(e.response!.data);

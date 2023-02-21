@@ -70,19 +70,6 @@ class _PaymentProcessState extends State<PaymentProcess> {
     super.initState();
 
     loadSharedPref();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      submitRegister();
-    });
-  }
-
-  submitRegister() async {
-    await Provider.of<ProviderRegister>(context, listen: false)
-        .selectmemberid(widget.tipeAnggotaId);
-    setState(() {
-      loading =
-          Provider.of<ProviderRegister>(context, listen: false).loadingmemberid;
-    });
   }
 
   final SharedPreferencesManager sharedPreferencesManager =
