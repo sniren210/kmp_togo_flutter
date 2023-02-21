@@ -145,7 +145,7 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
     }
   }
 
-  validate_ocrktp(context, File image) async {
+  Future<bool> validate_ocrktp(context, File image) async {
     try {
       final res = await _dio.post('/api/v1/ktp-ocr',
           data: {'image': base64Encode(await image.readAsBytes())});
@@ -210,11 +210,7 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
               SharedPreferencesManager.rt, dataktp?.data?.rt ?? "");
           await sharedPreferencesManager.setString(
               SharedPreferencesManager.rw, dataktp?.data?.rw ?? "");
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const RegisterIdValidationPage()),
-          );
+          return true;
         } else {
           loadingKodeOtp = false;
           await customSnackbar(
@@ -223,9 +219,9 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
               text:
                   'Data KTP tidak terbaca, silahkan coba retake foto kembali');
           notifyListeners();
-        }
 
-        notifyListeners();
+          return false;
+        }
       } else {
         loadingKodeOtp = false;
         await customSnackbar(
@@ -233,17 +229,20 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
             title: res.data['data']['status'],
             text: res.data['data']['message']);
         notifyListeners();
+        return false;
       }
     } on DioError catch (e) {
       try {
         ErrorModel data = ErrorModel.fromJson(e.response!.data);
         await customSnackbar(
             type: 'error', title: 'error', text: data.error.toString());
+        return false;
       } catch (e) {
         final msg = e.toString();
         print(msg);
         await customSnackbar(
             type: 'error', title: 'error', text: 'Terjadi kesalahan!');
+        return false;
       }
     }
   }

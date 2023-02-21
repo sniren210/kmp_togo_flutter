@@ -9,6 +9,7 @@ import 'package:kmp_togo_mobile/pages/auth/register/registerOtpPage.dart';
 import 'package:kmp_togo_mobile/pages/auth/register/registerPage.dart';
 import 'package:kmp_togo_mobile/pages/auth/register/registerUserTypePage.dart';
 import 'package:kmp_togo_mobile/pages/common/takePictures.dart';
+import 'package:kmp_togo_mobile/pages/scan/camera.dart';
 import 'package:kmp_togo_mobile/providers/apitext/providerapitext.dart';
 import 'package:kmp_togo_mobile/providers/auth/provider_auth.dart';
 import 'package:kmp_togo_mobile/providers/database/database.dart';
@@ -328,13 +329,13 @@ class _LoginPagesState extends State<LoginPages> {
                                   right: 20.0, left: 20.0, top: 40),
                               child: InkWell(
                                 onTap: () async {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) =>
-                                  //           const RegisterMemberTypePage()),
-                                  // );
-                                  _submit();
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const CameraIDCardOverlay()),
+                                  );
+                                  // _submit();
                                 },
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
