@@ -29,6 +29,7 @@ import 'package:kmp_togo_mobile/pages/wallet/withdraw/withdrawpages.dart';
 import 'package:kmp_togo_mobile/providers/apitext/providerapitext.dart';
 import 'package:kmp_togo_mobile/providers/cart/cart_provider.dart';
 import 'package:kmp_togo_mobile/providers/product/provider_product.dart';
+import 'package:kmp_togo_mobile/providers/wallet/withdraw/providerwallet.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
@@ -50,6 +51,7 @@ class DashboardNew extends StatefulWidget {
 class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
   bool? loading = true;
   bool? loadingbanner = true;
+  bool? loadingBalance = true;
 
   @override
   void initState() {
@@ -62,11 +64,17 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
       final getkategoriProvider =
           Provider.of<ProviderNft>(context, listen: false);
       await getkategoriProvider.getAllNFT(context);
+
+      final _getTokenProvider =
+          Provider.of<ProviderWithDraw>(context, listen: false);
+      await _getTokenProvider.getBalanceWallet();
+
       cektanggal();
       print(getkategoriProvider.loadinggetNFTALL);
       setState(() {
         loading = getkategoriProvider.loadinggetNFTALL;
         loadingbanner = getApiTextLogin.loadinbanner;
+        loadingBalance = _getTokenProvider.loadinghistory;
       });
     });
 
@@ -416,7 +424,8 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                           'Trader' ||
                                                       model.items!.user.roles
                                                               .first.name ==
-                                                          'Produsen') {
+                                                          'Produsen' ||
+                                                      true) {
                                                     Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
@@ -438,7 +447,8 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                           'Trader' ||
                                                       model.items!.user.roles
                                                               .first.name ==
-                                                          'Produsen') {
+                                                          'Produsen' ||
+                                                      true) {
                                                     Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
@@ -452,8 +462,9 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                 cardmenu('NFT', Icons.layers,
                                                     () {
                                                   if (model.items!.user.roles
-                                                          .first.name ==
-                                                      'konsumen1') {
+                                                              .first.name ==
+                                                          'konsumen1' ||
+                                                      true) {
                                                     Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
@@ -480,7 +491,8 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                           'trader' ||
                                                       model.items!.user.roles
                                                               .first.name ==
-                                                          'umkm') {
+                                                          'umkm' ||
+                                                      true) {
                                                     Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
@@ -558,46 +570,6 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                                     'pdam')),
                                                   );
                                                 }),
-                                                // cardmenu('E-Money',
-                                                //     Icons.credit_card_rounded, () {
-                                                //   Navigator.push(
-                                                //     context,
-                                                //     MaterialPageRoute(
-                                                //         builder: (context) =>
-                                                //             InputPPOBWithoutNumber(
-                                                //               title: 'e-Money',
-                                                //               product_type:
-                                                //                   'emoney',
-                                                //             )),
-                                                //   );
-                                                // }),
-                                                // cardmenu('Internet', Icons.wifi,
-                                                //     () {
-                                                //   Navigator.push(
-                                                //     context,
-                                                //     MaterialPageRoute(
-                                                //         builder: (context) =>
-                                                //             InputPPOBWithoutNumber(
-                                                //               title: 'Internet',
-                                                //               product_type:
-                                                //                   'internet',
-                                                //             )),
-                                                //   );
-                                                // }),
-                                                // model.items!.data.role ==
-                                                //             'trader' ||
-                                                //         model.items!.data
-                                                //                 .membertype ==
-                                                //             'konsumen1'||
-                                                //         model.items!.data
-                                                //                 .membertype ==
-                                                //             'konsumen2'
-                                                //     ? cardmenu(
-                                                //         'Lainnya', Icons.more_horiz,
-                                                //         () {
-                                                //         klikBottom();
-                                                //       })
-                                                //     : Container(),
                                                 cardmenu(
                                                     'Lainnya', Icons.more_horiz,
                                                     () {
@@ -627,7 +599,8 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                 child: Column(
                                   children: [
                                     model.items!.user.roles.first.name ==
-                                            'konsumen1'
+                                                'konsumen1' ||
+                                            true
                                         ? Column(
                                             children: [
                                               Container(
@@ -826,7 +799,8 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                 'Trader' ||
                                             model.items!.user.roles.first
                                                     .name ==
-                                                'umkm'
+                                                'umkm' ||
+                                            true
                                         ? Column(
                                             children: [
                                               const VerticalSpacer(height: 20),
@@ -1164,230 +1138,237 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                   ],
                                 ),
                               ),
-                        Container(
-                          padding: EdgeInsets.only(
-                            left: 2.w,
-                            right: 2.w,
-                          ),
-                          margin:
-                              EdgeInsets.only(left: 4.w, right: 4.w, top: 22.h),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(5)),
-                          child: IntrinsicHeight(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  flex: 4,
-                                  child: Container(
-                                    margin:
-                                        EdgeInsets.only(top: 2.h, bottom: 2.h),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Icon(
-                                                  Icons.wallet,
-                                                  size: 9.w,
-                                                  color:
-                                                      const Color(0xFF85014e),
-                                                ),
-                                                SizedBox(
-                                                  width: 2.w,
-                                                ),
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    model.busy
-                                                        ? Text(
-                                                            '....',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black54,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize:
-                                                                    12.sp),
-                                                          )
-                                                        : Text(
-                                                            calcSaparator(
-                                                                12000),
-                                                            // calcSaparator(model
-                                                            //     .items!.
-                                                            //     .tokenWallet
-                                                            //     .token),
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black54,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize:
-                                                                    10.sp),
-                                                          ),
-                                                    SizedBox(
-                                                      height: 1.w,
-                                                    ),
-                                                    Text(
-                                                      'Saldo Poin',
-                                                      style: TextStyle(
-                                                          color: Colors.black54,
-                                                          fontSize: 9.sp),
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const Expanded(
-                                  flex: 1,
-                                  child: VerticalDivider(
-                                    color: Colors.black,
-                                    thickness: 1,
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 4,
-                                  child: Container(
-                                    margin:
-                                        EdgeInsets.only(top: 2.h, bottom: 2.h),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Container(
-                                                  width: 10.w,
-                                                  height: 4.h,
-                                                  decoration: const BoxDecoration(
-                                                      image: DecorationImage(
-                                                          fit: BoxFit.contain,
-                                                          image: AssetImage(
-                                                              'assets/images/logon.jpg'))),
-                                                  // child: Icon(
-                                                  //   Icons.monetization_on,
-                                                  //   size: 9.w,
-                                                  //   color:
-                                                  //       Color(0xFF85014e),
-                                                  // ),
-                                                ),
-                                                SizedBox(
-                                                  width: 2.w,
-                                                ),
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    model.busy
-                                                        ? Text(
-                                                            '....',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black54,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize:
-                                                                    12.sp),
-                                                          )
-                                                        : Text(
-                                                            calcSaparator(
-                                                                12220),
-                                                            // calcSaparator(model
-                                                            //     .items!
-                                                            //     .data
-                                                            //     .coinWallet
-                                                            //     .coin),
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black54,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize:
-                                                                    10.sp),
-                                                          ),
-                                                    SizedBox(
-                                                      height: 1.w,
-                                                    ),
-                                                    Text(
-                                                      'Saldo Coin',
-                                                      style: TextStyle(
-                                                          color: Colors.black54,
-                                                          fontSize: 9.sp),
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const Expanded(
-                                  flex: 1,
-                                  child: VerticalDivider(
-                                    color: Colors.black,
-                                    thickness: 1,
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => BeliToGo()),
-                                    );
-                                  },
-                                  child: Container(
-                                    margin:
-                                        EdgeInsets.only(top: 2.h, bottom: 2.h),
-                                    child: Icon(Icons.swap_horiz,
-                                        color: Theme.of(context).primaryColor),
-                                  ),
-                                ),
-                              ],
+                        Consumer<ProviderWithDraw>(
+                            builder: (context, v, child) {
+                          return Container(
+                            padding: EdgeInsets.only(
+                              left: 2.w,
+                              right: 2.w,
                             ),
-                          ),
-                        ),
+                            margin: EdgeInsets.only(
+                                left: 4.w, right: 4.w, top: 22.h),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5)),
+                            child: IntrinsicHeight(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    flex: 4,
+                                    child: Container(
+                                      margin: EdgeInsets.only(
+                                          top: 2.h, bottom: 2.h),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Icon(
+                                                    Icons.wallet,
+                                                    size: 9.w,
+                                                    color:
+                                                        const Color(0xFF85014e),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 2.w,
+                                                  ),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      loadingBalance ?? true
+                                                          ? Text(
+                                                              '....',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black54,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontSize:
+                                                                      12.sp),
+                                                            )
+                                                          : Text(
+                                                              calcSaparator(
+                                                                  double.parse(v
+                                                                          .balanceWallet
+                                                                          ?.data
+                                                                          .point ??
+                                                                      '0')),
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black54,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontSize:
+                                                                      10.sp),
+                                                            ),
+                                                      SizedBox(
+                                                        height: 1.w,
+                                                      ),
+                                                      Text(
+                                                        'Saldo Poin',
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black54,
+                                                            fontSize: 9.sp),
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const Expanded(
+                                    flex: 1,
+                                    child: VerticalDivider(
+                                      color: Colors.black,
+                                      thickness: 1,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 4,
+                                    child: Container(
+                                      margin: EdgeInsets.only(
+                                          top: 2.h, bottom: 2.h),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Container(
+                                                    width: 10.w,
+                                                    height: 4.h,
+                                                    decoration: const BoxDecoration(
+                                                        image: DecorationImage(
+                                                            fit: BoxFit.contain,
+                                                            image: AssetImage(
+                                                                'assets/images/logon.jpg'))),
+                                                    // child: Icon(
+                                                    //   Icons.monetization_on,
+                                                    //   size: 9.w,
+                                                    //   color:
+                                                    //       Color(0xFF85014e),
+                                                    // ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 2.w,
+                                                  ),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      loadingBalance ?? true
+                                                          ? Text(
+                                                              '....',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black54,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontSize:
+                                                                      12.sp),
+                                                            )
+                                                          : Text(
+                                                              calcSaparator(
+                                                                  double.parse(v
+                                                                          .balanceWallet
+                                                                          ?.data
+                                                                          .coin ??
+                                                                      '0')),
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black54,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontSize:
+                                                                      10.sp),
+                                                            ),
+                                                      SizedBox(
+                                                        height: 1.w,
+                                                      ),
+                                                      Text(
+                                                        'Saldo Coin',
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black54,
+                                                            fontSize: 9.sp),
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const Expanded(
+                                    flex: 1,
+                                    child: VerticalDivider(
+                                      color: Colors.black,
+                                      thickness: 1,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => BeliToGo()),
+                                      );
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.only(
+                                          top: 2.h, bottom: 2.h),
+                                      child: Icon(Icons.swap_horiz,
+                                          color:
+                                              Theme.of(context).primaryColor),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
                       ],
                     ),
                   ),

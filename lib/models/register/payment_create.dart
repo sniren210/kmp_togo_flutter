@@ -68,7 +68,7 @@ class Data {
   String status;
   DateTime createAt;
   DateTime expiresAt;
-  String id;
+  int id;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         uuid: json["uuid"],
@@ -76,14 +76,14 @@ class Data {
         name: json["name"],
         accountNumber: json["account_number"],
         procode: json["procode"],
-        merchatTrxId: json["merchat_trx_id"],
+        merchatTrxId: json["merchant_trx_id"],
         transactionId: json["transaction_id"],
         additionalData: json["additional_data"],
-        merchatId: json["merchat_id"],
+        merchatId: json["merchant_id"],
         amount: json["amount"],
         flagAmount: json["flag_amount"],
         status: json["status"],
-        createAt: DateTime.parse(json["create_at"]),
+        createAt: DateTime.parse(json["created_at"]),
         expiresAt: DateTime.parse(json["expires_at"]),
         id: json["id"],
       );

@@ -113,7 +113,8 @@ class _ProfileState extends State<Profile> {
                           token: 0,
                           // token: model.items!.user.tokenWallet.token,
                           memberType: model.items!.user.roles.first.name,
-                          status: model.items!.user.status.toLowerCase(),
+                          status:
+                              (model.items!.user.status ?? '').toLowerCase(),
                         ),
                       ),
                     ),

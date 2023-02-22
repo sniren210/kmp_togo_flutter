@@ -61,7 +61,9 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => const RegisterMemberTypePage()),
+                builder: (context) => RegisterMemberTypePage(
+                      loginIn: dataMyinfo,
+                    )),
           );
         }
       } else {}

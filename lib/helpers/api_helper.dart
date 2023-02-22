@@ -22,6 +22,8 @@ class Helper {
 
   late Dio _dio;
   Dio get dio => _dio;
+  late Dio _dio2;
+  Dio get dio2 => _dio2;
 
   Future<void> init() async {
     final dir = await pathProvider.getApplicationDocumentsDirectory();
@@ -57,6 +59,29 @@ class Helper {
     ));
 
     (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+        (HttpClient dioClient) {
+      dioClient.badCertificateCallback =
+          ((X509Certificate cert, String host, int port) => true);
+      return dioClient;
+    };
+
+    _dio2 = Dio(BaseOptions(
+      baseUrl: _baseUrl,
+      receiveDataWhenStatusError: true,
+      connectTimeout: 15 * 1000, // 15 seconds
+      receiveTimeout: 10 * 1000, // 10 seconds
+      contentType: Headers.formUrlEncodedContentType,
+      // headers: {'Accept': 'application/json'},
+    ));
+    _dio2.interceptors.add(
+      CookieManager(
+        PersistCookieJar(
+          storage: FileStorage(pathCookie),
+        ),
+      ),
+    );
+
+    (_dio2.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (HttpClient dioClient) {
       dioClient.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);

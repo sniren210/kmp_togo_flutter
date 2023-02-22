@@ -79,7 +79,7 @@ class User {
   DateTime createdAt;
   DateTime updatedAt;
   dynamic deletedAt;
-  String status;
+  String? status;
   List<Role> roles;
   CurrentMember currentMember;
 

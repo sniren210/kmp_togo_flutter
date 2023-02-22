@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:get/get.dart';
 import 'package:kmp_togo_mobile/helpers/injector.dart';
+import 'package:kmp_togo_mobile/helpers/ui_helper/custom_snackbar.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/spacer.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/textStyling.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,16 +21,20 @@ import '../../../../helpers/shared_pref_manager.dart';
 // import 'package:size_config/size_config.dart';
 
 class PaymentProcess extends StatefulWidget {
-  final String? tipeAnggota;
-  final String? tipeAnggotaId;
+  final String tipeAnggota;
+  final String tipeAnggotaId;
+  // final String role;
+  final String token;
   final int adminFee;
   final int monthlyPrincipalFee;
   final int monthlyMandatoryFee;
 
   PaymentProcess({
     Key? key,
-    this.tipeAnggota,
-    this.tipeAnggotaId,
+    required this.tipeAnggota,
+    required this.tipeAnggotaId,
+    // required this.role,
+    required this.token,
     this.adminFee = 0,
     this.monthlyPrincipalFee = 0,
     this.monthlyMandatoryFee = 0,
@@ -69,7 +75,17 @@ class _PaymentProcessState extends State<PaymentProcess> {
   void initState() {
     super.initState();
 
-    loadSharedPref();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      loadSharedPref();
+
+      final getApiTextLogin =
+          Provider.of<ProviderRegister>(context, listen: false);
+      await getApiTextLogin.createPayment(context,
+          token: widget.token, role: widget.tipeAnggota);
+      setState(() {
+        loading = getApiTextLogin.loadingPayment;
+      });
+    });
   }
 
   final SharedPreferencesManager sharedPreferencesManager =
@@ -138,21 +154,24 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text(
-                                              DateFormat('dd-MM-yyyy')
-                                                  .format(DateTime.now()),
-                                              // dateConvert(v.dataMemberID?.data
-                                              //         ?.va?.expireAt) ??
-                                              //     "",
-                                              style: TextStyling.bold13black,
-                                            ),
-                                            Text(
-                                              DateFormat('dd-MM-yyyy')
-                                                  .format(DateTime.now()),
-                                              // dateConvert2(v.dataMemberID?.data
-                                              //     ?.va?.expireAt),
-                                              style: TextStyling.bold13black,
-                                            ),
+                                            if (v.dataPayment?.data.createAt !=
+                                                null)
+                                              Text(
+                                                DateFormat('dd-MM-yyyy').format(
+                                                    v.dataPayment!.data
+                                                        .createAt),
+                                                style: TextStyling.bold13black,
+                                              ),
+                                            if (v.dataPayment?.data.createAt !=
+                                                null)
+                                              Text(
+                                                DateFormat('dd-MM-yyyy').format(
+                                                    v.dataPayment!.data
+                                                        .expiresAt),
+                                                // dateConvert2(v.dataMemberID?.data
+                                                //     ?.va?.expireAt),
+                                                style: TextStyling.bold13black,
+                                              ),
                                           ],
                                         ),
                                       ),
@@ -183,7 +202,7 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                             ),
                                             const VerticalSpacer(height: 10),
                                             Text(
-                                              name ?? '',
+                                              v.dataPayment?.data.name ?? '',
                                               style:
                                                   TextStyling.w600bold16black,
                                             ),
@@ -206,7 +225,7 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                             ),
                                             const VerticalSpacer(height: 10),
                                             Text(
-                                              widget.tipeAnggota ?? "",
+                                              widget.tipeAnggota,
                                               style:
                                                   TextStyling.w600bold16black,
                                             ),
@@ -422,9 +441,8 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                                 const VerticalSpacer(
                                                     height: 10),
                                                 Text(
-                                                  v.dataMemberID?.data?.va
-                                                          ?.vanumber
-                                                          .toString() ??
+                                                  v.dataPayment?.data
+                                                          .accountNumber ??
                                                       "",
                                                   style: TextStyling
                                                       .w600bold16black,
@@ -480,7 +498,36 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                           ),
                                         ))
                                     : InkWell(
-                                        onTap: () {},
+                                        onTap: () async {
+                                          final rs = await Provider.of<
+                                                      ProviderRegister>(context,
+                                                  listen: false)
+                                              .checkPayment(context,
+                                                  token: widget.token,
+                                                  uuid: v.dataPayment?.data
+                                                          .uuid ??
+                                                      '');
+
+                                          if (rs) {
+                                            await sharedPreferencesManager
+                                                .setBool(
+                                                    SharedPreferencesManager
+                                                        .isLoggedIn,
+                                                    true);
+                                            await customSnackbar(
+                                                type: 'success',
+                                                title: 'berhasil',
+                                                text:
+                                                    'Selamat anda telah membayar iuran pertama');
+                                            Get.offAllNamed('/home');
+                                          } else {
+                                            await customSnackbar(
+                                                type: 'error',
+                                                title: 'gagal',
+                                                text:
+                                                    'Selesaikan pembayaran Anda terlebih dahulu!');
+                                          }
+                                        },
                                         child: Container(
                                           height: 49.h,
                                           width:

@@ -29,6 +29,7 @@ import '../../pages/auth/register/payments/registerPaymentsProcess.dart';
 
 class ProviderRegister with ChangeNotifier, ApiMachine {
   final _dio = Helper().dio;
+  final _dio2 = Helper().dio2;
   ModelProvinsi? dataProvinsi;
   ModelKota? dataKota;
   ModelKecamatan? dataKecamatan;
@@ -43,6 +44,7 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
   bool? loadingRegister = false;
   bool? loadingmemberid = false;
   bool? loadinggetMyInfo = false;
+  bool? loadingPayment = false;
   int countOtp = 0;
 
   setCountOtp(data) {
@@ -390,30 +392,51 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
       var date2 = outputFormat.format(date1);
 
       final body = {
+        // 'email': 'example9@gmail.com',
         'email': email,
+        // 'password': 'Sniren123',
         'password': password,
+        // 'password_confirmation': 'Sniren123',
         'password_confirmation': password,
+        // 'name': 'RENDI DWIKURNIASANDI',
         'name': name,
+        // 'nik': 3210192010031221,
         'nik': int.parse(nik),
+        // 'birth_place': 'MAJALENGKA',
         'birth_place': birthPlace,
+        // 'birth_date': '20-10-2002',
         'birth_date': date2,
+        // 'gender': 'LAKI-LAKI',
         'gender': gender,
+        // 'address': 'DUSUN MAJAMULIA',
         'address': address,
+        // 'rt': '004',
         'rt': rt,
+        // 'rw': '002',
         'rw': rw,
+        // 'village': 'MAJASUKA',
         'village': village,
+        // 'district': 'PALASAH',
         'district': subdistrict,
+        // 'religion': 'ISLAM',
         'religion': religion,
+        // 'marital_status': 'BELUM KAWIN',
         'marital_status': maritalStatus,
+        // 'work': 'PELAJAR/MAHASISWA',
         'work': work,
+        // 'nationnality': 'WNI',
         'nationnality': nationnality,
+        // 'city': 'KABUPATEN MAJALENGKA',
         'city': city,
+        // 'province': 'JAWA BARAT',
         'province': province,
+        // 'phone_number': 123456,
         'phone_number': int.parse(phoneNumber),
+        // 'pin': 123456,
         'pin': int.parse(pin),
+        // 'member_type': 'Trader',
         'member_type': membertypeanggota,
-        // 'membertypeanggota': membertypeanggota,
-        // 'referral': ' ',
+        'referral': referral,
       };
       // final body1 = {"email": email, "password": password};
 
@@ -426,27 +449,9 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
 
       print(res.data);
       if (res.data['success'] == true) {
-        // final resa = await _dio.post('/v1/auth/login', data: body1);
-
-        // await saveResponsePost(res.requestOptions.path, res.statusMessage,
-        //     res.data.toString(), body.toString());
-
-        // if (resa.data['data'] == 'success') {
-        // await sharedPreferencesManager.setBool(
-        //     SharedPreferencesManager.isLoggedIn, true);
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => PaymentProcess(
-                    adminFee: adminFee,
-                    monthlyPrincipalFee: monthlyPrincipalFee,
-                    monthlyMandatoryFee: monthlyMandatoryFee,
-                    tipeAnggota: membertypeanggota,
-                    tipeAnggotaId: membertypeId,
-                  )),
-        );
-        // }
-        notifyListeners();
+        await customSnackbar(
+            type: 'success', title: 'Berhasil', text: 'Akun sudah terbuat');
+        return res.data;
       } else {
         loadingRegister = false;
         notifyListeners();
@@ -472,11 +477,20 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
 
   createPayment(
     context, {
+    required String token,
     required String role,
   }) async {
     try {
-      final res =
-          await _dio.post('/api/v1/create-payment', data: {'role': role});
+      print(token);
+      final res = await _dio.post(
+        '/api/v1/create-payment',
+        data: {'role': role},
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
 
       await saveResponsePost(
           res.requestOptions.path, res.statusMessage, res.data.toString(), '');
@@ -486,7 +500,7 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
         dataPayment = PaymentCreateModel.fromJson(res.data);
         notifyListeners();
       } else {
-        loadingRegister = false;
+        loadingPayment = false;
         notifyListeners();
       }
     } on DioError catch (e) {
@@ -500,7 +514,58 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
             type: 'error', title: 'error', text: 'Terjadi kesalahan!');
         rethrow;
       }
+    } catch (e) {
+      await customSnackbar(
+          type: 'error', title: 'error', text: 'Terjadi kesalahan!');
+      rethrow;
     }
+  }
+
+  Future<bool> checkPayment(
+    context, {
+    required String token,
+    required String uuid,
+  }) async {
+    try {
+      print(uuid);
+      print(token);
+      final res = await _dio2.post(
+        '/api/v1/check-payment',
+        data: {'uuid': uuid},
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+            // 'Accept': 'application/json'
+          },
+        ),
+      );
+
+      await saveResponsePost(
+          res.requestOptions.path, res.statusMessage, res.data.toString(), '');
+
+      print(res.data);
+      if (res.data['success'] == true) {
+        return true;
+      }
+    } on DioError catch (e) {
+      if (kDebugMode) rethrow;
+      return false;
+      // try {
+      //   ErrorModel data = ErrorModel.fromJson(e.response!.data);
+      //   await customSnackbar(
+      //       type: 'error', title: 'error', text: data.error.toString());
+      //   return false;
+      // } catch (e) {
+      //   await customSnackbar(
+      //       type: 'error', title: 'error', text: 'Terjadi kesalahan!');
+      //   return false;
+      // }
+    } catch (e) {
+      await customSnackbar(
+          type: 'error', title: 'error', text: 'Terjadi kesalahan!');
+      return false;
+    }
+    return false;
   }
 
   selectmemberid(String? memberid) async {
