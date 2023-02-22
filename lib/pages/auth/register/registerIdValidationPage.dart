@@ -14,7 +14,10 @@ import '../../../helpers/shared_pref_manager.dart';
 import '../../../helpers/ui_helper/custom_snackbar.dart';
 
 class RegisterIdValidationPage extends StatefulWidget {
-  const RegisterIdValidationPage({Key? key}) : super(key: key);
+  final bool useCamera;
+
+  const RegisterIdValidationPage({Key? key, this.useCamera = true})
+      : super(key: key);
 
   @override
   State<RegisterIdValidationPage> createState() =>
@@ -137,8 +140,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 20,
                 ),
                 FormInput(
-                    enable: false,
-                    isReadOnly: true,
+                    enable: !widget.useCamera,
+                    isReadOnly: widget.useCamera,
                     controller: idNumberC!,
                     inputType: TextInputType.number,
                     hintText: 'Nomor KTP',
@@ -147,8 +150,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInput(
-                    enable: false,
-                    isReadOnly: true,
+                    enable: !widget.useCamera,
+                    isReadOnly: widget.useCamera,
                     controller: nameC!,
                     inputType: TextInputType.text,
                     hintText: 'Nama Lengkap',
@@ -157,8 +160,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInput(
-                    enable: false,
-                    isReadOnly: true,
+                    enable: !widget.useCamera,
+                    isReadOnly: widget.useCamera,
                     controller: birthdateC!,
                     inputType: TextInputType.text,
                     hintText: "Tanggal Lahir",
@@ -167,8 +170,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInput(
-                    enable: false,
-                    isReadOnly: true,
+                    enable: !widget.useCamera,
+                    isReadOnly: widget.useCamera,
                     controller: birthPlaceC!,
                     inputType: TextInputType.text,
                     hintText: "Tempat Lahir",
@@ -177,8 +180,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInput(
-                    enable: false,
-                    isReadOnly: true,
+                    enable: !widget.useCamera,
+                    isReadOnly: widget.useCamera,
                     controller: religionC!,
                     inputType: TextInputType.text,
                     hintText: "Agama",
@@ -187,8 +190,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInput(
-                    enable: false,
-                    isReadOnly: true,
+                    enable: !widget.useCamera,
+                    isReadOnly: widget.useCamera,
                     controller: statusC!,
                     inputType: TextInputType.text,
                     hintText: "Status perkawinan",
@@ -197,8 +200,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInput(
-                    enable: false,
-                    isReadOnly: true,
+                    enable: !widget.useCamera,
+                    isReadOnly: widget.useCamera,
                     controller: workC!,
                     inputType: TextInputType.text,
                     hintText: "Pekerjaan",
@@ -207,8 +210,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInput(
-                    enable: false,
-                    isReadOnly: true,
+                    enable: !widget.useCamera,
+                    isReadOnly: widget.useCamera,
                     controller: genderC!,
                     inputType: TextInputType.text,
                     hintText: "Jenis kelamin",
@@ -217,7 +220,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInput(
-                    enable: false,
+                    enable: !widget.useCamera,
+                    isReadOnly: widget.useCamera,
                     controller: nationnalityC!,
                     inputType: TextInputType.text,
                     hintText: 'Kewarganegaraan',
@@ -226,7 +230,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInput(
-                    enable: false,
+                    enable: !widget.useCamera,
+                    isReadOnly: widget.useCamera,
                     controller: provinceC!,
                     inputType: TextInputType.text,
                     hintText: 'Province',
@@ -235,7 +240,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInput(
-                    enable: false,
+                    enable: !widget.useCamera,
+                    isReadOnly: widget.useCamera,
                     controller: cityC!,
                     inputType: TextInputType.text,
                     hintText: 'Kota/Kabupaten',
@@ -244,8 +250,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInput(
-                    enable: false,
-                    isReadOnly: true,
+                    enable: !widget.useCamera,
+                    isReadOnly: widget.useCamera,
                     controller: kecamatanC!,
                     inputType: TextInputType.text,
                     hintText: 'Kecamatan',
@@ -254,8 +260,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInput(
-                    enable: false,
-                    isReadOnly: true,
+                    enable: !widget.useCamera,
+                    isReadOnly: widget.useCamera,
                     controller: villageC!,
                     inputType: TextInputType.text,
                     hintText: 'Desa',
@@ -264,8 +270,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInput(
-                  enable: false,
-                  isReadOnly: true,
+                  enable: !widget.useCamera,
+                  isReadOnly: widget.useCamera,
                   controller: rtC!,
                   inputType: TextInputType.text,
                   hintText: 'RT',
@@ -275,8 +281,8 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInput(
-                  enable: false,
-                  isReadOnly: true,
+                  enable: !widget.useCamera,
+                  isReadOnly: widget.useCamera,
                   controller: rwC!,
                   inputType: TextInputType.text,
                   hintText: 'RW',
@@ -292,7 +298,7 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   height: 8,
                 ),
                 FormInputLongText(
-                    // enable: false,
+                    // enable: !widget.useCamera,
                     // readOnly: true,
                     controller: addressC!,
                     hintText: 'Alamat',

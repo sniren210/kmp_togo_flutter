@@ -147,6 +147,7 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
 
   Future<bool> validate_ocrktp(context, File image) async {
     try {
+      print(base64Encode(await image.readAsBytes()));
       final res = await _dio.post('/api/v1/ktp-ocr',
           data: {'image': base64Encode(await image.readAsBytes())});
 

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kmp_togo_mobile/helpers/api_helper.dart';
@@ -65,6 +66,9 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
         }
       } else {}
     } on DioError catch (e) {
+      loading = false;
+      notifyListeners();
+      if (kDebugMode) rethrow;
       try {
         ErrorModel data = ErrorModel.fromJson(e.response!.data);
         await customSnackbar(
@@ -80,14 +84,11 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
           notifyListeners();
         }
       } catch (e) {
-        final msg = e.toString();
-        print(msg);
         loading = false;
         await customSnackbar(
             type: 'error', title: 'error', text: 'Terjadi kesalahan!');
+        if (kDebugMode) rethrow;
       }
-    } catch (e) {
-      print(e);
     }
   }
 

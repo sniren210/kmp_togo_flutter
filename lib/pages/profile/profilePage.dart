@@ -112,7 +112,7 @@ class _ProfileState extends State<Profile> {
                           email: model.items!.user.email,
                           token: 0,
                           // token: model.items!.user.tokenWallet.token,
-                          memberType: model.items!.user.role,
+                          memberType: model.items!.user.roles.first.name,
                           status: model.items!.user.status.toLowerCase(),
                         ),
                       ),
@@ -305,13 +305,13 @@ class _ProfileState extends State<Profile> {
   }
 
   buildNavigationByMember(ProviderAccountInfo model) {
-    String memberType = model.items!.user.role.toLowerCase();
+    String memberType = model.items!.user.roles.first.name.toLowerCase();
     if (memberType == 'produsen' ||
         memberType == 'konsumen1' ||
         memberType == 'umkm') {
       return SettingsTile.navigation(
         onPressed: (value) {
-          switch (model.items!.user.role.toLowerCase()) {
+          switch (model.items!.user.roles.first.name.toLowerCase()) {
             case 'produsen':
               Get.to(() => DashboardMyNFTKonsumen());
               break;
@@ -324,7 +324,8 @@ class _ProfileState extends State<Profile> {
           }
         },
         leading: const Icon(Icons.shopping_cart),
-        title: buildButtonMember(model.items!.user.role.toLowerCase()),
+        title:
+            buildButtonMember(model.items!.user.roles.first.name.toLowerCase()),
       );
     }
     return SettingsTile(

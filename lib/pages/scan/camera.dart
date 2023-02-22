@@ -198,7 +198,9 @@ class _CameraOverlayTogoState extends State<CameraOverlayTogo> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const RegisterIdValidationPage()),
+                        builder: (context) => const RegisterIdValidationPage(
+                              useCamera: false,
+                            )),
                   );
                 },
                 child: Container(

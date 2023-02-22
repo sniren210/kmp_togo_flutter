@@ -28,11 +28,6 @@ class profileDetail extends StatelessWidget {
           child: const Icon(Icons.arrow_back),
           backgroundColor: Theme.of(context).primaryColor,
         ),
-        // appBar: AppBar(
-        //   title: Text("Nama gue nih bro"),
-        //   centerTitle: true,
-        //   backgroundColor: Theme.of(context).primaryColor,
-        // ),
         body: BaseWidget<ProviderAccountInfo>(
             model: ProviderAccountInfo(Repository()),
             onModelReady: (model) => model.fetchAccountInfo(),
@@ -57,7 +52,7 @@ class profileDetail extends StatelessWidget {
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              children:  [
+                              children: [
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -114,20 +109,30 @@ class profileDetail extends StatelessWidget {
                               children: [
                                 ListTile(
                                   title: Text('Gender'),
-                                  subtitle: Text(model.items!.user.name),
+                                  subtitle: Text(model.items!.user.currentMember
+                                          .meta?.ktp.gender ??
+                                      ''),
                                 ),
                                 ListTile(
                                   title: const Text('Tempat, Tanggal lahir'),
-                                  subtitle: Row(
+                                  subtitle: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text(model.items!.user.currentMember.birthPlace.toString()),
-                                      Text(model.items!.user.currentMember.birthDate.toString()),
+                                      Text(model
+                                          .items!.user.currentMember.birthPlace
+                                          .toString()),
+                                      Text(model
+                                          .items!.user.currentMember.birthDate
+                                          .toString()),
                                     ],
                                   ),
                                 ),
                                 ListTile(
                                   title: const Text('Agama'),
-                                  subtitle: Text(model.items!.user.currentMember.name),
+                                  subtitle: Text(model.items!.user.currentMember
+                                          .meta?.ktp.religion ??
+                                      ''),
                                 ),
                               ],
                             ),
@@ -137,14 +142,20 @@ class profileDetail extends StatelessWidget {
                               children: [
                                 ListTile(
                                   title: Text('Status perkawinan'),
-                                  subtitle: Text(model.items!.user.currentMember.name),
+                                  subtitle: Text(model.items!.user.currentMember
+                                          .meta?.ktp.maritalStatus ??
+                                      ''),
                                 ),
                                 ListTile(
                                     title: Text('pekerjaan'),
-                                    subtitle: Text(model.items!.user.currentMember.name)),
+                                    subtitle: Text(model.items!.user
+                                            .currentMember.meta?.ktp.work ??
+                                        '')),
                                 ListTile(
                                   title: Text('Kewarganegaraan'),
-                                  subtitle: Text(model.items!.user.currentMember.name),
+                                  subtitle: Text(model.items!.user.currentMember
+                                          .meta?.ktp.nationnality ??
+                                      ''),
                                 ),
                               ],
                             ),
@@ -153,25 +164,42 @@ class profileDetail extends StatelessWidget {
                       ),
                       ListTile(
                         title: Text('alamat'),
-                        subtitle: Text(
-                            model.items!.user.currentMember.address.toString()),
+                        subtitle: Builder(builder: (context) {
+                          String address =
+                              '${model.items!.user.currentMember.meta?.ktp.address} ${model.items!.user.currentMember.meta?.ktp.rt} ${model.items!.user.currentMember.meta?.ktp.rw} ${model.items!.user.currentMember.meta?.ktp.village} ${model.items!.user.currentMember.meta?.ktp.district} ${model.items!.user.currentMember.meta?.ktp.city}';
+                          return Text(address);
+                        }),
                       ),
-                      ListTile(
-                        title: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(model.items!.user.currentMember.otherBank.toString()),
-                            Text(model.items!.user.currentMember.name),
-                          ],
-                        ),
-                        subtitle: Text(nomorRekening.toString()),
-                        trailing: InkWell(
-                          onTap: () {
-                            _showSimpleModalDialog(context, nomorRekening);
-                          },
-                          child: const Icon(Icons.edit),
-                        ),
-                      )
+                      if (model.items!.user.currentMember.accountNumber != null)
+                        ListTile(
+                          title: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(model.items!.user.currentMember.otherBank
+                                  .toString()),
+                              Text(model.items!.user.currentMember.name),
+                            ],
+                          ),
+                          subtitle: Text(nomorRekening.toString()),
+                          trailing: InkWell(
+                            onTap: () {
+                              _showSimpleModalDialog(
+                                  context, nomorRekening, true);
+                            },
+                            child: const Icon(Icons.edit),
+                          ),
+                        )
+                      else
+                        ListTile(
+                          title: Text('Tambahkan akun bank'),
+                          trailing: InkWell(
+                            onTap: () {
+                              _showSimpleModalDialog(
+                                  context, nomorRekening, false);
+                            },
+                            child: const Icon(Icons.add),
+                          ),
+                        )
                     ],
                   ),
                 );
@@ -182,7 +210,7 @@ class profileDetail extends StatelessWidget {
   }
 }
 
-_showSimpleModalDialog(context, int bankAccount) {
+_showSimpleModalDialog(context, int bankAccount, bool isEdit) {
   showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -214,6 +242,7 @@ _showSimpleModalDialog(context, int bankAccount) {
                           text: "Artha Graha Internasional",
                         ),
                         decoration: new InputDecoration(
+                          enabled: false,
                           hintText: "pilih Bank",
                           labelText: "Pilih Bank anda",
                           icon: const Icon(Icons.note),
@@ -221,8 +250,8 @@ _showSimpleModalDialog(context, int bankAccount) {
                       ),
                       TextFormField(
                         controller: TextEditingController(
-                          text: "Inky Pramudira Ramdhani",
-                        ),
+                            // text: "Inky Pramudira Ramdhani",
+                            ),
                         decoration: new InputDecoration(
                           hintText: "Masukan Nama",
                           labelText: "Masukan Nama anda",
@@ -244,7 +273,7 @@ _showSimpleModalDialog(context, int bankAccount) {
                       ),
                       ElevatedButton(
                         onPressed: () {},
-                        child: const Text('Update'),
+                        child: Text(isEdit ? 'Update' : 'Tambah'),
                       ),
                     ],
                   ),
