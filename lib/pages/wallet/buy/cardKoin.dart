@@ -77,7 +77,7 @@ class CardCoinToGo extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(right: 3.w),
                     child: Text(
-                      'Rp.${harga}',
+                      'Coin ${harga}',
                       style: TextStyling.w600bold14black,
                     ),
                   ),

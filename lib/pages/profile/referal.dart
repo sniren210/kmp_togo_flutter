@@ -37,46 +37,46 @@ class _ReferalPageState extends State<ReferalPage> {
       ),
       body: ListView(
         children: const [
-          Card(
-            child: ListTile(
-              leading: Icon(
-                Icons.monetization_on_outlined,
-                size: 40,
-              ),
-              title: Text('Pendaftaran: 094082380'),
-              subtitle: Text('Rp. 50.000'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              leading: Icon(
-                Icons.monetization_on_outlined,
-                size: 40,
-              ),
-              title: Text('Transaksi: 308390489'),
-              subtitle: Text('Rp. 50.000'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              leading: Icon(
-                Icons.monetization_on_outlined,
-                size: 40,
-              ),
-              title: Text('Pendaftaran: 3049839'),
-              subtitle: Text('Rp. 50.000'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              leading: Icon(
-                Icons.monetization_on_outlined,
-                size: 40,
-              ),
-              title: Text('Transaksi: 09384209'),
-              subtitle: Text('Rp. 50.000'),
-            ),
-          )
+          // Card(
+          //   child: ListTile(
+          //     leading: Icon(
+          //       Icons.monetization_on_outlined,
+          //       size: 40,
+          //     ),
+          //     title: Text('Pendaftaran: 094082380'),
+          //     subtitle: Text('Rp. 50.000'),
+          //   ),
+          // ),
+          // Card(
+          //   child: ListTile(
+          //     leading: Icon(
+          //       Icons.monetization_on_outlined,
+          //       size: 40,
+          //     ),
+          //     title: Text('Transaksi: 308390489'),
+          //     subtitle: Text('Rp. 50.000'),
+          //   ),
+          // ),
+          // Card(
+          //   child: ListTile(
+          //     leading: Icon(
+          //       Icons.monetization_on_outlined,
+          //       size: 40,
+          //     ),
+          //     title: Text('Pendaftaran: 3049839'),
+          //     subtitle: Text('Rp. 50.000'),
+          //   ),
+          // ),
+          // Card(
+          //   child: ListTile(
+          //     leading: Icon(
+          //       Icons.monetization_on_outlined,
+          //       size: 40,
+          //     ),
+          //     title: Text('Transaksi: 09384209'),
+          //     subtitle: Text('Rp. 50.000'),
+          //   ),
+          // )
         ],
       ),
     );

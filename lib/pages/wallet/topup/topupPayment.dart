@@ -12,7 +12,7 @@ import 'package:kmp_togo_mobile/pages/base.dart';
 import 'package:kmp_togo_mobile/pages/common/carapembayaran_widget.dart';
 import 'package:kmp_togo_mobile/pages/common/customAppBar.dart';
 import 'package:kmp_togo_mobile/pages/home.dart';
-import 'package:kmp_togo_mobile/pages/wallet/dashboardwallet.dart';
+import 'package:kmp_togo_mobile/pages/wallet/dashboard_wallet.dart';
 import 'package:kmp_togo_mobile/providers/wallet/topup/provider_topup.dart';
 import '../../../../helpers/shared_pref_manager.dart';
 

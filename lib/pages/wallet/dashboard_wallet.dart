@@ -384,16 +384,16 @@ class _DashboardWalletState extends State<DashboardWallet>
                   sliver: SliverToBoxAdapter(
                     child: Column(
                       children: [
-                        CardTopup(
-                          harga: '50.000',
-                          icon: Icons.people,
-                          kategori: "top up",
-                          metode: 'transfer',
-                          pembayaran: 'lunas',
-                          tanggal: '12',
-                          total: '50.000',
-                          waktu: 'siang hari',
-                        ),
+                        // CardTopup(
+                        //   harga: '50.000',
+                        //   icon: Icons.people,
+                        //   kategori: "top up",
+                        //   metode: 'transfer',
+                        //   pembayaran: 'lunas',
+                        //   tanggal: '12',
+                        //   total: '50.000',
+                        //   waktu: 'siang hari',
+                        // ),
                       ],
                     ),
                   ),

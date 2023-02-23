@@ -106,7 +106,7 @@ class _WithDrawState extends State<WithDraw> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'Rp.',
+                                      'Poin',
                                       style: TextStyle(fontSize: 13.sp),
                                     )
                                   ],

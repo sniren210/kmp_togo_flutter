@@ -493,17 +493,17 @@ class _LoginPagesState extends State<LoginPages> {
                         ),
                         InkWell(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const RegisterMemberTypePage()),
-                            );
                             // Navigator.push(
                             //   context,
                             //   MaterialPageRoute(
-                            //       builder: (context) => const RegisterPage()),
+                            //       builder: (context) =>
+                            //           const RegisterMemberTypePage()),
                             // );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const RegisterPage()),
+                            );
                           },
                           child: Text(
                             ' Daftar disini',

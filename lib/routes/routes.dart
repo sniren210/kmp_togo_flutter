@@ -9,7 +9,7 @@ import 'package:kmp_togo_mobile/pages/onboard_page.dart';
 import 'package:kmp_togo_mobile/pages/settings/about_us_page.dart';
 import 'package:kmp_togo_mobile/pages/settings/privacy_policy_page.dart';
 import 'package:kmp_togo_mobile/pages/umkm/umkmMyProduk.dart';
-import 'package:kmp_togo_mobile/pages/wallet/dashboardwallet.dart';
+import 'package:kmp_togo_mobile/pages/wallet/dashboard_wallet.dart';
 
 List<GetPage<dynamic>> routes = [
   GetPage(name: '/', page: () => const OnBoardingPage()),

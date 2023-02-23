@@ -103,7 +103,7 @@ class _TopUpPageState extends State<TopUpPage> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'Rp. ',
+                                      'Poin ',
                                       style: TextStyle(fontSize: 13.sp),
                                     )
                                   ],

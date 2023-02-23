@@ -229,7 +229,7 @@ class _BeliToGoState extends State<BeliToGo> with NumberFormatMachine {
                                                               modelCoin.busy
                                                                   ? Container()
                                                                   : Text(
-                                                                      '1 ToGo = Rp.${getNumberFormatSeparator(modelCoin.items2!.data.coinPrice.toDouble())}',
+                                                                      '1 ToGo = Coin ${getNumberFormatSeparator(modelCoin.items2!.data.coinPrice.toDouble())}',
                                                                       style: TextStyle(
                                                                           fontSize:
                                                                               10.sp),
@@ -403,7 +403,7 @@ class _BeliToGoState extends State<BeliToGo> with NumberFormatMachine {
                                                               modelCoin.busy
                                                                   ? Container()
                                                                   : Text(
-                                                                      '1 ToGo = Rp.${getNumberFormatSeparator(modelCoin.items2!.data.coinPrice.toDouble())}',
+                                                                      '1 ToGo = Coin ${getNumberFormatSeparator(modelCoin.items2!.data.coinPrice.toDouble())}',
                                                                       style: TextStyle(
                                                                           fontSize:
                                                                               10.sp),

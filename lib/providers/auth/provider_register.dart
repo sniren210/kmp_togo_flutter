@@ -469,9 +469,17 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
             type: 'error', title: 'error', text: data.error.toString());
       } catch (e) {
         await customSnackbar(
-            type: 'error', title: 'error', text: 'Terjadi kesalahan!');
+            type: 'error',
+            title: 'Terjadi kesalahan!',
+            text: 'NIK/Email sudah terdaftar');
         rethrow;
       }
+    } catch (e) {
+      await customSnackbar(
+          type: 'error',
+          title: 'Terjadi kesalahan!',
+          text: 'NIK/Email sudah terdaftar');
+      rethrow;
     }
   }
 

@@ -106,7 +106,7 @@ class _WithDrawCoinState extends State<WithDrawCoin> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'Rp.',
+                                      'Coin',
                                       style: TextStyle(fontSize: 13.sp),
                                     )
                                   ],
