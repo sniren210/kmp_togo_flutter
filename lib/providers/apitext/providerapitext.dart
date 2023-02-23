@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:kmp_togo_mobile/helpers/api_helper.dart';
 import 'package:kmp_togo_mobile/helpers/machines.dart';
+import 'package:kmp_togo_mobile/models/image_asset_model.dart';
 import 'package:kmp_togo_mobile/models/modelapitext.dart';
 import 'package:kmp_togo_mobile/models/response/error/model_error.dart';
 
@@ -18,8 +19,12 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
   ModelApiText? dataApiBanner2;
   ModelApiText? dataApiBanner3;
   ModelApiText? dataApiBanner4;
-  List<String>? listImageA;
-  bool? loadinbanner = true;
+  List<String> listImageSlider = [];
+  List<String> listImageAds = [];
+  ImageAssetModel? listImageOnboarding;
+  bool? loadinSlider = true;
+  bool? loadinAds = true;
+  bool? loadinOnBoarding = true;
   getTextLogin(
     context,
   ) async {
@@ -188,55 +193,79 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
     }
   }
 
-  getTextBanner1(
+  getSlider(
+    context,
+  ) async {
+    final res = await _dio.post(
+      '/api/v1/get-image',
+      data: {'type': 'SLIDER'},
+      options: Options(
+        followRedirects: false,
+        // will not throw errors
+        validateStatus: (status) => true,
+      ),
+    );
+
+    // print(res.data);
+    if (res.data['success'] == true) {
+      final img = ImageAssetModel.fromJson(res.data);
+      listImageSlider = img.data.map((e) => e.imageUrl).toList();
+
+      loadinSlider = false;
+      notifyListeners();
+    } else {
+      loadinAds = true;
+      notifyListeners();
+    }
+  }
+
+  getAds(
+    context,
+  ) async {
+    final res = await _dio.post(
+      '/api/v1/get-image',
+      data: {'type': 'ADS'},
+      options: Options(
+        followRedirects: false,
+        // will not throw errors
+        validateStatus: (status) => true,
+      ),
+    );
+
+    // print(res.data);
+    if (res.data['success'] == true) {
+      final img = ImageAssetModel.fromJson(res.data);
+      listImageAds = img.data.map((e) => e.imageUrl).toList();
+    }
+
+    if (listImageAds.isNotEmpty) {
+      loadinAds = false;
+      notifyListeners();
+    } else {
+      loadinAds = true;
+      notifyListeners();
+    }
+  }
+
+  getOnboarding(
     context,
   ) async {
     try {
-      // final res1 = await _dio.get('/v1/app/banner1');
-      // final res2 = await _dio.get('/v1/app/banner2');
-      // final res3 = await _dio.get('/v1/app/banner3');
-      // final res4 = await _dio.get('/v1/app/banner4');
-      // dataApiBanner1 = ModelApiText.fromJson(res1.data);
-      // dataApiBanner2 = ModelApiText.fromJson(res2.data);
-      // dataApiBanner3 = ModelApiText.fromJson(res3.data);
-      // dataApiBanner4 = ModelApiText.fromJson(res4.data);
-      dataApiBanner1 = ModelApiText().dummy();
-      dataApiBanner2 = ModelApiText().dummy();
-      dataApiBanner3 = ModelApiText().dummy();
-      dataApiBanner4 = ModelApiText().dummy();
+      final res =
+          await _dio.post('/api/v1/get-image', data: {'type': 'ONBOARDING'});
 
-      String gambar1 = dataApiBanner1?.data?.imagePath ?? "";
-      String gambar2 = dataApiBanner2?.data?.imagePath ?? "";
-      String gambar3 = dataApiBanner3?.data?.imagePath ?? "";
-      String gambar4 = dataApiBanner4?.data?.imagePath ?? "";
-      List<String> listImage = [];
-
-      listImage.add(gambar1);
-      listImage.add(gambar2);
-      listImage.add(gambar3);
-      listImage.add(gambar4);
-      listImageA = listImage;
-
-      if (listImageA!.isNotEmpty) {
-        loadinbanner = false;
-        notifyListeners();
-      } else {
-        loadinbanner = true;
-        notifyListeners();
+      if (res.data['success'] == true) {
+        listImageOnboarding = ImageAssetModel.fromJson(res.data);
+        if (listImageOnboarding != null) {
+          loadinOnBoarding = false;
+          notifyListeners();
+        } else {
+          loadinOnBoarding = true;
+          notifyListeners();
+        }
       }
-      // listImage?.add(gambar1);
-      // listImage?.add(gambar2);
-      // listImage?.add(gambar3);
-      // listImage?.add(gambar4);
-
-      notifyListeners();
-    } on DioError catch (e) {
-      try {
-        ErrorModel data = ErrorModel.fromJson(e.response!.data);
-      } catch (e) {
-        final msg = e.toString();
-        print(msg);
-      }
+    } catch (e) {
+      rethrow;
     }
   }
 

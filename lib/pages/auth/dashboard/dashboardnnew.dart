@@ -50,15 +50,17 @@ class DashboardNew extends StatefulWidget {
 
 class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
   bool? loading = true;
-  bool? loadingbanner = true;
+  bool? loadingSlider = true;
+  bool? loadingAds = true;
   bool? loadingBalance = true;
 
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final getApiTextLogin =
+      final providerApiText =
           Provider.of<ProviderApiText>(context, listen: false);
-      await getApiTextLogin.getTextBanner1(context);
+      await providerApiText.getSlider(context);
+      await providerApiText.getAds(context);
 
       ///
       final getkategoriProvider =
@@ -70,10 +72,11 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
       await _getTokenProvider.getBalanceWallet();
 
       cektanggal();
-      print(getkategoriProvider.loadinggetNFTALL);
       setState(() {
+        print('ok providerApiText.loadinSlider${providerApiText.loadinSlider}');
         loading = getkategoriProvider.loadinggetNFTALL;
-        loadingbanner = getApiTextLogin.loadinbanner;
+        loadingSlider = providerApiText.loadinSlider;
+        loadingAds = providerApiText.loadinAds;
         loadingBalance = _getTokenProvider.loadinghistory;
       });
     });
@@ -179,8 +182,7 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                         borderRadius: BorderRadius.circular(10),
                                         image: DecorationImage(
                                           image: NetworkImage(
-                                              v.listImageA?.first ??
-                                                  kEmptyImageLink),
+                                              v.listImageSlider.first),
                                           fit: BoxFit.cover,
                                         )),
                                     height: MediaQuery.of(context).size.height /
@@ -341,7 +343,7 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                   child: SingleChildScrollView(
                     child: Stack(
                       children: [
-                        loadingbanner == false
+                        loadingSlider == false
                             ? CarouselSlider(
                                 options: CarouselOptions(
                                     autoPlay: true,
@@ -358,7 +360,7 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                         _currentIndex = index;
                                       });
                                     }),
-                                items: va.listImageA?.map((item) {
+                                items: va.listImageSlider.map((item) {
                                   return Container(
                                       // color: Colors.transparent,
                                       padding: EdgeInsets.only(
@@ -765,24 +767,30 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                                         },
                                                       ),
                                               ),
-                                              const VerticalSpacer(height: 30),
-                                              Container(
-                                                padding: EdgeInsets.only(
-                                                    left: 4.w, right: 4.w),
-                                                height: 14.h,
-                                                child: ListView(
-                                                    shrinkWrap: true,
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    children: [
-                                                      cardpromo(
-                                                          'assets/images/promo.jpg'),
-                                                      cardpromo(
-                                                          'assets/images/promo2.jpg'),
-                                                      cardpromo(
-                                                          'assets/images/kotak.jpg'),
-                                                    ]),
-                                              ),
+                                              if (va
+                                                  .listImageAds.isNotEmpty) ...[
+                                                const VerticalSpacer(
+                                                    height: 30),
+                                                Container(
+                                                  padding: EdgeInsets.only(
+                                                      left: 4.w, right: 4.w),
+                                                  height: 14.h,
+                                                  child: ListView(
+                                                      shrinkWrap: true,
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      children: [
+                                                        for (int i = 0;
+                                                            i <
+                                                                va.listImageAds
+                                                                    .length;
+                                                            i++)
+                                                          cardpromo(
+                                                              va.listImageSlider[
+                                                                  i]),
+                                                      ]),
+                                                ),
+                                              ],
                                             ],
                                           )
                                         : Container(),

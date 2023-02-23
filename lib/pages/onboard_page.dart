@@ -35,12 +35,21 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/onboard/onboard1.jpg',
-                    fit: BoxFit.cover,
-                    height: 100,
-                  ),
-                  buildContent('', v.dataApiTextObaroding1?.data?.value ?? ""),
+                  if (v.listImageOnboarding != null &&
+                      v.listImageOnboarding!.data.asMap().containsKey(0))
+                    Image.network(
+                      v.listImageOnboarding!.data[0].imageUrl,
+                      fit: BoxFit.cover,
+                      height: 100,
+                    )
+                  else
+                    Image.asset(
+                      'assets/onboard/onboard1.jpg',
+                      fit: BoxFit.cover,
+                      height: 100,
+                    ),
+                  // buildContent(
+                  //     '', v.dataApiTextObaroding1?.data?.value ?? ""),
                 ],
               ),
             ),
@@ -59,11 +68,19 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/onboard/onboard2.jpg',
-                    fit: BoxFit.cover,
-                    height: 100,
-                  ),
+                  if (v.listImageOnboarding != null &&
+                      v.listImageOnboarding!.data.asMap().containsKey(1))
+                    Image.network(
+                      v.listImageOnboarding!.data[1].imageUrl,
+                      fit: BoxFit.cover,
+                      height: 100,
+                    )
+                  else
+                    Image.asset(
+                      'assets/onboard/onboard2.jpg',
+                      fit: BoxFit.cover,
+                      height: 100,
+                    ),
                 ],
               ),
             ),
@@ -82,11 +99,19 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/onboard/onboard3.jpg',
-                    fit: BoxFit.cover,
-                    height: 100,
-                  ),
+                  if (v.listImageOnboarding != null &&
+                      v.listImageOnboarding!.data.asMap().containsKey(2))
+                    Image.network(
+                      v.listImageOnboarding!.data[2].imageUrl,
+                      fit: BoxFit.cover,
+                      height: 100,
+                    )
+                  else
+                    Image.asset(
+                      'assets/onboard/onboard3.jpg',
+                      fit: BoxFit.cover,
+                      height: 100,
+                    ),
                 ],
               ),
             ),
@@ -105,11 +130,19 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/onboard/onboard4.jpg',
-                    fit: BoxFit.cover,
-                    height: 100,
-                  ),
+                  if (v.listImageOnboarding != null &&
+                      v.listImageOnboarding!.data.asMap().containsKey(3))
+                    Image.network(
+                      v.listImageOnboarding!.data[3].imageUrl,
+                      fit: BoxFit.cover,
+                      height: 100,
+                    )
+                  else
+                    Image.asset(
+                      'assets/onboard/onboard4.jpg',
+                      fit: BoxFit.cover,
+                      height: 100,
+                    ),
                 ],
               ),
             ),
@@ -159,10 +192,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final getApiTextLogin =
           Provider.of<ProviderApiText>(context, listen: false);
-      await getApiTextLogin.getTextOnboarding1(context);
-      await getApiTextLogin.getTextOnboarding2(context);
-      await getApiTextLogin.getTextOnboarding3(context);
-      await getApiTextLogin.getTextOnboarding4(context);
+      await getApiTextLogin.getOnboarding(context);
     });
 
     materialButton = _skipButton();

@@ -66,7 +66,7 @@ class _iuranPokokState extends State<iuranPokok> {
                 radius: 37,
                 backgroundImage: AssetImage('assets/images/logon.jpg'),
               ),
-              Text('total: Rp.99999'),
+              Text('total: Rp.0'),
             ],
           ),
           centerTitle: true,
@@ -89,9 +89,6 @@ class _iuranPokokState extends State<iuranPokok> {
                 child: SizedBox(
                   child: Column(
                     children: [
-                      // for (int i = 0;
-                      //     i < (v.dataHistorySaldo?.data?.length ?? 0);
-                      //     i++)
                       Card(
                         child: ListTile(
                           title: Text('Rp. 50.000'),
@@ -109,9 +106,6 @@ class _iuranPokokState extends State<iuranPokok> {
                 child: SizedBox(
                   child: Column(
                     children: [
-                      // for (int i = 0;
-                      //     i < (v.dataHistorySaldo?.data?.length ?? 0);
-                      //     i++)
                       Card(
                         child: ListTile(
                           title: Text('Rp. 100.000'),

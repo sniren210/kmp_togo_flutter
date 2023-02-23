@@ -26,7 +26,7 @@ class _ReferalPageState extends State<ReferalPage> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              'Total: Rp. 200.000',
+              'Total: Rp. 0',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
