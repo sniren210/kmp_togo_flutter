@@ -39,7 +39,8 @@ class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Kebijakan & Privasi'),
+        title:
+            Text(widget.isPolicy ? 'Kebijakan & Privasi' : 'Peraturan Anggota'),
       ),
       body: !lookUpPrivacyPolicyDone
           ? const Center(child: CircularProgressIndicator())
