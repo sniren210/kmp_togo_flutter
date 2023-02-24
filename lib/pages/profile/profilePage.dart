@@ -16,6 +16,8 @@ import 'package:kmp_togo_mobile/pages/profile/profile_detail.dart';
 import 'package:kmp_togo_mobile/pages/profile/profile_widget.dart';
 import 'package:kmp_togo_mobile/pages/profile/referal.dart';
 import 'package:kmp_togo_mobile/pages/profile/transaksi/transaksi_page.dart';
+import 'package:kmp_togo_mobile/pages/settings/about_us_page.dart';
+import 'package:kmp_togo_mobile/pages/settings/privacy_policy_page.dart';
 import 'package:kmp_togo_mobile/providers/account/provider_account.dart';
 import 'package:kmp_togo_mobile/providers/auth/provider_auth.dart';
 import 'package:kmp_togo_mobile/providers/cart/cart_provider.dart';
@@ -244,7 +246,12 @@ class _ProfileState extends State<Profile> {
                           style: const TextStyle(fontSize: 15),
                         ),
                         onPressed: (value) {
-                          Get.toNamed('/privacyPolicy');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PrivacyPolicyPage(
+                                        isPolicy: true,
+                                      )));
                         },
                       ),
                       SettingsTile(
@@ -254,7 +261,12 @@ class _ProfileState extends State<Profile> {
                           style: const TextStyle(fontSize: 15),
                         ),
                         onPressed: (value) {
-                          Get.toNamed('/privacyPolicy');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PrivacyPolicyPage(
+                                        isPolicy: false,
+                                      )));
                         },
                       ),
                       SettingsTile(
@@ -264,7 +276,10 @@ class _ProfileState extends State<Profile> {
                           style: const TextStyle(fontSize: 15),
                         ),
                         onPressed: (value) {
-                          Get.toNamed('/aboutUs');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AboutUsPage()));
                         },
                       ),
                       titleSection(title: "Aplikasi"),

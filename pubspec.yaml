@@ -73,6 +73,7 @@ dependencies:
   jwt_decoder: ^2.0.1
   platform_device_id: ^1.0.1
   flutter_camera_overlay: ^0.1.1
+  intro_screen_onboarding_flutter: ^1.0.0
 
 dev_dependencies:
   flutter_test:

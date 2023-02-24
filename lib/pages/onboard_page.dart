@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intro_screen_onboarding_flutter/intro_app.dart';
 import 'package:kmp_togo_mobile/helpers/image_generator.dart';
 import 'package:kmp_togo_mobile/main.dart';
 import 'package:kmp_togo_mobile/providers/apitext/providerapitext.dart';
@@ -303,26 +304,122 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               },
               startPageIndex: 0,
               footerBuilder: (context, dragDistance, pagesLength, setIndex) {
-                return Padding(
-                  padding: const EdgeInsets.all(45.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomIndicator(
-                          netDragPercent: dragDistance,
-                          pagesLength: pagesLength,
-                          indicator: Indicator(
-                            indicatorDesign: IndicatorDesign.polygon(
-                              polygonDesign: PolygonDesign(
-                                polygon: DesignType.polygon_square,
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: 80,
+                          height: 80,
+                          child: CircleProgressBar(
+                            backgroundColor: Colors.white,
+                            foregroundColor: Colors.grey,
+                            value: ((index + 1) * 1.0 / pagesLength),
+                          ),
+                        ),
+                        Container(
+                          height: 55,
+                          width: 55,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: warna.withOpacity(0.5),
+                          ),
+                          child: IconButton(
+                            onPressed: () {
+                              if (index != pagesLength - 1) {
+                                setState(() {
+                                  setIndex(++index);
+                                });
+
+                                if (index == 0) {
+                                  setState(() {
+                                    // _visible = true;
+                                    warna = const Color(0xFF353E75);
+                                  });
+                                } else if (index == 1) {
+                                  setState(() {
+                                    // _visible = true;
+                                    warna = const Color(0xFFE8BD0C);
+                                  });
+                                } else if (index == 2) {
+                                  setState(() {
+                                    // _visible = true;
+                                    warna = Colors.black;
+                                  });
+                                } else if (index == 3) {
+                                  setState(() {
+                                    // _visible = true;
+                                    warna = const Color(0xFFA1E2C2);
+                                  });
+                                }
+                              } else {
+                                bool login = sharedPreferencesManager
+                                        .getBool("isLoggedIn") ??
+                                    false;
+
+                                if (login) {
+                                  routeLogin = '/home';
+                                  debugPrint(routeLogin);
+                                }
+
+                                if (!login) {
+                                  routeLogin = '/login';
+                                  debugPrint(routeLogin);
+                                }
+                                Get.offAllNamed(routeLogin!);
+                              }
+                            },
+                            icon: Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.white,
+                            ),
+                            iconSize: 25,
+                          ),
+                        )
+                      ],
+                    ),
+                    // SizedBox(
+                    //   height: 15,
+                    // ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            alignment: Alignment.topRight,
+                            child: TextButton(
+                              onPressed: () {
+                                bool login = sharedPreferencesManager
+                                        .getBool("isLoggedIn") ??
+                                    false;
+
+                                if (login) {
+                                  routeLogin = '/home';
+                                  debugPrint(routeLogin);
+                                }
+
+                                if (!login) {
+                                  routeLogin = '/login';
+                                  debugPrint(routeLogin);
+                                }
+                                Get.offAllNamed(routeLogin!);
+                              },
+                              child: Text(
+                                'Skip',
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.grey,
+                                ),
                               ),
                             ),
-                          )),
-                      index == pagesLength - 1
-                          ? _signupButton()
-                          : _skipButton(setIndex: setIndex)
-                    ],
-                  ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 );
               },
             ),
