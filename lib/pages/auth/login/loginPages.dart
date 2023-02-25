@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -33,11 +35,12 @@ class _LoginPagesState extends State<LoginPages> {
   TextEditingController passController = TextEditingController();
   TextEditingController passConfirmnController = TextEditingController();
   CountdownTimerController? Coundowncontroller;
-  String? endTime;
   bool pinaltytime = false;
   bool bannedtime = false;
-  // int wrongLogin = 0;
   bool? loading = false;
+  int endTime = 0;
+  Timer? timer;
+  int wrongLogin = 0;
 
   // startcoundown() {
   //   endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 65;
@@ -94,14 +97,47 @@ class _LoginPagesState extends State<LoginPages> {
       // await sharedPreferencesManager.setString(
       //     SharedPreferencesManager.tanggalbanner, tanggalAA!);
       setState(() {
+        wrongLogin++;
         loading =
             Provider.of<ProviderAuthLogin>(context, listen: false).loading;
-        bannedtime =
-            Provider.of<ProviderAuthLogin>(context, listen: false).statusbanned;
-        pinaltytime =
-            Provider.of<ProviderAuthLogin>(context, listen: false).statususpen;
-        endTime = Provider.of<ProviderAuthLogin>(context, listen: false).time;
+
+        if (wrongLogin == 3) {
+          pinaltytime = true;
+          // endTime = Provider.of<ProviderAuthLogin>(context, listen: false).time;
+          endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 65;
+
+          const oneSec = Duration(seconds: 1);
+          timer = Timer.periodic(
+            oneSec,
+            (Timer timer) {
+              if (endTime == 0) {
+                timer.cancel();
+                pinaltytime = false;
+              } else {
+                endTime--;
+              }
+            },
+          );
+        } else {
+          bannedtime = true;
+
+          endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 65;
+
+          const oneSec = Duration(seconds: 1);
+          timer = Timer.periodic(
+            oneSec,
+            (Timer timer) {
+              if (endTime == 0) {
+                timer.cancel();
+                bannedtime = false;
+              } else {
+                endTime--;
+              }
+            },
+          );
+        }
       });
+
       if (bannedtime == true) {
         final _getApiTextLogin =
             Provider.of<ProviderApiText>(context, listen: false);
@@ -395,18 +431,9 @@ class _LoginPagesState extends State<LoginPages> {
                             SizedBox(
                               height: 2.h,
                             ),
-                            // Center(
-                            //   child: Container(
-                            //       child: endTime == 'null'
-                            //           ? Container()
-                            //           : Text(endTime ?? "")
-                            //       //  CountdownTimer(
-                            //       //   controller: Coundowncontroller,
-                            //       //   onEnd: onEnd,
-                            //       //   endTime: endTime,
-                            //       // ),
-                            //       ),
-                            // ),
+                            Center(
+                              child: Text(endTime.toString()),
+                            ),
                           ],
                         )
                       : Container(),

@@ -30,44 +30,65 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
   bool statusbanned = false;
   String? time = '';
   login(context, username, password) async {
-    try {
-      String? deviceId = await PlatformDeviceId.getDeviceId;
+    String? deviceId = await PlatformDeviceId.getDeviceId;
 
-      final body = {
-        "email": username,
-        "password": password,
-        'device_id': deviceId,
-      };
-      final res = await _dio.post('/api/v1/login', data: body);
-      print(res.data);
+    final body = {
+      "email": username,
+      "password": password,
+      'device_id': deviceId,
+    };
+    final res = await _dio.post(
+      '/api/v1/login',
+      data: body,
+      options: Options(
+        followRedirects: false,
+        // will not throw errors
+        validateStatus: (status) => true,
+      ),
+    );
+    print(res.data);
 
-      if (res.data['success'] == true) {
-        dataMyinfo = LoginInfo.fromJson(res.data);
+    if (res.data['success'] == true && res.data['status'] == 200) {
+      dataMyinfo = LoginInfo.fromJson(res.data);
 
-        await databaseApp.insertResponseAPI(ResponseFromAPIData(
-          method: 'GET',
-          status: res.statusMessage ?? '',
-          path: 'login',
-          responseBody: jsonEncode(res.data),
-        ));
+      await databaseApp.insertResponseAPI(ResponseFromAPIData(
+        method: 'GET',
+        status: res.statusMessage ?? '',
+        path: 'login',
+        responseBody: jsonEncode(res.data),
+      ));
 
-        if (dataMyinfo?.data.user.status == 'ACTIVE') {
-          await sharedPreferencesManager.setBool(
-              SharedPreferencesManager.isLoggedIn, true);
-          Get.offAllNamed('/home');
-          loading = false;
-        } else {
-          loading = false;
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => RegisterMemberTypePage(
-                      loginIn: dataMyinfo,
-                    )),
-          );
-        }
-      } else {}
-    } on DioError catch (e) {
+      if (dataMyinfo?.data.user.status == 'ACTIVE') {
+        await sharedPreferencesManager.setBool(
+            SharedPreferencesManager.isLoggedIn, true);
+        Get.offAllNamed('/home');
+        loading = false;
+      } else {
+        loading = false;
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => RegisterMemberTypePage(
+                    loginIn: dataMyinfo,
+                  )),
+        );
+      }
+    } else {
+      if (res.data['status'] == 200) {
+        await customSnackbar(
+            type: 'error', title: 'error', text: 'Email / Kata Sandi salah');
+        loading = false;
+      } else if (res.data['status'] == 500) {
+        await customSnackbar(
+            type: 'error', title: 'error', text: 'Akun Anda sedang login');
+        loading = false;
+      } else {
+        await customSnackbar(
+            type: 'error', title: 'error', text: 'Terjadi kesalahan!');
+        loading = false;
+      }
+    }
+    try {} on DioError catch (e) {
       loading = false;
       notifyListeners();
       if (kDebugMode) rethrow;
