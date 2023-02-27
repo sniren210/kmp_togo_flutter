@@ -21,10 +21,12 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
   ModelApiText? dataApiBanner4;
   List<String> listImageSlider = [];
   List<String> listImageAds = [];
+  List<String> listImagePopUp = [];
   ImageAssetModel? listImageOnboarding;
   bool? loadinSlider = true;
   bool? loadinAds = true;
   bool? loadinOnBoarding = true;
+  bool? loadinPopUp = true;
   getTextLogin(
     context,
   ) async {
@@ -243,6 +245,34 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
       notifyListeners();
     } else {
       loadinAds = true;
+      notifyListeners();
+    }
+  }
+
+  getPopUp(
+    context,
+  ) async {
+    final res = await _dio.post(
+      '/api/v1/get-image',
+      data: {'type': 'popup'},
+      options: Options(
+        followRedirects: false,
+        // will not throw errors
+        validateStatus: (status) => true,
+      ),
+    );
+
+    // print(res.data);
+    if (res.data['success'] == true) {
+      final img = ImageAssetModel.fromJson(res.data);
+      listImagePopUp = img.data.map((e) => e.imageUrl).toList();
+    }
+
+    if (listImagePopUp.isNotEmpty) {
+      loadinPopUp = false;
+      notifyListeners();
+    } else {
+      loadinPopUp = true;
       notifyListeners();
     }
   }

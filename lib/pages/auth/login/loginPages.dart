@@ -96,6 +96,7 @@ class _LoginPagesState extends State<LoginPages> {
           SharedPreferencesManager.tanggalogout, tanggalAA!);
       // await sharedPreferencesManager.setString(
       //     SharedPreferencesManager.tanggalbanner, tanggalAA!);
+      print(wrongLogin);
       setState(() {
         wrongLogin++;
         loading =
@@ -118,7 +119,7 @@ class _LoginPagesState extends State<LoginPages> {
               }
             },
           );
-        } else {
+        } else if (wrongLogin == 5) {
           bannedtime = true;
 
           endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 65;
@@ -428,12 +429,12 @@ class _LoginPagesState extends State<LoginPages> {
                                     fontSize: 11.sp),
                               ),
                             ),
-                            SizedBox(
-                              height: 2.h,
-                            ),
-                            Center(
-                              child: Text(endTime.toString()),
-                            ),
+                            // SizedBox(
+                            //   height: 2.h,
+                            // ),
+                            // Center(
+                            //   child: Text(endTime.toString()),
+                            // ),
                           ],
                         )
                       : Container(),

@@ -61,6 +61,7 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
           Provider.of<ProviderApiText>(context, listen: false);
       await providerApiText.getSlider(context);
       await providerApiText.getAds(context);
+      await providerApiText.getPopUp(context);
 
       ///
       final getkategoriProvider =
@@ -73,7 +74,6 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
 
       cektanggal();
       setState(() {
-        print('ok providerApiText.loadinSlider${providerApiText.loadinSlider}');
         loading = getkategoriProvider.loadinggetNFTALL;
         loadingSlider = providerApiText.loadinSlider;
         loadingAds = providerApiText.loadinAds;
@@ -182,7 +182,12 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                         borderRadius: BorderRadius.circular(10),
                                         image: DecorationImage(
                                           image: NetworkImage(
-                                              v.listImageSlider.first),
+                                            v.listImagePopUp
+                                                    .asMap()
+                                                    .containsKey(0)
+                                                ? v.listImagePopUp.first
+                                                : kEmptyImageLink,
+                                          ),
                                           fit: BoxFit.cover,
                                         )),
                                     height: MediaQuery.of(context).size.height /
@@ -196,18 +201,6 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                               SizedBox(
                                 height: MediaQuery.of(context).size.height / 70,
                               ),
-
-                              // InkWell(
-                              //   child: Text('Close(X)',
-                              //       style: TextStyle(
-                              //         fontSize: MediaQuery.of(context).size.width / 25,
-                              //         color: Colors.red,
-                              //         fontFamily: 'Open Sans',
-                              //       )),
-                              //   onTap: () {
-                              //     Navigator.of(context).pop();
-                              //   },
-                              // ),
                             ],
                           ),
                         ),

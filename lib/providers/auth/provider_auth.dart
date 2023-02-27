@@ -74,7 +74,7 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
         );
       }
     } else {
-      if (res.data['status'] == 200) {
+      if (res.data['status'] == 205) {
         await customSnackbar(
             type: 'error', title: 'error', text: 'Email / Kata Sandi salah');
         loading = false;
@@ -86,31 +86,6 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
         await customSnackbar(
             type: 'error', title: 'error', text: 'Terjadi kesalahan!');
         loading = false;
-      }
-    }
-    try {} on DioError catch (e) {
-      loading = false;
-      notifyListeners();
-      if (kDebugMode) rethrow;
-      try {
-        ErrorModel data = ErrorModel.fromJson(e.response!.data);
-        await customSnackbar(
-            type: 'error', title: 'error', text: data.error.toString());
-        if (data.meta?.suspend == false && data.meta!.nexttry != null) {
-          statususpen = true;
-          print('a');
-          notifyListeners();
-        } else if (data.meta?.suspend == true) {
-          statususpen = false;
-          statusbanned = true;
-          print('b');
-          notifyListeners();
-        }
-      } catch (e) {
-        loading = false;
-        await customSnackbar(
-            type: 'error', title: 'error', text: 'Terjadi kesalahan!');
-        if (kDebugMode) rethrow;
       }
     }
   }
