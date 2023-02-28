@@ -385,101 +385,86 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
     required int monthlyPrincipalFee,
     required int monthlyMandatoryFee,
   }) async {
-    try {
-      var inputFormat = DateFormat('dd-MM-yyyy');
-      var outputFormat = DateFormat('dd-MM-yyyy');
-      var date1 = inputFormat.parse(birthdate);
-      var date2 = outputFormat.format(date1);
+    var inputFormat = DateFormat('dd-MM-yyyy');
+    var outputFormat = DateFormat('dd-MM-yyyy');
+    var date1 = inputFormat.parse(birthdate);
+    var date2 = outputFormat.format(date1);
 
-      final body = {
-        'email': 'example9@gmail.com',
-        // 'email': email,
-        'password': 'Sniren123',
-        // 'password': password,
-        'password_confirmation': 'Sniren123',
-        // 'password_confirmation': password,
-        'name': 'RENDI DWIKURNIASANDI',
-        // 'name': name,
-        'nik': 3210192010031221,
-        // 'nik': int.parse(nik),
-        'birth_place': 'MAJALENGKA',
-        // 'birth_place': birthPlace,
-        'birth_date': '20-10-2002',
-        // 'birth_date': date2,
-        'gender': 'LAKI-LAKI',
-        // 'gender': gender,
-        'address': 'DUSUN MAJAMULIA',
-        // 'address': address,
-        'rt': '004',
-        // 'rt': rt,
-        'rw': '002',
-        // 'rw': rw,
-        'village': 'MAJASUKA',
-        // 'village': village,
-        'district': 'PALASAH',
-        // 'district': subdistrict,
-        'religion': 'ISLAM',
-        // 'religion': religion,
-        'marital_status': 'BELUM KAWIN',
-        // 'marital_status': maritalStatus,
-        'work': 'PELAJAR/MAHASISWA',
-        // 'work': work,
-        'nationnality': 'WNI',
-        // 'nationnality': nationnality,
-        'city': 'KABUPATEN MAJALENGKA',
-        // 'city': city,
-        'province': 'JAWA BARAT',
-        // 'province': province,
-        'phone_number': 123456,
-        // 'phone_number': int.parse(phoneNumber),
-        'pin': 123456,
-        // 'pin': int.parse(pin),
-        'member_type': 'Trader',
-        // 'member_type': membertypeanggota,
-        'referral': referral,
-      };
-      // final body1 = {"email": email, "password": password};
+    final body = {
+      // 'email': 'example13@gmail.com',
+      'email': email,
+      // 'password': 'Sniren123',
+      'password': password,
+      // 'password_confirmation': 'Sniren123',
+      'password_confirmation': password,
+      // 'name': 'RENDI DWIKURNIASANDI',
+      'name': name,
+      // 'nik': 3210192010031231,
+      'nik': int.parse(nik),
+      // 'birth_place': 'MAJALENGKA',
+      'birth_place': birthPlace,
+      // 'birth_date': '20-10-2002',
+      'birth_date': date2,
+      // 'gender': 'LAKI-LAKI',
+      'gender': gender,
+      // 'address': 'DUSUN MAJAMULIA',
+      'address': address,
+      // 'rt': '004',
+      'rt': rt,
+      // 'rw': '002',
+      'rw': rw,
+      // 'village': 'MAJASUKA',
+      'village': village,
+      // 'district': 'PALASAH',
+      'district': subdistrict,
+      // 'religion': 'ISLAM',
+      'religion': religion,
+      // 'marital_status': 'BELUM KAWIN',
+      'marital_status': maritalStatus,
+      // 'work': 'PELAJAR/MAHASISWA',
+      'work': work,
+      // 'nationnality': 'WNI',
+      'nationnality': nationnality,
+      // 'city': 'KABUPATEN MAJALENGKA',
+      'city': city,
+      // 'province': 'JAWA BARAT',
+      'province': province,
+      // 'phone_number': 123456,
+      'phone_number': int.parse(phoneNumber),
+      // 'pin': 123456,
+      'pin': int.parse(pin),
+      // 'member_type': 'Trader',
+      'member_type': membertypeanggota,
+      'referral': referral,
+    };
+    // final body1 = {"email": email, "password": password};
 
-      print('body: $body');
-      // print('body: $body1');
-      final res = await _dio.post('/api/v1/register', data: body);
+    print('body: $body');
+    // print('body: $body1');
+    final res = await _dio.post(
+      '/api/v1/register',
+      data: body,
+      options: Options(
+        headers: {'Accept': 'application/json'},
+        followRedirects: false,
+        validateStatus: (status) => true,
+      ),
+    );
 
-      await saveResponsePost(res.requestOptions.path, res.statusMessage,
-          res.data.toString(), body.toString());
+    await saveResponsePost(res.requestOptions.path, res.statusMessage,
+        res.data.toString(), body.toString());
 
-      print(res.data);
-      if (res.data['success'] == true) {
-        await customSnackbar(
-            type: 'success', title: 'Berhasil', text: 'Akun sudah terbuat');
-        return res.data;
-      } else {
-        loadingRegister = false;
-        notifyListeners();
-      }
-    } on DioError catch (e) {
-      // loadingRegister = false;
-      // notifyListeners();
-      print(e.response);
-      print(e.message);
-      print(e.error);
-      if (kDebugMode) rethrow;
-      try {
-        ErrorModel data = ErrorModel.fromJson(e.response!.data);
-        await customSnackbar(
-            type: 'error', title: 'error', text: data.error.toString());
-      } catch (e) {
-        await customSnackbar(
-            type: 'error',
-            title: 'Terjadi kesalahan!',
-            text: 'NIK/Email sudah terdaftar');
-        rethrow;
-      }
-    } catch (e) {
+    print(res.data);
+    if (res.data['success'] == true) {
+      await customSnackbar(
+          type: 'success', title: 'Berhasil', text: 'Akun sudah terbuat');
+      return res.data;
+    } else {
       await customSnackbar(
           type: 'error',
           title: 'Terjadi kesalahan!',
           text: 'NIK/Email sudah terdaftar');
-      rethrow;
+      throw Exception();
     }
   }
 
@@ -534,45 +519,36 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
     required String token,
     required String uuid,
   }) async {
-    try {
-      print(uuid);
-      print(token);
-      final res = await _dio2.post(
-        '/api/v1/check-payment',
-        data: {'uuid': uuid},
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $token',
-            // 'Accept': 'application/json'
-          },
-        ),
-      );
+    final res = await _dio2.post(
+      '/api/v1/check-payment',
+      data: {'uuid': uuid},
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+          // 'Accept': 'application/json'
+        },
+        followRedirects: false,
+        validateStatus: (status) => true,
+      ),
+    );
 
-      await saveResponsePost(
-          res.requestOptions.path, res.statusMessage, res.data.toString(), '');
+    await saveResponsePost(
+        res.requestOptions.path, res.statusMessage, res.data.toString(), '');
 
-      print(res.data);
-      if (res.data['success'] == true) {
-        return true;
-      }
-    } on DioError catch (e) {
-      if (kDebugMode) rethrow;
-      return false;
-      // try {
-      //   ErrorModel data = ErrorModel.fromJson(e.response!.data);
-      //   await customSnackbar(
-      //       type: 'error', title: 'error', text: data.error.toString());
-      //   return false;
-      // } catch (e) {
-      //   await customSnackbar(
-      //       type: 'error', title: 'error', text: 'Terjadi kesalahan!');
-      //   return false;
-      // }
-    } catch (e) {
+    print(res.data);
+    if (res.data['success'] == true) {
+      return true;
+    } else if (res.data['success'] == false) {
       await customSnackbar(
-          type: 'error', title: 'error', text: 'Terjadi kesalahan!');
+          type: 'error',
+          title: 'error',
+          text: 'Selesaikan pembayaran Anda terlebih dahulu!');
       return false;
     }
+
+    await customSnackbar(
+        type: 'error', title: 'error', text: 'Terjadi kesalahan!');
+
     return false;
   }
 

@@ -125,17 +125,17 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
                   textAlign: TextAlign.center,
                   style: TextStyling.titleStyle,
                 ),
-                Container(
-                  margin: const EdgeInsets.all(20.0),
-                  child: const Text(
-                    'Lörem ipsum putinas eurobävning, pohöpas trev. Odade global hektar rere i biohögån ultras. ',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 15),
-                  ),
-                ),
+                // Container(
+                //   margin: const EdgeInsets.all(20.0),
+                //   child: const Text(
+                //     'Lörem ipsum putinas eurobävning, pohöpas trev. Odade global hektar rere i biohögån ultras. ',
+                //     textAlign: TextAlign.center,
+                //     style: TextStyle(
+                //         color: Colors.grey,
+                //         fontWeight: FontWeight.normal,
+                //         fontSize: 15),
+                //   ),
+                // ),
                 const SizedBox(
                   height: 20,
                 ),

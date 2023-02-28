@@ -74,6 +74,7 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
     int? monthlyMandatoryFee,
     int? monthlyPrincipalFee,
   }) async {
+    print(phoneNumber);
     setState(() {
       loading = false;
     });

@@ -369,8 +369,8 @@ class _LoginPagesState extends State<LoginPages> {
                                   // Navigator.push(
                                   //   context,
                                   //   MaterialPageRoute(
-                                  //       builder: (context) =>
-                                  //           const CameraIDCardOverlay()),
+                                  //       builder: (context) => TakePicturePage(
+                                  //           title: 'Unggah Foto KTP')),
                                   // );
                                   _submit();
                                 },
@@ -521,12 +521,6 @@ class _LoginPagesState extends State<LoginPages> {
                         ),
                         InkWell(
                           onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) =>
-                            //           const RegisterMemberTypePage()),
-                            // );
                             Navigator.push(
                               context,
                               MaterialPageRoute(

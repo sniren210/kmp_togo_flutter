@@ -520,12 +520,6 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                                 text:
                                                     'Selamat anda telah membayar iuran pertama');
                                             Get.offAllNamed('/home');
-                                          } else {
-                                            await customSnackbar(
-                                                type: 'error',
-                                                title: 'gagal',
-                                                text:
-                                                    'Selesaikan pembayaran Anda terlebih dahulu!');
                                           }
                                         },
                                         child: Container(
