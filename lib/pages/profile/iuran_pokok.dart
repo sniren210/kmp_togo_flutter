@@ -3,10 +3,17 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:intl/intl.dart';
+import 'package:kmp_togo_mobile/apis/repository.dart';
+import 'package:kmp_togo_mobile/pages/base.dart';
 import 'package:kmp_togo_mobile/pages/common/cardtopup.dart';
+import 'package:kmp_togo_mobile/providers/account/provider_account.dart';
+import 'package:kmp_togo_mobile/providers/auth/provider_membertype.dart';
 
 class iuranPokok extends StatefulWidget {
-  const iuranPokok({super.key});
+  final String name;
+
+  const iuranPokok({super.key, required this.name});
 
   @override
   State<iuranPokok> createState() => _iuranPokokState();
@@ -42,85 +49,111 @@ class _iuranPokokState extends State<iuranPokok> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Icon(Icons.arrow_back),
-          backgroundColor: Theme.of(context).primaryColor,
-        ),
-        appBar: AppBar(
-          toolbarHeight: 140,
-          backgroundColor: Theme.of(context).primaryColor,
-          automaticallyImplyLeading: false,
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                'Iuran pokok & wajib',
-                style: TextStyle(fontWeight: FontWeight.bold),
+    final currencyFormatter =
+        NumberFormat.currency(locale: 'ID', symbol: 'Rp.');
+
+    return BaseWidget<ProviderMemberType>(
+        model: ProviderMemberType(Repository()),
+        onModelReady: (model) => model.fetchAllMemberType(),
+        child: Container(),
+        builder: (context, model, child) {
+          final role = model.items?.data
+              .firstWhere((element) => element.name == widget.name);
+
+          return SafeArea(
+            child: Scaffold(
+              floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(Icons.arrow_back),
+                backgroundColor: Theme.of(context).primaryColor,
               ),
-              const CircleAvatar(
-                radius: 37,
-                backgroundImage: AssetImage('assets/images/logon.jpg'),
-              ),
-              Text('total: Rp.0'),
-            ],
-          ),
-          centerTitle: true,
-        ),
-        body: SingleChildScrollView(
-          controller: _scrollController,
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          physics: const AlwaysScrollableScrollPhysics(
-            parent: ClampingScrollPhysics(),
-          ),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 16,
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 4.w,
+              appBar: AppBar(
+                toolbarHeight: 160,
+                backgroundColor: Theme.of(context).primaryColor,
+                automaticallyImplyLeading: false,
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Iuran pokok & wajib',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    const CircleAvatar(
+                      radius: 37,
+                      backgroundImage: AssetImage('assets/images/logon.jpg'),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Builder(builder: (context) {
+                      int jumlah = (role?.monthlyPrincipalFee ?? 0) +
+                          ((role?.monthlyMandatoryFee ?? 0) * 12);
+                      return Text(
+                          'total : ${currencyFormatter.format(jumlah)}');
+                    }),
+                  ],
                 ),
-                child: SizedBox(
-                  child: Column(
-                    children: [
-                      Card(
-                        child: ListTile(
-                          title: Text('Rp. 50.000'),
-                          subtitle: Text('iuran pokok'),
+                centerTitle: true,
+              ),
+              body: SingleChildScrollView(
+                controller: _scrollController,
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                physics: const AlwaysScrollableScrollPhysics(
+                  parent: ClampingScrollPhysics(),
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 4.w,
+                      ),
+                      child: SizedBox(
+                        child: Column(
+                          children: [
+                            Card(
+                              child: ListTile(
+                                title: Text(currencyFormatter
+                                    .format(role?.monthlyPrincipalFee ?? 0)),
+                                subtitle: Text('Iuran pokok'),
+                              ),
+                            )
+                          ],
                         ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 4.w,
-                ),
-                child: SizedBox(
-                  child: Column(
-                    children: [
-                      Card(
-                        child: ListTile(
-                          title: Text('Rp. 100.000'),
-                          subtitle: Text('iuran wajib'),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 4.w,
+                      ),
+                      child: SizedBox(
+                        child: Column(
+                          children: [
+                            Card(
+                              child: ListTile(
+                                title: Text(currencyFormatter
+                                    .format(role?.monthlyMandatoryFee ?? 0)),
+                                subtitle: Text('Iuran wajib'),
+                              ),
+                            )
+                          ],
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
-    );
+            ),
+          );
+        });
   }
 
   card1(String judul, int _selectedIndex) {

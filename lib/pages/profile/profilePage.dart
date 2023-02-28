@@ -154,7 +154,8 @@ class _ProfileState extends State<Profile> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => iuranPokok(),
+                              builder: (context) => iuranPokok(
+                                  name: model.items!.user.roles.first.name),
                             ),
                           );
                         },

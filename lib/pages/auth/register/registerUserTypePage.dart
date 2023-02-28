@@ -768,26 +768,7 @@ class MemberDetailWidget extends StatelessWidget {
                     style: TextStyling.w30013black),
               ],
             ),
-            // Row(
-            //   children: [
-            //     const Text('Admin : ', style: TextStyling.w30013black),
-            //     Text(currencyFormatter.format(data.adminFee),
-            //         style: TextStyling.w30013black),
-            //   ],
-            // ),
-            // const SizedBox(height: 8),
-            // Row(
-            //   children: [
-            //     const Text('Jumlah : ', style: TextStyling.w30013black),
-            //     Text(``
-            //         currencyFormatter.format(data.adminFee +
-            //             data.monthlyPrincipalFee +
-            //             data.monthlyMandatoryFee),
-            //         style: TextStyling.w30013black),
-            //   ],
-            // ),
             const SizedBox(height: 18),
-
             const SizedBox(height: 25),
           ],
         ));
