@@ -57,8 +57,13 @@ class _iuranPokokState extends State<iuranPokok> {
         onModelReady: (model) => model.fetchAllMemberType(),
         child: Container(),
         builder: (context, model, child) {
-          final role = model.items?.data
-              .firstWhere((element) => element.name == widget.name);
+          final roles = model.items?.data.where((element) {
+            // print('${element.name} ${widget.name}');
+            return element.name == widget.name;
+          }).toList();
+
+          final role =
+              roles?.asMap().containsKey(0) ?? false ? roles?.first : null;
 
           return SafeArea(
             child: Scaffold(
