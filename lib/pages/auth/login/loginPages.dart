@@ -369,8 +369,8 @@ class _LoginPagesState extends State<LoginPages> {
                                   // Navigator.push(
                                   //   context,
                                   //   MaterialPageRoute(
-                                  //       builder: (context) => TakePicturePage(
-                                  //           title: 'Unggah Foto KTP')),
+                                  //       builder: (context) =>
+                                  //           RegisterMemberTypePage()),
                                   // );
                                   _submit();
                                 },

@@ -20,6 +20,7 @@ import 'package:kmp_togo_mobile/models/product/productInq_model.dart';
 import 'package:kmp_togo_mobile/models/product/productCreate2_model.dart';
 import 'package:kmp_togo_mobile/models/product/productCreate_model.dart';
 import 'package:kmp_togo_mobile/models/product/product_model.dart';
+import 'package:kmp_togo_mobile/models/register/payment_create.dart';
 import 'package:kmp_togo_mobile/models/response/success/success_models.dart';
 import 'package:kmp_togo_mobile/models/wallet/topup/coin_model.dart';
 import 'package:kmp_togo_mobile/models/wallet/topup/topup_model.dart';
@@ -162,4 +163,7 @@ class Repository {
       coinApi.buyCoin(coin, pinValue);
   Future<ItemModelSellCoin> sellCoin(coin, pinValue) =>
       coinApi.sellCoin(coin, pinValue);
+  Future<PaymentCreateModel> beliPoin(poin) => coinApi.beliDeposit(poin);
+
+  Future<bool> cekPoin(uuid) => coinApi.checkDeposit(uuid: uuid);
 }

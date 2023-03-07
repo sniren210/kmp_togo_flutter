@@ -70,24 +70,6 @@ class Data {
         city: json['city'],
         province: json['province'],
       );
-  // {
-  //   name = json['name'];
-  //   id = json['id'];
-  //   pob = json['pob'];
-  //   dob = json['dob'];
-  //   gender = json['gender'];
-  //   address = json['address'];
-  //   rt = json['rt'];
-  //   rw = json['rw'];
-  //   village = json['village'];
-  //   district = json['district'];
-  //   religion = json['religion'];
-  //   maritalStatus = json['marital_status'];
-  //   work = json['work'];
-  //   nationnality = json['nationnality'];
-  //   city = json['city'];
-  //   province = json['province'];
-  // }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};

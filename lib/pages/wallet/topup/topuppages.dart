@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kmp_togo_mobile/helpers/ui_helper/custom_snackbar.dart';
 import 'package:kmp_togo_mobile/pages/wallet/topup/topupPayment.dart';
 import 'package:kmp_togo_mobile/utils/layarmax.dart';
 import 'package:sizer/sizer.dart';
@@ -14,7 +15,16 @@ class _TopUpPageState extends State<TopUpPage> {
   TextEditingController nominal = TextEditingController();
   bool saldokosong = false;
 
-  checkSaldo(nominalA) {
+  checkSaldo(nominalA) async {
+    if (int.parse(nominal.text) < 50000) {
+      await customSnackbar(
+          type: 'error',
+          title: 'error',
+          text: 'Minimal nominal top up adalah Rp.50.000!');
+
+      return;
+    }
+
     if (nominalA == '') {
       setState(() {
         saldokosong = true;

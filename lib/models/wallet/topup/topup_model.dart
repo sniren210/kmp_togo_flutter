@@ -16,6 +16,10 @@ class ItemModelTopup {
         data: DataTopUpModel.fromJson(json["data"]),
       );
 
+  factory ItemModelTopup.dummy() => ItemModelTopup(
+        data: DataTopUpModel(name: 'name', vanumber: 'vanumber'),
+      );
+
   Map<String, dynamic> toJson() => {
         "data": data.toJson(),
       };
@@ -28,7 +32,8 @@ class ItemModelBuyCoin {
 
   final DataBuyCoinModel data;
 
-  factory ItemModelBuyCoin.fromJson(Map<String, dynamic> json) => ItemModelBuyCoin(
+  factory ItemModelBuyCoin.fromJson(Map<String, dynamic> json) =>
+      ItemModelBuyCoin(
         data: DataBuyCoinModel.fromJson(json["data"]),
       );
 
@@ -44,7 +49,8 @@ class ItemModelSellCoin {
 
   final DataBuyCoinModel data;
 
-  factory ItemModelSellCoin.fromJson(Map<String, dynamic> json) => ItemModelSellCoin(
+  factory ItemModelSellCoin.fromJson(Map<String, dynamic> json) =>
+      ItemModelSellCoin(
         data: DataBuyCoinModel.fromJson(json["data"]),
       );
 
@@ -93,4 +99,3 @@ class DataBuyCoinModel {
         "coin": coin,
       };
 }
-

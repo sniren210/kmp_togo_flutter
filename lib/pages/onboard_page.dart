@@ -18,7 +18,8 @@ class OnBoardingPage extends StatefulWidget {
 class _OnBoardingPageState extends State<OnBoardingPage> {
   late Material materialButton;
   late int index;
-  Color warna = const Color(0xFF353E75);
+  Color warna = const Color(0xFF85014e);
+  String? image;
   bool? lastpage = false;
   String? routeLogin;
 
@@ -30,31 +31,26 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             minHeight: MediaQuery.of(context).size.height,
             minWidth: MediaQuery.of(context).size.width,
           ),
-          child: SingleChildScrollView(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.8,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (v.listImageOnboarding != null &&
-                      v.listImageOnboarding!.data.asMap().containsKey(0))
-                    Image.network(
-                      v.listImageOnboarding!.data[0].imageUrl,
-                      fit: BoxFit.cover,
-                      height: 100,
-                    )
-                  else
-                    Image.asset(
-                      'assets/onboard/onboard1.jpg',
-                      fit: BoxFit.cover,
-                      height: 100,
+          child: v.listImageOnboarding != null &&
+                  v.listImageOnboarding!.data.asMap().containsKey(0)
+              ? SizedBox.shrink()
+              : SingleChildScrollView(
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.8,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/onboard/onboard1.jpg',
+                          fit: BoxFit.cover,
+                          height: 100,
+                        ),
+                        // buildContent(
+                        //     '', v.dataApiTextObaroding1?.data?.value ?? ""),
+                      ],
                     ),
-                  // buildContent(
-                  //     '', v.dataApiTextObaroding1?.data?.value ?? ""),
-                ],
-              ),
-            ),
-          ),
+                  ),
+                ),
         ),
       ),
       PageModel(
@@ -63,29 +59,24 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             minHeight: MediaQuery.of(context).size.height,
             minWidth: MediaQuery.of(context).size.width,
           ),
-          child: SingleChildScrollView(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.8,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (v.listImageOnboarding != null &&
-                      v.listImageOnboarding!.data.asMap().containsKey(1))
-                    Image.network(
-                      v.listImageOnboarding!.data[1].imageUrl,
-                      fit: BoxFit.cover,
-                      height: 100,
-                    )
-                  else
-                    Image.asset(
-                      'assets/onboard/onboard2.jpg',
-                      fit: BoxFit.cover,
-                      height: 100,
+          child: v.listImageOnboarding != null &&
+                  v.listImageOnboarding!.data.asMap().containsKey(1)
+              ? SizedBox.shrink()
+              : SingleChildScrollView(
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.8,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/onboard/onboard2.jpg',
+                          fit: BoxFit.cover,
+                          height: 100,
+                        ),
+                      ],
                     ),
-                ],
-              ),
-            ),
-          ),
+                  ),
+                ),
         ),
       ),
       PageModel(
@@ -94,29 +85,24 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             minHeight: MediaQuery.of(context).size.height,
             minWidth: MediaQuery.of(context).size.width,
           ),
-          child: SingleChildScrollView(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.8,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (v.listImageOnboarding != null &&
-                      v.listImageOnboarding!.data.asMap().containsKey(2))
-                    Image.network(
-                      v.listImageOnboarding!.data[2].imageUrl,
-                      fit: BoxFit.cover,
-                      height: 100,
-                    )
-                  else
-                    Image.asset(
-                      'assets/onboard/onboard3.jpg',
-                      fit: BoxFit.cover,
-                      height: 100,
+          child: v.listImageOnboarding != null &&
+                  v.listImageOnboarding!.data.asMap().containsKey(2)
+              ? SizedBox.shrink()
+              : SingleChildScrollView(
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.8,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/onboard/onboard3.jpg',
+                          fit: BoxFit.cover,
+                          height: 100,
+                        ),
+                      ],
                     ),
-                ],
-              ),
-            ),
-          ),
+                  ),
+                ),
         ),
       ),
       PageModel(
@@ -125,29 +111,24 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             minHeight: MediaQuery.of(context).size.height,
             minWidth: MediaQuery.of(context).size.width,
           ),
-          child: SingleChildScrollView(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.8,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (v.listImageOnboarding != null &&
-                      v.listImageOnboarding!.data.asMap().containsKey(3))
-                    Image.network(
-                      v.listImageOnboarding!.data[3].imageUrl,
-                      fit: BoxFit.cover,
-                      height: 100,
-                    )
-                  else
-                    Image.asset(
-                      'assets/onboard/onboard4.jpg',
-                      fit: BoxFit.cover,
-                      height: 100,
+          child: v.listImageOnboarding != null &&
+                  v.listImageOnboarding!.data.asMap().containsKey(3)
+              ? SizedBox.shrink()
+              : SingleChildScrollView(
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.8,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/onboard/onboard4.jpg',
+                          fit: BoxFit.cover,
+                          height: 100,
+                        ),
+                      ],
                     ),
-                ],
-              ),
-            ),
-          ),
+                  ),
+                ),
         ),
       ),
     ];
@@ -194,6 +175,10 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       final getApiTextLogin =
           Provider.of<ProviderApiText>(context, listen: false);
       await getApiTextLogin.getOnboarding(context);
+
+      setState(() {
+        image = getApiTextLogin.listImageOnboarding!.data[0].imageUrl;
+      });
     });
 
     materialButton = _skipButton();
@@ -270,9 +255,18 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       builder: (context, v, child) {
         return Scaffold(
           body: Container(
-            color: warna,
+            decoration: BoxDecoration(
+              color: warna,
+              image: image != null
+                  ? DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(image!),
+                    )
+                  : null,
+            ),
             child: Onboarding(
               pages: onboardingPagesList(v),
+              startPageIndex: 0,
               onPageChange: (int pageIndex) {
                 index = pageIndex;
 
@@ -282,7 +276,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                   if (index == 0) {
                     setState(() {
                       // _visible = true;
-                      warna = const Color(0xFF353E75);
+                      warna = const Color(0xFF85014e);
                     });
                   } else if (index == 1) {
                     setState(() {
@@ -301,8 +295,43 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     });
                   }
                 });
+
+                if (v.listImageOnboarding != null) {
+                  int indexOnboard = index + 1;
+
+                  if (v.listImageOnboarding!.data.asMap().containsKey(0) &&
+                      indexOnboard == 0) {
+                    setState(() {
+                      image = v.listImageOnboarding!.data[0].imageUrl;
+                    });
+                  } else if (v.listImageOnboarding!.data
+                          .asMap()
+                          .containsKey(1) &&
+                      indexOnboard == 1) {
+                    setState(() {
+                      image = v.listImageOnboarding!.data[1].imageUrl;
+                    });
+                  } else if (v.listImageOnboarding!.data
+                          .asMap()
+                          .containsKey(2) &&
+                      indexOnboard == 2) {
+                    setState(() {
+                      image = v.listImageOnboarding!.data[2].imageUrl;
+                    });
+                  } else if (v.listImageOnboarding!.data
+                          .asMap()
+                          .containsKey(3) &&
+                      indexOnboard == 3) {
+                    setState(() {
+                      image = v.listImageOnboarding!.data[3].imageUrl;
+                    });
+                  } else {
+                    setState(() {
+                      image = null;
+                    });
+                  }
+                }
               },
-              startPageIndex: 0,
               footerBuilder: (context, dragDistance, pagesLength, setIndex) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -328,6 +357,48 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                           ),
                           child: IconButton(
                             onPressed: () {
+                              if (v.listImageOnboarding != null) {
+                                int indexOnboard = index + 1;
+
+                                if (v.listImageOnboarding!.data
+                                        .asMap()
+                                        .containsKey(0) &&
+                                    indexOnboard == 0) {
+                                  setState(() {
+                                    image =
+                                        v.listImageOnboarding!.data[0].imageUrl;
+                                  });
+                                } else if (v.listImageOnboarding!.data
+                                        .asMap()
+                                        .containsKey(1) &&
+                                    indexOnboard == 1) {
+                                  setState(() {
+                                    image =
+                                        v.listImageOnboarding!.data[1].imageUrl;
+                                  });
+                                } else if (v.listImageOnboarding!.data
+                                        .asMap()
+                                        .containsKey(2) &&
+                                    indexOnboard == 2) {
+                                  setState(() {
+                                    image =
+                                        v.listImageOnboarding!.data[2].imageUrl;
+                                  });
+                                } else if (v.listImageOnboarding!.data
+                                        .asMap()
+                                        .containsKey(3) &&
+                                    indexOnboard == 3) {
+                                  setState(() {
+                                    image =
+                                        v.listImageOnboarding!.data[3].imageUrl;
+                                  });
+                                } else {
+                                  setState(() {
+                                    image = null;
+                                  });
+                                }
+                              }
+
                               if (index != pagesLength - 1) {
                                 setState(() {
                                   setIndex(++index);
@@ -336,7 +407,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                                 if (index == 0) {
                                   setState(() {
                                     // _visible = true;
-                                    warna = const Color(0xFF353E75);
+                                    warna = const Color(0xFF85014e);
                                   });
                                 } else if (index == 1) {
                                   setState(() {

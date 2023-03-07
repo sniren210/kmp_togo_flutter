@@ -24,7 +24,8 @@ class _RegisterOtpPageState extends State<RegisterOtpPage> {
 
   @override
   void initState() {
-    // nomorhp = sharedPreferencesManager.getString("nomer_hp");
+    nomorhp =
+        sharedPreferencesManager.getString(SharedPreferencesManager.nomerHP);
     _submit(context, init: 'init');
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       Provider.of<ProviderRegister>(context, listen: false).setCountOtp(0);

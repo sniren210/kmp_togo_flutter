@@ -42,14 +42,15 @@ class Data {
     required this.name,
     required this.accountNumber,
     required this.procode,
-    required this.merchatTrxId,
+    required this.merchantTrxId,
     required this.transactionId,
-    this.additionalData,
-    required this.merchatId,
+    required this.additionalData,
+    required this.merchantId,
     required this.amount,
     required this.flagAmount,
+    required this.isClosed,
     required this.status,
-    required this.createAt,
+    required this.createdAt,
     required this.expiresAt,
     required this.id,
   });
@@ -59,14 +60,15 @@ class Data {
   String name;
   String accountNumber;
   String procode;
-  String merchatTrxId;
-  String transactionId;
-  dynamic additionalData;
-  String merchatId;
+  String merchantTrxId;
+  int transactionId;
+  String additionalData;
+  int merchantId;
   int amount;
   String flagAmount;
+  String isClosed;
   String status;
-  DateTime createAt;
+  DateTime createdAt;
   DateTime expiresAt;
   int id;
 
@@ -76,14 +78,15 @@ class Data {
         name: json["name"],
         accountNumber: json["account_number"],
         procode: json["procode"],
-        merchatTrxId: json["merchant_trx_id"],
+        merchantTrxId: json["merchant_trx_id"],
         transactionId: json["transaction_id"],
         additionalData: json["additional_data"],
-        merchatId: json["merchant_id"],
+        merchantId: json["merchant_id"],
         amount: json["amount"],
         flagAmount: json["flag_amount"],
+        isClosed: json["is_closed"],
         status: json["status"],
-        createAt: DateTime.parse(json["created_at"]),
+        createdAt: DateTime.parse(json["created_at"]),
         expiresAt: DateTime.parse(json["expires_at"]),
         id: json["id"],
       );
@@ -94,14 +97,15 @@ class Data {
         "name": name,
         "account_number": accountNumber,
         "procode": procode,
-        "merchat_trx_id": merchatTrxId,
+        "merchant_trx_id": merchantTrxId,
         "transaction_id": transactionId,
         "additional_data": additionalData,
-        "merchat_id": merchatId,
+        "merchant_id": merchantId,
         "amount": amount,
         "flag_amount": flagAmount,
+        "is_closed": isClosed,
         "status": status,
-        "create_at": createAt.toIso8601String(),
+        "created_at": createdAt.toIso8601String(),
         "expires_at": expiresAt.toIso8601String(),
         "id": id,
       };

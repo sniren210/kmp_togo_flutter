@@ -262,7 +262,7 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
       ),
     );
 
-    // print(res.data);
+    print(res.data);
     if (res.data['success'] == true) {
       final img = ImageAssetModel.fromJson(res.data);
       listImagePopUp = img.data.map((e) => e.imageUrl).toList();

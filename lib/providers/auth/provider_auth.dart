@@ -90,9 +90,18 @@ class ProviderAuthLogin with ChangeNotifier, ApiMachine {
     }
   }
 
-  logout() async {
+  logout({
+    String token = '',
+  }) async {
     final res = await _dio.get(
       '/api/v1/logout',
+      options: token.isNotEmpty
+          ? Options(
+              headers: {
+                'Authorization': 'Bearer $token',
+              },
+            )
+          : null,
     );
 
     return res.data['success'] == true;

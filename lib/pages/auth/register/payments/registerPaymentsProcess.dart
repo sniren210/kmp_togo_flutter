@@ -14,6 +14,7 @@ import 'package:kmp_togo_mobile/pages/common/carapembayaran_widget.dart';
 import 'package:kmp_togo_mobile/pages/common/customAppBar.dart';
 import 'package:kmp_togo_mobile/pages/common/takePictures.dart';
 import 'package:kmp_togo_mobile/pages/home.dart';
+import 'package:kmp_togo_mobile/providers/auth/provider_auth.dart';
 import 'package:kmp_togo_mobile/providers/auth/provider_register.dart';
 import 'package:provider/provider.dart';
 
@@ -80,8 +81,11 @@ class _PaymentProcessState extends State<PaymentProcess> {
 
       final getApiTextLogin =
           Provider.of<ProviderRegister>(context, listen: false);
-      await getApiTextLogin.createPayment(context,
-          token: widget.token, role: widget.tipeAnggota);
+      await getApiTextLogin.createPayment(
+        context,
+        token: widget.token,
+        // voucher: '',
+      );
       setState(() {
         loading = getApiTextLogin.loadingPayment;
       });
@@ -154,15 +158,15 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            if (v.dataPayment?.data.createAt !=
+                                            if (v.dataPayment?.data.createdAt !=
                                                 null)
                                               Text(
                                                 DateFormat('dd-MM-yyyy').format(
                                                     v.dataPayment!.data
-                                                        .createAt),
+                                                        .createdAt),
                                                 style: TextStyling.bold13black,
                                               ),
-                                            if (v.dataPayment?.data.createAt !=
+                                            if (v.dataPayment?.data.createdAt !=
                                                 null)
                                               Text(
                                                 DateFormat('dd-MM-yyyy').format(
@@ -451,7 +455,7 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                             ),
                                             InkWell(
                                                 splashColor: Color(0xFF85014e),
-                                                onTap: () {
+                                                onTap: () async {
                                                   Clipboard.setData(
                                                       ClipboardData(
                                                           text: v
@@ -460,6 +464,12 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                                               ?.va
                                                               ?.vanumber
                                                               .toString()));
+
+                                                  await customSnackbar(
+                                                      type: 'success',
+                                                      title: 'Berhasil',
+                                                      text:
+                                                          'Nomer VA berhasil disalin');
                                                 },
                                                 child: const Icon(Icons.copy,
                                                     size: 20))
@@ -510,16 +520,20 @@ class _PaymentProcessState extends State<PaymentProcess> {
 
                                           if (rs) {
                                             await sharedPreferencesManager
-                                                .setBool(
-                                                    SharedPreferencesManager
-                                                        .isLoggedIn,
-                                                    true);
+                                                .clearAll();
+
+                                            await Provider.of<
+                                                        ProviderAuthLogin>(
+                                                    context,
+                                                    listen: false)
+                                                .logout(token: widget.token);
+
                                             await customSnackbar(
                                                 type: 'success',
                                                 title: 'berhasil',
                                                 text:
                                                     'Selamat anda telah membayar iuran pertama');
-                                            Get.offAllNamed('/home');
+                                            Get.offAllNamed('/login');
                                           }
                                         },
                                         child: Container(

@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:kmp_togo_mobile/helpers/api_helper.dart';
 import 'package:kmp_togo_mobile/helpers/injector.dart';
@@ -24,6 +23,7 @@ import 'package:kmp_togo_mobile/pages/auth/register/registerOtpPage.dart';
 import 'package:kmp_togo_mobile/pages/common/takePictures.dart';
 import 'package:kmp_togo_mobile/pages/home.dart';
 import 'package:kmp_togo_mobile/providers/auth/registermemberid.dart';
+import 'package:platform_device_id/platform_device_id.dart';
 
 import '../../pages/auth/register/payments/registerPaymentsProcess.dart';
 
@@ -149,14 +149,27 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
 
   Future<bool> validate_ocrktp(context, File image) async {
     try {
-      print(base64Encode(await image.readAsBytes()));
-      final res = await _dio.post('/api/v1/ktp-ocr',
-          data: {'image': base64Encode(await image.readAsBytes())});
+      // print(base64Encode(await image.readAsBytes()));
+      String fileName = image.path.split('/').last;
+      final res = await _dio.post(
+        '/api/v1/ktp-ocr',
+        data: FormData.fromMap(
+          {
+            "image":
+                await MultipartFile.fromFile(image.path, filename: fileName),
+          },
+        ),
+        options: Options(
+          headers: {'Accept': 'application/json'},
+          followRedirects: false,
+          validateStatus: (status) => true,
+        ),
+      );
 
       await saveResponsePost(
           res.requestOptions.path, res.statusMessage, res.data.toString(), '');
 
-      print('res: ${res.data['data']}');
+      print('res: ${res.data}');
       if (res.data['success'] == true) {
         dataktp = ModelKtpData.fromJson(res.data);
 
@@ -227,11 +240,11 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
         }
       } else {
         loadingKodeOtp = false;
+        notifyListeners();
         await customSnackbar(
             type: 'error',
             title: res.data['data']['status'],
             text: res.data['data']['message']);
-        notifyListeners();
         return false;
       }
     } on DioError catch (e) {
@@ -390,8 +403,9 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
     var date1 = inputFormat.parse(birthdate);
     var date2 = outputFormat.format(date1);
 
+    String? deviceId = await PlatformDeviceId.getDeviceId;
     final body = {
-      // 'email': 'example13@gmail.com',
+      // 'email': 'example29@gmail.com',
       'email': email,
       // 'password': 'Sniren123',
       'password': password,
@@ -399,7 +413,7 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
       'password_confirmation': password,
       // 'name': 'RENDI DWIKURNIASANDI',
       'name': name,
-      // 'nik': 3210192010031231,
+      // 'nik': 3210192013138231,
       'nik': int.parse(nik),
       // 'birth_place': 'MAJALENGKA',
       'birth_place': birthPlace,
@@ -429,12 +443,14 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
       'city': city,
       // 'province': 'JAWA BARAT',
       'province': province,
-      // 'phone_number': 123456,
+      // 'phone_number': 085215137644,
       'phone_number': int.parse(phoneNumber),
       // 'pin': 123456,
       'pin': int.parse(pin),
       // 'member_type': 'Trader',
       'member_type': membertypeanggota,
+
+      'device_id': deviceId,
       'referral': referral,
     };
     // final body1 = {"email": email, "password": password};
@@ -471,13 +487,13 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
   createPayment(
     context, {
     required String token,
-    required String role,
+    String voucher = '',
   }) async {
     try {
-      print(token);
+      // print(token);
       final res = await _dio.post(
         '/api/v1/create-payment',
-        data: {'role': role},
+        data: {'voucher': voucher},
         options: Options(
           headers: {
             'Authorization': 'Bearer $token',
@@ -519,6 +535,7 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
     required String token,
     required String uuid,
   }) async {
+    print(uuid);
     final res = await _dio2.post(
       '/api/v1/check-payment',
       data: {'uuid': uuid},
@@ -536,8 +553,20 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
         res.requestOptions.path, res.statusMessage, res.data.toString(), '');
 
     print(res.data);
+    // if (res.data['success']['message'] == 'User has been ACTIVE') {
+    //   return true;
+    // }
+
     if (res.data['success'] == true) {
-      return true;
+      if (res.data['data']['status'] == 'PAID') {
+        return true;
+      }
+
+      await customSnackbar(
+          type: 'error',
+          title: 'error',
+          text: 'Selesaikan pembayaran Anda terlebih dahulu!');
+      return false;
     } else if (res.data['success'] == false) {
       await customSnackbar(
           type: 'error',

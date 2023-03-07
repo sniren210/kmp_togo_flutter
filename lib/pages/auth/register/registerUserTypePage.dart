@@ -74,7 +74,6 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
     int? monthlyMandatoryFee,
     int? monthlyPrincipalFee,
   }) async {
-    print(phoneNumber);
     setState(() {
       loading = false;
     });
@@ -214,12 +213,17 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
                         height: 10,
                       ),
                       model.busy
-                          ? const CircularProgressIndicator()
+                          ? Center(child: const CircularProgressIndicator())
                           : ListView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
                               itemCount: model.items?.data.length ?? 0,
                               itemBuilder: (_, int index) {
+                                if (model.items?.data[index].name ==
+                                    'Founder') {
+                                  return SizedBox.shrink();
+                                }
+
                                 return GestureDetector(
                                   onTap: () => setState(() {
                                     selectedIndex = index;
