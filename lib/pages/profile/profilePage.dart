@@ -250,8 +250,8 @@ class _ProfileState extends State<Profile> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PrivacyPolicyPage(
-                                        isPolicy: true,
+                                  builder: (context) => SettingsAboutPage(
+                                        settings: 'tos',
                                       )));
                         },
                       ),
@@ -265,8 +265,8 @@ class _ProfileState extends State<Profile> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PrivacyPolicyPage(
-                                        isPolicy: false,
+                                  builder: (context) => SettingsAboutPage(
+                                        settings: 'member',
                                       )));
                         },
                       ),
@@ -280,7 +280,9 @@ class _ProfileState extends State<Profile> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => AboutUsPage()));
+                                  builder: (context) => SettingsAboutPage(
+                                        settings: 'about',
+                                      )));
                         },
                       ),
                       titleSection(title: "Aplikasi"),

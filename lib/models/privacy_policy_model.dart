@@ -37,20 +37,24 @@ class PrivacyPolicyModel {
 
 class Data {
   Data({
-    required this.policy,
-    required this.member,
+    required this.description,
+    required this.createdAt,
+    this.updatedAt,
   });
 
-  List<dynamic> policy;
-  List<dynamic> member;
+  String description;
+  DateTime createdAt;
+  dynamic updatedAt;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        policy: List<dynamic>.from(json["policy"].map((x) => x)),
-        member: List<dynamic>.from(json["member"].map((x) => x)),
+        description: json["description"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: json["updated_at"],
       );
 
   Map<String, dynamic> toJson() => {
-        "policy": List<dynamic>.from(policy.map((x) => x)),
-        "member": List<dynamic>.from(member.map((x) => x)),
+        "description": description,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt,
       };
 }

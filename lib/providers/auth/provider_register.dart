@@ -148,118 +148,99 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
   }
 
   Future<bool> validate_ocrktp(context, File image) async {
-    try {
-      // print(base64Encode(await image.readAsBytes()));
-      String fileName = image.path.split('/').last;
-      final res = await _dio.post(
-        '/api/v1/ktp-ocr',
-        data: FormData.fromMap(
-          {
-            "image":
-                await MultipartFile.fromFile(image.path, filename: fileName),
-          },
-        ),
-        options: Options(
-          headers: {'Accept': 'application/json'},
-          followRedirects: false,
-          validateStatus: (status) => true,
-        ),
-      );
+    String fileName = image.path.split('/').last;
+    final res = await _dio.post(
+      '/api/v1/ktp-ocr',
+      data: FormData.fromMap(
+        {
+          "image": await MultipartFile.fromFile(image.path, filename: fileName),
+        },
+      ),
+      options: Options(
+        headers: {'Accept': 'application/json'},
+        followRedirects: false,
+        validateStatus: (status) => true,
+      ),
+    );
 
-      await saveResponsePost(
-          res.requestOptions.path, res.statusMessage, res.data.toString(), '');
+    await saveResponsePost(
+        res.requestOptions.path, res.statusMessage, res.data.toString(), '');
 
-      print('res: ${res.data}');
-      if (res.data['success'] == true) {
-        dataktp = ModelKtpData.fromJson(res.data);
+    print('res: ${res.data}');
+    if (res.data['success'] == true) {
+      dataktp = ModelKtpData.fromJson(res.data);
 
-        if (dataktp!.data!.id != '' &&
-            dataktp!.data!.name != '' &&
-            dataktp!.data!.dob != '' &&
-            dataktp!.data!.province != '' &&
-            dataktp!.data!.city != '' &&
-            dataktp!.data!.village != '' &&
-            dataktp!.data!.address != '' &&
-            dataktp!.data!.pob != '' &&
-            dataktp!.data!.religion != '' &&
-            dataktp!.data!.maritalStatus != '' &&
-            dataktp!.data!.work != '' &&
-            dataktp!.data!.gender != '' &&
-            dataktp!.data!.nationnality != '' &&
-            dataktp!.data!.village != '' &&
-            dataktp!.data!.rt != '' &&
-            dataktp!.data!.rw != '') {
-          loadingKodeOtp = false;
-          await sharedPreferencesManager.setString(
-              SharedPreferencesManager.nomorKTP, dataktp?.data?.id ?? "");
-          await sharedPreferencesManager.setString(
-              SharedPreferencesManager.nama, dataktp?.data?.name ?? "");
-          await sharedPreferencesManager.setString(
-              SharedPreferencesManager.tgllahir, dataktp?.data?.dob ?? "");
-          await sharedPreferencesManager.setString(
-              SharedPreferencesManager.provinsiid,
-              dataktp?.data?.province ?? "");
-          await sharedPreferencesManager.setString(
-              SharedPreferencesManager.kotaid, dataktp?.data?.city ?? "");
-          await sharedPreferencesManager.setString(
-              SharedPreferencesManager.kecamatan,
-              dataktp?.data?.district ?? "");
-          await sharedPreferencesManager.setString(
-              SharedPreferencesManager.alamat, dataktp?.data?.address ?? "");
-          await sharedPreferencesManager.setString(
-              SharedPreferencesManager.birthPlace, dataktp?.data?.pob ?? "");
-          await sharedPreferencesManager.setString(
-              SharedPreferencesManager.religion, dataktp?.data?.religion ?? "");
-          await sharedPreferencesManager.setString(
-              SharedPreferencesManager.status,
-              dataktp?.data?.maritalStatus ?? "");
-          await sharedPreferencesManager.setString(
-              SharedPreferencesManager.work, dataktp?.data?.work ?? "");
-          await sharedPreferencesManager.setString(
-              SharedPreferencesManager.gender, dataktp?.data?.gender ?? "");
-          await sharedPreferencesManager.setString(
-              SharedPreferencesManager.nationnality,
-              dataktp?.data?.nationnality ?? "");
-          await sharedPreferencesManager.setString(
-              SharedPreferencesManager.village, dataktp?.data?.village ?? "");
-          await sharedPreferencesManager.setString(
-              SharedPreferencesManager.rt, dataktp?.data?.rt ?? "");
-          await sharedPreferencesManager.setString(
-              SharedPreferencesManager.rw, dataktp?.data?.rw ?? "");
-          return true;
-        } else {
-          loadingKodeOtp = false;
-          await customSnackbar(
-              type: 'error',
-              title: 'Kesalahan',
-              text:
-                  'Data KTP tidak terbaca, silahkan coba retake foto kembali');
-          notifyListeners();
-
-          return false;
-        }
+      if (dataktp!.data!.id != '' &&
+          dataktp!.data!.name != '' &&
+          dataktp!.data!.dob != '' &&
+          dataktp!.data!.province != '' &&
+          dataktp!.data!.city != '' &&
+          dataktp!.data!.village != '' &&
+          dataktp!.data!.address != '' &&
+          dataktp!.data!.pob != '' &&
+          dataktp!.data!.religion != '' &&
+          dataktp!.data!.maritalStatus != '' &&
+          dataktp!.data!.work != '' &&
+          dataktp!.data!.gender != '' &&
+          dataktp!.data!.nationnality != '' &&
+          dataktp!.data!.village != '' &&
+          dataktp!.data!.rt != '' &&
+          dataktp!.data!.rw != '') {
+        loadingKodeOtp = false;
+        await sharedPreferencesManager.setString(
+            SharedPreferencesManager.nomorKTP, dataktp?.data?.id ?? "");
+        await sharedPreferencesManager.setString(
+            SharedPreferencesManager.nama, dataktp?.data?.name ?? "");
+        await sharedPreferencesManager.setString(
+            SharedPreferencesManager.tgllahir, dataktp?.data?.dob ?? "");
+        await sharedPreferencesManager.setString(
+            SharedPreferencesManager.provinsiid, dataktp?.data?.province ?? "");
+        await sharedPreferencesManager.setString(
+            SharedPreferencesManager.kotaid, dataktp?.data?.city ?? "");
+        await sharedPreferencesManager.setString(
+            SharedPreferencesManager.kecamatan, dataktp?.data?.district ?? "");
+        await sharedPreferencesManager.setString(
+            SharedPreferencesManager.alamat, dataktp?.data?.address ?? "");
+        await sharedPreferencesManager.setString(
+            SharedPreferencesManager.birthPlace, dataktp?.data?.pob ?? "");
+        await sharedPreferencesManager.setString(
+            SharedPreferencesManager.religion, dataktp?.data?.religion ?? "");
+        await sharedPreferencesManager.setString(
+            SharedPreferencesManager.status,
+            dataktp?.data?.maritalStatus ?? "");
+        await sharedPreferencesManager.setString(
+            SharedPreferencesManager.work, dataktp?.data?.work ?? "");
+        await sharedPreferencesManager.setString(
+            SharedPreferencesManager.gender, dataktp?.data?.gender ?? "");
+        await sharedPreferencesManager.setString(
+            SharedPreferencesManager.nationnality,
+            dataktp?.data?.nationnality ?? "");
+        await sharedPreferencesManager.setString(
+            SharedPreferencesManager.village, dataktp?.data?.village ?? "");
+        await sharedPreferencesManager.setString(
+            SharedPreferencesManager.rt, dataktp?.data?.rt ?? "");
+        await sharedPreferencesManager.setString(
+            SharedPreferencesManager.rw, dataktp?.data?.rw ?? "");
+        return true;
       } else {
         loadingKodeOtp = false;
-        notifyListeners();
         await customSnackbar(
             type: 'error',
-            title: res.data['data']['status'],
-            text: res.data['data']['message']);
+            title: 'Kesalahan',
+            text: 'Data KTP tidak terbaca, silahkan coba retake foto kembali');
+        notifyListeners();
+
         return false;
       }
-    } on DioError catch (e) {
-      try {
-        ErrorModel data = ErrorModel.fromJson(e.response!.data);
-        await customSnackbar(
-            type: 'error', title: 'error', text: data.error.toString());
-        return false;
-      } catch (e) {
-        final msg = e.toString();
-        print(msg);
-        await customSnackbar(
-            type: 'error', title: 'error', text: 'Terjadi kesalahan!');
-        return false;
-      }
+    } else {
+      loadingKodeOtp = false;
+      notifyListeners();
+      await customSnackbar(
+          type: 'error',
+          title: 'error ${res.statusCode}',
+          text: 'Terjadi kesalahan!');
+
+      return false;
     }
   }
 

@@ -7,9 +7,9 @@ import 'package:kmp_togo_mobile/models/settings/privacyPolicy_model.dart';
 class PrivacyPolicyApi with ApiMachine {
   final _dio = Helper().dio;
 
-  Future<PrivacyPolicyModel> fetchPrivacyPolicy() async {
+  Future<PrivacyPolicyModel> fetchPrivacyPolicy(String subUrl) async {
     try {
-      final res = await _dio.get('/api/v1/tos');
+      final res = await _dio.get('/api/v1/$subUrl');
 
       await saveResponseGet(
           res.requestOptions.path, res.statusMessage, res.data.toString());
