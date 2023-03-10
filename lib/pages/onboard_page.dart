@@ -1,172 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intro_screen_onboarding_flutter/intro_app.dart';
+import 'package:kmp_togo_mobile/apis/repository.dart';
 import 'package:kmp_togo_mobile/helpers/image_generator.dart';
 import 'package:kmp_togo_mobile/main.dart';
+import 'package:kmp_togo_mobile/pages/base.dart';
 import 'package:kmp_togo_mobile/providers/apitext/providerapitext.dart';
 import 'package:onboarding/onboarding.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({super.key});
 
   @override
-  State<OnBoardingPage> createState() => _OnBoardingPageState();
+  State<OnBoardingPage> createState() => _OnBoardingPageNewState();
 }
 
-class _OnBoardingPageState extends State<OnBoardingPage> {
-  late Material materialButton;
-  late int index;
-  Color warna = const Color(0xFF85014e);
-  String? image;
-  bool? lastpage = false;
-  String? routeLogin;
-
-  List<PageModel> onboardingPagesList(ProviderApiText v) {
-    return [
-      PageModel(
-        widget: Container(
-          constraints: BoxConstraints(
-            minHeight: MediaQuery.of(context).size.height,
-            minWidth: MediaQuery.of(context).size.width,
-          ),
-          child: v.listImageOnboarding != null &&
-                  v.listImageOnboarding!.data.asMap().containsKey(0)
-              ? SizedBox.shrink()
-              : SingleChildScrollView(
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.8,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/onboard/onboard1.jpg',
-                          fit: BoxFit.cover,
-                          height: 100,
-                        ),
-                        // buildContent(
-                        //     '', v.dataApiTextObaroding1?.data?.value ?? ""),
-                      ],
-                    ),
-                  ),
-                ),
-        ),
-      ),
-      PageModel(
-        widget: Container(
-          constraints: BoxConstraints(
-            minHeight: MediaQuery.of(context).size.height,
-            minWidth: MediaQuery.of(context).size.width,
-          ),
-          child: v.listImageOnboarding != null &&
-                  v.listImageOnboarding!.data.asMap().containsKey(1)
-              ? SizedBox.shrink()
-              : SingleChildScrollView(
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.8,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/onboard/onboard2.jpg',
-                          fit: BoxFit.cover,
-                          height: 100,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-        ),
-      ),
-      PageModel(
-        widget: Container(
-          constraints: BoxConstraints(
-            minHeight: MediaQuery.of(context).size.height,
-            minWidth: MediaQuery.of(context).size.width,
-          ),
-          child: v.listImageOnboarding != null &&
-                  v.listImageOnboarding!.data.asMap().containsKey(2)
-              ? SizedBox.shrink()
-              : SingleChildScrollView(
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.8,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/onboard/onboard3.jpg',
-                          fit: BoxFit.cover,
-                          height: 100,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-        ),
-      ),
-      PageModel(
-        widget: Container(
-          constraints: BoxConstraints(
-            minHeight: MediaQuery.of(context).size.height,
-            minWidth: MediaQuery.of(context).size.width,
-          ),
-          child: v.listImageOnboarding != null &&
-                  v.listImageOnboarding!.data.asMap().containsKey(3)
-              ? SizedBox.shrink()
-              : SingleChildScrollView(
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.8,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/onboard/onboard4.jpg',
-                          fit: BoxFit.cover,
-                          height: 100,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-        ),
-      ),
-    ];
-  }
-
-  buildContent(String title, String content) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 5.h,
-        ),
-        Text(
-          title,
-          style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-              fontSize: 18.sp),
-        ),
-        SizedBox(
-          height: 2.h,
-        ),
-        Container(
-          margin: const EdgeInsets.all(20.0),
-          child: Text(
-            content,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.normal,
-                fontSize: 13.sp),
-          ),
-        ),
-        SizedBox(
-          height: 10.h,
-        ),
-      ],
-    );
-  }
+class _OnBoardingPageNewState extends State<OnBoardingPage> {
+  PageController controller = PageController();
 
   @override
   void initState() {
@@ -174,25 +27,20 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final getApiTextLogin =
           Provider.of<ProviderApiText>(context, listen: false);
-      await getApiTextLogin.getOnboarding(context);
-
-      setState(() {
-        image = getApiTextLogin.listImageOnboarding!.data[0].imageUrl;
-      });
+      await getApiTextLogin.getOnboarding();
     });
-
-    materialButton = _skipButton();
-    index = 0;
   }
 
   Material _skipButton({void Function(int)? setIndex}) {
     bool login = sharedPreferencesManager.getBool("isLoggedIn") ?? false;
 
     return Material(
-      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      borderRadius: const BorderRadius.all(Radius.circular(8.0)),
       color: defaultSkipButtonColor,
       child: InkWell(
         onTap: () {
+          String routeLogin = '';
+
           if (login) {
             routeLogin = '/home';
             debugPrint(routeLogin);
@@ -202,7 +50,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             routeLogin = '/login';
             debugPrint(routeLogin);
           }
-          Get.offAllNamed(routeLogin!);
+          Get.offAllNamed(routeLogin);
         },
         child: Padding(
           padding: defaultSkipButtonPadding,
@@ -221,10 +69,11 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     bool login = sharedPreferencesManager.getBool("isLoggedIn") ?? false;
 
     return Material(
-      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      borderRadius: const BorderRadius.all(Radius.circular(8.0)),
       color: const Color(0xFF85014e),
       child: InkWell(
         onTap: () {
+          String routeLogin = '';
           if (login) {
             routeLogin = '/home';
             debugPrint(routeLogin);
@@ -234,7 +83,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             routeLogin = '/login';
             debugPrint(routeLogin);
           }
-          Get.offAllNamed(routeLogin!);
+          Get.offAllNamed(routeLogin);
         },
         child: Padding(
           padding: defaultSkipButtonPadding,
@@ -251,252 +100,143 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ProviderApiText>(
-      builder: (context, v, child) {
-        return Scaffold(
-          body: Container(
-            decoration: BoxDecoration(
-              color: warna,
-              image: image != null
-                  ? DecorationImage(
+    return Scaffold(
+      body: BaseWidget<ProviderApiText>(
+        model: ProviderApiText(Repository()),
+        onModelReady: (model) => model.getOnboarding(),
+        child: Container(),
+        builder: (context, model, child) {
+          if (model.loadinOnBoarding ?? true) {
+            return const Center(child: CircularProgressIndicator());
+            // return Center(
+            //   child: SizedBox(
+            //     width: MediaQuery.of(context).size.width,
+            //     height: MediaQuery.of(context).size.height,
+            //     child: Shimmer.fromColors(
+            //       baseColor: Colors.grey.shade300,
+            //       highlightColor: Colors.grey.shade100,
+            //       child: Container(
+            //         color: Colors.white,
+            //       ),
+            //     ),
+            //   ),
+            // );
+          }
+          return PageView(
+            controller: controller,
+            children: [
+              for (int i = 0; i < model.listImageOnboarding.length; i++)
+                Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(image!),
-                    )
-                  : null,
-            ),
-            child: Onboarding(
-              pages: onboardingPagesList(v),
-              startPageIndex: 0,
-              onPageChange: (int pageIndex) {
-                index = pageIndex;
-
-                setState(() {
-                  lastpage = index == 3;
-
-                  if (index == 0) {
-                    setState(() {
-                      // _visible = true;
-                      warna = const Color(0xFF85014e);
-                    });
-                  } else if (index == 1) {
-                    setState(() {
-                      // _visible = true;
-                      warna = const Color(0xFFE8BD0C);
-                    });
-                  } else if (index == 2) {
-                    setState(() {
-                      // _visible = true;
-                      warna = Colors.black;
-                    });
-                  } else if (index == 3) {
-                    setState(() {
-                      // _visible = true;
-                      warna = const Color(0xFFA1E2C2);
-                    });
-                  }
-                });
-
-                if (v.listImageOnboarding != null) {
-                  int indexOnboard = index + 1;
-
-                  if (v.listImageOnboarding!.data.asMap().containsKey(0) &&
-                      indexOnboard == 0) {
-                    setState(() {
-                      image = v.listImageOnboarding!.data[0].imageUrl;
-                    });
-                  } else if (v.listImageOnboarding!.data
-                          .asMap()
-                          .containsKey(1) &&
-                      indexOnboard == 1) {
-                    setState(() {
-                      image = v.listImageOnboarding!.data[1].imageUrl;
-                    });
-                  } else if (v.listImageOnboarding!.data
-                          .asMap()
-                          .containsKey(2) &&
-                      indexOnboard == 2) {
-                    setState(() {
-                      image = v.listImageOnboarding!.data[2].imageUrl;
-                    });
-                  } else if (v.listImageOnboarding!.data
-                          .asMap()
-                          .containsKey(3) &&
-                      indexOnboard == 3) {
-                    setState(() {
-                      image = v.listImageOnboarding!.data[3].imageUrl;
-                    });
-                  } else {
-                    setState(() {
-                      image = null;
-                    });
-                  }
-                }
-              },
-              footerBuilder: (context, dragDistance, pagesLength, setIndex) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Container(
-                          width: 80,
-                          height: 80,
-                          child: CircleProgressBar(
-                            backgroundColor: Colors.white,
-                            foregroundColor: Colors.grey,
-                            value: ((index + 1) * 1.0 / pagesLength),
-                          ),
-                        ),
-                        Container(
-                          height: 55,
-                          width: 55,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: warna.withOpacity(0.5),
-                          ),
-                          child: IconButton(
-                            onPressed: () {
-                              if (v.listImageOnboarding != null) {
-                                int indexOnboard = index + 1;
-
-                                if (v.listImageOnboarding!.data
-                                        .asMap()
-                                        .containsKey(0) &&
-                                    indexOnboard == 0) {
-                                  setState(() {
-                                    image =
-                                        v.listImageOnboarding!.data[0].imageUrl;
-                                  });
-                                } else if (v.listImageOnboarding!.data
-                                        .asMap()
-                                        .containsKey(1) &&
-                                    indexOnboard == 1) {
-                                  setState(() {
-                                    image =
-                                        v.listImageOnboarding!.data[1].imageUrl;
-                                  });
-                                } else if (v.listImageOnboarding!.data
-                                        .asMap()
-                                        .containsKey(2) &&
-                                    indexOnboard == 2) {
-                                  setState(() {
-                                    image =
-                                        v.listImageOnboarding!.data[2].imageUrl;
-                                  });
-                                } else if (v.listImageOnboarding!.data
-                                        .asMap()
-                                        .containsKey(3) &&
-                                    indexOnboard == 3) {
-                                  setState(() {
-                                    image =
-                                        v.listImageOnboarding!.data[3].imageUrl;
-                                  });
-                                } else {
-                                  setState(() {
-                                    image = null;
-                                  });
-                                }
-                              }
-
-                              if (index != pagesLength - 1) {
-                                setState(() {
-                                  setIndex(++index);
-                                });
-
-                                if (index == 0) {
-                                  setState(() {
-                                    // _visible = true;
-                                    warna = const Color(0xFF85014e);
-                                  });
-                                } else if (index == 1) {
-                                  setState(() {
-                                    // _visible = true;
-                                    warna = const Color(0xFFE8BD0C);
-                                  });
-                                } else if (index == 2) {
-                                  setState(() {
-                                    // _visible = true;
-                                    warna = Colors.black;
-                                  });
-                                } else if (index == 3) {
-                                  setState(() {
-                                    // _visible = true;
-                                    warna = const Color(0xFFA1E2C2);
-                                  });
-                                }
-                              } else {
-                                bool login = sharedPreferencesManager
-                                        .getBool("isLoggedIn") ??
-                                    false;
-
-                                if (login) {
-                                  routeLogin = '/home';
-                                  debugPrint(routeLogin);
-                                }
-
-                                if (!login) {
-                                  routeLogin = '/login';
-                                  debugPrint(routeLogin);
-                                }
-                                Get.offAllNamed(routeLogin!);
-                              }
-                            },
-                            icon: Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.white,
-                            ),
-                            iconSize: 25,
-                          ),
-                        )
-                      ],
+                      image: NetworkImage(
+                        model.listImageOnboarding[i].imageUrl,
+                      ),
                     ),
-                    // SizedBox(
-                    //   height: 15,
-                    // ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Stack(
+                        alignment: Alignment.center,
                         children: [
                           Container(
-                            alignment: Alignment.topRight,
-                            child: TextButton(
+                            width: 80,
+                            height: 80,
+                            child: CircleProgressBar(
+                              backgroundColor: Colors.white,
+                              foregroundColor: Colors.grey,
+                              value: ((i + 1) *
+                                  1.0 /
+                                  model.listImageOnboarding.length),
+                            ),
+                          ),
+                          Container(
+                            height: 55,
+                            width: 55,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.grey.withOpacity(0.5),
+                            ),
+                            child: IconButton(
                               onPressed: () {
-                                bool login = sharedPreferencesManager
-                                        .getBool("isLoggedIn") ??
-                                    false;
+                                if (i != model.listImageOnboarding.length - 1) {
+                                  controller.nextPage(
+                                      duration:
+                                          const Duration(milliseconds: 500),
+                                      curve: Curves.ease);
+                                } else {
+                                  bool login = sharedPreferencesManager
+                                          .getBool("isLoggedIn") ??
+                                      false;
 
-                                if (login) {
-                                  routeLogin = '/home';
-                                  debugPrint(routeLogin);
-                                }
+                                  String routeLogin = '';
+                                  if (login) {
+                                    routeLogin = '/home';
+                                    debugPrint(routeLogin);
+                                  }
 
-                                if (!login) {
-                                  routeLogin = '/login';
-                                  debugPrint(routeLogin);
+                                  if (!login) {
+                                    routeLogin = '/login';
+                                    debugPrint(routeLogin);
+                                  }
+                                  Get.offAllNamed(routeLogin);
                                 }
-                                Get.offAllNamed(routeLogin!);
                               },
-                              child: Text(
-                                'Skip',
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.grey,
+                              icon: const Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.white,
+                              ),
+                              iconSize: 25,
+                            ),
+                          )
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              alignment: Alignment.topRight,
+                              child: TextButton(
+                                onPressed: () {
+                                  bool login = sharedPreferencesManager
+                                          .getBool("isLoggedIn") ??
+                                      false;
+
+                                  String routeLogin = '';
+                                  if (login) {
+                                    routeLogin = '/home';
+                                    debugPrint(routeLogin);
+                                  }
+
+                                  if (!login) {
+                                    routeLogin = '/login';
+                                    debugPrint(routeLogin);
+                                  }
+                                  Get.offAllNamed(routeLogin);
+                                },
+                                child: const Text(
+                                  'Skip',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.grey,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                );
-              },
-            ),
-          ),
-        );
-      },
+                    ],
+                  ),
+                ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

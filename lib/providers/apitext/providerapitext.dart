@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:kmp_togo_mobile/apis/repository.dart';
 import 'package:kmp_togo_mobile/helpers/api_helper.dart';
 import 'package:kmp_togo_mobile/helpers/machines.dart';
 import 'package:kmp_togo_mobile/models/image_asset_model.dart';
@@ -22,11 +23,13 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
   List<String> listImageSlider = [];
   List<String> listImageAds = [];
   List<String> listImagePopUp = [];
-  ImageAssetModel? listImageOnboarding;
+  List<Datum> listImageOnboarding = [];
   bool? loadinSlider = true;
   bool? loadinAds = true;
   bool? loadinOnBoarding = true;
   bool? loadinPopUp = true;
+
+  ProviderApiText(Repository repository);
   getTextLogin(
     context,
   ) async {
@@ -277,22 +280,18 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
     }
   }
 
-  getOnboarding(
-    context,
-  ) async {
+  getOnboarding() async {
     try {
+      loadinOnBoarding = true;
+      notifyListeners();
       final res =
           await _dio.post('/api/v1/get-image', data: {'type': 'ONBOARDING'});
 
       if (res.data['success'] == true) {
-        listImageOnboarding = ImageAssetModel.fromJson(res.data);
-        if (listImageOnboarding != null) {
-          loadinOnBoarding = false;
-          notifyListeners();
-        } else {
-          loadinOnBoarding = true;
-          notifyListeners();
-        }
+        listImageOnboarding = ImageAssetModel.fromJson(res.data).data;
+
+        loadinOnBoarding = false;
+        notifyListeners();
       }
     } catch (e) {
       rethrow;

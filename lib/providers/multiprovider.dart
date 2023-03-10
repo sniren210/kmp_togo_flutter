@@ -28,7 +28,7 @@ List<SingleChildWidget> multiProvider = [
   ChangeNotifierProvider(create: (_) => ProviderCreateProductWithVariant(api)),
   ChangeNotifierProvider(create: (_) => ProviderHistory()),
   ChangeNotifierProvider(create: (_) => CartProvider()),
-  ChangeNotifierProvider(create: (_) => ProviderApiText()),
+  ChangeNotifierProvider(create: (_) => ProviderApiText(api)),
   ChangeNotifierProvider(create: (_) => ProviderTopup(api)),
   ChangeNotifierProvider(create: (_) => ProviderWithDraw()),
   ...uiConsumableProviders,
