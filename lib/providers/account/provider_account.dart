@@ -32,6 +32,18 @@ class ProviderAccountInfo with ChangeNotifier implements BaseModel {
     return success;
   }
 
+  Future<DataUser> updateAccountInfo() async {
+    setBusy(true);
+
+    var success = await _authenticationService.updateAccountInfo();
+    _items = success;
+
+    sharedPreferencesManager.setInt('ownerId', success.user.id);
+
+    setBusy(false);
+    return success;
+  }
+
   @override
   // TODO: implement busy
   bool get busy => _busy;

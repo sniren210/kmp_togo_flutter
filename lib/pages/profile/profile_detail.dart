@@ -30,180 +30,181 @@ class profileDetail extends StatelessWidget {
         ),
         body: BaseWidget<ProviderAccountInfo>(
             model: ProviderAccountInfo(Repository()),
-            onModelReady: (model) => model.fetchAccountInfo(),
+            onModelReady: (model) => model.updateAccountInfo(),
             child: Container(),
             builder: (context, model, child) {
-              return Consumer<CartProvider>(
-                  builder: (BuildContext context, provider, widget) {
-                return Container(
-                  child: Column(
-                    children: [
-                      Stack(
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).primaryColor,
-                              borderRadius: const BorderRadius.only(
-                                bottomLeft: Radius.circular(120),
-                                bottomRight: Radius.circular(120),
-                              ),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Text(
-                                  model.items!.user.currentMember.name,
-                                  style: TextStyle(
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                Text(
-                                  model.items!.user.email,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
+              if (model.busy) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              return Container(
+                child: Column(
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(120),
+                              bottomRight: Radius.circular(120),
                             ),
                           ),
-                          Align(
-                            alignment: Alignment.topCenter,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 70),
-                              child: Container(
-                                width: 80,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  color: Theme.of(context).primaryColor,
-                                  border: Border.all(
-                                    color: Colors.white,
-                                    width: 2,
-                                  ),
-                                ),
-                                child: Icon(
-                                  Icons.account_circle,
-                                  size: 60,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                model.items!.user.currentMember.name,
+                                style: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
                               ),
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  title: Text('Gender'),
-                                  subtitle: Text(model.items!.user.currentMember
-                                          .meta?.ktp.gender ??
-                                      ''),
+                              Text(
+                                model.items!.user.email,
+                                style: TextStyle(
+                                  color: Colors.white,
                                 ),
-                                ListTile(
-                                  title: const Text('Tempat, Tanggal lahir'),
-                                  subtitle: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(model
-                                          .items!.user.currentMember.birthPlace
-                                          .toString()),
-                                      Text(model
-                                          .items!.user.currentMember.birthDate
-                                          .toString()),
-                                    ],
-                                  ),
-                                ),
-                                ListTile(
-                                  title: const Text('Agama'),
-                                  subtitle: Text(model.items!.user.currentMember
-                                          .meta?.ktp.religion ??
-                                      ''),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  title: Text('Status perkawinan'),
-                                  subtitle: Text(model.items!.user.currentMember
-                                          .meta?.ktp.maritalStatus ??
-                                      ''),
-                                ),
-                                ListTile(
-                                    title: Text('pekerjaan'),
-                                    subtitle: Text(model.items!.user
-                                            .currentMember.meta?.ktp.work ??
-                                        '')),
-                                ListTile(
-                                  title: Text('Kewarganegaraan'),
-                                  subtitle: Text(model.items!.user.currentMember
-                                          .meta?.ktp.nationnality ??
-                                      ''),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      ListTile(
-                        title: Text('alamat'),
-                        subtitle: Builder(builder: (context) {
-                          String address =
-                              '${model.items!.user.currentMember.meta?.ktp.address} ${model.items!.user.currentMember.meta?.ktp.rt} ${model.items!.user.currentMember.meta?.ktp.rw} ${model.items!.user.currentMember.meta?.ktp.village} ${model.items!.user.currentMember.meta?.ktp.district} ${model.items!.user.currentMember.meta?.ktp.city}';
-                          return Text(address);
-                        }),
-                      ),
-                      if (model.items!.user.currentMember.accountNumber != null)
-                        ListTile(
-                          title: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(model.items!.user.currentMember.otherBank
-                                  .toString()),
-                              Text(model.items!.user.currentMember.name),
+                              ),
                             ],
                           ),
-                          subtitle: Text(nomorRekening.toString()),
-                          trailing: InkWell(
-                            onTap: () {
-                              _showSimpleModalDialog(
-                                  context, nomorRekening, true);
-                            },
-                            child: const Icon(Icons.edit),
+                        ),
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 70),
+                            child: Container(
+                              width: 80,
+                              height: 80,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: Theme.of(context).primaryColor,
+                                border: Border.all(
+                                  color: Colors.white,
+                                  width: 2,
+                                ),
+                              ),
+                              child: Icon(
+                                Icons.account_circle,
+                                size: 60,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         )
-                      else
-                        ListTile(
-                          title: Text('Tambahkan akun bank'),
-                          trailing: InkWell(
-                            onTap: () {
-                              _showSimpleModalDialog(
-                                  context, nomorRekening, false);
-                            },
-                            child: const Icon(Icons.add),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            children: [
+                              ListTile(
+                                title: Text('Gender'),
+                                subtitle: Text(model.items!.user.currentMember
+                                        .meta?.ktp.gender ??
+                                    ''),
+                              ),
+                              ListTile(
+                                title: const Text('Tempat, Tanggal lahir'),
+                                subtitle: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(model
+                                        .items!.user.currentMember.birthPlace
+                                        .toString()),
+                                    Text(model
+                                        .items!.user.currentMember.birthDate
+                                        .toString()),
+                                  ],
+                                ),
+                              ),
+                              ListTile(
+                                title: const Text('Agama'),
+                                subtitle: Text(model.items!.user.currentMember
+                                        .meta?.ktp.religion ??
+                                    ''),
+                              ),
+                            ],
                           ),
-                        )
-                    ],
-                  ),
-                );
-              });
+                        ),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              ListTile(
+                                title: Text('Status perkawinan'),
+                                subtitle: Text(model.items!.user.currentMember
+                                        .meta?.ktp.maritalStatus ??
+                                    ''),
+                              ),
+                              ListTile(
+                                  title: Text('pekerjaan'),
+                                  subtitle: Text(model.items!.user.currentMember
+                                          .meta?.ktp.work ??
+                                      '')),
+                              ListTile(
+                                title: Text('Kewarganegaraan'),
+                                subtitle: Text(model.items!.user.currentMember
+                                        .meta?.ktp.nationnality ??
+                                    ''),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    ListTile(
+                      title: Text('alamat'),
+                      subtitle: Builder(builder: (context) {
+                        String address =
+                            '${model.items!.user.currentMember.meta?.ktp.address} ${model.items!.user.currentMember.meta?.ktp.rt} ${model.items!.user.currentMember.meta?.ktp.rw} ${model.items!.user.currentMember.meta?.ktp.village} ${model.items!.user.currentMember.meta?.ktp.district} ${model.items!.user.currentMember.meta?.ktp.city}';
+                        return Text(address);
+                      }),
+                    ),
+                    if (model.items!.user.currentMember.accountNumber != null)
+                      ListTile(
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(model.items!.user.currentMember.otherBank
+                                .toString()),
+                            Text(model.items!.user.currentMember.name),
+                          ],
+                        ),
+                        subtitle: Text(nomorRekening.toString()),
+                        trailing: InkWell(
+                          onTap: () {
+                            _showSimpleModalDialog(
+                                context, nomorRekening, true);
+                          },
+                          child: const Icon(Icons.edit),
+                        ),
+                      )
+                    else
+                      ListTile(
+                        title: Text('Tambahkan akun bank'),
+                        trailing: InkWell(
+                          onTap: () {
+                            _showSimpleModalDialog(
+                                context, nomorRekening, false);
+                          },
+                          child: const Icon(Icons.add),
+                        ),
+                      )
+                  ],
+                ),
+              );
             }),
       ),
     );

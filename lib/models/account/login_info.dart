@@ -41,7 +41,7 @@ class DataUser {
 
   String message;
   User user;
-  String token;
+  String? token;
 
   factory DataUser.fromJson(Map<String, dynamic> json) => DataUser(
         message: json["message"],

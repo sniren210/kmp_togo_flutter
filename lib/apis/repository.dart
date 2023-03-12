@@ -38,6 +38,7 @@ class Repository {
       memberTypeApi.fetchAllMemberType();
 
   Future<DataUser> fetchAccountInfo() => accountApi.fetchAccountInfo();
+  Future<DataUser> updateAccountInfo() => accountApi.updateAccountInfo();
 
   Future<ItemModelUserAddressBook> fetchMyAddress() =>
       addressBookApi.fetchMyAddress();

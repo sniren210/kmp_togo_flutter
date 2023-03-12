@@ -48,8 +48,8 @@ class Helper {
       onRequest: (options, handler) async {
         final user = await UserHelper.getUser();
 
-        if (user != null) {
-          if (JwtDecoder.isExpired(user.token)) {
+        if (user != null && user.token != null) {
+          if (JwtDecoder.isExpired(user.token!)) {
             // auto logout
           }
           options.headers['authorization'] = 'Bearer ${user.token}';

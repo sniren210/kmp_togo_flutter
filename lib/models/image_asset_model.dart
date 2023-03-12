@@ -56,7 +56,7 @@ class Datum {
   String description;
   String type;
   DateTime createdAt;
-  DateTime updatedAt;
+  DateTime? updatedAt;
   dynamic deletedAt;
   String imageUrl;
 
@@ -68,7 +68,9 @@ class Datum {
         description: json["description"],
         type: json["type"],
         createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
+        updatedAt: json["updated_at"] != null
+            ? DateTime.parse(json["updated_at"])
+            : null,
         deletedAt: json["deleted_at"],
         imageUrl: json["image_url"],
       );
@@ -81,7 +83,7 @@ class Datum {
         "description": description,
         "type": type,
         "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
+        "updated_at": updatedAt!.toIso8601String(),
         "deleted_at": deletedAt,
         "image_url": imageUrl,
       };

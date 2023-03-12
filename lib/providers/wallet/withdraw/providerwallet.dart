@@ -27,7 +27,6 @@ class ProviderWithDraw with ChangeNotifier, ApiMachine {
   getBalanceWallet() async {
     try {
       final res = await _dio.get('/api/v1/check-balance');
-      print(res.data);
       await saveResponseGet(
           res.requestOptions.path, res.statusMessage, res.data.toString());
       if (res.data['success'] == true) {

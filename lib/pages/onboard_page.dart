@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intro_screen_onboarding_flutter/intro_app.dart';
@@ -107,7 +108,12 @@ class _OnBoardingPageNewState extends State<OnBoardingPage> {
         child: Container(),
         builder: (context, model, child) {
           if (model.loadinOnBoarding ?? true) {
-            return const Center(child: CircularProgressIndicator());
+            return Container(
+              color: const Color(0xFF85014e),
+              child: const Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
             // return Center(
             //   child: SizedBox(
             //     width: MediaQuery.of(context).size.width,
@@ -128,9 +134,10 @@ class _OnBoardingPageNewState extends State<OnBoardingPage> {
               for (int i = 0; i < model.listImageOnboarding.length; i++)
                 Container(
                   decoration: BoxDecoration(
+                    color: const Color(0xFF85014e),
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(
+                      image: CachedNetworkImageProvider(
                         model.listImageOnboarding[i].imageUrl,
                       ),
                     ),

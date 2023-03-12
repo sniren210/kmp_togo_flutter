@@ -201,9 +201,9 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
   getSlider(
     context,
   ) async {
-    final res = await _dio.post(
+    final res = await _dio.get(
       '/api/v1/get-image',
-      data: {'type': 'SLIDER'},
+      queryParameters: {'type': 'SLIDER'},
       options: Options(
         followRedirects: false,
         // will not throw errors
@@ -227,9 +227,9 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
   getAds(
     context,
   ) async {
-    final res = await _dio.post(
+    final res = await _dio.get(
       '/api/v1/get-image',
-      data: {'type': 'ADS'},
+      queryParameters: {'type': 'ADS'},
       options: Options(
         followRedirects: false,
         // will not throw errors
@@ -255,9 +255,9 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
   getPopUp(
     context,
   ) async {
-    final res = await _dio.post(
+    final res = await _dio.get(
       '/api/v1/get-image',
-      data: {'type': 'popup'},
+      queryParameters: {'type': 'popup'},
       options: Options(
         followRedirects: false,
         // will not throw errors
@@ -265,7 +265,7 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
       ),
     );
 
-    print(res.data);
+    // print(res.data);
     if (res.data['success'] == true) {
       final img = ImageAssetModel.fromJson(res.data);
       listImagePopUp = img.data.map((e) => e.imageUrl).toList();
@@ -284,8 +284,8 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
     try {
       loadinOnBoarding = true;
       notifyListeners();
-      final res =
-          await _dio.post('/api/v1/get-image', data: {'type': 'ONBOARDING'});
+      final res = await _dio
+          .get('/api/v1/get-image', queryParameters: {'type': 'ONBOARDING'});
 
       if (res.data['success'] == true) {
         listImageOnboarding = ImageAssetModel.fromJson(res.data).data;
@@ -294,6 +294,8 @@ class ProviderApiText extends ChangeNotifier with ApiMachine {
         notifyListeners();
       }
     } catch (e) {
+      loadinOnBoarding = false;
+      notifyListeners();
       rethrow;
     }
   }
