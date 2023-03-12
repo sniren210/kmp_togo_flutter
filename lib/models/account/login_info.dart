@@ -93,7 +93,9 @@ class User {
         updatedAt: DateTime.parse(json["updated_at"]),
         deletedAt: json["deleted_at"],
         status: json["status"],
-        roles: List<Role>.from(json["roles"].map((x) => Role.fromJson(x))),
+        roles: json["roles"] == null
+            ? []
+            : List<Role>.from(json["roles"].map((x) => Role.fromJson(x))),
         currentMember: CurrentMember.fromJson(json["current_member"]),
       );
 

@@ -15,8 +15,6 @@ import '../../providers/account/provider_account.dart';
 class profileDetail extends StatelessWidget {
   const profileDetail({super.key});
 
-  final int nomorRekening = 353636;
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -182,11 +180,16 @@ class profileDetail extends StatelessWidget {
                             Text(model.items!.user.currentMember.name),
                           ],
                         ),
-                        subtitle: Text(nomorRekening.toString()),
+                        subtitle: Text(model
+                            .items!.user.currentMember.accountNumber
+                            .toString()),
                         trailing: InkWell(
                           onTap: () {
                             _showSimpleModalDialog(
-                                context, nomorRekening, true);
+                                context,
+                                model.items?.user.currentMember.accountNumber ??
+                                    '',
+                                true);
                           },
                           child: const Icon(Icons.edit),
                         ),
@@ -197,7 +200,10 @@ class profileDetail extends StatelessWidget {
                         trailing: InkWell(
                           onTap: () {
                             _showSimpleModalDialog(
-                                context, nomorRekening, false);
+                                context,
+                                model.items?.user.currentMember.accountNumber ??
+                                    '',
+                                false);
                           },
                           child: const Icon(Icons.add),
                         ),
@@ -211,7 +217,11 @@ class profileDetail extends StatelessWidget {
   }
 }
 
-_showSimpleModalDialog(context, int bankAccount, bool isEdit) {
+_showSimpleModalDialog(context, String bankAccount, bool isEdit) {
+  TextEditingController bankController =
+      TextEditingController(text: bankAccount);
+  final _formKey = GlobalKey<FormState>();
+
   showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -223,6 +233,7 @@ _showSimpleModalDialog(context, int bankAccount, bool isEdit) {
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Form(
+                key: _formKey,
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -248,32 +259,53 @@ _showSimpleModalDialog(context, int bankAccount, bool isEdit) {
                           labelText: "Pilih Bank anda",
                           icon: const Icon(Icons.note),
                         ),
+                        validator: (username) {
+                          if (username!.isEmpty) {
+                            return "Harus masukan Nomor Rekening";
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                       TextFormField(
-                        controller: TextEditingController(
-                            // text: "Inky Pramudira Ramdhani",
-                            ),
+                        controller: bankController,
                         decoration: new InputDecoration(
-                          hintText: "Masukan Nama",
-                          labelText: "Masukan Nama anda",
-                          icon: const Icon(Icons.account_circle_rounded),
-                        ),
-                      ),
-                      TextFormField(
-                        controller: TextEditingController(
-                          text: bankAccount.toString(),
-                        ),
-                        decoration: new InputDecoration(
-                          hintText: "Nomor Rekengin",
+                          hintText: "Nomor Rekening",
                           labelText: "Masukan Nomor Rekening anda",
                           icon: const Icon(Icons.numbers),
                         ),
+                        validator: (username) {
+                          if (username!.isEmpty) {
+                            return "Harus masukan Nomor Rekening";
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          if (_formKey.currentState?.validate() ?? false) {
+                            final res = await Provider.of<ProviderAccountInfo>(
+                                    context,
+                                    listen: false)
+                                .editRekening(bankController.text);
+
+                            if (res) {
+                              int count = 0;
+                              Navigator.popUntil(context, (route) {
+                                return count++ == 2;
+                              });
+
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => profileDetail()));
+                            }
+                          }
+                        },
                         child: Text(isEdit ? 'Update' : 'Tambah'),
                       ),
                     ],
