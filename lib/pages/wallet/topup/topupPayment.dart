@@ -336,7 +336,9 @@ class _PaymentProcessState extends State<ProsesPembayaranTopUp>
                                                     ),
                                                     Text(
                                                       getNumberFormatSeparator(
-                                                          widget.nominal
+                                                          (model.poinBeli?.data
+                                                                      .amount ??
+                                                                  0)
                                                               .toDouble()),
                                                       style: TextStyling
                                                           .w600bold16black,

@@ -3,7 +3,7 @@ import 'package:kmp_togo_mobile/apis/repository.dart';
 import 'package:kmp_togo_mobile/helpers/machines.dart';
 import 'package:kmp_togo_mobile/pages/base.dart';
 import 'package:kmp_togo_mobile/pages/common/cardtopup.dart';
-import 'package:kmp_togo_mobile/pages/wallet/buy/buytogoPage.dart';
+import 'package:kmp_togo_mobile/pages/wallet/buy/buy_poin_page.dart';
 import 'package:kmp_togo_mobile/pages/wallet/topup/topup_coin_pages.dart';
 import 'package:kmp_togo_mobile/pages/wallet/topup/topuppages.dart';
 import 'package:kmp_togo_mobile/pages/wallet/withdraw/withdraw_coin_pages.dart';

@@ -23,7 +23,7 @@ import 'package:kmp_togo_mobile/pages/nft/dashboard_nft.dart';
 import 'package:kmp_togo_mobile/pages/ppob/inputpobwithnumber.dart';
 import 'package:kmp_togo_mobile/pages/umkm/umkmMyProduk.dart';
 import 'package:kmp_togo_mobile/pages/umkm/umkm_category.dart';
-import 'package:kmp_togo_mobile/pages/wallet/buy/buytogoPage.dart';
+import 'package:kmp_togo_mobile/pages/wallet/buy/buy_poin_page.dart';
 import 'package:kmp_togo_mobile/pages/wallet/topup/topuppages.dart';
 import 'package:kmp_togo_mobile/pages/wallet/withdraw/withdrawpages.dart';
 import 'package:kmp_togo_mobile/providers/apitext/providerapitext.dart';
@@ -1354,7 +1354,9 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => BeliToGo()),
+                                            builder: (context) => BeliToGo(
+                                                  isBuy: true,
+                                                )),
                                       );
                                     },
                                     child: Container(

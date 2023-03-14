@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:kmp_togo_mobile/apis/repository.dart';
 import 'package:kmp_togo_mobile/helpers/injector.dart';
 import 'package:kmp_togo_mobile/helpers/machines.dart';
@@ -15,6 +16,7 @@ import 'package:kmp_togo_mobile/pages/common/buySuccessPage.dart';
 import 'package:kmp_togo_mobile/pages/common/pinPage.dart';
 import 'package:kmp_togo_mobile/pages/common/splashPage.dart';
 import 'package:kmp_togo_mobile/pages/home.dart';
+import 'package:kmp_togo_mobile/pages/profile/profile_detail.dart';
 import 'package:kmp_togo_mobile/pages/wallet/buy/cardKoin.dart';
 import 'package:kmp_togo_mobile/pages/wallet/topup/topupPayment.dart';
 import 'package:kmp_togo_mobile/pages/wallet/withdraw/otpwithdraw.dart';
@@ -23,7 +25,9 @@ import 'package:kmp_togo_mobile/providers/wallet/topup/provider_topup.dart';
 import 'package:kmp_togo_mobile/utils/layarmax.dart';
 
 class BeliToGo extends StatefulWidget {
-  BeliToGo({Key? key}) : super(key: key);
+  final bool isBuy;
+
+  BeliToGo({Key? key, required this.isBuy}) : super(key: key);
 
   @override
   State<BeliToGo> createState() => _BeliToGoState();
@@ -35,15 +39,22 @@ class _BeliToGoState extends State<BeliToGo> with NumberFormatMachine {
   double qtyBuy = 0.0, qtySell = 0.0;
   double biaya = 0.0, gasFee = 0.0, tokenGasFee = 0.0, grandTotal = 0.0;
 
-  bool saldokosong = false, isBuy = true;
+  bool saldokosong = false, isBuy = true, isRingkas = false;
 
   TextEditingController qtyBuyC = TextEditingController();
   TextEditingController qtySellC = TextEditingController();
 
   @override
   void initState() {
+    isBuy = widget.isBuy;
+
     super.initState();
   }
+
+  final currencyFormatter = NumberFormat.currency(
+    locale: 'ID',
+    symbol: ' ',
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +111,7 @@ class _BeliToGoState extends State<BeliToGo> with NumberFormatMachine {
                                     ),
                                   ),
                                   Text(
-                                    isBuy ? "Beli ToGo" : "Jual ToGo",
+                                    isBuy ? "Beli Poin" : "Jual Poin",
                                     style: TextStyle(
                                       fontSize: 20.sp,
                                       fontWeight: FontWeight.w500,
@@ -219,7 +230,7 @@ class _BeliToGoState extends State<BeliToGo> with NumberFormatMachine {
                                                                     .start,
                                                             children: [
                                                               const Text(
-                                                                'ToGo',
+                                                                'Poin',
                                                                 style: TextStyling
                                                                     .w600bold12black,
                                                               ),
@@ -229,7 +240,7 @@ class _BeliToGoState extends State<BeliToGo> with NumberFormatMachine {
                                                               modelCoin.busy
                                                                   ? Container()
                                                                   : Text(
-                                                                      '1 ToGo = Coin ${getNumberFormatSeparator(modelCoin.items2!.data.coinPrice.toDouble())}',
+                                                                      '1 Poin = Coin ${getNumberFormatSeparator(modelCoin.items2!.data.coinPrice.toDouble())}',
                                                                       style: TextStyle(
                                                                           fontSize:
                                                                               10.sp),
@@ -361,7 +372,7 @@ class _BeliToGoState extends State<BeliToGo> with NumberFormatMachine {
                                                               const HorizontalSpacer(
                                                                   width: 6),
                                                               const Text(
-                                                                  'Saldo ToGo kamu',
+                                                                  'Saldo Poin kamu',
                                                                   style: TextStyling
                                                                       .w40014black),
                                                             ],
@@ -393,8 +404,8 @@ class _BeliToGoState extends State<BeliToGo> with NumberFormatMachine {
                                                               model.busy
                                                                   ? Container()
                                                                   : Text(
-                                                                      '${getNumberFormatSeparator(0)} ToGo',
-                                                                      // '${getNumberFormatSeparator(model.items!.data.coinWallet.coin.toDouble())} ToGo',
+                                                                      '${getNumberFormatSeparator(0)} Poin',
+                                                                      // '${getNumberFormatSeparator(model.items!.data.coinWallet.coin.toDouble())} Poin',
                                                                       style: TextStyling
                                                                           .w600bold12black),
                                                               SizedBox(
@@ -403,7 +414,7 @@ class _BeliToGoState extends State<BeliToGo> with NumberFormatMachine {
                                                               modelCoin.busy
                                                                   ? Container()
                                                                   : Text(
-                                                                      '1 ToGo = Coin ${getNumberFormatSeparator(modelCoin.items2!.data.coinPrice.toDouble())}',
+                                                                      '1 Poin = Coin ${getNumberFormatSeparator(modelCoin.items2!.data.coinPrice.toDouble())}',
                                                                       style: TextStyle(
                                                                           fontSize:
                                                                               10.sp),
@@ -546,146 +557,209 @@ class _BeliToGoState extends State<BeliToGo> with NumberFormatMachine {
                                       ),
                                     ),
                                   ),
-                                  const VerticalSpacer(height: 8),
-                                  isBuy
-                                      ? Card(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: modelCoin.busy
-                                                ? const Center(
-                                                    child:
-                                                        CircularProgressIndicator())
-                                                : Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      const Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                vertical: 11.0,
-                                                                horizontal:
-                                                                    2.0),
-                                                        child: Text(
-                                                          "Ringkasan Biaya",
-                                                          style: TextStyling
-                                                              .w600bold16black,
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 7.0,
-                                                                horizontal:
-                                                                    2.0),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
+                                  if (isBuy)
+                                    InkWell(
+                                      onTap: () async {
+                                        setState(() {
+                                          isRingkas = true;
+                                        });
+                                      },
+                                      child: Container(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: 8.0),
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 15, horizontal: 70),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: const Color(0xFF85014e)),
+                                          child: Text(
+                                            'Ringkasan Biaya',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 15),
+                                          )),
+                                    ),
+                                  if (isRingkas) ...[
+                                    const VerticalSpacer(height: 8),
+                                    isBuy
+                                        ? BaseWidget<ProviderTopup>(
+                                            model: ProviderTopup(Repository()),
+                                            onModelReady: (model) =>
+                                                model.depositsPoin(
+                                                    int.parse(qtyBuyC.text)),
+                                            child: Container(),
+                                            builder:
+                                                (context, modelDepo, child) {
+                                              return Card(
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: modelCoin.busy
+                                                      ? const Center(
+                                                          child:
+                                                              CircularProgressIndicator())
+                                                      : Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
                                                           children: [
-                                                            const Text(
-                                                              "Biaya",
-                                                              style: TextStyling
-                                                                  .w30013black,
+                                                            const Padding(
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      vertical:
+                                                                          11.0,
+                                                                      horizontal:
+                                                                          2.0),
+                                                              child: Text(
+                                                                "Ringkasan Biaya",
+                                                                style: TextStyling
+                                                                    .w600bold16black,
+                                                              ),
                                                             ),
-                                                            Text(
-                                                              "Rp.${getNumberFormatSeparator(biaya)}",
-                                                              style: TextStyling
-                                                                  .bold13black,
+                                                            Padding(
+                                                              padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical: 7.0,
+                                                                  horizontal:
+                                                                      2.0),
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  const Text(
+                                                                    "Biaya",
+                                                                    style: TextStyling
+                                                                        .w30013black,
+                                                                  ),
+                                                                  Text(
+                                                                    "Rp.${currencyFormatter.format(double.parse(modelDepo.poinBeli?.data.amount.toString() ?? '0') - 2500)}",
+                                                                    style: TextStyling
+                                                                        .bold13black,
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical: 7.0,
+                                                                  horizontal:
+                                                                      2.0),
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  const Text(
+                                                                    "Biaya Admin",
+                                                                    style: TextStyling
+                                                                        .w30013black,
+                                                                  ),
+                                                                  Text(
+                                                                    "Rp.${currencyFormatter.format(2500)}",
+                                                                    style: TextStyling
+                                                                        .bold13black,
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            // Padding(
+                                                            //   padding: const EdgeInsets
+                                                            //           .symmetric(
+                                                            //       vertical: 7.0,
+                                                            //       horizontal:
+                                                            //           2.0),
+                                                            //   child: Row(
+                                                            //     mainAxisAlignment:
+                                                            //         MainAxisAlignment
+                                                            //             .spaceBetween,
+                                                            //     children: [
+                                                            //       const Text(
+                                                            //         "Coin GasFee",
+                                                            //         style: TextStyling
+                                                            //             .w30013black,
+                                                            //       ),
+                                                            //       Text(
+                                                            //         "${getNumberFormatSeparator3(gasFee)}",
+                                                            //         style: TextStyling
+                                                            //             .bold13black,
+                                                            //       ),
+                                                            //     ],
+                                                            //   ),
+                                                            // ),
+                                                            // Padding(
+                                                            //   padding: const EdgeInsets
+                                                            //           .symmetric(
+                                                            //       vertical: 7.0,
+                                                            //       horizontal:
+                                                            //           2.0),
+                                                            //   child: Row(
+                                                            //     mainAxisAlignment:
+                                                            //         MainAxisAlignment
+                                                            //             .spaceBetween,
+                                                            //     children: [
+                                                            //       const Text(
+                                                            //         "Token GasFee",
+                                                            //         style: TextStyling
+                                                            //             .w30013black,
+                                                            //       ),
+                                                            //       Text(
+                                                            //         "${getNumberFormatSeparator3(tokenGasFee)}",
+                                                            //         style: TextStyling
+                                                            //             .bold13black,
+                                                            //       ),
+                                                            //     ],
+                                                            //   ),
+                                                            // ),
+                                                            const Padding(
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      vertical:
+                                                                          2.0),
+                                                              child: Divider(
+                                                                height: 1,
+                                                                color:
+                                                                    Colors.grey,
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical:
+                                                                      10.0,
+                                                                  horizontal:
+                                                                      2.0),
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  const Text(
+                                                                    "Total Biaya",
+                                                                    style: TextStyling
+                                                                        .w30016black,
+                                                                  ),
+                                                                  Text(
+                                                                    "Rp.${currencyFormatter.format(double.parse(modelDepo.poinBeli?.data.amount.toString() ?? '0'))}",
+                                                                    style: TextStyling
+                                                                        .w600bold16black,
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             ),
                                                           ],
                                                         ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 7.0,
-                                                                horizontal:
-                                                                    2.0),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            const Text(
-                                                              "Coin GasFee",
-                                                              style: TextStyling
-                                                                  .w30013black,
-                                                            ),
-                                                            Text(
-                                                              "${getNumberFormatSeparator3(gasFee)}",
-                                                              style: TextStyling
-                                                                  .bold13black,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 7.0,
-                                                                horizontal:
-                                                                    2.0),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            const Text(
-                                                              "Token GasFee",
-                                                              style: TextStyling
-                                                                  .w30013black,
-                                                            ),
-                                                            Text(
-                                                              "${getNumberFormatSeparator3(tokenGasFee)}",
-                                                              style: TextStyling
-                                                                  .bold13black,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      const Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                vertical: 2.0),
-                                                        child: Divider(
-                                                          height: 1,
-                                                          color: Colors.grey,
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 10.0,
-                                                                horizontal:
-                                                                    2.0),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            const Text(
-                                                              "Total Biaya",
-                                                              style: TextStyling
-                                                                  .w30016black,
-                                                            ),
-                                                            Text(
-                                                              "Rp.${getNumberFormatSeparator4(grandTotal)}",
-                                                              style: TextStyling
-                                                                  .w600bold16black,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                          ),
-                                        )
-                                      : Container(),
+                                                ),
+                                              );
+                                            })
+                                        : Container(),
+                                  ],
                                   const VerticalSpacer(height: 20),
                                   InkWell(
                                     onTap: () async {
@@ -693,46 +767,90 @@ class _BeliToGoState extends State<BeliToGo> with NumberFormatMachine {
                                           sharedPreferencesManager =
                                           locator<SharedPreferencesManager>();
 
+                                      if (model.items?.user.currentMember
+                                              .accountNumber ==
+                                          null) {
+                                        await customSnackbar(
+                                            type: 'error',
+                                            title: 'error',
+                                            text:
+                                                'Harap Masukan account bank terlebih dahulu!');
+
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                profileDetail(),
+                                          ),
+                                        );
+
+                                        return;
+                                      }
+
                                       if (isBuy) {
                                         if (qtyBuyC.text.isNotEmpty) {
+                                          if (int.parse(qtyBuyC.text) < 10000) {
+                                            await customSnackbar(
+                                                type: 'error',
+                                                title: 'error',
+                                                text:
+                                                    'Minimal nominal top up adalah Rp.10.000!');
+
+                                            return;
+                                          }
+
+                                          // Navigator.push(
+                                          //   context,
+                                          //   MaterialPageRoute(
+                                          //       builder: (context) {
+                                          //     return EnterPinPage(
+                                          //       isAllowBack: true,
+                                          //       nextPage: SplashPage(
+                                          //         nextPage: BuySuccessPage(
+                                          //           nextPage: Home(),
+                                          //           title: 'Berhasil Membeli',
+                                          //           subtitle: '',
+                                          //         ),
+                                          //         title:
+                                          //             'Berhasil Membeli Coin Poin',
+                                          //         subtitle: '',
+                                          //         provRepo: 'buy_coin',
+                                          //         model: null,
+                                          //         totalCoin: qtyBuy,
+                                          //         itemModelBuyCoin:
+                                          //             modelCoin.items3,
+                                          //         isReplace: false,
+                                          //         pinValue: sharedPreferencesManager
+                                          //                 .getString(
+                                          //                     SharedPreferencesManager
+                                          //                         .pin) ??
+                                          //             '',
+                                          //       ),
+                                          //       isContainFunctionBack: true,
+                                          //       title:
+                                          //           'Konfirmasi Pembelian Rp.',
+                                          //     );
+                                          //   }),
+                                          // );
+
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) {
-                                              return EnterPinPage(
-                                                isAllowBack: true,
-                                                nextPage: SplashPage(
-                                                  nextPage: BuySuccessPage(
-                                                    nextPage: Home(),
-                                                    title: 'Berhasil Membeli',
-                                                    subtitle: '',
-                                                  ),
-                                                  title:
-                                                      'Berhasil Membeli Coin ToGo',
-                                                  subtitle: '',
-                                                  provRepo: 'buy_coin',
-                                                  model: null,
-                                                  totalCoin: qtyBuy,
-                                                  itemModelBuyCoin:
-                                                      modelCoin.items3,
-                                                  isReplace: false,
-                                                  pinValue: sharedPreferencesManager
-                                                          .getString(
-                                                              SharedPreferencesManager
-                                                                  .pin) ??
-                                                      '',
-                                                ),
-                                                isContainFunctionBack: true,
-                                                title: 'Konfirmasi Pembelian',
-                                              );
-                                            }),
+                                              builder: (context) =>
+                                                  ProsesPembayaranTopUp(
+                                                isTopup: true,
+                                                popContext: 1,
+                                                nominal:
+                                                    int.parse(qtyBuyC.text),
+                                              ),
+                                            ),
                                           );
                                         } else {
                                           await customSnackbar(
                                               type: 'error',
                                               title: 'Kesalahan',
                                               text:
-                                                  'Jumlah coin ToGo tidak boleh kosong');
+                                                  'Jumlah coin Poin tidak boleh kosong');
                                         }
                                       } else {
                                         if (qtySellC.text.isNotEmpty) {
@@ -745,11 +863,12 @@ class _BeliToGoState extends State<BeliToGo> with NumberFormatMachine {
                                                 nextPage: SplashPage(
                                                   nextPage: BuySuccessPage(
                                                     nextPage: Home(),
-                                                    title: 'Berhasil Menjual',
+                                                    title:
+                                                        'Berhasil Menjual poin',
                                                     subtitle: '',
                                                   ),
                                                   title:
-                                                      'Berhasil Menjual Coin ToGo',
+                                                      'Berhasil Menjual Coin Poin',
                                                   subtitle: '',
                                                   provRepo: 'sell_coin',
                                                   model: null,
@@ -773,7 +892,7 @@ class _BeliToGoState extends State<BeliToGo> with NumberFormatMachine {
                                               type: 'error',
                                               title: 'Kesalahan',
                                               text:
-                                                  'Jumlah coin ToGo tidak boleh kosong');
+                                                  'Jumlah coin Poin tidak boleh kosong');
                                         }
                                       }
                                     },
@@ -789,7 +908,7 @@ class _BeliToGoState extends State<BeliToGo> with NumberFormatMachine {
                                                 BorderRadius.circular(5),
                                             color: const Color(0xFF85014e)),
                                         child: Text(
-                                          isBuy ? 'Beli Coin' : 'Jual Coin',
+                                          isBuy ? 'Beli Poin' : 'Jual Poin',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.white,
@@ -797,37 +916,6 @@ class _BeliToGoState extends State<BeliToGo> with NumberFormatMachine {
                                               fontSize: 15),
                                         )),
                                   ),
-                                  // const VerticalSpacer(height: 20),
-                                  // const Padding(
-                                  //   padding: EdgeInsets.all(8.0),
-                                  //   child: Text('Rincian Coin ToGo',
-                                  //       style: TextStyling.w600bold14black),
-                                  // ),
-                                  // Column(
-                                  //   children: [
-                                  //     Padding(
-                                  //       padding: const EdgeInsets.all(8.0),
-                                  //       child: CardCoinToGo(
-                                  //         status: 'Harga Tertinggi',
-                                  //         harga: '120.000',
-                                  //       ),
-                                  //     ),
-                                  //     Padding(
-                                  //       padding: const EdgeInsets.all(8.0),
-                                  //       child: CardCoinToGo(
-                                  //         status: 'Harga Terendah',
-                                  //         harga: '90.000',
-                                  //       ),
-                                  //     ),
-                                  //     Padding(
-                                  //       padding: const EdgeInsets.all(8.0),
-                                  //       child: CardCoinToGo(
-                                  //         status: 'Harga Hari Ini',
-                                  //         harga: '1.820.012',
-                                  //       ),
-                                  //     ),
-                                  //   ],
-                                  // )
                                 ],
                               ),
                             )
