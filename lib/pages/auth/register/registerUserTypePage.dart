@@ -623,9 +623,8 @@ class _RegisterMemberTypePageState extends State<RegisterMemberTypePage> {
                                             });
                                       }),
                                       child: BuildMemberCard(
-                                        name: model.items?.data[index].name,
-                                        description: model
-                                            .items?.data[index].description,
+                                        name: list[index].name,
+                                        description: list[index].description,
                                         imageAsset:
                                             'assets/images/logobanner.png',
                                         isSelected: (selectedIndex == index),

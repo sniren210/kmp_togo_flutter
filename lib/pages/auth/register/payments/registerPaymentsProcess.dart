@@ -249,14 +249,54 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                               "Kode Voucher",
                                               style: TextStyling.w40014grey,
                                             ),
-                                            TextField(
-                                              decoration: InputDecoration(
-                                                hintText: 'masukan voucher',
-                                                hintStyle:
-                                                    TextStyling.w30013black,
-                                                border: InputBorder.none,
-                                              ),
-                                              onChanged: (value) {},
+                                            Row(
+                                              children: [
+                                                TextField(
+                                                  decoration: InputDecoration(
+                                                    hintText: 'masukan voucher',
+                                                    hintStyle:
+                                                        TextStyling.w30013black,
+                                                    border: InputBorder.none,
+                                                  ),
+                                                  onSubmitted: (value) async {
+                                                    // setState(() {
+                                                    //   loading = true;
+                                                    // });
+                                                    final getApiTextLogin =
+                                                        Provider.of<
+                                                                ProviderRegister>(
+                                                            context,
+                                                            listen: false);
+
+                                                    final res =
+                                                        await getApiTextLogin
+                                                            .checkVoucher(
+                                                                context,
+                                                                token: widget
+                                                                    .token,
+                                                                code: value
+                                                                // voucher: '',
+                                                                );
+
+                                                    if (res) {
+                                                      await getApiTextLogin
+                                                          .createPayment(
+                                                              context,
+                                                              token:
+                                                                  widget.token,
+                                                              voucher: value);
+                                                    }
+
+                                                    // setState(() {
+                                                    //   loading = getApiTextLogin
+                                                    //       .loadingPayment;
+                                                    // });
+                                                  },
+                                                ),
+                                                // ElevatedButton(onPressed: () {
+
+                                                // }, child: Text('Gunakan'))
+                                              ],
                                             ),
                                           ],
                                         ),

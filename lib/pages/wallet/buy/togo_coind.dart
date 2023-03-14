@@ -77,7 +77,7 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
                   expandedHeight: 340,
                   collapsedHeight: 140,
                   pinned: true,
-                  automaticallyImplyLeading: !_isSliverAppBarExpanded,
+                  automaticallyImplyLeading: false,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Container(
                       padding: EdgeInsets.symmetric(
@@ -126,7 +126,7 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
                                                     fontSize: 9.sp),
                                               )
                                             : Text(
-                                                'coin : ${getNumberFormatSeparator(double.parse(v.balanceWallet?.data.point ?? '0'))}',
+                                                'Coin : ${getNumberFormatSeparator(double.parse(v.balanceWallet?.data.point ?? '0'))}',
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w700,
                                                     color: Colors.white,
@@ -223,6 +223,42 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
                                                     ],
                                                   ),
                                                 )),
+                                            Expanded(
+                                                flex: 3,
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Card(
+                                                        color:
+                                                            Colors.orangeAccent,
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  vertical: 8.0,
+                                                                  horizontal:
+                                                                      12.0),
+                                                          child: Text(
+                                                            'ToGo Poin',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 9.sp),
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )),
                                           ],
                                         )
                                       ],
@@ -277,7 +313,7 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
                                               fontSize: 17.sp),
                                         )
                                       : Text(
-                                          'coin : ${getNumberFormatSeparator(double.parse(v.balanceWallet?.data.point ?? '0'))}',
+                                          'Coin : ${getNumberFormatSeparator(double.parse(v.balanceWallet?.data.point ?? '0'))}',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               color: Colors.black,

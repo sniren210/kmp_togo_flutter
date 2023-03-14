@@ -562,6 +562,67 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
     return false;
   }
 
+  Future<bool> checkVoucher(
+    context, {
+    required String token,
+    required String code,
+  }) async {
+    final res = await _dio2.post(
+      '/api/v1/check-voucher',
+      data: {'code': code},
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+          // 'Accept': 'application/json'
+        },
+        followRedirects: false,
+        validateStatus: (status) => true,
+      ),
+    );
+
+    await saveResponsePost(
+        res.requestOptions.path, res.statusMessage, res.data.toString(), '');
+
+    print(res.data);
+    // if (res.data['success']['message'] == 'User has been ACTIVE') {
+    //   return true;
+    // }
+
+    if (res.data['success'] == true) {
+      if (res.data['data']['message'] == 'Expired') {
+        await customSnackbar(
+            type: 'error',
+            title: 'error',
+            text: 'Kode voucher sudah kadaluarsa');
+        return false;
+      }
+      if (res.data['data']['message'] == 'Used') {
+        await customSnackbar(
+            type: 'error',
+            title: 'error',
+            text: 'Kode voucher sudah digunakan');
+        return false;
+      }
+
+      if (res.data['data']['message'] == 'UnUsed') {
+        return true;
+      }
+
+      await customSnackbar(
+          type: 'error', title: 'error', text: 'Kode voucher tidak valid');
+      return false;
+    } else if (res.data['success'] == false) {
+      await customSnackbar(
+          type: 'error', title: 'error', text: 'Kode voucher tidak valid');
+      return false;
+    }
+
+    await customSnackbar(
+        type: 'error', title: 'error', text: 'Terjadi kesalahan!');
+
+    return false;
+  }
+
   selectmemberid(String? memberid) async {
     try {
       print(memberid);
