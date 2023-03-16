@@ -129,6 +129,7 @@ class CurrentMember {
     required this.pin,
     this.virtualAccount,
     this.accountNumber,
+    this.nameAccountNumber,
     this.otherBank,
     required this.walletAddress,
     required this.walletStringify,
@@ -155,6 +156,7 @@ class CurrentMember {
   String? pin;
   dynamic virtualAccount;
   dynamic accountNumber;
+  dynamic nameAccountNumber;
   dynamic otherBank;
   String? walletAddress;
   WalletStringify? walletStringify;
@@ -181,6 +183,7 @@ class CurrentMember {
         pin: json["pin"],
         virtualAccount: json["virtual_account"],
         accountNumber: json["account_number"],
+        nameAccountNumber: json["name_account_number"],
         otherBank: json["other_bank"],
         walletAddress: json["wallet_address"],
         walletStringify: json["wallet_stringify"] == null
@@ -210,6 +213,7 @@ class CurrentMember {
         "pin": pin,
         "virtual_account": virtualAccount,
         "account_number": accountNumber,
+        "name_account_number": nameAccountNumber,
         "other_bank": otherBank,
         "wallet_address": walletAddress,
         "wallet_stringify": walletStringify!.toJson(),

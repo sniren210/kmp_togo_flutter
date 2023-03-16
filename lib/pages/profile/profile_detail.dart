@@ -175,9 +175,9 @@ class profileDetail extends StatelessWidget {
                         title: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(model.items!.user.currentMember.otherBank
-                                .toString()),
-                            Text(model.items!.user.currentMember.name),
+                            Text(model
+                                .items!.user.currentMember.nameAccountNumber),
+                            // Text(model.items!.user.currentMember.name),
                           ],
                         ),
                         subtitle: Text(model
@@ -188,6 +188,9 @@ class profileDetail extends StatelessWidget {
                             _showSimpleModalDialog(
                                 context,
                                 model.items?.user.currentMember.accountNumber ??
+                                    '',
+                                model.items?.user.currentMember
+                                        .nameAccountNumber ??
                                     '',
                                 true);
                           },
@@ -203,6 +206,9 @@ class profileDetail extends StatelessWidget {
                                 context,
                                 model.items?.user.currentMember.accountNumber ??
                                     '',
+                                model.items?.user.currentMember
+                                        .nameAccountNumber ??
+                                    '',
                                 false);
                           },
                           child: const Icon(Icons.add),
@@ -217,9 +223,12 @@ class profileDetail extends StatelessWidget {
   }
 }
 
-_showSimpleModalDialog(context, String bankAccount, bool isEdit) {
+_showSimpleModalDialog(
+    context, String bankAccount, String namaAccount, bool isEdit) {
   TextEditingController bankController =
       TextEditingController(text: bankAccount);
+  TextEditingController namaController =
+      TextEditingController(text: namaAccount);
   final _formKey = GlobalKey<FormState>();
 
   showDialog(
@@ -282,6 +291,21 @@ _showSimpleModalDialog(context, String bankAccount, bool isEdit) {
                           }
                         },
                       ),
+                      TextFormField(
+                        controller: namaController,
+                        decoration: new InputDecoration(
+                          hintText: "Nama Rekening",
+                          labelText: "Masukan Nama Rekening anda",
+                          icon: const Icon(Icons.numbers),
+                        ),
+                        validator: (username) {
+                          if (username!.isEmpty) {
+                            return "Harus masukan Nama Rekening";
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
                       const SizedBox(
                         height: 10,
                       ),
@@ -291,7 +315,10 @@ _showSimpleModalDialog(context, String bankAccount, bool isEdit) {
                             final res = await Provider.of<ProviderAccountInfo>(
                                     context,
                                     listen: false)
-                                .editRekening(bankController.text);
+                                .editRekening(
+                              bankController.text,
+                              namaController.text,
+                            );
 
                             if (res) {
                               int count = 0;

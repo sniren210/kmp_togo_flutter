@@ -47,12 +47,13 @@ class ProviderAccountInfo with ChangeNotifier implements BaseModel {
     return success;
   }
 
-  Future<bool> editRekening(String noRek) async {
-    print(noRek);
+  Future<bool> editRekening(String noRek, String namaRek) async {
+    // print(noRek);
     final res = await _dio.post(
       '/api/v1/rekening',
       data: {
         'account_bank_account': noRek,
+        'name_bank_account': namaRek,
       },
       options: Options(
         headers: {'Accept': 'application/json'},
