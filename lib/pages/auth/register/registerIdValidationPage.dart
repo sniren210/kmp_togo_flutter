@@ -107,7 +107,7 @@ class _RegisterIdValidationPageState extends State<RegisterIdValidationPage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: () async => true,
       child: Scaffold(
         body: Consumer<ProviderRegister>(
             builder: (BuildContext context, v, Widget? child) {

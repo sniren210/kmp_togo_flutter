@@ -3,6 +3,7 @@ import 'package:kmp_togo_mobile/apis/repository.dart';
 import 'package:kmp_togo_mobile/helpers/machines.dart';
 import 'package:kmp_togo_mobile/pages/base.dart';
 import 'package:kmp_togo_mobile/pages/common/cardtopup.dart';
+import 'package:kmp_togo_mobile/pages/wallet/buy/buy_coin_page.dart';
 import 'package:kmp_togo_mobile/pages/wallet/buy/buy_poin_page.dart';
 import 'package:kmp_togo_mobile/pages/wallet/topup/topup_coin_pages.dart';
 import 'package:kmp_togo_mobile/pages/wallet/topup/topuppages.dart';
@@ -149,7 +150,9 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              TopUpCoinPage()),
+                                                              BeliCoinToGo(
+                                                                isBuy: true,
+                                                              )),
                                                     );
                                                   },
                                                   child: Column(
@@ -190,7 +193,9 @@ class _ToGoCoinState extends State<ToGoCoin> with NumberFormatMachine {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              WithDrawCoin()),
+                                                              BeliCoinToGo(
+                                                                isBuy: false,
+                                                              )),
                                                     );
                                                   },
                                                   child: Column(

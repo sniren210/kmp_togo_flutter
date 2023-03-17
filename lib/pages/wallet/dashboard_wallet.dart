@@ -158,7 +158,7 @@ class _DashboardWalletState extends State<DashboardWallet>
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              BeliToGo(
+                                                              BeliPoinToGo(
                                                                 isBuy: true,
                                                               )),
                                                     );
@@ -201,7 +201,7 @@ class _DashboardWalletState extends State<DashboardWallet>
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              BeliToGo(
+                                                              BeliPoinToGo(
                                                                 isBuy: false,
                                                               )),
                                                     );

@@ -9,6 +9,7 @@ import 'package:kmp_togo_mobile/helpers/ui_helper/formInputField.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/spacer.dart';
 import 'package:kmp_togo_mobile/helpers/ui_helper/textStyling.dart';
 import 'package:kmp_togo_mobile/pages/auth/register/enterpinregister.dart';
+import 'package:kmp_togo_mobile/pages/settings/privacy_policy_page.dart';
 import 'package:sizer/sizer.dart';
 
 class RegisterMakeAccountPage extends StatefulWidget {
@@ -256,7 +257,13 @@ class _RegisterMakeAccountPageState extends State<RegisterMakeAccountPage> {
                                       ),
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () {
-                                          // navigate to desired screen
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SettingsAboutPage(
+                                                        settings: 'tos',
+                                                      )));
                                         }),
                                   TextSpan(
                                       text: ' dan ',
@@ -271,7 +278,13 @@ class _RegisterMakeAccountPageState extends State<RegisterMakeAccountPage> {
                                       ),
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () {
-                                          // navigate to desired screen
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SettingsAboutPage(
+                                                        settings: 'member',
+                                                      )));
                                         })
                                 ]),
                           ),

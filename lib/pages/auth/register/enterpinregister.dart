@@ -63,7 +63,7 @@ class _EnterPinRegisterState extends State<EnterPinRegister> {
               Container(
                 margin: const EdgeInsets.all(20.0),
                 child: const Text(
-                    'Pin ini digunakan untuk, Lörem ipsum mar hälsolitteracitet i nirat. Gijånade homosm.',
+                    'Pin ini digunakan untuk, setiap transaksi yg terjadi di aplikasi.',
                     textAlign: TextAlign.center,
                     style: TextStyling.normal15grey),
               ),

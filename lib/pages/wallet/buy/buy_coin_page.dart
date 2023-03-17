@@ -24,16 +24,16 @@ import 'package:kmp_togo_mobile/providers/account/provider_account.dart';
 import 'package:kmp_togo_mobile/providers/wallet/topup/provider_topup.dart';
 import 'package:kmp_togo_mobile/utils/layarmax.dart';
 
-class BeliPoinToGo extends StatefulWidget {
+class BeliCoinToGo extends StatefulWidget {
   final bool isBuy;
 
-  BeliPoinToGo({Key? key, required this.isBuy}) : super(key: key);
+  BeliCoinToGo({Key? key, required this.isBuy}) : super(key: key);
 
   @override
-  State<BeliPoinToGo> createState() => _BeliPoinToGoState();
+  State<BeliCoinToGo> createState() => _BeliCoinToGoState();
 }
 
-class _BeliPoinToGoState extends State<BeliPoinToGo> with NumberFormatMachine {
+class _BeliCoinToGoState extends State<BeliCoinToGo> with NumberFormatMachine {
   List data = ['', '', ''];
 
   double qtyBuy = 0.0, qtySell = 0.0;
@@ -111,7 +111,7 @@ class _BeliPoinToGoState extends State<BeliPoinToGo> with NumberFormatMachine {
                                     ),
                                   ),
                                   Text(
-                                    isBuy ? "Beli Poin" : "Jual Poin",
+                                    isBuy ? "Beli Coin" : "Jual Coin",
                                     style: TextStyle(
                                       fontSize: 20.sp,
                                       fontWeight: FontWeight.w500,
@@ -850,7 +850,7 @@ class _BeliPoinToGoState extends State<BeliPoinToGo> with NumberFormatMachine {
                                               type: 'error',
                                               title: 'Kesalahan',
                                               text:
-                                                  'Jumlah  Poin tidak boleh kosong');
+                                                  'Jumlah coin tidak boleh kosong');
                                         }
                                       } else {
                                         if (qtySellC.text.isNotEmpty) {
@@ -864,11 +864,11 @@ class _BeliPoinToGoState extends State<BeliPoinToGo> with NumberFormatMachine {
                                                   nextPage: BuySuccessPage(
                                                     nextPage: Home(),
                                                     title:
-                                                        'Berhasil Menjual poin',
+                                                        'Berhasil Menjual Coin',
                                                     subtitle: '',
                                                   ),
                                                   title:
-                                                      'Berhasil Menjual Poin',
+                                                      'Berhasil Menjual Coin ',
                                                   subtitle: '',
                                                   provRepo: 'sell_coin',
                                                   model: null,
@@ -892,7 +892,7 @@ class _BeliPoinToGoState extends State<BeliPoinToGo> with NumberFormatMachine {
                                               type: 'error',
                                               title: 'Kesalahan',
                                               text:
-                                                  'Jumlah Poin tidak boleh kosong');
+                                                  'Jumlah Coin tidak boleh kosong');
                                         }
                                       }
                                     },
@@ -908,7 +908,7 @@ class _BeliPoinToGoState extends State<BeliPoinToGo> with NumberFormatMachine {
                                                 BorderRadius.circular(5),
                                             color: const Color(0xFF85014e)),
                                         child: Text(
-                                          isBuy ? 'Beli Poin' : 'Jual Poin',
+                                          isBuy ? 'Beli Coin' : 'Jual Coin',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: Colors.white,

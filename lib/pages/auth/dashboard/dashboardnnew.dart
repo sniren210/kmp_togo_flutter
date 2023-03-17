@@ -1354,7 +1354,7 @@ class _DashboardNewState extends State<DashboardNew> with NumberFormatMachine {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => BeliToGo(
+                                            builder: (context) => BeliPoinToGo(
                                                   isBuy: true,
                                                 )),
                                       );
