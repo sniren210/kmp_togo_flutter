@@ -521,6 +521,12 @@ class _LoginPagesState extends State<LoginPages> {
                         ),
                         InkWell(
                           onTap: () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) =>
+                            //           RegisterMemberTypePage()),
+                            // );
                             Navigator.push(
                               context,
                               MaterialPageRoute(

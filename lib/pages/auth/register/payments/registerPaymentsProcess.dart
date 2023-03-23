@@ -48,6 +48,7 @@ class PaymentProcess extends StatefulWidget {
 }
 
 class _PaymentProcessState extends State<PaymentProcess> {
+  final voucher = TextEditingController();
   bool? loading = true;
 
   String? nik;
@@ -110,11 +111,6 @@ class _PaymentProcessState extends State<PaymentProcess> {
       body: Consumer<ProviderRegister>(builder: (context, v, child) {
         return LayoutBuilder(
           builder: (context, constraints) {
-            // SizeConfig().init(
-            //     context: context,
-            //     safeAreaBox: constraints,
-            //     referenceHeight: 800,
-            //     referenceWidth: 360);
             return loading == true
                 ? const Center(
                     child: CircularProgressIndicator(),
@@ -249,54 +245,43 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                               "Kode Voucher",
                                               style: TextStyling.w40014grey,
                                             ),
-                                            Row(
-                                              children: [
-                                                TextField(
-                                                  decoration: InputDecoration(
-                                                    hintText: 'masukan voucher',
-                                                    hintStyle:
-                                                        TextStyling.w30013black,
-                                                    border: InputBorder.none,
-                                                  ),
-                                                  onSubmitted: (value) async {
-                                                    // setState(() {
-                                                    //   loading = true;
-                                                    // });
-                                                    final getApiTextLogin =
-                                                        Provider.of<
-                                                                ProviderRegister>(
-                                                            context,
-                                                            listen: false);
+                                            TextField(
+                                              controller: voucher,
+                                              decoration: InputDecoration(
+                                                hintText: 'masukan voucher',
+                                                hintStyle:
+                                                    TextStyling.w30013black,
+                                                border: InputBorder.none,
+                                              ),
+                                              onSubmitted: (value) async {
+                                                setState(() {
+                                                  loading = true;
+                                                });
+                                                final getApiTextLogin = Provider
+                                                    .of<ProviderRegister>(
+                                                        context,
+                                                        listen: false);
 
-                                                    final res =
-                                                        await getApiTextLogin
-                                                            .checkVoucher(
-                                                                context,
-                                                                token: widget
-                                                                    .token,
-                                                                code: value
-                                                                // voucher: '',
-                                                                );
+                                                final res =
+                                                    await getApiTextLogin
+                                                        .checkVoucher(context,
+                                                            token: widget.token,
+                                                            code: value
+                                                            // voucher: '',
+                                                            );
 
-                                                    if (res) {
-                                                      await getApiTextLogin
-                                                          .createPayment(
-                                                              context,
-                                                              token:
-                                                                  widget.token,
-                                                              voucher: value);
-                                                    }
+                                                if (res) {
+                                                  await getApiTextLogin
+                                                      .createPayment(context,
+                                                          token: widget.token,
+                                                          voucher: value);
+                                                }
 
-                                                    // setState(() {
-                                                    //   loading = getApiTextLogin
-                                                    //       .loadingPayment;
-                                                    // });
-                                                  },
-                                                ),
-                                                // ElevatedButton(onPressed: () {
-
-                                                // }, child: Text('Gunakan'))
-                                              ],
+                                                setState(() {
+                                                  loading = false;
+                                                  voucher.text = value;
+                                                });
+                                              },
                                             ),
                                           ],
                                         ),
@@ -340,9 +325,10 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                                     Expanded(
                                                       flex: 2,
                                                       child: Text(
-                                                        currencyFormatter
-                                                            .format(widget
-                                                                .monthlyPrincipalFee),
+                                                        currencyFormatter.format(v
+                                                            .dataPayment
+                                                            ?.data
+                                                            .monthlyPrincipalFee),
                                                         textAlign:
                                                             TextAlign.right,
                                                         style: TextStyling
@@ -374,10 +360,12 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                                     Expanded(
                                                       flex: 2,
                                                       child: Text(
-                                                          currencyFormatter
-                                                              .format((widget
-                                                                      .monthlyMandatoryFee) *
-                                                                  12),
+                                                          currencyFormatter.format((v
+                                                                      .dataPayment
+                                                                      ?.data
+                                                                      .monthlyMandatoryFee ??
+                                                                  0) *
+                                                              12),
                                                           textAlign:
                                                               TextAlign.right,
                                                           style: TextStyling
@@ -407,7 +395,9 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                                       flex: 2,
                                                       child: Text(
                                                           currencyFormatter
-                                                              .format(widget
+                                                              .format(v
+                                                                  .dataPayment
+                                                                  ?.data
                                                                   .adminFee),
                                                           textAlign:
                                                               TextAlign.right,
@@ -416,6 +406,48 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                                     ),
                                                   ],
                                                 ),
+                                                if (v.dataPayment?.data
+                                                        .discountPercentage !=
+                                                    "0")
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Expanded(
+                                                        flex: 2,
+                                                        child: const Text(
+                                                          'Diskon ',
+                                                          style: TextStyle(
+                                                            color: Colors.red,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                            fontSize: 13,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      // Expanded(
+                                                      //     child: Text('Rp.',
+                                                      //         textAlign:
+                                                      //             TextAlign.right,
+                                                      //         style: TextStyling
+                                                      //             .w30013black)),
+                                                      Expanded(
+                                                        flex: 2,
+                                                        child: Text(
+                                                          "${v.dataPayment?.data.discountPercentage} %",
+                                                          textAlign:
+                                                              TextAlign.right,
+                                                          style: TextStyle(
+                                                            color: Colors.red,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                            fontSize: 13,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 Divider(
                                                   thickness: 1,
                                                 ),
@@ -441,12 +473,27 @@ class _PaymentProcessState extends State<PaymentProcess> {
                                                       flex: 2,
                                                       child: Builder(
                                                           builder: (context) {
-                                                        int jumlah = widget
-                                                                .adminFee +
-                                                            widget
-                                                                .monthlyPrincipalFee +
-                                                            (widget.monthlyMandatoryFee *
-                                                                12);
+                                                        int adminFee = v
+                                                                .dataPayment
+                                                                ?.data
+                                                                .adminFee ??
+                                                            0;
+                                                        int monthlyPrincipalFee = v
+                                                                .dataPayment
+                                                                ?.data
+                                                                .monthlyPrincipalFee ??
+                                                            0;
+                                                        int monthlyMandatoryFee = v
+                                                                .dataPayment
+                                                                ?.data
+                                                                .monthlyMandatoryFee ??
+                                                            0;
+
+                                                        int jumlah = v
+                                                                .dataPayment
+                                                                ?.data
+                                                                .amount ??
+                                                            0;
                                                         return Text(
                                                             currencyFormatter
                                                                 .format(jumlah),

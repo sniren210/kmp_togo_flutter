@@ -386,7 +386,7 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
 
     String? deviceId = await PlatformDeviceId.getDeviceId;
     final body = {
-      // 'email': 'example29@gmail.com',
+      // 'email': 'example3@gmail.com',
       'email': email,
       // 'password': 'Sniren123',
       'password': password,
@@ -394,7 +394,7 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
       'password_confirmation': password,
       // 'name': 'RENDI DWIKURNIASANDI',
       'name': name,
-      // 'nik': 3210192013138231,
+      // 'nik': 3210192013138233,
       'nik': int.parse(nik),
       // 'birth_place': 'MAJALENGKA',
       'birth_place': birthPlace,
@@ -424,11 +424,11 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
       'city': city,
       // 'province': 'JAWA BARAT',
       'province': province,
-      // 'phone_number': 085215137644,
+      // 'phone_number': 085215137045,
       'phone_number': int.parse(phoneNumber),
       // 'pin': 123456,
       'pin': int.parse(pin),
-      // 'member_type': 'Trader',
+      // 'member_type': 'platinum',
       'member_type': membertypeanggota,
 
       'device_id': deviceId,
@@ -436,7 +436,7 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
     };
     // final body1 = {"email": email, "password": password};
 
-    print('body: $body');
+    // print('body: $body');
     // print('body: $body1');
     final res = await _dio.post(
       '/api/v1/register',
@@ -456,11 +456,15 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
       await customSnackbar(
           type: 'success', title: 'Berhasil', text: 'Akun sudah terbuat');
       return res.data;
-    } else {
+    } else if (res.statusCode == 422) {
       await customSnackbar(
           type: 'error',
           title: 'Terjadi kesalahan!',
           text: 'NIK/Email sudah terdaftar');
+      throw Exception();
+    } else {
+      await customSnackbar(
+          type: 'error', title: 'Error', text: 'Terjadi kesalahan!');
       throw Exception();
     }
   }
@@ -471,7 +475,9 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
     String voucher = '',
   }) async {
     try {
-      // print(token);
+      // dataPayment = null;
+      // notifyListeners();
+      print(token);
       final res = await _dio.post(
         '/api/v1/create-payment',
         data: {'voucher': voucher},
@@ -516,6 +522,7 @@ class ProviderRegister with ChangeNotifier, ApiMachine {
     required String token,
     required String uuid,
   }) async {
+    print(token);
     print(uuid);
     final res = await _dio2.post(
       '/api/v1/check-payment',

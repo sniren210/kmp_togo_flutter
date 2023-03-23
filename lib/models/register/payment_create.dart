@@ -53,6 +53,10 @@ class Data {
     required this.createdAt,
     required this.expiresAt,
     required this.id,
+    required this.monthlyPrincipalFee,
+    required this.monthlyMandatoryFee,
+    required this.adminFee,
+    required this.discountPercentage,
   });
 
   String uuid;
@@ -68,6 +72,10 @@ class Data {
   String flagAmount;
   String isClosed;
   String status;
+  int monthlyPrincipalFee;
+  int monthlyMandatoryFee;
+  int adminFee;
+  String discountPercentage;
   DateTime createdAt;
   DateTime expiresAt;
   int id;
@@ -89,6 +97,16 @@ class Data {
         createdAt: DateTime.parse(json["created_at"]),
         expiresAt: DateTime.parse(json["expires_at"]),
         id: json["id"],
+        monthlyPrincipalFee: json["monthly_principal_fee"] == null
+            ? 0
+            : json["monthly_principal_fee"],
+        monthlyMandatoryFee: json["monthly_mandatory_fee"] == null
+            ? 0
+            : json["monthly_mandatory_fee"],
+        adminFee: json["admin_fee"] == null ? 0 : json["admin_fee"],
+        discountPercentage: json["discount_percentage"] == null
+            ? ''
+            : json["discount_percentage"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -108,5 +126,9 @@ class Data {
         "created_at": createdAt.toIso8601String(),
         "expires_at": expiresAt.toIso8601String(),
         "id": id,
+        "monthly_principal_fee": monthlyPrincipalFee,
+        "monthly_mandatory_fee": monthlyMandatoryFee,
+        "admin_fee": adminFee,
+        "discount_percentage": discountPercentage,
       };
 }
